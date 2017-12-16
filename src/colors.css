@@ -1,0 +1,10 @@
+:root {
+  /*
+   * This color is used for elements which should blend into the background like
+   * the sidebar.
+   */
+  --secondary-color: #121212;
+
+  --accent-color: #11A858;
+  --main-background-color: #1b1b1b;
+}
