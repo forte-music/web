@@ -188,6 +188,7 @@ module.exports = {
                     }),
                     require("postcss-custom-properties"),
                     require('postcss-color-function'),
+                    require('postcss-input-range'),
                   ],
                 },
               },
