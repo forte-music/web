@@ -1,0 +1,113 @@
+@import "../colors.css";
+
+:root {
+  --half-transparent: rgba(255, 255, 255, .2);
+}
+
+.bars {
+  height: 10px;
+  position: relative;
+  background: color(var(--main-background-color) shade(10%));
+}
+
+.bar {
+  /* Position the bars on top of each other relative to the bars container. The
+   * z-index is source order.
+   */
+  position: absolute;
+  height: 100%;
+  width: 100%;
+}
+
+.played {
+  background: color(var(--main-background-color) tint(15%));
+  width: 30%;
+}
+
+.buffered {
+  background: color(var(--main-background-color) tint(5%));
+  width: 50%;
+}
+
+.loading {
+  background: color(var(--main-background-color) tint(0%));
+  width: 100%;
+}
+
+.loading:after {
+  content: "";
+
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  /*
+   * Striped 45 deg gradient with half transparent and fully transparent
+   * regions.
+   */
+  background-image: linear-gradient(
+    -45deg, 
+    var(--half-transparent) 25%, 
+    transparent 25%, 
+    transparent 50%, 
+    var(--half-transparent) 50%, 
+    var(--half-transparent) 75%, 
+    transparent 75%, 
+    transparent 100%
+  );
+
+  background-size: 50px 50px;
+  animation: move 2s linear infinite;
+  overflow: hidden;
+}
+
+@keyframes move {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 50px 50px;
+  }
+}
+
+/* A hidden input which handles seeking */
+.seek {
+  margin: 0;
+  padding: 0;
+  border: 0;
+
+  /* Hide default chrome in chrome. */
+  -webkit-appearance: none;
+  background: transparent;
+}
+
+.seek:focus {
+  outline: none;
+}
+
+.seek::range-track {
+  background: transparent;
+}
+
+.seek::range-thumb {
+  -webkit-appearance: none;
+  border: none;
+
+  /* The thumb needs to have some size for events to trigger. */
+  width: 1px;
+  height: 1px;
+  background: transparent;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+
+  color: color(var(--inactive-color) shade(30%));
+}
+
+.time {
+  padding: 1em;
+}

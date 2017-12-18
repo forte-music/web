@@ -14,13 +14,14 @@
   padding-right: 1.125em;
 
   /* Reset link look. */
-  color: #aaa;
+  color: var(--inactive-color);
   text-decoration: none;
+  outline: none;
 }
 
 /* Active when the link's route is the current route. */
 .link.active {
-  color: #fff;
+  color: var(--active-color);
   border-color: var(--accent-color);
 }
 
