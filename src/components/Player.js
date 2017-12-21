@@ -8,6 +8,8 @@ import {
 
 import { formatDuration } from '../utils';
 
+// TODO: Expose Events and Refactor Bars + Timers
+
 // This component is responsible for playing audio using the HTML5 audio element
 // and rendering progress bars for buffering, played and loading states. It is
 // hevily inspired by sampotts/plyr. plyr isn't used because it is heavy and has
@@ -25,8 +27,8 @@ class Player extends Component {
     loading: true,
   };
 
-  constructor() {
-    super();
+  constructor(props) {
+    super(props);
 
     this.onDurationChange = this.onDurationChange.bind(this);
     this.onTimeUpdate = this.onTimeUpdate.bind(this);
@@ -37,6 +39,39 @@ class Player extends Component {
     this.onSeeked = this.onSeeked.bind(this);
     this.onSeeking = this.onSeeking.bind(this);
     this.onSeekChange = this.onSeekChange.bind(this);
+    this.onRef = this.onRef.bind(this);
+  }
+
+  componentDidUpdate(prevProps) {
+    this.reconcilePlayingState(prevProps);
+  }
+
+  onRef(audioElem) {
+    this.audioElem = audioElem;
+
+    this.reconcilePlayingState();
+  }
+
+  // TODO: When Seeking Multiple Songs Back to Back This Function Throws
+  // DOMException: The play() request was interrupted by a new load request.
+  // https://goo.gl/LdLk22
+  //
+  // The HTML5 audio element doesn't have a declarative playing attribute. It
+  // only exposes an imperative (.play(), .pause()) api for controlling
+  // playback. There aren't any events which allow the user agent to pause
+  // playback; this is the only property which can change the playing state.
+  reconcilePlayingState(prevProps = {}) {
+    const { audioElem } = this;
+    const { playing: wasPlayingFromProps, src: oldSrc } = prevProps;
+    const { playing: nowPlaying = false, src: newSrc } = this.props;
+
+    const wasPlaying = wasPlayingFromProps && oldSrc === newSrc;
+
+    if (wasPlaying && !nowPlaying) {
+      audioElem.pause();
+    } else if (!wasPlaying && nowPlaying) {
+      audioElem.play();
+    }
   }
 
   onDurationChange(e) {
@@ -114,7 +149,7 @@ class Player extends Component {
     return (
       <div>
         <audio
-          ref={el => this.audioElem = el}
+          ref={this.onRef}
           src={src}
           onCanPlayThrough={onCanPlayThrough}
           onEnded={onEnded}
