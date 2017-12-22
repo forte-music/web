@@ -1,25 +1,46 @@
+// @flow
 import React, { Component } from 'react';
 
 import {
   bars as barsClass, played as playedClass, bar as barClass,
   buffered as bufferedClass, loading as loadingClass, seek as seekClass,
-  times as timesClass, time as timeClass,
 } from './Player.css';
 
-import { formatDuration } from '../utils';
+type Props = {
+  src?: string,
 
-// TODO: Expose Events and Refactor Bars + Timers
+  // Whether or not the track is playing.
+  playing?: boolean,
 
-// This component is responsible for playing audio using the HTML5 audio element
-// and rendering progress bars for buffering, played and loading states. It is
-// hevily inspired by sampotts/plyr. plyr isn't used because it is heavy and has
-// many features which are useless in this project.
+  // Called when the duration has changed with the new duration in seconds.
+  onDuration?: (duration: number) => void,
+
+  // Called when position has changed with the new position in seconds.
+  onCurrentTime?: (time: number) => void,
+
+  // Called when the track is played completely by playing or seeking.
+  onEnded?: () => void,
+
+  onCanPlayThrough?: () => void,
+  onError?: () => void,
+};
+
+type State = {
+  duration: number,
+  currentTime: number,
+  bufferedTo: number,
+  loading: boolean,
+};
+
+// A declarative wrapper around the HTML5 audio element. It renders fancy
+// progress bars for buffering, played and loading states and exposes a minimal
+// amount of information.
 //
+// It is heavily inspired by sampotts/plyr.
 // [plyr]: https://github.com/sampotts/plyr/blob/9c4b53d761929ab7305f6bfdbd7fc541ed902d43/src/js/plyr.js
-//
-// It isn't aware of a queue and can only play one song at a time (no
-// crossfading).
-class Player extends Component {
+class Player extends Component<Props, State> {
+  audioElem: ?HTMLAudioElement;
+
   state = {
     duration: 0,
     currentTime: 0,
@@ -27,26 +48,28 @@ class Player extends Component {
     loading: true,
   };
 
-  constructor(props) {
+  constructor(props: Props) {
     super(props);
 
-    this.onDurationChange = this.onDurationChange.bind(this);
-    this.onTimeUpdate = this.onTimeUpdate.bind(this);
-    this.onProgress = this.onProgress.bind(this);
-    this.onPlaying = this.onPlaying.bind(this);
-    this.onWaiting = this.onWaiting.bind(this);
-    this.onCanPlay = this.onCanPlay.bind(this);
-    this.onSeeked = this.onSeeked.bind(this);
-    this.onSeeking = this.onSeeking.bind(this);
-    this.onSeekChange = this.onSeekChange.bind(this);
-    this.onRef = this.onRef.bind(this);
+    // Hack to get around the hack that is javascript classes.
+    const self: any = this;
+    self.onDurationChange = this.onDurationChange.bind(this);
+    self.onTimeUpdate = this.onTimeUpdate.bind(this);
+    self.onProgress = this.onProgress.bind(this);
+    self.onPlaying = this.onPlaying.bind(this);
+    self.onWaiting = this.onWaiting.bind(this);
+    self.onCanPlay = this.onCanPlay.bind(this);
+    self.onSeeked = this.onSeeked.bind(this);
+    self.onSeeking = this.onSeeking.bind(this);
+    self.onSeekChange = this.onSeekChange.bind(this);
+    self.onRef = this.onRef.bind(this);
   }
 
-  componentDidUpdate(prevProps) {
+  componentDidUpdate(prevProps: Props) {
     this.reconcilePlayingState(prevProps);
   }
 
-  onRef(audioElem) {
+  onRef(audioElem: ?HTMLAudioElement) {
     this.audioElem = audioElem;
 
     this.reconcilePlayingState();
@@ -60,8 +83,12 @@ class Player extends Component {
   // only exposes an imperative (.play(), .pause()) api for controlling
   // playback. There aren't any events which allow the user agent to pause
   // playback; this is the only property which can change the playing state.
-  reconcilePlayingState(prevProps = {}) {
+  reconcilePlayingState(prevProps: Props = {}) {
     const { audioElem } = this;
+    if (!audioElem) {
+      return;
+    }
+
     const { playing: wasPlayingFromProps, src: oldSrc } = prevProps;
     const { playing: nowPlaying = false, src: newSrc } = this.props;
 
@@ -74,16 +101,29 @@ class Player extends Component {
     }
   }
 
-  onDurationChange(e) {
-    this.setState({ duration: this.audioElem.duration });
+  onDurationChange() {
+    if (!this.audioElem) {
+      return;
+    }
+
+    const duration = this.audioElem.duration;
+    this.setState({ duration });
+
+    this.props.onDuration && this.props.onDuration(duration);
   }
 
-  onTimeUpdate(e) {
+  onTimeUpdate() {
     this.updateTime();
   }
 
   updateTime() {
-    this.setState({ currentTime: this.audioElem.currentTime });
+    if (!this.audioElem) {
+      return;
+    }
+
+    const currentTime = this.audioElem.currentTime;
+    this.setState({ currentTime });
+    this.props.onCurrentTime && this.props.onCurrentTime(currentTime);
   }
 
   onPlaying() {
@@ -97,6 +137,10 @@ class Player extends Component {
   // Update state from the audio element to reflect the amount of buffered
   // content.
   updateLoaded() {
+    if (!this.audioElem) {
+      return;
+    }
+
     const timeRanges = this.audioElem.buffered;
     if (!timeRanges.length) {
       return;
@@ -107,7 +151,7 @@ class Player extends Component {
   }
 
   waitingTimer = undefined
-  onWaiting(e) {
+  onWaiting() {
     clearTimeout(this.waitingTimer);
 
     this.waitingTimer = setTimeout(() => this.onWaitingDelayed(), 250);
@@ -135,8 +179,12 @@ class Player extends Component {
     this.setLoaded();
   }
 
-  onSeekChange(e) {
+  onSeekChange(e: SyntheticInputEvent<HTMLInputElement>) {
     const rawPosition = Number(e.target.value);
+
+    if (!this.audioElem) {
+      return;
+    }
 
     // Request seek to position.
     this.audioElem.currentTime = rawPosition / 100 * this.state.duration;
@@ -181,11 +229,6 @@ class Player extends Component {
             min={0}
             max={100}
             type='range' />
-        </div>
-
-        <div className={timesClass}>
-          <span className={timeClass}>{ formatDuration(currentTime) }</span>
-          <span className={timeClass}>{ formatDuration(duration) }</span>
         </div>
       </div>
     );

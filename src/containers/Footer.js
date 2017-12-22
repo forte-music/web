@@ -3,8 +3,15 @@ import { connect } from 'react-redux';
 
 import { addToQueue, nextSong, previousSong } from '../actions';
 import store from '../store';
+import { formatDuration } from '../utils';
 
 import Player from '../components/Player';
+import PlayIcon from '../icons/Play';
+
+import {
+  controls as controlsClass, mainIcon as mainIconClass, time as timeClass,
+  container as containerClass,
+} from './Footer.css';
 
 class Footer extends Component {
   state = {
@@ -15,6 +22,9 @@ class Footer extends Component {
     super(props);
 
     this.onEnded = this.onEnded.bind(this);
+    this.onCurrentTime = this.onCurrentTime.bind(this);
+    this.onDuration = this.onDuration.bind(this);
+    this.togglePlaying = this.togglePlaying.bind(this);
   }
 
   onEnded() {
@@ -26,16 +36,42 @@ class Footer extends Component {
     }
   }
 
+  onCurrentTime(currentTime: number) {
+    this.setState({ currentTime });
+  }
+
+  onDuration(duration: number) {
+    this.setState({ duration });
+  }
+
+  togglePlaying() {
+    this.setState(({ playing }) => ({ playing: !playing }))
+  }
+
   render() {
     const { className, nowPlayingSrc } = this.props;
-    const { playing } = this.state;
+    const { playing, currentTime, duration } = this.state;
+
+    // TODO: Add Additional Icons
 
     return (
       <footer className={className}>
         <Player
           src={nowPlayingSrc}
           playing={playing}
-          onEnded={this.onEnded} />
+          onEnded={this.onEnded}
+          onCurrentTime={currentTime => this.setState({ currentTime })}
+          onDuration={duration => this.setState({ duration })} />
+
+        <div className={containerClass}>
+          <span className={timeClass}>{ formatDuration(currentTime) }</span>
+
+          <div className={controlsClass}>
+            <PlayIcon onClick={this.togglePlaying} svgClass={mainIconClass} />
+          </div>
+
+          <span className={timeClass}>{ formatDuration(duration) }</span>
+        </div>
       </footer>
     );
   }

@@ -48,13 +48,13 @@
    * regions.
    */
   background-image: linear-gradient(
-    -45deg, 
-    var(--half-transparent) 25%, 
-    transparent 25%, 
-    transparent 50%, 
-    var(--half-transparent) 50%, 
-    var(--half-transparent) 75%, 
-    transparent 75%, 
+    -45deg,
+    var(--half-transparent) 25%,
+    transparent 25%,
+    transparent 50%,
+    var(--half-transparent) 50%,
+    var(--half-transparent) 75%,
+    transparent 75%,
     transparent 100%
   );
 
@@ -99,15 +99,4 @@
   width: 1px;
   height: 1px;
   background: transparent;
-}
-
-.times {
-  display: flex;
-  justify-content: space-between;
-
-  color: color(var(--inactive-color) shade(30%));
-}
-
-.time {
-  padding: 1em;
 }
