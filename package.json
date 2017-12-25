@@ -54,7 +54,9 @@
     "flow": "flow",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom"
+    "test": "node scripts/test.js --env=jsdom",
+    "fix-style": "prettier --write 'src/**/*.{js,css}'",
+    "check-style": "prettier --list-different 'src/**/*.{js,css}'"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -98,7 +100,12 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "prettier": {
+    "singleQuote": true,
+    "trailingComma": "es5"
+  },
   "devDependencies": {
-    "flow-bin": "^0.61.0"
+    "flow-bin": "^0.61.0",
+    "prettier": "1.9.2"
   }
 }

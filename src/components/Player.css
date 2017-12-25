@@ -1,7 +1,7 @@
-@import "../colors.css";
+@import '../colors.css';
 
 :root {
-  --half-transparent: rgba(255, 255, 255, .2);
+  --half-transparent: rgba(255, 255, 255, 0.2);
 }
 
 .bars {
@@ -35,7 +35,7 @@
 }
 
 .loading:after {
-  content: "";
+  content: '';
 
   position: absolute;
   top: 0;

@@ -2,8 +2,12 @@
 import React, { Component } from 'react';
 
 import {
-  bars as barsClass, played as playedClass, bar as barClass,
-  buffered as bufferedClass, loading as loadingClass, seek as seekClass,
+  bars as barsClass,
+  played as playedClass,
+  bar as barClass,
+  buffered as bufferedClass,
+  loading as loadingClass,
+  seek as seekClass,
 } from './Player.css';
 
 type Props = {
@@ -147,10 +151,12 @@ class Player extends Component<Props, State> {
     }
 
     const lastBufferRangeIdx = this.audioElem.buffered.length - 1;
-    this.setState({ bufferedTo: this.audioElem.buffered.end(lastBufferRangeIdx) });
+    this.setState({
+      bufferedTo: this.audioElem.buffered.end(lastBufferRangeIdx),
+    });
   }
 
-  waitingTimer = undefined
+  waitingTimer = undefined;
   onWaiting() {
     clearTimeout(this.waitingTimer);
 
@@ -209,26 +215,29 @@ class Player extends Component<Props, State> {
           onWaiting={this.onWaiting}
           onCanPlay={this.onCanPlay}
           onSeeked={this.onSeeked}
-          onSeeking={this.onSeeking} />
+          onSeeking={this.onSeeking}
+        />
 
         <div className={barsClass}>
           <div
-            style={{width: `${bufferedTo/duration * 100}%`}}
-            className={[barClass, bufferedClass].join(' ')} />
+            style={{ width: `${bufferedTo / duration * 100}%` }}
+            className={[barClass, bufferedClass].join(' ')}
+          />
 
           <div
-            style={{width: `${currentTime/duration * 100}%`}}
-            className={[barClass, playedClass].join(' ')} />
+            style={{ width: `${currentTime / duration * 100}%` }}
+            className={[barClass, playedClass].join(' ')}
+          />
 
-          <div
-            className={[barClass, loading && loadingClass].join(' ')} />
+          <div className={[barClass, loading && loadingClass].join(' ')} />
 
           <input
             onChange={this.onSeekChange}
             className={[barClass, seekClass].join(' ')}
             min={0}
             max={100}
-            type='range' />
+            type="range"
+          />
         </div>
       </div>
     );

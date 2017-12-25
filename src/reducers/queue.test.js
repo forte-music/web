@@ -1,5 +1,9 @@
 import {
-  addToQueue, replaceQueue, skipRelative, removeFromQueue, skip,
+  addToQueue,
+  replaceQueue,
+  skipRelative,
+  removeFromQueue,
+  skip,
 } from './queue';
 
 const initialState = {
@@ -14,14 +18,14 @@ const initialState = {
 };
 
 describe('add to queue reducer', () => {
-  const songs = [ 'this is a song', 'this is another song' ];
+  const songs = ['this is a song', 'this is another song'];
 
   it('adds to end of queue', () => {
     const action = {
       songs,
       position: 'END',
     };
-    const newState = addToQueue(initialState, action)
+    const newState = addToQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
 
@@ -30,14 +34,14 @@ describe('add to queue reducer', () => {
       songs,
       position: 'AFTER_CURRENT',
     };
-    const newState = addToQueue(initialState, action)
+    const newState = addToQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
 });
 
 describe('replace reducer', () => {
   it('replaces the queue', () => {
-    const action = { songs: [ 'Just The Way You Are', 'Glad You Came' ] };
+    const action = { songs: ['Just The Way You Are', 'Glad You Came'] };
     const newState = replaceQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
@@ -65,19 +69,19 @@ describe('skip relative reducer', () => {
 
 describe('remove reducer', () => {
   it('removes songs after the current playing song', () => {
-    const action = { songs: [ 'd', 'e' ] };
+    const action = { songs: ['d', 'e'] };
     const newState = removeFromQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
 
   it('removes songs before the current playing song', () => {
-    const action = { songs: [ 'a', 'b' ] };
+    const action = { songs: ['a', 'b'] };
     const newState = removeFromQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
 
   it('removes the currently playing song', () => {
-    const action = { songs: [ 'c' ] };
+    const action = { songs: ['c'] };
     const newState = removeFromQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });

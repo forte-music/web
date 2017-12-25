@@ -9,7 +9,9 @@ import Player from '../components/Player';
 import PlayIcon from '../icons/Play';
 
 import {
-  controls as controlsClass, mainIcon as mainIconClass, time as timeClass,
+  controls as controlsClass,
+  mainIcon as mainIconClass,
+  time as timeClass,
   container as containerClass,
 } from './Footer.css';
 
@@ -45,7 +47,7 @@ class Footer extends Component {
   }
 
   togglePlaying() {
-    this.setState(({ playing }) => ({ playing: !playing }))
+    this.setState(({ playing }) => ({ playing: !playing }));
   }
 
   render() {
@@ -61,16 +63,17 @@ class Footer extends Component {
           playing={playing}
           onEnded={this.onEnded}
           onCurrentTime={currentTime => this.setState({ currentTime })}
-          onDuration={duration => this.setState({ duration })} />
+          onDuration={duration => this.setState({ duration })}
+        />
 
         <div className={containerClass}>
-          <span className={timeClass}>{ formatDuration(currentTime) }</span>
+          <span className={timeClass}>{formatDuration(currentTime)}</span>
 
           <div className={controlsClass}>
             <PlayIcon onClick={this.togglePlaying} svgClass={mainIconClass} />
           </div>
 
-          <span className={timeClass}>{ formatDuration(duration) }</span>
+          <span className={timeClass}>{formatDuration(duration)}</span>
         </div>
       </footer>
     );
@@ -78,20 +81,20 @@ class Footer extends Component {
 }
 
 const SONGS = {
-  'a': '13 - Control.flac',
-  'b': '01 - Stole the Show (feat. Parson James).flac',
-  'c': "01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a",
-  'd': '01 - Bugatti (feat. Future & Rick Ross).flac',
+  a: '13 - Control.flac',
+  b: '01 - Stole the Show (feat. Parson James).flac',
+  c: "01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a",
+  d: '01 - Bugatti (feat. Future & Rick Ross).flac',
 };
 
-store.dispatch(addToQueue([ 'a', 'b', 'c', 'd' ], "END"));
+store.dispatch(addToQueue(['a', 'b', 'c', 'd'], 'END'));
 
 const mapDispatchToProps = dispatch => ({
   nextSong: () => dispatch(nextSong()),
   previousSong: () => dispatch(previousSong()),
 });
 
-const mapStateToProps = ({ queue: { items, position }}) => {
+const mapStateToProps = ({ queue: { items, position } }) => {
   const song = items[position] || {};
   const { songId } = song;
 

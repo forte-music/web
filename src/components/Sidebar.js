@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 
 import { link as linkClass, active as activeClass } from './Sidebar.css';
 
-const Sidebar = ({ className }) =>
+const Sidebar = ({ className }) => (
   <aside className={className}>
     <Link to="/home">Home</Link>
     <Link to="/queue">Queue</Link>
@@ -13,13 +13,12 @@ const Sidebar = ({ className }) =>
     <Link to="/playlists">Playlists</Link>
     <Link to="/search">Search</Link>
   </aside>
+);
 
-const Link = ({ to, children }) =>
-  <NavLink
-    activeClassName={activeClass}
-    className={linkClass}
-    to={to}>
-    { children }
+const Link = ({ to, children }) => (
+  <NavLink activeClassName={activeClass} className={linkClass} to={to}>
+    {children}
   </NavLink>
+);
 
 export default Sidebar;

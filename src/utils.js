@@ -12,13 +12,13 @@ const MINUTES = {
 };
 
 const HOURS = {
-  suffix: 'h', 
+  suffix: 'h',
   duration: 60 * MINUTES.duration,
 };
 
-const UNITS = [ HOURS, MINUTES, SECONDS ];
+const UNITS = [HOURS, MINUTES, SECONDS];
 
-export const formatDuration = (num) => {
+export const formatDuration = num => {
   const totalSeconds = Math.round(num);
 
   const { output } = UNITS.reduce(
@@ -32,7 +32,8 @@ export const formatDuration = (num) => {
       }
 
       return { remainingDuration, output };
-    }, {
+    },
+    {
       remainingDuration: totalSeconds,
       output: [],
     }

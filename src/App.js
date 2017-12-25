@@ -1,17 +1,19 @@
 import React from 'react';
-import { Provider } from 'react-redux'
-import { HashRouter, Switch, Redirect, Route } from 'react-router-dom'
+import { Provider } from 'react-redux';
+import { HashRouter, Switch, Redirect, Route } from 'react-router-dom';
 
 import Sidebar from './components/Sidebar';
 import Footer from './containers/Footer';
 import store from './store';
 
 import {
-  grid as gridClass, sidebar as sidebarClass, footer as footerClass,
+  grid as gridClass,
+  sidebar as sidebarClass,
+  footer as footerClass,
   content as contentClass,
 } from './App.css';
 
-const App = () =>
+const App = () => (
   <HashRouter>
     <Provider store={store}>
       <div className={gridClass}>
@@ -19,23 +21,23 @@ const App = () =>
 
         <main className={contentClass}>
           <Switch>
-            <Route path='/songs' />
-            <Route path='/songs/:id' />
+            <Route path="/songs" />
+            <Route path="/songs/:id" />
 
-            <Route path='/artists' />
-            <Route path='/artists/:id' />
+            <Route path="/artists" />
+            <Route path="/artists/:id" />
 
-            <Route path='/albums' />
-            <Route path='/albums/:id' />
+            <Route path="/albums" />
+            <Route path="/albums/:id" />
 
-            <Route path='/playlists' />
-            <Route path='/playlists/:id' />
+            <Route path="/playlists" />
+            <Route path="/playlists/:id" />
 
-            <Route path='/home' />
-            <Route path='/queue' />
-            <Route path='/search' />
+            <Route path="/home" />
+            <Route path="/queue" />
+            <Route path="/search" />
 
-            <Redirect from='/' to='/home' />
+            <Redirect from="/" to="/home" />
           </Switch>
         </main>
 
@@ -43,5 +45,6 @@ const App = () =>
       </div>
     </Provider>
   </HashRouter>
+);
 
 export default App;

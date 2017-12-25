@@ -2,46 +2,55 @@
 import type { Action } from '../actions';
 import type { QueueState } from '../state';
 import type {
-  AddToQueueAction, RemoveFromQueueAction, SkipRelativeAction, SkipAction,
-  ReplaceQueueAction
+  AddToQueueAction,
+  RemoveFromQueueAction,
+  SkipRelativeAction,
+  SkipAction,
+  ReplaceQueueAction,
 } from '../actions/queue';
 
 const reducer = (state: QueueState, action: Action): QueueState => {
   switch (action.type) {
-    case "ADD_TO_QUEUE":
+    case 'ADD_TO_QUEUE':
       return addToQueue(state, action);
 
-    case "REMOVE_FROM_QUEUE":
+    case 'REMOVE_FROM_QUEUE':
       return removeFromQueue(state, action);
 
-    case "SKIP_RELATIVE":
+    case 'SKIP_RELATIVE':
       return skipRelative(state, action);
 
-    case "SKIP_TO":
+    case 'SKIP_TO':
       return skip(state, action);
 
-    case "REPLACE_QUEUE":
+    case 'REPLACE_QUEUE':
       return replaceQueue(state, action);
 
     default:
       // eslint thinks putting return state here makes something unreachable
       break;
-  };
+  }
 
   return state;
-}
+};
 
 let lastId = 0;
-export const addToQueue = (state: QueueState, action: AddToQueueAction): QueueState => {
+export const addToQueue = (
+  state: QueueState,
+  action: AddToQueueAction
+): QueueState => {
   const { songs: songsToAdd, position } = action;
 
-  const itemsToAdd = songsToAdd.map(songId => ({ songId, id: String(lastId++) }));
+  const itemsToAdd = songsToAdd.map(songId => ({
+    songId,
+    id: String(lastId++),
+  }));
   const { items: oldItems } = state;
 
   var idx;
-  if (position === "END") {
+  if (position === 'END') {
     idx = oldItems.length;
-  } else if (position === "AFTER_CURRENT") {
+  } else if (position === 'AFTER_CURRENT') {
     const { position } = state;
     idx = position + 1;
   }
@@ -55,7 +64,10 @@ export const addToQueue = (state: QueueState, action: AddToQueueAction): QueueSt
   return { ...state, items };
 };
 
-export const replaceQueue = (state: QueueState, action: ReplaceQueueAction): QueueState => {
+export const replaceQueue = (
+  state: QueueState,
+  action: ReplaceQueueAction
+): QueueState => {
   const { songs: songsToAdd } = action;
   const items = songsToAdd.map(songId => ({ songId, id: String(lastId++) }));
 
@@ -66,7 +78,10 @@ export const replaceQueue = (state: QueueState, action: ReplaceQueueAction): Que
   };
 };
 
-export const removeFromQueue = (state: QueueState, action: RemoveFromQueueAction): QueueState => {
+export const removeFromQueue = (
+  state: QueueState,
+  action: RemoveFromQueueAction
+): QueueState => {
   const { songs: toRemove } = action;
   const { items: oldItems, position: oldPosition } = state;
 
@@ -75,12 +90,12 @@ export const removeFromQueue = (state: QueueState, action: RemoveFromQueueAction
       const { id } = oldItem;
       if (!toRemove.includes(id)) {
         // keeping item
-        return { items: [ ...items, oldItem ], position, removed };
+        return { items: [...items, oldItem], position, removed };
       } else {
         if (idx - removed < position) {
           // update position when removal will affect position
           position--;
-        };
+        }
 
         return { items, position, removed: removed + 1 };
       }
@@ -91,7 +106,10 @@ export const removeFromQueue = (state: QueueState, action: RemoveFromQueueAction
   return { items, position };
 };
 
-export const skipRelative = (state: QueueState, action: SkipRelativeAction): QueueState => {
+export const skipRelative = (
+  state: QueueState,
+  action: SkipRelativeAction
+): QueueState => {
   const { offset } = action;
   const { position, items } = state;
 
