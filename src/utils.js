@@ -1,24 +1,32 @@
-const SECONDS = {
+// @flow
+
+type DurationSpec = {
   // The short suffix used when generating humanized time stamps.
-  suffix: 's',
+  suffix: string,
 
   // The duration in seconds of this unit.
+  duration: number,
+};
+
+
+const SECONDS: DurationSpec = {
+  suffix: 's',
   duration: 1,
 };
 
-const MINUTES = {
+const MINUTES: DurationSpec = {
   suffix: 'm',
   duration: 60 * SECONDS.duration,
 };
 
-const HOURS = {
+const HOURS: DurationSpec = {
   suffix: 'h',
   duration: 60 * MINUTES.duration,
 };
 
 const UNITS = [HOURS, MINUTES, SECONDS];
 
-export const formatDuration = num => {
+export const formatDuration = (num: number): string => {
   const totalSeconds = Math.round(num);
 
   const { output } = UNITS.reduce(
