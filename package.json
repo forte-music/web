@@ -56,7 +56,9 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "fix-style": "prettier --write 'src/**/*.{js,css}'",
-    "check-style": "prettier --list-different 'src/**/*.{js,css}'"
+    "check-style": "prettier --list-different 'src/**/*.{js,css}'",
+    "postinstall": "flow-typed install",
+    "flow-typed": "flow-typed"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -106,6 +108,7 @@
   },
   "devDependencies": {
     "flow-bin": "^0.61.0",
+    "flow-typed": "^2.2.3",
     "prettier": "1.9.2"
   }
 }
