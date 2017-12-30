@@ -1,0 +1,45 @@
+@import '../sizes.css';
+
+.container {
+  width: var(--secondary-button-size);
+}
+
+.heartContainer {
+  display: block;
+}
+
+.fill {
+  transform-origin: center center;
+
+  animation-name: like-out;
+  animation-duration: 0.3s;
+  animation-timing-function: ease-in;
+  animation-fill-mode: forwards;
+}
+
+.liked .fill {
+  animation-name: like-in;
+  animation-duration: 0.3s;
+  animation-timing-function: cubic-bezier(0.25, 0, 0.3, 2.5);
+  animation-fill-mode: forwards;
+}
+
+@keyframes like-in {
+  from {
+    transform: scale(0);
+  }
+
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes like-out {
+  from {
+    transform: scale(1);
+  }
+
+  to {
+    transform: scale(0);
+  }
+}
