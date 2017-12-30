@@ -8,11 +8,7 @@ type Props = {
 };
 
 const Cone = ({ svgClass, pathClass }: Props) => (
-  <svg
-    className={svgClass}
-    viewBox="0 0 160 160"
-    version="1.1"
-  >
+  <svg className={svgClass} viewBox="0 0 160 160" version="1.1">
     <ConePath pathClass={pathClass} />
   </svg>
 );

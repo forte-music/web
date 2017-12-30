@@ -8,7 +8,6 @@ type DurationSpec = {
   duration: number,
 };
 
-
 const SECONDS: DurationSpec = {
   suffix: 's',
   duration: 1,

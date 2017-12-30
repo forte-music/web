@@ -7,11 +7,7 @@ type Props = {
   fillPathClass?: string,
 };
 
-const Heart = ({
-  svgClass,
-  outlinePathClass,
-  fillPathClass,
-}: Props) => (
+const Heart = ({ svgClass, outlinePathClass, fillPathClass }: Props) => (
   <svg className={svgClass} viewBox="0 0 160 160" version="1.1">
     <path
       className={fillPathClass}

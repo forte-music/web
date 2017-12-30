@@ -7,11 +7,7 @@ type Props = {
 };
 
 const Play = ({ pathClass, svgClass }: Props) => (
-  <svg
-    className={svgClass}
-    viewBox="0 0 160 160"
-    version="1.1"
-  >
+  <svg className={svgClass} viewBox="0 0 160 160" version="1.1">
     <path
       className={pathClass}
       strokeWidth="10"

@@ -19,10 +19,7 @@ const Like = ({ onToggleLike, like }: Props) => (
     className={[containerClass, like && likedClass].join(' ')}
     onClick={() => onToggleLike()}
   >
-    <Heart
-      svgClass={heartClass}
-      fillPathClass={fillClass}
-    />
+    <Heart svgClass={heartClass} fillPathClass={fillClass} />
   </div>
 );
 

@@ -6,6 +6,7 @@ import store from '../store';
 import { formatDuration } from '../utils';
 
 import Player from '../components/Player';
+import Like from '../components/Like';
 import PlayIcon from '../icons/Play';
 
 import {
@@ -68,6 +69,11 @@ class Footer extends Component {
 
         <div className={containerClass}>
           <span className={timeClass}>{formatDuration(currentTime)}</span>
+
+          <Like
+            like={this.state.like}
+            onToggleLike={() => this.setState({ like: !this.state.like })}
+          />
 
           <div className={controlsClass}>
             <PlayIcon onClick={this.togglePlaying} svgClass={mainIconClass} />
