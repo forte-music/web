@@ -1,0 +1,13 @@
+:root {
+  --size-very-tiny: 4px;
+  --size-tiny: 8px;
+  --size-small: 16px;
+  --size-base: 24px;
+  --size-medium: 36px;
+  --size-large: 48px;
+
+  --font-size-very-tiny: 12px;
+  --font-size-tiny: 14px;
+
+  --secondary-button-size: 40px;
+}
