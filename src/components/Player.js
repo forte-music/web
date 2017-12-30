@@ -16,6 +16,9 @@ type Props = {
   // Whether or not the track is playing.
   playing?: boolean,
 
+  // The playback volume. Passed to the audio element.
+  volume?: number,
+
   // Called when the duration has changed with the new duration in seconds.
   onDuration?: (duration: number) => void,
 
@@ -52,32 +55,15 @@ class Player extends Component<Props, State> {
     loading: true,
   };
 
-  constructor(props: Props) {
-    super(props);
-
-    // Hack to get around the hack that is javascript classes.
-    const self: any = this;
-    self.onDurationChange = this.onDurationChange.bind(this);
-    self.onTimeUpdate = this.onTimeUpdate.bind(this);
-    self.onProgress = this.onProgress.bind(this);
-    self.onPlaying = this.onPlaying.bind(this);
-    self.onWaiting = this.onWaiting.bind(this);
-    self.onCanPlay = this.onCanPlay.bind(this);
-    self.onSeeked = this.onSeeked.bind(this);
-    self.onSeeking = this.onSeeking.bind(this);
-    self.onSeekChange = this.onSeekChange.bind(this);
-    self.onRef = this.onRef.bind(this);
-  }
-
   componentDidUpdate(prevProps: Props) {
     this.reconcilePlayingState(prevProps);
   }
 
-  onRef(audioElem: ?HTMLAudioElement) {
+  onRef = (audioElem: ?HTMLAudioElement) => {
     this.audioElem = audioElem;
 
     this.reconcilePlayingState();
-  }
+  };
 
   // TODO: When Seeking Multiple Songs Back to Back This Function Throws
   // DOMException: The play() request was interrupted by a new load request.
@@ -87,14 +73,18 @@ class Player extends Component<Props, State> {
   // only exposes an imperative (.play(), .pause()) api for controlling
   // playback. There aren't any events which allow the user agent to pause
   // playback; this is the only property which can change the playing state.
-  reconcilePlayingState(prevProps: Props = {}) {
+  reconcilePlayingState = (prevProps: Props = {}) => {
     const { audioElem } = this;
     if (!audioElem) {
       return;
     }
 
     const { playing: wasPlayingFromProps, src: oldSrc } = prevProps;
-    const { playing: nowPlaying = false, src: newSrc } = this.props;
+    const { playing: nowPlaying = false, src: newSrc, volume } = this.props;
+
+    if (volume) {
+      audioElem.volume = volume;
+    }
 
     const wasPlaying = wasPlayingFromProps && oldSrc === newSrc;
 
@@ -103,9 +93,9 @@ class Player extends Component<Props, State> {
     } else if (!wasPlaying && nowPlaying) {
       audioElem.play();
     }
-  }
+  };
 
-  onDurationChange() {
+  onDurationChange = () => {
     if (!this.audioElem) {
       return;
     }
@@ -114,13 +104,11 @@ class Player extends Component<Props, State> {
     this.setState({ duration });
 
     this.props.onDuration && this.props.onDuration(duration);
-  }
+  };
 
-  onTimeUpdate() {
-    this.updateTime();
-  }
+  onTimeUpdate = () => this.updateTime();
 
-  updateTime() {
+  updateTime = () => {
     if (!this.audioElem) {
       return;
     }
@@ -128,19 +116,15 @@ class Player extends Component<Props, State> {
     const currentTime = this.audioElem.currentTime;
     this.setState({ currentTime });
     this.props.onCurrentTime && this.props.onCurrentTime(currentTime);
-  }
+  };
 
-  onPlaying() {
-    this.updateLoaded();
-  }
+  onPlaying = () => this.updateLoaded();
 
-  onProgress() {
-    this.updateLoaded();
-  }
+  onProgress = () => this.updateLoaded();
 
   // Update state from the audio element to reflect the amount of buffered
   // content.
-  updateLoaded() {
+  updateLoaded = () => {
     if (!this.audioElem) {
       return;
     }
@@ -154,38 +138,30 @@ class Player extends Component<Props, State> {
     this.setState({
       bufferedTo: this.audioElem.buffered.end(lastBufferRangeIdx),
     });
-  }
+  };
 
   waitingTimer = undefined;
-  onWaiting() {
+  onWaiting = () => {
     clearTimeout(this.waitingTimer);
 
     this.waitingTimer = setTimeout(() => this.onWaitingDelayed(), 250);
-  }
+  };
 
-  setLoaded() {
+  setLoaded = () => {
     clearTimeout(this.waitingTimer);
     this.setState({ loading: false });
-  }
+  };
 
-  onWaitingDelayed() {
-    this.setState({ loading: true });
-  }
+  onWaitingDelayed = () => this.setState({ loading: true });
 
-  onCanPlay() {
-    this.setLoaded();
-  }
+  onCanPlay = () => this.setLoaded();
 
   // The time changes while seeking even before the new data is loaded.
-  onSeeking() {
-    this.updateTime();
-  }
+  onSeeking = () => this.updateTime();
 
-  onSeeked() {
-    this.setLoaded();
-  }
+  onSeeked = () => this.setLoaded();
 
-  onSeekChange(e: SyntheticInputEvent<HTMLInputElement>) {
+  onSeekChange = (e: SyntheticInputEvent<HTMLInputElement>) => {
     const rawPosition = Number(e.target.value);
 
     if (!this.audioElem) {
@@ -194,7 +170,7 @@ class Player extends Component<Props, State> {
 
     // Request seek to position.
     this.audioElem.currentTime = rawPosition / 100 * this.state.duration;
-  }
+  };
 
   render() {
     const { src, onCanPlayThrough, onEnded, onError } = this.props;
