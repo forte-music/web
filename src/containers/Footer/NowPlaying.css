@@ -1,0 +1,38 @@
+@import '../../sizes.css';
+
+:root {
+  --image-size: 90px;
+
+  --title-text-color: #fff;
+  --detail-text-color: #aaa;
+}
+
+.container {
+  flex: 1;
+  min-width: calc(var(--image-size) + var(--size-very-tiny));
+
+  display: flex;
+  align-items: center;
+}
+
+.image {
+  height: var(--image-size);
+}
+
+.infoContainer {
+  margin-left: var(--size-tiny);
+}
+
+.title {
+  composes: singleLine from '../../shared.css';
+  color: var(--title-text-color);
+  font-size: var(--font-size-tiny);
+}
+
+.detail {
+  compose: singleLine from '../../shared.css';
+  color: var(--detail-text-color);
+  font-size: var(--font-size-very-tiny);
+
+  margin-top: var(--size-very-tiny);
+}

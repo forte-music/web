@@ -1,0 +1,10 @@
+.container {
+  display: flex;
+  align-items: stretch;
+
+  /*
+  Disable user selection because finding a good highlight color is hard. People
+  who really want to copy stuff can use inspect element.
+  */
+  user-select: none;
+}

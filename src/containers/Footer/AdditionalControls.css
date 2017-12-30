@@ -1,0 +1,23 @@
+@import '../../sizes.css';
+@import '../../colors.css';
+
+.container {
+  flex: 1;
+
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.time {
+  /* Relative to .container */
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: var(--font-size-tiny);
+
+  margin: var(--size-tiny);
+
+  color: color(var(--inactive-color) shade(30%));
+}

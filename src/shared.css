@@ -1,0 +1,10 @@
+.clickable {
+  cursor: pointer;
+}
+
+.singleLine {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  min-width: 0;
+}

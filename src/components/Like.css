@@ -5,6 +5,7 @@
 }
 
 .heartContainer {
+  composes: clickable from '../shared.css';
   display: block;
 }
 
