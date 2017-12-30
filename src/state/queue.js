@@ -1,4 +1,6 @@
+// @flow
 export opaque type ID = string;
+
 export type QueueItem = {
   // TODO: rename to cursor
   // A cursor used to identify a specific item in a queue. The index wasn't used
@@ -21,15 +23,10 @@ export type QueueState = {
   position: number,
 };
 
-export type State = {
-  queue: QueueState,
-};
-
-const queueInitialState = {
+export const initialState: QueueState = {
   items: [],
   position: 0,
 };
 
-export const initialState = {
-  queue: queueInitialState,
-};
+let lastId = 0;
+export const getId = (): ID => String(lastId++);

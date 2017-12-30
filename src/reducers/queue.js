@@ -1,6 +1,7 @@
 // @flow
 import type { Action } from '../actions';
-import type { QueueState } from '../state';
+import type { QueueState } from '../state/queue';
+import { initialState, getId } from '../state/queue';
 import type {
   AddToQueueAction,
   RemoveFromQueueAction,
@@ -9,7 +10,10 @@ import type {
   ReplaceQueueAction,
 } from '../actions/queue';
 
-const reducer = (state: QueueState, action: Action): QueueState => {
+const reducer = (
+  state?: QueueState = initialState,
+  action: Action
+): QueueState => {
   switch (action.type) {
     case 'ADD_TO_QUEUE':
       return addToQueue(state, action);
@@ -34,7 +38,6 @@ const reducer = (state: QueueState, action: Action): QueueState => {
   return state;
 };
 
-let lastId = 0;
 export const addToQueue = (
   state: QueueState,
   action: AddToQueueAction
@@ -43,11 +46,11 @@ export const addToQueue = (
 
   const itemsToAdd = songsToAdd.map(songId => ({
     songId,
-    id: String(lastId++),
+    id: getId(),
   }));
   const { items: oldItems } = state;
 
-  var idx;
+  let idx;
   if (position === 'END') {
     idx = oldItems.length;
   } else if (position === 'AFTER_CURRENT') {
@@ -69,7 +72,7 @@ export const replaceQueue = (
   action: ReplaceQueueAction
 ): QueueState => {
   const { songs: songsToAdd } = action;
-  const items = songsToAdd.map(songId => ({ songId, id: String(lastId++) }));
+  const items = songsToAdd.map(songId => ({ songId, id: getId() }));
 
   return {
     ...state,

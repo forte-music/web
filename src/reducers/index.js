@@ -1,12 +1,8 @@
 // @flow
-import type { Action } from '../actions';
-import type { State } from '../state';
+import { combineReducers } from 'redux';
 
-import queueReducer from './queue';
-import { initialState } from '../state';
+import queue from './queue';
 
-const reducer = (state: State = initialState, action: Action): State => ({
-  queue: queueReducer(state.queue, action),
-});
+const reducer = combineReducers({ queue });
 
 export default reducer;

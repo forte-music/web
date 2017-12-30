@@ -1,5 +1,5 @@
 // @flow
-import type { ID } from '../state';
+import type { ID } from '../state/queue';
 
 type Position = 'END' | 'AFTER_CURRENT';
 
