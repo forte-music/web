@@ -1,0 +1,5 @@
+@import '../../src/colors.css';
+
+.background {
+  background: var(--main-background-color);
+}

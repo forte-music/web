@@ -58,7 +58,8 @@
     "fix-style": "prettier --write '{src,config}/**/*.{js,css}'",
     "check-style": "prettier --list-different '{src,config}/**/*.{js,css}'",
     "postinstall": "flow-typed install",
-    "flow-typed": "flow-typed"
+    "flow-typed": "flow-typed",
+    "storybook": "start-storybook -p 9001 -c config/storybook"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -107,6 +108,7 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
+    "@storybook/react": "^3.3.3",
     "flow-bin": "^0.61.0",
     "flow-typed": "^2.2.3",
     "prettier": "1.9.2"
