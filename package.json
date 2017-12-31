@@ -55,8 +55,8 @@
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "fix-style": "prettier --write 'src/**/*.{js,css}'",
-    "check-style": "prettier --list-different 'src/**/*.{js,css}'",
+    "fix-style": "prettier --write '{src,config}/**/*.{js,css}'",
+    "check-style": "prettier --list-different '{src,config}/**/*.{js,css}'",
     "postinstall": "flow-typed install",
     "flow-typed": "flow-typed"
   },
