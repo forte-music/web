@@ -4,10 +4,10 @@
 }
 
 .bar {
-  composes: bar from './Player.css';
+  composes: bar from './Bars.css';
   background: red;
 }
 
 .input {
-  composes: bar from './Player.css' seek from './Player.css';
+  composes: bar from './Bars.css' seek from './Bars.css';
 }
