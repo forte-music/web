@@ -27,3 +27,14 @@
   height: var(--secondary-button-size);
   width: var(--secondary-button-size);
 }
+
+.disabled .path {
+  fill: #bbb;
+  stroke: #bbb;
+}
+
+.disabled .primary,
+.disabled .secondary {
+  cursor: default;
+  pointer-events: none;
+}
