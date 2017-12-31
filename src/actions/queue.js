@@ -47,9 +47,21 @@ export const skipToSong = (cursor: ID): SkipAction => ({
   cursor,
 });
 
+export type SetPlaybackAction = { type: 'SET_PLAYBACK', playing: boolean };
+
+export const play = (): SetPlaybackAction => ({
+  type: 'SET_PLAYBACK',
+  playing: true,
+});
+export const pause = (): SetPlaybackAction => ({
+  type: 'SET_PLAYBACK',
+  playing: false,
+});
+
 export type QueueAction =
   | AddToQueueAction
   | ReplaceQueueAction
   | RemoveFromQueueAction
   | SkipRelativeAction
-  | SkipAction;
+  | SkipAction
+  | SetPlaybackAction;

@@ -33,6 +33,7 @@ Object {
     },
   ],
   "position": 2,
+  "shouldBePlaying": false,
 }
 `;
 
@@ -69,6 +70,7 @@ Object {
     },
   ],
   "position": 2,
+  "shouldBePlaying": false,
 }
 `;
 
@@ -89,6 +91,7 @@ Object {
     },
   ],
   "position": 2,
+  "shouldBePlaying": false,
 }
 `;
 
@@ -109,6 +112,7 @@ Object {
     },
   ],
   "position": 0,
+  "shouldBePlaying": false,
 }
 `;
 
@@ -133,6 +137,7 @@ Object {
     },
   ],
   "position": 2,
+  "shouldBePlaying": false,
 }
 `;
 
@@ -149,5 +154,6 @@ Object {
     },
   ],
   "position": 0,
+  "shouldBePlaying": false,
 }
 `;

@@ -1,5 +1,5 @@
 // @flow
-import type { Action } from '../actions';
+import type { Action, SetPlaybackAction } from '../actions';
 import type { QueueState } from '../state/queue';
 import { initialState, getId } from '../state/queue';
 import type {
@@ -29,6 +29,9 @@ const reducer = (
 
     case 'REPLACE_QUEUE':
       return replaceQueue(state, action);
+
+    case 'SET_PLAYBACK':
+      return setPlayback(state, action);
 
     default:
       // eslint thinks putting return state here makes something unreachable
@@ -106,7 +109,7 @@ export const removeFromQueue = (
     { items: [], position: oldPosition, removed: 0 }
   );
 
-  return { items, position };
+  return { ...state, items, position };
 };
 
 export const skipRelative = (
@@ -127,6 +130,15 @@ export const skip = (state: QueueState, action: SkipAction): QueueState => {
   const foundIndex = items.findIndex(({ id }) => id === cursor);
   const position = foundIndex === -1 ? oldPosition : foundIndex;
   return { ...state, position };
+};
+
+export const setPlayback = (
+  state: QueueState,
+  action: SetPlaybackAction
+): QueueState => {
+  const { playing } = action;
+
+  return { ...state, shouldBePlaying: playing };
 };
 
 const bounded = (num: number, lower: number, upper: number): number => {

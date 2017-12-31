@@ -1,5 +1,5 @@
 // @flow
-export opaque type ID = string;
+export type ID = string;
 
 export type QueueItem = {
   // TODO: rename to cursor
@@ -21,11 +21,16 @@ export type QueueState = {
   // The position of the player in the queue (playing items[position]). If
   // (items[position]) is undefined, the queue had played to completion.
   position: number,
+
+  // The state playback should be in. This is passed to the audio element
+  // responsible for downloading and playing songs.
+  shouldBePlaying: boolean,
 };
 
 export const initialState: QueueState = {
   items: [],
   position: 0,
+  shouldBePlaying: false,
 };
 
 let lastId = 0;
