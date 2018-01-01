@@ -115,6 +115,7 @@
     "type": "text"
   },
   "devDependencies": {
+    "@storybook/addon-actions": "^3.3.3",
     "@storybook/react": "^3.3.3",
     "flow-bin": "^0.61.0",
     "flow-coverage-report": "^0.4.0",

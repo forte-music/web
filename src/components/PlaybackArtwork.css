@@ -23,7 +23,6 @@
 .container {
   width: var(--default-size);
   height: var(--default-size);
-  cursor: pointer;
 
   position: relative;
 }
@@ -37,15 +36,17 @@
   background: var(--overlay-color);
   opacity: 0;
 
+  /* Let pointer events go to the underlying child so links could work. */
+  pointer-events: none;
+
   transition: opacity 0.3s ease-in-out;
 }
 
 .buttonBackdrop {
+  cursor: pointer;
   position: absolute;
-  bottom: 0;
-  right: 0;
-  margin-bottom: var(--ring-margin);
-  margin-right: var(--ring-margin);
+  bottom: var(--ring-margin);
+  right: var(--ring-margin);
 
   border-radius: 50%;
   background: var(--button-background-color);
@@ -59,7 +60,7 @@
   transition: 0.3s transform ease-in-out, 0.3s background ease-in-out;
 }
 
-.container:active .buttonBackdrop {
+.buttonBackdrop:active {
   background: var(--button-background-color-active);
 }
 

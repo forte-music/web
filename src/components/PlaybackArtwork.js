@@ -39,31 +39,28 @@ type Props = {
 // An which renders an overlay of the current playing state atop an element
 // (usually Artwork or a Collage) and reacts to events.
 const PlaybackArtwork = ({ children, state, onPlaying, onPaused }: Props) => (
-  <div
-    className={containerClass}
-    onClick={() => {
-      if (state === 'PLAYING') {
-        onPaused();
-      } else if (state === 'PAUSED') {
-        onPlaying();
-      }
-    }}
-  >
+  <div className={containerClass}>
     <div className={childrenClass}>{children}</div>
 
+    {/* Tints the children but still allows pointer events through. */}
     <div className={overlayClass} />
 
+    {/* The play/pause button in the bottom right corner. */}
     <div className={buttonBackdropClass}>
       <PlaybackButton
         svgClass={buttonClass}
         pathClass={pathClass}
         playing={state === 'PLAYING'}
-        onToggle={nop}
+        onToggle={() => {
+          if (state === 'PLAYING') {
+            onPaused();
+          } else if (state === 'PAUSED') {
+            onPlaying();
+          }
+        }}
       />
     </div>
   </div>
 );
-
-const nop = () => {};
 
 export default PlaybackArtwork;
