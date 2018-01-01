@@ -3,3 +3,5 @@ import './PlaybackButton';
 import './Slider';
 import './VolumeSlider';
 import './Collage';
+import './Artwork';
+import './PlaybackArtwork';

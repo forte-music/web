@@ -21,6 +21,10 @@
 .liked .fill {
   animation-name: like-in;
   animation-duration: 0.3s;
+  /*
+  This is a spring-like animation. Real spring animations are really-hard with
+  CSS: https://medium.com/@dtinth/spring-animation-in-css-2039de6e1a03
+  */
   animation-timing-function: cubic-bezier(0, 0.5, 0.3, 2.5);
   animation-fill-mode: forwards;
 }

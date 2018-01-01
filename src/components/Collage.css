@@ -1,0 +1,13 @@
+.container {
+  /*
+  A square split into four squares of the same size (as long as width = height).
+   */
+  height: 160px;
+  width: 160px;
+
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(2, 50%);
+  justify-items: stretch;
+  align-items: stretch;
+}
