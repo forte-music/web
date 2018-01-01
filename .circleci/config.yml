@@ -1,0 +1,47 @@
+version: 2
+jobs:
+  test:
+    docker:
+      - image: node:9.3.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-
+
+      - run:
+          name: Install Deps
+          command: yarn install
+
+      - save_cache:
+          paths:
+            - node_modules
+            - flow-typed
+          key: dependencies-{{ checksum "package.json" }}
+
+      - run:
+          name: Run Tests
+          command: yarn test --coverage
+
+      - run:
+          name: Flow Check
+          command: yarn flow check
+
+      - run:
+          name: Flow Coverage
+          command: yarn flow-coverage
+
+      - run:
+          name: Style Check
+          command: yarn check-style
+
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
+

@@ -52,6 +52,7 @@
   },
   "scripts": {
     "flow": "flow",
+    "flow-coverage": "flow-coverage-report",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
@@ -107,9 +108,16 @@
     "singleQuote": true,
     "trailingComma": "es5"
   },
+  "flow-coverage-report": {
+    "includeGlob": [
+      "src/**/*.js"
+    ],
+    "type": "text"
+  },
   "devDependencies": {
     "@storybook/react": "^3.3.3",
     "flow-bin": "^0.61.0",
+    "flow-coverage-report": "^0.4.0",
     "flow-typed": "^2.2.3",
     "prettier": "1.9.2"
   }
