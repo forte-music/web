@@ -5,3 +5,4 @@ import './VolumeSlider';
 import './Collage';
 import './Artwork';
 import './PlaybackArtwork';
+import './SongList';

@@ -1,5 +1,6 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
+
 import StatefulComponent from './StatefulComponent';
 import Slider from '../components/Slider';
 

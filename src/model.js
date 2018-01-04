@@ -16,6 +16,8 @@ export type Album = {
 };
 
 export type Song = {
+  id: string,
+  duration: number,
   streamUrl: string,
   name: string,
   album: Album,
@@ -23,6 +25,8 @@ export type Song = {
 
 const SONGS: { [string]: Song } = {
   a: {
+    id: 'a',
+    duration: 3 * 60 + 43,
     streamUrl: '/music/01 - Stole the Show (feat. Parson James).flac',
     name: 'Stole the Show',
     album: {
@@ -35,6 +39,8 @@ const SONGS: { [string]: Song } = {
     },
   },
   b: {
+    id: 'b',
+    duration: 3 * 60 + 31,
     streamUrl:
       "/music/01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a",
     name: "I'm That (Remix)",
@@ -48,6 +54,8 @@ const SONGS: { [string]: Song } = {
     },
   },
   c: {
+    id: 'c',
+    duration: 4 * 60 + 30,
     streamUrl: '/music/01 - Bugatti (feat. Future & Rick Ross).flac',
     name: 'Bugatti',
     album: {
