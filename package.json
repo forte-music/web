@@ -71,7 +71,6 @@
   "scripts": {
     "postinstall": "yarn run typings && yarn run codegen",
     "typings": "flow-typed install",
-    "flow-coverage": "flow-coverage-report",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",

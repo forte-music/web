@@ -33,7 +33,7 @@ jobs:
 
       - run:
           name: Flow Coverage
-          command: yarn flow-coverage
+          command: yarn flow-coverage-report
 
       - run:
           name: Style Check

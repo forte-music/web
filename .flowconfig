@@ -8,5 +8,9 @@ src/stories
 [lints]
 
 [options]
+module.file_ext=.graphql
+module.file_ext=.js
+
+module.name_mapper='.*\.graphql$' -> './src/__generated__/queries.js'
 
 [strict]

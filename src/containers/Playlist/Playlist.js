@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import type { PlaylistQuery } from '../../__generated__/queries';
+import type { PlaylistQuery } from '../../__generated__/queries.flow';
 
 type Props = {
   loading: boolean,
