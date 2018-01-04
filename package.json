@@ -39,7 +39,9 @@
     "graphql-cli-codegen": "0xcaff/graphql-cli-codegen#portable",
     "graphql-tag": "^2.6.1",
     "html-webpack-plugin": "2.29.0",
+    "identity-obj-proxy": "^3.0.0",
     "jest": "20.0.4",
+    "jest-transform-graphql": "^2.1.0",
     "object-assign": "4.1.1",
     "postcss-color-function": "^4.0.1",
     "postcss-custom-properties": "^6.2.0",
@@ -94,15 +96,15 @@
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
-      "^.+\\.(js|jsx|mjs)$": "<rootDir>/node_modules/babel-jest",
-      "^.+\\.css$": "<rootDir>/config/jest/cssTransform.js",
-      "^(?!.*\\.(js|jsx|mjs|css|json)$)": "<rootDir>/config/jest/fileTransform.js"
+      "\\.(gql|graphql)$": "jest-transform-graphql",
+      "\\.js$": "babel-jest"
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
     ],
     "moduleNameMapper": {
-      "^react-native$": "react-native-web"
+      "^react-native$": "react-native-web",
+      "\\.css$": "identity-obj-proxy"
     },
     "moduleFileExtensions": [
       "web.js",
