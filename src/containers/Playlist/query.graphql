@@ -1,0 +1,38 @@
+fragment DetailedPlaylistItem on PlaylistItem {
+  id
+
+  song {
+    id
+    name
+    duration
+
+    album {
+      id
+      name
+      artworkUrl
+
+      artist {
+        id
+        name
+      }
+    }
+  }
+}
+
+query Playlist($playlistId: ID!, $cursor: String) {
+  playlist(id: $playlistId) {
+    id
+    name
+    duration
+
+    items(input: { limit: 1000, cursor: $cursor }) {
+      count
+      edges {
+        cursor
+        node {
+          ...DetailedPlaylistItem
+        }
+      }
+    }
+  }
+}

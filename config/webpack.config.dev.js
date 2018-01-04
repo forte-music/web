@@ -148,6 +148,10 @@ module.exports = {
             },
           },
           {
+            test: /\.(graphql|gql)$/,
+            loader: require.resolve('graphql-tag/loader'),
+          },
+          {
             test: /\.css$/,
             resourceQuery: /^\?raw$/,
             use: [

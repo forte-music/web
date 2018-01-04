@@ -2,6 +2,10 @@ module.exports = {
   module: {
     rules: [
       {
+        test: /\.(graphql|gql)$/,
+        loader: require.resolve('graphql-tag/loader'),
+      },
+      {
         test: /\.css$/,
         oneOf: [
           {

@@ -2,6 +2,16 @@
 
 [![Build Status][build-status-image]][build-status]
 
+# Development
+
+In order to run the entire stack, you will need to run the following commands.
+
+    $ docker run --rm -p 6379:6379 redis
+    $ # From the core repo.
+    $ ROCKET_HOST=0.0.0.0 cargo run
+    $ # From the web repo.
+    $ yarn start
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>

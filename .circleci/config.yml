@@ -24,8 +24,8 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
 
       - run:
-          name: Run Tests
-          command: yarn test --coverage
+          name: ESLint
+          command: yarn lint
 
       - run:
           name: Flow Check
@@ -38,6 +38,10 @@ jobs:
       - run:
           name: Style Check
           command: yarn check-style
+
+      - run:
+          name: Run Tests
+          command: yarn test --coverage
 
 workflows:
   version: 2

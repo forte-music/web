@@ -2,7 +2,16 @@
   "name": "web",
   "version": "0.1.0",
   "private": true,
+  "proxy": {
+    "/graphql": {
+      "target": "http://localhost:8000"
+    }
+  },
   "dependencies": {
+    "@storybook/addons": "^3.3.0",
+    "apollo-cache-inmemory": "^1.1.4",
+    "apollo-client": "^2.0.4",
+    "apollo-link-http": "^1.3.2",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -18,12 +27,17 @@
     "eslint-config-react-app": "^2.0.1",
     "eslint-loader": "1.9.0",
     "eslint-plugin-flowtype": "2.39.1",
+    "eslint-plugin-graphql": "^1.4.1",
     "eslint-plugin-import": "2.8.0",
     "eslint-plugin-jsx-a11y": "5.1.1",
     "eslint-plugin-react": "7.4.0",
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
+    "graphql": "^0.11.0",
+    "graphql-cli": "^2.9.0",
+    "graphql-cli-codegen": "0xcaff/graphql-cli-codegen#portable",
+    "graphql-tag": "^2.6.1",
     "html-webpack-plugin": "2.29.0",
     "jest": "20.0.4",
     "object-assign": "4.1.1",
@@ -36,6 +50,7 @@
     "promise": "8.0.1",
     "raf": "3.4.0",
     "react": "^16.2.0",
+    "react-apollo": "^2.0.4",
     "react-dev-utils": "^4.2.1",
     "react-dom": "^16.2.0",
     "react-measure": "^2.0.2",
@@ -44,6 +59,7 @@
     "react-tiny-virtual-list": "^2.1.4",
     "redux": "^3.7.2",
     "redux-devtools-extension": "^2.13.2",
+    "schema": "forte-music/schema",
     "style-loader": "0.19.0",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
@@ -53,16 +69,17 @@
     "whatwg-fetch": "2.0.3"
   },
   "scripts": {
-    "flow": "flow",
+    "postinstall": "yarn run typings && yarn run codegen",
+    "typings": "flow-typed install",
     "flow-coverage": "flow-coverage-report",
     "start": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
+    "lint": "eslint src/",
     "fix-style": "prettier --write '{src,config}/**/*.{js,css}' 'README.md'",
-    "check-style": "prettier --list-different '{src,config}/**/*.{js,css}' 'README.md'",
-    "postinstall": "flow-typed install",
-    "flow-typed": "flow-typed",
-    "storybook": "start-storybook -p 9001 -c config/storybook"
+    "check-style": "prettier --list-different '{src,config}/**/*.{js,css}'",
+    "storybook": "start-storybook -p 9001 -c config/storybook",
+    "codegen": "mkdir -p src/__generated__ && graphql codegen"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -104,7 +121,18 @@
     ]
   },
   "eslintConfig": {
-    "extends": "react-app"
+    "extends": "react-app",
+    "rules": {
+      "graphql/template-strings": [
+        "error",
+        {
+          "env": "literal"
+        }
+      ]
+    },
+    "plugins": [
+      "graphql"
+    ]
   },
   "prettier": {
     "singleQuote": true,
