@@ -9,6 +9,7 @@ import Pause from '../icons/Pause';
 import Play from '../icons/Play';
 import SkipBackwards from '../icons/SkipBackwards';
 import SkipForwards from '../icons/SkipForwards';
+import DefaultCover from '../icons/DefaultCover';
 
 const ICONS = [
   <Dots />,
@@ -18,6 +19,7 @@ const ICONS = [
   <Plus />,
   <SkipBackwards />,
   <SkipForwards />,
+  <DefaultCover />,
 ];
 
 ICONS.reduce(
