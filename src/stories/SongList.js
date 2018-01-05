@@ -11,7 +11,7 @@ storiesOf('SongList', module).add('interactive', () => (
   <SongList
     ids={ids}
     totalItems={ids.length}
-    loadMore={() => ids}
+    loadMore={() => { }}
     header={<DetailHeader />}
     row={LoadedDetailRow}
   />

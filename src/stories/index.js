@@ -6,3 +6,4 @@ import './Collage';
 import './Artwork';
 import './PlaybackArtwork';
 import './SongList';
+import './Icons';
