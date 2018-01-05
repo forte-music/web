@@ -80,7 +80,8 @@
     "fix-style": "prettier --write '{src,config}/**/*.{js,css}' 'README.md'",
     "check-style": "prettier --list-different '{src,config}/**/*.{js,css}'",
     "storybook": "start-storybook -p 9001 -c config/storybook",
-    "codegen": "mkdir -p src/__generated__ && graphql codegen"
+    "codegen": "mkdir -p src/__generated__ && yarn query-codegen",
+    "query-codegen": "graphql codegen"
   },
   "jest": {
     "collectCoverageFrom": [

@@ -6,7 +6,7 @@
   "extensions": {
     "codegen": {
       "target": "flow",
-      "output": "src/__generated__/queries.flow.js"
+      "output": "src/__generated__/queries.js"
     }
   }
 }
