@@ -1,7 +1,7 @@
 // @flow
 import { graphql } from 'react-apollo';
 import type { RouterHistory, Match } from 'react-router-dom';
-import Query from './query.graphql';
+import { Playlist as Query, PlaylistPage as PageQuery } from './query.graphql';
 
 import Playlist from './Playlist';
 
@@ -43,6 +43,7 @@ const ConnectedPlaylist = graphql(Query, {
       const { cursor: lastCursor = '' } = last(playlist.items.edges) || {};
 
       return fetchMore({
+        query: PageQuery,
         variables: {
           ...variables,
           cursor: lastCursor,

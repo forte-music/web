@@ -19,13 +19,27 @@ fragment DetailedPlaylistItem on PlaylistItem {
   }
 }
 
-query Playlist($playlistId: ID!, $cursor: String) {
+query PlaylistPage($playlistId: ID!, $cursor: String) {
+  playlist(id: $playlistId) {
+    items(input: { limit: 100, cursor: $cursor }) {
+      count
+      edges {
+        cursor
+        node {
+          ...DetailedPlaylistItem
+        }
+      }
+    }
+  }
+}
+
+query Playlist($playlistId: ID!) {
   playlist(id: $playlistId) {
     id
     name
     duration
 
-    items(input: { limit: 1000, cursor: $cursor }) {
+    items(input: { limit: 100, cursor: $cursor }) {
       count
       edges {
         cursor
