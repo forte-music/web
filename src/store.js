@@ -14,9 +14,7 @@ export type Store = ReduxStore<State, Action, Dispatch>;
 const store: Store = createStore(
   reducer,
 
-  // The empty object is a workaround for a broken type definition.
-  // https://github.com/flowtype/flow-typed/pull/1687
-  devToolsEnhancer({})
+  devToolsEnhancer()
 );
 
 export default store;

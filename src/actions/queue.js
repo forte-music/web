@@ -1,18 +1,27 @@
 // @flow
-import type { ID } from '../state/queue';
+import type { ID, QueueItemSource } from '../state/queue';
 
 type Position = 'END' | 'AFTER_CURRENT';
 
-export type AddToQueueAction = {
-  type: 'ADD_TO_QUEUE',
-  songs: string[],
+export type AddItemsToQueueAction = {
+  type: 'ADD_ITEMS_TO_QUEUE',
+  items: QueueItemSource[],
   position: Position,
 };
 
 export const addToQueue = (
   songs: string[],
   position: Position
-): AddToQueueAction => ({ type: 'ADD_TO_QUEUE', songs, position });
+): AddItemsToQueueAction => ({
+  type: 'ADD_ITEMS_TO_QUEUE',
+  items: songs.map(songId => ({ songId })),
+  position,
+});
+
+export const addItemsToQueue = (
+  items: QueueItemSource[],
+  position: Position
+): AddItemsToQueueAction => ({ type: 'ADD_ITEMS_TO_QUEUE', items, position });
 
 export type ReplaceQueueAction = { type: 'REPLACE_QUEUE', songs: string[] };
 
@@ -59,7 +68,7 @@ export const pause = (): SetPlaybackAction => ({
 });
 
 export type QueueAction =
-  | AddToQueueAction
+  | AddItemsToQueueAction
   | ReplaceQueueAction
   | RemoveFromQueueAction
   | SkipRelativeAction

@@ -1,16 +1,29 @@
 // @flow
 export type ID = string;
 
+export type QueueItemSource = {
+  // The id of the song to play. Full information about this song can be
+  // resolved by querying the graphql API.
+  songId: string,
+
+  // An opaque string identifying the source list (playlist, album's tracks,
+  // artist's songs) from which a song is being played.
+  listSource?: string,
+
+  // An opaque string identifying an item in the source list. If a
+  // listSource is specified, a songSource may be specified. For
+  // example, for playlists, this could be PlaylistItem.id, for albums this
+  // might not be specified because a song id can only occur once in an album.
+  songSource?: string,
+};
+
 export type QueueItem = {
-  // TODO: rename to cursor
   // A cursor used to identify a specific item in a queue. The index wasn't used
   // used because it varies based on position. The song id wasn't used because
   // it could appear multiple times in a queue.
   id: ID,
 
-  // The id of the song to play. Full information about this song can be
-  // resolved by querying the graphql API.
-  songId: string,
+  ...QueueItemSource,
 };
 
 // State to represent a queue of songs.

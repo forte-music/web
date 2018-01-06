@@ -1,6 +1,6 @@
 // @flow
 import {
-  addToQueue,
+  addItemsToQueue,
   replaceQueue,
   skipRelative,
   removeFromQueue,
@@ -21,25 +21,28 @@ const initialState = {
 };
 
 describe('add to queue reducer', () => {
-  const songs = ['this is a song', 'this is another song'];
+  const items = [
+    { songId: 'this is a song' },
+    { songId: 'this is another song' },
+  ];
 
   it('adds to end of queue', () => {
     const action = {
-      type: 'ADD_TO_QUEUE',
-      songs,
+      type: 'ADD_ITEMS_TO_QUEUE',
+      items,
       position: 'END',
     };
-    const newState = addToQueue(initialState, action);
+    const newState = addItemsToQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
 
   it('adds after current playing item', () => {
     const action = {
-      type: 'ADD_TO_QUEUE',
-      songs,
+      type: 'ADD_ITEMS_TO_QUEUE',
+      items,
       position: 'AFTER_CURRENT',
     };
-    const newState = addToQueue(initialState, action);
+    const newState = addItemsToQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
 });

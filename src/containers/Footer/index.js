@@ -222,7 +222,7 @@ const mapStateToProps = ({ queue }: ReduxState) => {
   const song = nowPlayingSelector(queue) || {};
   const { songId } = song;
 
-  const nowPlaying = SONGS[songId];
+  const nowPlaying = songId && SONGS[songId];
   const { shouldBePlaying } = queue;
   return { nowPlaying, playing: shouldBePlaying };
 };

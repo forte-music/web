@@ -1,9 +1,9 @@
 // @flow
 import type { Action, SetPlaybackAction } from '../actions';
-import type { QueueState } from '../state/queue';
+import type { QueueItemSource, QueueState } from '../state/queue';
 import { initialState, getId } from '../state/queue';
 import type {
-  AddToQueueAction,
+  AddItemsToQueueAction,
   RemoveFromQueueAction,
   SkipRelativeAction,
   SkipAction,
@@ -15,8 +15,8 @@ const reducer = (
   action: Action
 ): QueueState => {
   switch (action.type) {
-    case 'ADD_TO_QUEUE':
-      return addToQueue(state, action);
+    case 'ADD_ITEMS_TO_QUEUE':
+      return addItemsToQueue(state, action);
 
     case 'REMOVE_FROM_QUEUE':
       return removeFromQueue(state, action);
@@ -41,16 +41,17 @@ const reducer = (
   return state;
 };
 
-export const addToQueue = (
+export const addItemsToQueue = (
   state: QueueState,
-  action: AddToQueueAction
+  action: AddItemsToQueueAction
 ): QueueState => {
-  const { songs: songsToAdd, position } = action;
+  const { items: sourceItemsToAdd, position } = action;
 
-  const itemsToAdd = songsToAdd.map(songId => ({
-    songId,
+  const itemsToAdd = sourceItemsToAdd.map((sourceItem: QueueItemSource) => ({
+    ...sourceItem,
     id: getId(),
   }));
+
   const { items: oldItems } = state;
 
   let idx;
