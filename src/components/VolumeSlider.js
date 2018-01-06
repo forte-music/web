@@ -1,16 +1,10 @@
+// @flow
 import React from 'react';
 import type { ComponentType } from 'react';
 
 import Slider from './Slider';
 import { Loud, Quiet, Cone } from '../icons/Volume';
-
-import {
-  container as containerClass,
-  icon as iconClass,
-  slider as sliderClass,
-  bar as barClass,
-  input as inputClass,
-} from './VolumeSlider.css';
+import styles from './VolumeSlider.css';
 
 type Props = {
   // Number between 0 and 1 representing the volume.
@@ -20,7 +14,7 @@ type Props = {
   onVolume: number => void,
 };
 
-function getIconComponent(volume: number): ComponentType<{ svgClass: string }> {
+function getIconComponent(volume: number): ComponentType<Object> {
   if (volume < 0.15) {
     return Cone;
   } else if (volume < 0.75) {
@@ -37,13 +31,13 @@ const VolumeIcon = ({ volume, ...props }: { volume: number }) => {
 
 // A slider which a range of [0, 1] and a speaker icons.
 const VolumeSlider = ({ volume, onVolume }: Props) => (
-  <div className={containerClass}>
-    <VolumeIcon svgClass={iconClass} volume={volume} />
+  <div className={styles.container}>
+    <VolumeIcon svgClass={styles.icon} volume={volume} />
 
     <Slider
-      containerClass={sliderClass}
-      barClass={barClass}
-      inputClass={inputClass}
+      containerClass={styles.slider}
+      barClass={styles.bar}
+      inputClass={styles.input}
       min={0}
       max={100}
       value={volume * 100}

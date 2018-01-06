@@ -11,12 +11,7 @@ import Playlist from './containers/Playlist';
 import store from './store';
 import client from './client';
 
-import {
-  grid as gridClass,
-  sidebar as sidebarClass,
-  footer as footerClass,
-  content as contentClass,
-} from './App.css';
+import styles from './App.css';
 
 const Providers = ({ children }: { children: Node }) => (
   <HashRouter>
@@ -28,10 +23,10 @@ const Providers = ({ children }: { children: Node }) => (
 
 const App = () => (
   <Providers>
-    <div className={gridClass}>
-      <Sidebar className={sidebarClass} />
+    <div className={styles.grid}>
+      <Sidebar className={styles.sidebar} />
 
-      <main className={contentClass}>
+      <main className={styles.content}>
         <Switch>
           <Route exact path="/songs" />
           <Route exact path="/songs/:id" />
@@ -53,7 +48,7 @@ const App = () => (
         </Switch>
       </main>
 
-      <Footer className={footerClass} />
+      <Footer className={styles.footer} />
     </div>
   </Providers>
 );

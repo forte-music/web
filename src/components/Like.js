@@ -2,12 +2,7 @@
 import React from 'react';
 
 import Heart from '../icons/Heart';
-import {
-  container as containerClass,
-  heartContainer as heartClass,
-  fill as fillClass,
-  liked as likedClass,
-} from './Like.css';
+import styles from './Like.css';
 
 type Props = {
   onToggleLike: () => void,
@@ -16,10 +11,10 @@ type Props = {
 
 const Like = ({ onToggleLike, like }: Props) => (
   <div
-    className={[containerClass, like && likedClass].join(' ')}
+    className={[styles.container, like ? styles.liked : ''].join(' ')}
     onClick={() => onToggleLike()}
   >
-    <Heart svgClass={heartClass} fillPathClass={fillClass} />
+    <Heart svgClass={styles.heartContainer} fillPathClass={styles.fill} />
   </div>
 );
 

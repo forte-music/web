@@ -1,3 +1,4 @@
+// @flow
 import './Like';
 import './PlaybackButton';
 import './Slider';

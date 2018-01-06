@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import { container as containerClass } from './Artwork.css';
+import styles from './Artwork.css';
 
 type Props = {
   src: string,
@@ -10,7 +10,7 @@ type Props = {
 
 // A styled image for consistent album artwork.
 const Artwork = ({ src, alt }: Props) => (
-  <img draggable={false} className={containerClass} src={src} alt={alt} />
+  <img draggable={false} className={styles.container} src={src} alt={alt} />
 );
 
 export default Artwork;

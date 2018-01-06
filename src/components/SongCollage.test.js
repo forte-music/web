@@ -1,3 +1,4 @@
+// @flow
 import { orderArtwork } from './SongCollage';
 
 it('works with four artworks', () => {

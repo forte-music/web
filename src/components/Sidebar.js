@@ -1,9 +1,15 @@
+// @flow
 import React from 'react';
+import type { Node } from 'react';
 import { NavLink } from 'react-router-dom';
 
-import { link as linkClass, active as activeClass } from './Sidebar.css';
+import styles from './Sidebar.css';
 
-const Sidebar = ({ className }) => (
+type Props = {
+  className: string,
+};
+
+const Sidebar = ({ className }: Props) => (
   <aside className={className}>
     <Link to="/home">Home</Link>
     <Link to="/queue">Queue</Link>
@@ -15,8 +21,13 @@ const Sidebar = ({ className }) => (
   </aside>
 );
 
-const Link = ({ to, children }) => (
-  <NavLink activeClassName={activeClass} className={linkClass} to={to}>
+type LinkProps = {
+  to: string,
+  children: Node,
+};
+
+const Link = ({ to, children }: LinkProps) => (
+  <NavLink activeClassName={styles.active} className={styles.link} to={to}>
     {children}
   </NavLink>
 );

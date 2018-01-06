@@ -2,7 +2,7 @@
 import React from 'react';
 import type { Node } from 'react';
 
-import { container as containerClass } from './Collage.css';
+import styles from './Collage.css';
 
 type Props = {
   topLeft: Node,
@@ -13,7 +13,7 @@ type Props = {
 
 // A collage of four square elements.
 const Collage = ({ topLeft, topRight, bottomLeft, bottomRight }: Props) => (
-  <div className={containerClass}>
+  <div className={styles.container}>
     {topLeft}
     {topRight}
     {bottomLeft}

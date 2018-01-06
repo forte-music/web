@@ -15,15 +15,8 @@ import AdditionalControls from './AdditionalControls';
 import type { Song } from '../../model';
 import SONGS from '../../model';
 
-import { container as containerClass } from './index.css';
-import {
-  bars as barsClass,
-  bar as barClass,
-  buffered as bufferedClass,
-  played as playedClass,
-  loading as loadingClass,
-  seek as seekClass,
-} from '../../components/Bars.css';
+import styles from './index.css';
+import barStyles from '../../components/Bars.css';
 
 type Props = {
   // A class applied to the component's container container element.
@@ -148,21 +141,25 @@ class Footer extends Component<Props, State> {
           />
         )}
 
-        <div className={barsClass}>
+        <div className={barStyles.bars}>
           <Bar
-            className={bufferedClass}
+            className={barStyles.buffered}
             position={(nowPlaying && bufferedTo / duration) || 0}
           />
           <Bar
-            className={playedClass}
+            className={barStyles.played}
             position={(nowPlaying && currentTime / duration) || 0}
           />
-          <div className={[barClass, loading && loadingClass].join(' ')} />
+          <div
+            className={[barStyles.bar, loading ? barStyles.loading : ''].join(
+              ' '
+            )}
+          />
 
           <BarSlider onChange={this.onSeek} />
         </div>
 
-        <div className={containerClass}>
+        <div className={styles.container}>
           <NowPlaying song={nowPlaying} />
 
           <PlaybackControls
@@ -195,7 +192,7 @@ type BarProps = {
 const Bar = ({ className, position }: BarProps) => (
   <div
     style={{ width: `${position * 100}%` }}
-    className={[barClass, className].join(' ')}
+    className={[barStyles.bar, className].join(' ')}
   />
 );
 
@@ -208,7 +205,7 @@ const BarSlider = ({ onChange }: BarSliderProps) => (
     onChange={(e: SyntheticInputEvent<HTMLInputElement>) =>
       onChange(Number(e.target.value))
     }
-    className={[barClass, seekClass].join(' ')}
+    className={[barStyles.bar, barStyles.seek].join(' ')}
     min={0}
     max={100}
     type="range"

@@ -4,16 +4,7 @@ import type { Node } from 'react';
 
 import PlaybackButton from './PlaybackButton';
 
-import {
-  container as containerClass,
-  children as childrenClass,
-  button as buttonClass,
-  overlay as overlayClass,
-  path as pathClass,
-  buttonBackdrop as buttonBackdropClass,
-  active as activeClass,
-  backgroundInteraction as backgroundInteractionClass,
-} from './PlaybackArtwork.css';
+import styles from './PlaybackArtwork.css';
 
 export type PlaybackState =
   // In this state, a play button is shown on hover. onStartPlayback is
@@ -65,24 +56,23 @@ const PlaybackArtwork = ({
 }: Props) => (
   <div
     className={[
-      containerClass,
-      state !== 'STOPPED' ? activeClass : '',
-      backgroundInteraction ? backgroundInteractionClass : '',
+      styles.container,
+      state !== 'STOPPED' ? styles.active : '',
+      backgroundInteraction ? styles.backgroundInteraction : '',
     ].join(' ')}
   >
-    <div className={childrenClass}>{children}</div>
+    <div className={styles.children}>{children}</div>
 
     {/* Tints the children but still allows pointer events through. */}
     <div
-      className={overlayClass}
+      className={styles.overlay}
       onClick={() => handleUpdate(state, onPaused, onPlaying, onStartPlayback)}
     />
 
     {/* The play/pause button in the bottom right corner. */}
-    <div className={buttonBackdropClass}>
+    <div className={styles.buttonBackdrop}>
       <PlaybackButton
-        svgClass={buttonClass}
-        pathClass={pathClass}
+        pathClass={styles.path}
         playing={state === 'PLAYING'}
         onToggle={() =>
           handleUpdate(state, onPaused, onPlaying, onStartPlayback)

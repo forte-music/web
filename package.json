@@ -22,6 +22,7 @@
     "case-sensitive-paths-webpack-plugin": "2.1.1",
     "chalk": "1.1.3",
     "css-loader": "0.28.7",
+    "css-modules-flow-types-cli": "^1.1.0",
     "dotenv": "4.0.0",
     "eslint": "4.10.0",
     "eslint-config-react-app": "^2.0.1",
@@ -81,7 +82,8 @@
     "fix-style": "prettier --write '{src,config}/**/*.{js,css}' 'README.md'",
     "check-style": "prettier --list-different '{src,config}/**/*.{js,css}'",
     "storybook": "start-storybook -p 9001 -c config/storybook",
-    "codegen": "mkdir -p src/__generated__ && yarn query-codegen",
+    "codegen": "mkdir -p src/__generated__ && yarn query-codegen && yarn css-modules-codegen",
+    "css-modules-codegen": "css-modules-flow-types src",
     "query-codegen": "graphql codegen"
   },
   "jest": {

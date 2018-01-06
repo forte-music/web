@@ -30,7 +30,7 @@ storiesOf('PlaybackArtwork', module)
 
 const Story = ({
   initialState,
-  children = collage,
+  children,
   backgroundInteraction = true,
 }: {
   initialState: PlaybackState,
@@ -46,7 +46,7 @@ const Story = ({
         onStartPlayback={() => setState({ playback: 'PLAYING' })}
         backgroundInteraction={backgroundInteraction}
       >
-        {children}
+        {children || collage}
       </PlaybackArtwork>
     )}
   </StatefulComponent>

@@ -1,3 +1,4 @@
+// @flow
 import { formatDuration } from './utils';
 
 it('should format a mm:ss duration correctly', () =>

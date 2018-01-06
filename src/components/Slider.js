@@ -1,11 +1,7 @@
 // @flow
 import React from 'react';
 
-import {
-  container as containerClass,
-  bar as barClass,
-  input as inputClass,
-} from './Slider.css';
+import styles from './Slider.css';
 
 type Props = {
   // Class applied to the container. This can be used to adjust sizing among
@@ -42,14 +38,14 @@ const Slider = ({
   min = 0,
   max = 100,
 }: Props) => (
-  <div className={[containerClass, userContainerClass].join(' ')}>
+  <div className={[styles.container, userContainerClass].join(' ')}>
     <div
-      className={[barClass, userBarClass].join(' ')}
+      className={[styles.bar, userBarClass].join(' ')}
       style={{ width: `${(value - min) / (max - min) * 100}%` }}
     />
 
     <input
-      className={[inputClass, userInputClass].join(' ')}
+      className={[styles.input, userInputClass].join(' ')}
       onChange={(e: SyntheticInputEvent<HTMLInputElement>) =>
         onValueChange(Number(e.target.value))
       }
