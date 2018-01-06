@@ -8,4 +8,5 @@ import './Artwork';
 import './PlaybackArtwork';
 import './SongList';
 import './Icons';
+import './Playlist';
 import './SongCollage';

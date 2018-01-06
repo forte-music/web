@@ -1,6 +1,6 @@
 // @flow
 import React from 'react';
-import type { Node, ComponentType } from 'react';
+import type { Node } from 'react';
 
 import VirtualList from 'react-tiny-virtual-list';
 import Measure from 'react-measure';
@@ -8,28 +8,11 @@ import Measure from 'react-measure';
 import { formatDuration } from '../utils';
 import type { Song } from '../model';
 
-import {
-  container as containerClass,
-  header as headerClass,
-  row as rowClass,
-  song as songClass,
-  artist as artistClass,
-  album as albumClass,
-  duration as durationClass,
-} from './SongList.css';
-
-type RowProps = {
-  // The song to render a row for.
-  id: string,
-
-  // The index of the row.
-  index: number,
-};
+import styles from './SongList.css';
 
 type Props = {
-  // A list of ids which are passed to the inner component. The inner
-  // component is responsible for resolving the data into a component.
-  ids: string[],
+  // The number of rows to render.
+  count: number,
 
   // Called when it is time to load more ids. This function should update
   // the value of the prop ids passed into this component.
@@ -46,19 +29,19 @@ type Props = {
   // body.
   header: Node,
 
-  // A component rendering a row of the table.
-  row: ComponentType<RowProps>,
+  // Called to render each row.
+  renderItem: ({ index: number, style: Object }) => Node,
 };
 
 const SongList = ({
-  ids,
+  count,
   loadMore,
   totalItems,
   className = '',
   header,
-  row: Row,
+  renderItem,
 }: Props) => (
-  <div className={containerClass}>
+  <div className={styles.container}>
     {header}
 
     <Measure bounds>
@@ -70,24 +53,17 @@ const SongList = ({
             itemCount={totalItems}
             itemSize={25}
             onItemsRendered={({ startIndex, stopIndex }) => {
-              if (ids.length >= totalItems) {
+              if (count >= totalItems) {
                 // No additional items to fetch.
                 return;
               }
 
-              const lastIndex = ids.length - 1;
+              const lastIndex = count - 1;
               if (startIndex >= lastIndex || stopIndex >= lastIndex) {
                 loadMore();
               }
             }}
-            renderItem={({ index, style }) => {
-              const id = ids[index];
-              return (
-                <div key={id} style={style}>
-                  <Row id={id} index={index} />
-                </div>
-              );
-            }}
+            renderItem={renderItem}
           />
         </div>
       )}
@@ -96,11 +72,11 @@ const SongList = ({
 );
 
 export const DetailHeader = () => (
-  <div className={headerClass}>
-    <span className={songClass}>Name</span>
-    <span className={albumClass}>Album</span>
-    <span className={artistClass}>Artist</span>
-    <span className={durationClass}>Duration</span>
+  <div className={styles.header}>
+    <span className={styles.song}>Name</span>
+    <span className={styles.album}>Album</span>
+    <span className={styles.artist}>Artist</span>
+    <span className={styles.duration}>Duration</span>
   </div>
 );
 
@@ -109,11 +85,11 @@ type SongRowProps = {
 };
 
 export const DetailRow = ({ song }: SongRowProps) => (
-  <div className={rowClass}>
-    <span className={songClass}>{song.name}</span>
-    <span className={albumClass}>{song.album.name}</span>
-    <span className={artistClass}>{song.album.artist.name}</span>
-    <span className={durationClass}>{formatDuration(song.duration)}</span>
+  <div className={styles.row}>
+    <span className={styles.song}>{song.name}</span>
+    <span className={styles.album}>{song.album.name}</span>
+    <span className={styles.artist}>{song.album.artist.name}</span>
+    <span className={styles.duration}>{formatDuration(song.duration)}</span>
   </div>
 );
 

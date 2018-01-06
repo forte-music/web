@@ -9,7 +9,10 @@
   --main-background-color: #1b1b1b;
 
   --inactive-color: #aaa;
+  --secondary-text-color: #bbb;
   --active-color: #fff;
 
   --playback-background-color: #444;
+
+  --header-background-color: #222;
 }

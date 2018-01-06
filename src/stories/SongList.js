@@ -1,18 +1,27 @@
+// @flow
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 import SONGS from '../model';
 
 import SongList, { DetailHeader, DetailRow } from '../components/SongList';
 
-const LoadedDetailRow = ({ id }) => <DetailRow song={SONGS[id]} />;
+const ids = Object.keys(SONGS);
 
-const ids = ['a', 'b', 'c'];
 storiesOf('SongList', module).add('interactive', () => (
   <SongList
-    ids={ids}
+    count={ids.length}
     totalItems={ids.length}
-    loadMore={() => { }}
+    loadMore={() => {}}
     header={<DetailHeader />}
-    row={LoadedDetailRow}
+    renderItem={({ index, style }) => {
+      const id = ids[index];
+      const song = SONGS[ids[index]];
+
+      return (
+        <div style={style} key={id}>
+          <DetailRow song={song} />
+        </div>
+      );
+    }}
   />
 ));

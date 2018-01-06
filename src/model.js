@@ -11,7 +11,7 @@ export type Artist = {
 
 export type Album = {
   name: string,
-  artworkUrl: string,
+  artworkUrl?: string,
   artist: Artist,
 };
 
@@ -21,6 +21,28 @@ export type Song = {
   streamUrl: string,
   name: string,
   album: Album,
+};
+
+export type Edge<T> = {
+  cursor: string,
+  node: T,
+};
+
+export type Connection<T> = {
+  count: number,
+  edges: Edge<T>[],
+};
+
+export type PlaylistItem = {
+  id: string,
+  song: Song,
+};
+
+export type Playlist = {
+  id: string,
+  name: string,
+  duration: number,
+  items: Connection<PlaylistItem>,
 };
 
 const SONGS: { [string]: Song } = {
