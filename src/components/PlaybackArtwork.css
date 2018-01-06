@@ -1,11 +1,11 @@
 :root {
   --default-size: 160px;
-  --ring-size: 60px;
-  --ring-margin: 10px;
+  --button-size: 40px;
+  --button-margin: 16px;
 
   --overlay-color: color(#000 alpha(30%));
-  --button-background-color: color(#333 alpha(70%));
-  --button-background-color-active: color(#333 alpha(90%));
+  --button-background-color: color(#333 alpha(90%));
+  --button-background-color-active: #333;
 
   --button-fill: #eee;
 }
@@ -36,30 +36,36 @@
   background: var(--overlay-color);
   opacity: 0;
 
-  /* Let pointer events go to the underlying child so links could work. */
+  /* Let pointer events go to the underlying child so links can work. */
   pointer-events: none;
 
-  transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.2s ease-in-out;
+}
+
+.backgroundInteraction .overlay {
+  cursor: pointer;
+  pointer-events: auto;
 }
 
 .buttonBackdrop {
   cursor: pointer;
   position: absolute;
-  bottom: var(--ring-margin);
-  right: var(--ring-margin);
+  bottom: var(--button-margin);
+  right: var(--button-margin);
 
   border-radius: 50%;
   background: var(--button-background-color);
 
-  width: var(--ring-size);
-  height: var(--ring-size);
+  width: var(--button-size);
+  height: var(--button-size);
 
   transform-origin: center center;
   transform: scale(0);
 
-  transition: 0.3s transform ease-in-out, 0.3s background ease-in-out;
+  transition: 0.2s transform ease-out, 0.2s background ease-in-out;
 }
 
+.container.backgroundInteraction:active .buttonBackdrop,
 .buttonBackdrop:active {
   background: var(--button-background-color-active);
 }
@@ -69,7 +75,8 @@
   stroke: var(--button-fill);
 }
 
-.container:hover .buttonBackdrop {
+.container:hover .buttonBackdrop,
+.container.active .buttonBackdrop {
   transform: scale(1);
 }
 
