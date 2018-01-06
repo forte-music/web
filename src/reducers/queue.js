@@ -1,6 +1,6 @@
 // @flow
 import type { Action, SetPlaybackAction } from '../actions';
-import type { QueueItemSource, QueueState } from '../state/queue';
+import type { QueueItem, QueueItemSource, QueueState } from '../state/queue';
 import { initialState, getId } from '../state/queue';
 import type {
   AddItemsToQueueAction,
@@ -75,8 +75,11 @@ export const replaceQueue = (
   state: QueueState,
   action: ReplaceQueueAction
 ): QueueState => {
-  const { songs: songsToAdd } = action;
-  const items = songsToAdd.map(songId => ({ songId, id: getId() }));
+  const { items: sourceItemsToAdd } = action;
+  const items: QueueItem[] = sourceItemsToAdd.map(sourceItem => ({
+    ...sourceItem,
+    id: getId(),
+  }));
 
   return {
     ...state,

@@ -23,11 +23,14 @@ export const addItemsToQueue = (
   position: Position
 ): AddItemsToQueueAction => ({ type: 'ADD_ITEMS_TO_QUEUE', items, position });
 
-export type ReplaceQueueAction = { type: 'REPLACE_QUEUE', songs: string[] };
-
-export const replaceQueue = (songs: string[]): ReplaceQueueAction => ({
+export type ReplaceQueueAction = {
   type: 'REPLACE_QUEUE',
-  songs,
+  items: QueueItemSource[],
+};
+
+export const replaceQueue = (items: QueueItemSource[]): ReplaceQueueAction => ({
+  type: 'REPLACE_QUEUE',
+  items,
 });
 
 export type RemoveFromQueueAction = { type: 'REMOVE_FROM_QUEUE', songs: ID[] };

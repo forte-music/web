@@ -51,7 +51,7 @@ describe('replace reducer', () => {
   it('replaces the queue', () => {
     const action = {
       type: 'REPLACE_QUEUE',
-      songs: ['Just The Way You Are', 'Glad You Came'],
+      items: [{ songId: 'Just The Way You Are' }, { songId: 'Glad You Came' }],
     };
     const newState = replaceQueue(initialState, action);
     expect(newState).toMatchSnapshot();
