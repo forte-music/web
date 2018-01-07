@@ -12,6 +12,7 @@
     "apollo-cache-inmemory": "^1.1.4",
     "apollo-client": "^2.0.4",
     "apollo-link-http": "^1.3.2",
+    "apollo-link-schema": "^1.0.2",
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -39,6 +40,7 @@
     "graphql-cli": "^2.9.0",
     "graphql-cli-codegen": "0xcaff/graphql-cli-codegen#portable",
     "graphql-tag": "^2.6.1",
+    "graphql-tools": "^2.16.0",
     "html-webpack-plugin": "2.29.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "20.0.4",
@@ -108,7 +110,8 @@
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
-      "\\.css$": "identity-obj-proxy"
+      "\\.css$": "identity-obj-proxy",
+      "^@\\/links$": "<rootDir>/src/graphql/links/mock.js"
     },
     "moduleFileExtensions": [
       "web.js",

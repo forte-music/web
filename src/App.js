@@ -9,7 +9,7 @@ import Sidebar from './components/Sidebar';
 import Footer from './containers/Footer';
 import Playlist from './containers/Playlist';
 import store from './store';
-import client from './client';
+import client from './graphql/client';
 
 import styles from './App.css';
 
