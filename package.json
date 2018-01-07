@@ -42,6 +42,7 @@
     "graphql-tag": "^2.6.1",
     "graphql-tools": "^2.16.0",
     "html-webpack-plugin": "2.29.0",
+    "husky": "^0.15.0-beta.16",
     "identity-obj-proxy": "^3.0.0",
     "jest": "20.0.4",
     "jest-transform-graphql": "^2.1.0",
@@ -94,6 +95,11 @@
     "codegen": "yarn query-codegen && yarn css-modules-codegen",
     "css-modules-codegen": "css-modules-flow-types src/",
     "query-codegen": "mkdir -p src/__generated__ && graphql codegen"
+  },
+  "husky": {
+    "hooks": {
+      "pre-push": "yarn check-style"
+    }
   },
   "jest": {
     "collectCoverageFrom": [
