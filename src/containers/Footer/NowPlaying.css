@@ -21,6 +21,9 @@
 
 .infoContainer {
   margin-left: var(--size-tiny);
+
+  /* Needed for text overflow */
+  min-width: 0;
 }
 
 .title {
@@ -30,7 +33,7 @@
 }
 
 .detail {
-  compose: singleLine from '../../shared.css';
+  composes: singleLine from '../../shared.css';
   color: var(--detail-text-color);
   font-size: var(--font-size-very-tiny);
 
