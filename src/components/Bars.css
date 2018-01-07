@@ -79,7 +79,7 @@
   border: 0;
 
   /* Hide default chrome in chrome. */
-  -webkit-appearance: none;
+  appearance: none;
   background: transparent;
 }
 
@@ -92,7 +92,8 @@
 }
 
 .seek::range-thumb {
-  -webkit-appearance: none;
+  /* Hide default chrome in chrome. */
+  appearance: none;
   border: none;
 
   /* The thumb needs to have some size for events to trigger. */

@@ -3,8 +3,8 @@
 :root {
   --image-size: 90px;
 
-  --title-text-color: #fff;
-  --detail-text-color: #aaa;
+  --title-text-color: #ffffff;
+  --detail-text-color: #aaaaaa;
 }
 
 .container {

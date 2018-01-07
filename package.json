@@ -67,6 +67,9 @@
     "redux-devtools-extension": "^2.13.2",
     "schema": "forte-music/schema",
     "style-loader": "0.19.0",
+    "stylelint": "^8.4.0",
+    "stylelint-config-css-modules": "^1.1.0",
+    "stylelint-config-recommended": "^2.0.1",
     "sw-precache-webpack-plugin": "0.11.4",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
@@ -74,19 +77,23 @@
     "webpack-manifest-plugin": "1.3.2",
     "whatwg-fetch": "2.0.3"
   },
+  "config": {
+    "prettierFiles": "{src,config}/**/*.{js,css} README.md"
+  },
   "scripts": {
-    "postinstall": "yarn run typings && yarn run codegen",
     "typings": "flow-typed install",
-    "start": "node scripts/start.js",
+    "fix-style": "prettier --write $npm_package_config_prettierFiles",
+    "storybook": "start-storybook -p 9001 -c config/storybook",
+    "start": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lint": "eslint src/",
-    "fix-style": "prettier --write '{src,config}/**/*.{js,css}' 'README.md'",
-    "check-style": "prettier --list-different '{src,config}/**/*.{js,css}'",
-    "storybook": "start-storybook -p 9001 -c config/storybook",
-    "codegen": "mkdir -p src/__generated__ && yarn query-codegen && yarn css-modules-codegen",
-    "css-modules-codegen": "css-modules-flow-types src",
-    "query-codegen": "graphql codegen"
+    "lint": "yarn check-style && yarn lint-js && yarn lint-css",
+    "lint-js": "eslint src/",
+    "lint-css": "stylelint 'src/**/*.css'",
+    "check-style": "prettier --list-different $npm_package_config_prettierFiles",
+    "codegen": "yarn query-codegen && yarn css-modules-codegen",
+    "css-modules-codegen": "css-modules-flow-types src/",
+    "query-codegen": "mkdir -p src/__generated__ && graphql codegen"
   },
   "jest": {
     "collectCoverageFrom": [
@@ -141,6 +148,34 @@
     "plugins": [
       "graphql"
     ]
+  },
+  "stylelint": {
+    "extends": [
+      "stylelint-config-recommended",
+      "stylelint-config-css-modules"
+    ],
+    "rules": {
+      "no-descending-specificity": null,
+      "selector-pseudo-element-no-unknown": [
+        true,
+        {
+          "ignorePseudoElements": [
+            "range-track",
+            "range-thumb"
+          ]
+        }
+      ],
+      "color-named": "never",
+      "value-no-vendor-prefix": true,
+      "property-no-vendor-prefix": true,
+      "declaration-no-important": true,
+      "selector-no-vendor-prefix": true,
+      "media-feature-name-no-vendor-prefix": true,
+      "at-rule-no-vendor-prefix": true,
+      "no-unknown-animations": true,
+      "color-hex-case": "lower",
+      "color-hex-length": "long"
+    }
   },
   "prettier": {
     "singleQuote": true,

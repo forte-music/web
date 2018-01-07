@@ -17,6 +17,10 @@ jobs:
           name: Install Deps
           command: yarn install
 
+      - run:
+          name: Install Typings
+          command: yarn typings
+
       - save_cache:
           paths:
             - node_modules
@@ -24,8 +28,20 @@ jobs:
           key: dependencies-{{ checksum "package.json" }}
 
       - run:
+          name: Codegen
+          command: yarn codegen
+
+      - run:
           name: ESLint
-          command: yarn lint
+          command: yarn lint-js
+
+      - run:
+          name: StyleLint
+          command: yarn lint-css
+
+      - run:
+          name: Code Style Lint
+          command: yarn check-style
 
       - run:
           name: Flow Check
@@ -34,10 +50,6 @@ jobs:
       - run:
           name: Flow Coverage
           command: yarn flow-coverage-report
-
-      - run:
-          name: Style Check
-          command: yarn check-style
 
       - run:
           name: Run Tests

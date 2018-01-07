@@ -9,9 +9,9 @@
   --thumb-radius: calc(var(--thumb-size) / 2);
 
   /* TODO: These Colors */
-  --filled-color: #777;
-  --unfilled-color: #333;
-  --thumb-color: #aaa;
+  --filled-color: #777777;
+  --unfilled-color: #333333;
+  --thumb-color: #aaaaaa;
 }
 
 .container {

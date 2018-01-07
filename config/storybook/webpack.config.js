@@ -1,4 +1,7 @@
 module.exports = {
+  resolve: {
+    alias: require('../aliases'),
+  },
   module: {
     rules: [
       {

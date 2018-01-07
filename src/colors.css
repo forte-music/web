@@ -8,11 +8,11 @@
   --accent-color: #11a858;
   --main-background-color: #1b1b1b;
 
-  --inactive-color: #aaa;
-  --secondary-text-color: #bbb;
-  --active-color: #fff;
+  --inactive-color: #aaaaaa;
+  --secondary-text-color: #bbbbbb;
+  --active-color: #ffffff;
 
-  --playback-background-color: #444;
+  --playback-background-color: #444444;
 
-  --header-background-color: #222;
+  --header-background-color: #222222;
 }

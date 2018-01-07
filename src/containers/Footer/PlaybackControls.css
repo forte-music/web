@@ -29,8 +29,8 @@
 }
 
 .disabled .path {
-  fill: #bbb;
-  stroke: #bbb;
+  fill: #bbbbbb;
+  stroke: #bbbbbb;
 }
 
 .disabled .primary,

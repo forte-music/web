@@ -5,7 +5,7 @@
 
 .bar {
   composes: bar from './Bars.css';
-  background: red;
+  background: #ff0000;
 }
 
 .input {
