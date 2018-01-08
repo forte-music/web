@@ -126,6 +126,7 @@ const reduxEnhancer = connect(
       );
 
       dispatch(replaceQueue(items));
+      dispatch(play());
     },
   })
 );

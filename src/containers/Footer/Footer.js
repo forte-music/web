@@ -30,6 +30,9 @@ type Props = {
   nowPlaying?: Song,
 };
 
+// TODO: Loading and Inactive States
+// TODO: Like Mutation
+
 type State = {
   liked: boolean,
   volume: number,
@@ -165,7 +168,7 @@ class Footer extends Component<Props, State> {
 
           <AdditionalControls
             currentTime={nowPlaying && currentTime}
-            duration={nowPlaying && duration}
+            duration={nowPlaying && (duration || nowPlaying.duration)}
             volume={volume}
             onVolumeSet={this.onVolume}
             like={liked}

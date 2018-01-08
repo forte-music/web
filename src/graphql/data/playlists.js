@@ -17,6 +17,11 @@ const playlists: PlaylistSource[] = [
       '492667ee-5bed-45ff-8a2c-67277677cf86',
     ],
   },
+  {
+    id: 'playlist:2',
+    name: 'Chill and Netflix',
+    songs: ['69120ac9-1e48-494f-a1f4-4a34735fe408'],
+  },
 ];
 
 export type PlaylistItem = {

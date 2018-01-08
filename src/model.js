@@ -1,7 +1,4 @@
 // @flow
-import { addToQueue } from './actions/queue';
-import store from './store';
-
 // Some mock data and types used for testing. This will be replaced with graphql
 // and generated types using apollo-codegen.
 
@@ -98,7 +95,5 @@ const SONGS: { [string]: Song } = {
     },
   },
 };
-
-store.dispatch(addToQueue(['a', 'b', 'c'], 'END'));
 
 export default SONGS;
