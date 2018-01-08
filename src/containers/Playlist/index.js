@@ -1,20 +1,21 @@
 // @flow
+import type { ComponentType } from 'react';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
-import type { RouterHistory, Match } from 'react-router-dom';
 import { compose } from 'redux';
+
+import type { State } from '../../state';
+import type { QueueItemSource } from '../../state/queue';
+import type { PlaylistModel } from './Playlist';
 
 import Playlist from './Playlist';
 import { Playlist as Query, PlaylistPage as PageQuery } from './query.graphql';
-import type { State } from '../../state';
 import nowPlayingSelector from '../../selectors/nowPlaying';
 import { pause, play, replaceQueue } from '../../actions';
-import type { Playlist as PlaylistModel } from '../../model';
-import type { QueueItemSource } from '../../state/queue';
+import type { PlaybackState } from '../../components/PlaybackArtwork';
 
-type Props = {
-  match: Match,
-  history: RouterHistory,
+type InputProps = {
+  match: { params: { id: string } },
 };
 
 const last = <T>(arr: T[]): ?T => arr[arr.length - 1];
@@ -25,28 +26,30 @@ const defaultPlaylist = {
   },
 };
 
-const graphqlEnhancer = graphql(Query, {
-  skip: ({ match: { params }, history }: Props): boolean => {
-    if (!params['id']) {
-      history.replace('/playlists');
-      return true;
-    }
+type GraphQLEnhancedProps = {
+  id: string,
+  playlist?: PlaylistModel,
+  fetchMore: () => void,
+};
 
-    return false;
-  },
-  options: ({ match: { params: { id } } }: Props) => ({
+const graphqlEnhancer = graphql(Query, {
+  options: ({ match: { params: { id } } }: InputProps) => ({
     variables: {
       playlistId: id,
     },
   }),
   props: ({
     ownProps: { match: { params: { id } } },
-    data: { playlist = defaultPlaylist, loading, fetchMore, variables },
-  }) => ({
+    data: { playlist, loading, fetchMore, variables },
+  }): GraphQLEnhancedProps => ({
     id,
-    playlist,
     loading,
+    playlist,
     fetchMore: () => {
+      if (loading || !playlist) {
+        return;
+      }
+
       const { cursor: lastCursor = '' } = last(playlist.items.edges) || {};
 
       return fetchMore({
@@ -58,32 +61,40 @@ const graphqlEnhancer = graphql(Query, {
         updateQuery: (
           { playlist: previousResult = defaultPlaylist },
           { fetchMoreResult: { playlist: fetchMoreResult } }
-        ) => {
-          return {
-            playlist: {
-              ...previousResult,
-              items: {
-                ...previousResult.items,
-                edges: [
-                  ...previousResult.items.edges,
-                  ...fetchMoreResult.items.edges,
-                ],
-              },
+        ) => ({
+          playlist: {
+            ...previousResult,
+            items: {
+              ...previousResult.items,
+              edges: [
+                ...previousResult.items.edges,
+                ...fetchMoreResult.items.edges,
+              ],
             },
-          };
-        },
+          },
+        }),
       });
     },
   }),
 });
 
+type ReduxStateEnhancedProps = {
+  state: PlaybackState,
+  nowPlayingSongSource?: string,
+};
+
+type ReduxActionEnhancedProps = {
+  onPause: () => void,
+  onPlay: () => void,
+  onStartPlayback: () => void,
+};
+
 const reduxEnhancer = connect(
   (
     { queue }: State,
-    { playlist: { id } = {} }: { playlist?: PlaylistModel }
-  ) => {
+    { playlist: { id } = {} }: GraphQLEnhancedProps
+  ): ReduxStateEnhancedProps => {
     const { listSource, songSource } = nowPlayingSelector(queue) || {};
-
     const nowPlaying = listSource === id;
 
     return {
@@ -95,12 +106,10 @@ const reduxEnhancer = connect(
   },
   (
     dispatch,
-    {
-      playlist: { id, items: playlistItems } = {},
-    }: { playlist?: PlaylistModel }
-  ) => ({
-    onPause: dispatch(pause()),
-    onPlay: dispatch(play()),
+    { playlist: { id, items: playlistItems } = {} }: GraphQLEnhancedProps
+  ): ReduxActionEnhancedProps => ({
+    onPause: () => dispatch(pause()),
+    onPlay: () => dispatch(play()),
     onStartPlayback: () => {
       // Collect Items
       // TODO: This collects only loaded items.
@@ -121,10 +130,10 @@ const reduxEnhancer = connect(
   })
 );
 
-const enhancer = compose(reduxEnhancer, graphqlEnhancer);
+const enhancer = compose(graphqlEnhancer, reduxEnhancer);
 
 // A connected version of the Playlist component which retrieves its data
 // using GraphQL and delivers state changes to a redux store.
-const ConnectedPlaylist = enhancer(Playlist);
+const ConnectedPlaylist: ComponentType<InputProps> = enhancer(Playlist);
 
 export default ConnectedPlaylist;

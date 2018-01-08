@@ -6,10 +6,12 @@ import store from './store';
 // and generated types using apollo-codegen.
 
 export type Artist = {
+  id: string,
   name: string,
 };
 
 export type Album = {
+  id: string,
   name: string,
   artworkUrl?: string,
   artist: Artist,
@@ -52,10 +54,12 @@ const SONGS: { [string]: Song } = {
     streamUrl: '/music/01 - Stole the Show (feat. Parson James).flac',
     name: 'Stole the Show',
     album: {
+      id: '1',
       name: 'Stole the Show',
       artworkUrl:
         'https://i.scdn.co/image/d345ab2a8278434f1c8cc936ace70da02ac845fb',
       artist: {
+        id: '1',
         name: 'Kygo',
       },
     },
@@ -67,10 +71,12 @@ const SONGS: { [string]: Song } = {
       "/music/01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a",
     name: "I'm That (Remix)",
     album: {
+      id: '1',
       name: "I'm That (Remix)",
       artworkUrl:
         'http://is4.mzstatic.com/image/thumb/Music5/v4/08/da/96/08da9619-3f9b-7c95-60d1-6c18cfdd4dbd/source/600x600bb.jpg',
       artist: {
+        id: '1',
         name: 'R. City',
       },
     },
@@ -81,10 +87,12 @@ const SONGS: { [string]: Song } = {
     streamUrl: '/music/01 - Bugatti (feat. Future & Rick Ross).flac',
     name: 'Bugatti',
     album: {
+      id: '1',
       name: 'Bugatti',
       artworkUrl:
         'https://upload.wikimedia.org/wikipedia/en/3/3f/AceHood_Bugatti.jpg',
       artist: {
+        id: '1',
         name: 'Ace Hood',
       },
     },

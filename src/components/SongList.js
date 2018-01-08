@@ -6,7 +6,6 @@ import VirtualList from 'react-tiny-virtual-list';
 import Measure from 'react-measure';
 
 import { formatDuration } from '../utils';
-import type { Song } from '../model';
 
 import styles from './SongList.css';
 
@@ -80,8 +79,23 @@ export const DetailHeader = () => (
   </div>
 );
 
+type Artist = {
+  name: string,
+};
+
+type Album = {
+  name: string,
+  +artist: Artist,
+};
+
+type Song = {
+  name: string,
+  +album: Album,
+  duration: number,
+};
+
 type SongRowProps = {
-  song: Song,
+  +song: Song,
 };
 
 export const DetailRow = ({ song }: SongRowProps) => (

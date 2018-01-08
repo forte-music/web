@@ -1,6 +1,5 @@
 // @flow
 import React from 'react';
-import type { Song } from '../model';
 
 import Artwork from './Artwork';
 import DefaultCover from '../icons/DefaultCover';
@@ -47,17 +46,13 @@ export const orderArtwork = <T>(arr: T[]): T[] => {
 };
 
 type Props = {
-  songs: Song[],
   alt: string,
+  artworkUrls: string[],
 };
 
 // Given a list of songs, renders a collage of artwork with now two same
 // artworks being adjacent.
-const SongCollage = ({ songs, alt }: Props) => {
-  const urls = songs
-    .map(({ album: { artworkUrl } }) => artworkUrl)
-    .filter(artworkUrl => !!artworkUrl);
-
+const SongCollage = ({ artworkUrls: urls, alt }: Props) => {
   if (!urls.length) {
     // There are no album covers at all.
     return <DefaultCover />;

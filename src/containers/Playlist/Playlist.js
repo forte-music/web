@@ -1,11 +1,7 @@
 // @flow
 import React from 'react';
 
-import type {
-  Playlist as PlaylistModel,
-  Edge,
-  PlaylistItem,
-} from '../../model';
+import type { Connection, Edge } from '../../model';
 import { formatDuration } from '../../utils';
 import PlaybackArtwork from '../../components/PlaybackArtwork';
 import type { PlaybackState } from '../../components/PlaybackArtwork';
@@ -14,17 +10,41 @@ import SongCollage from '../../components/SongCollage';
 
 import styles from './Playlist.css';
 
-// TODO: Add Enqueue and Three Dots Button
+type Artist = {
+  name: string,
+};
 
-type Props = {
-  // Whether or not data is loading.
-  loading: boolean,
+type Album = {
+  name: string,
+  artworkUrl?: string,
+  artist: Artist,
+};
 
+type Song = {
+  id: string,
+  name: string,
+  duration: number,
+  album: Album,
+};
+
+type PlaylistItem = {
+  id: string,
+  song: Song,
+};
+
+export type PlaylistModel = {
+  id: string,
+  name: string,
+  duration: number,
+  items: Connection<PlaylistItem>,
+};
+
+export type Props = {
   // Called when more items in the playlist are needed.
   fetchMore: () => void,
 
   // The playlist to render.
-  playlist: PlaylistModel,
+  playlist?: PlaylistModel,
 
   // The state of this list's playback.
   state: PlaybackState,
@@ -46,8 +66,15 @@ type Props = {
   onStartPlayback: () => void,
 };
 
+// TODO: Loading State
+// TODO: Add Enqueue and Three Dots Button
+
 const Playlist = ({
-  playlist: { name, duration, items: { count, edges } },
+  playlist: {
+    items: { count = 0, edges = [] } = {},
+    name = '',
+    duration = 0,
+  } = {},
   state,
   fetchMore,
   onPlay,
@@ -65,7 +92,11 @@ const Playlist = ({
           backgroundInteraction
         >
           <SongCollage
-            songs={edges.map(({ node: { song } }) => song)}
+            artworkUrls={
+              ((edges
+                .map(({ node }) => node.song.album.artworkUrl)
+                .filter(url => !!url): any): string[])
+            }
             alt="Playlist Artwork"
           />
         </PlaybackArtwork>

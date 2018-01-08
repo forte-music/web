@@ -35,7 +35,7 @@ const handleConnection = <InputType, NodeType>(
   getNode: (key: InputType) => NodeType,
   { limit = 25, cursor }: ConnectionQuery
 ): Connection<NodeType> => {
-  const offset = cursor ? parseInt(cursor, 10) + 1: 0;
+  const offset = cursor ? parseInt(cursor, 10) + 1 : 0;
   const acceptedKeys = keys.slice(offset, offset + limit);
 
   return {
@@ -68,6 +68,7 @@ const resolvers = {
 
   Album: {
     songs: ({ songs: songKeys }: Album) => handleArray(songs, songKeys),
+    artist: ({ artist: artistKey }: Album) => handleItem(artists, artistKey),
   },
 
   Artist: {
