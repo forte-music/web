@@ -1,6 +1,6 @@
 // @flow
-import { albums, artists, songs, stats, playlists } from './data';
-import type { Album, Artist, Playlist, PlaylistItem, Song } from './data';
+import { albums, artists, songs, playlists } from './data';
+import type { Playlist, PlaylistItem } from './data';
 import type { Connection } from '../model';
 
 type ConnectionQuery = {
@@ -47,9 +47,6 @@ const handleConnection = <InputType, NodeType>(
   };
 };
 
-const handleArray = <T>(map: Map<string, T>, entryKeys: string[]) =>
-  entryKeys.map(entryKey => map.get(entryKey));
-
 // Resolvers for mock backend.
 const resolvers = {
   Query: {
@@ -64,28 +61,6 @@ const resolvers = {
 
     playlist: itemResolver(playlists),
     playlists: connectionResolver(playlists),
-  },
-
-  Album: {
-    songs: ({ songs: songKeys }: Album) => handleArray(songs, songKeys),
-    artist: ({ artist: artistKey }: Album) => handleItem(artists, artistKey),
-  },
-
-  Artist: {
-    albums: ({ albums: albumKeys }: Artist) => handleArray(albums, albumKeys),
-  },
-
-  Song: {
-    album: ({ album: albumKey }: Song) => handleItem(albums, albumKey),
-
-    artists: ({ artists: artistKeys }: Song) =>
-      handleArray(artists, artistKeys),
-
-    stats: ({ stats: statsKey }: Song) => handleItem(stats, statsKey),
-  },
-
-  PlaylistItem: {
-    song: ({ song: songKey }: PlaylistItem) => handleItem(songs, songKey),
   },
 
   Playlist: {

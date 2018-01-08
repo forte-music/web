@@ -5,43 +5,23 @@ import { storiesOf } from '@storybook/react';
 import StatefulComponent from './StatefulComponent';
 import Playlist from '../containers/Playlist/Playlist';
 import type { PlaylistModel } from '../containers/Playlist/Playlist';
-import { playlists, songs, albums, artists } from '../graphql/data';
-import type {
-  Playlist as PlaylistDataModel,
-  Song,
-  Album,
-  Artist,
-} from '../graphql/data';
+import { playlists } from '../graphql/data';
+import type { Playlist as PlaylistDataModel } from '../graphql/data';
 
-const playlistDataModel: PlaylistDataModel = ((playlists.get(
+const playlistModel: PlaylistDataModel = ((playlists.get(
   'playlist:1'
 ): any): PlaylistDataModel);
 
 // Flow doesn't seem to understand the object spread operator.
 // https://github.com/facebook/flow/issues/1511
 const playlist = (({
-  ...playlistDataModel,
+  ...playlistModel,
   items: {
-    count: playlistDataModel.items.length,
-    edges: playlistDataModel.items.map((playlistItem, index) => {
-      const song: Song = (songs.get(playlistItem.song): any);
-      const album: Album = (albums.get(song.album): any);
-      const artist: Artist = (artists.get(album.artist): any);
-
-      return {
-        cursor: index.toString(),
-        node: {
-          ...playlistItem,
-          song: {
-            ...songs.get(playlistItem.song),
-            album: {
-              ...album,
-              artist,
-            },
-          },
-        },
-      };
-    }),
+    count: playlistModel.items.length,
+    edges: playlistModel.items.map((playlistItem, index) => ({
+      cursor: index.toString(),
+      node: playlistItem,
+    })),
   },
 }: any): PlaylistModel);
 

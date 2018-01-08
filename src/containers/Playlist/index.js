@@ -52,7 +52,7 @@ const graphqlEnhancer = graphql(Query, {
 
       const { cursor: lastCursor = '' } = last(playlist.items.edges) || {};
 
-      return fetchMore({
+      fetchMore({
         query: PageQuery,
         variables: {
           ...variables,
