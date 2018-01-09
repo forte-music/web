@@ -79,6 +79,7 @@
     "graphql-tools": "^2.16.0",
     "husky": "^0.15.0-beta.16",
     "identity-obj-proxy": "^3.0.0",
+    "isomorphic-fetch": "^2.2.1",
     "jest": "20.0.4",
     "jest-transform-graphql": "^2.1.0",
     "prettier": "1.9.2",
@@ -87,7 +88,7 @@
     "webpack-dev-server": "2.9.4"
   },
   "config": {
-    "prettierFiles": "{src,config}/**/*.{js,css} README.md"
+    "prettierFiles": "'*.js' {src,config}/**/*.{js,css} README.md"
   },
   "scripts": {
     "typings": "flow-typed install",
@@ -97,7 +98,7 @@
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "yarn check-style && yarn lint-js && yarn lint-css",
-    "lint-js": "eslint src/",
+    "lint-js": "eslint 'src/**/*.js'",
     "lint-css": "stylelint 'src/**/*.css'",
     "check-style": "prettier --list-different $npm_package_config_prettierFiles",
     "codegen": "yarn query-codegen && yarn css-modules-codegen",
@@ -108,41 +109,6 @@
     "hooks": {
       "pre-push": "yarn check-style"
     }
-  },
-  "jest": {
-    "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
-    ],
-    "setupFiles": [
-      "<rootDir>/config/polyfills.js"
-    ],
-    "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
-    ],
-    "testEnvironment": "node",
-    "testURL": "http://localhost",
-    "transform": {
-      "\\.(gql|graphql)$": "jest-transform-graphql",
-      "\\.js$": "babel-jest"
-    },
-    "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
-    ],
-    "moduleNameMapper": {
-      "^react-native$": "react-native-web",
-      "\\.css$": "identity-obj-proxy",
-      "^@\\/links$": "<rootDir>/src/graphql/links/mock.js"
-    },
-    "moduleFileExtensions": [
-      "web.js",
-      "mjs",
-      "js",
-      "json",
-      "web.jsx",
-      "jsx",
-      "node"
-    ]
   },
   "babel": {
     "presets": [

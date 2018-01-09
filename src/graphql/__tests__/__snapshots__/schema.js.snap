@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should resolve a query for data stemming from a playlist 1`] = `
+Object {
+  "data": Object {
+    "playlist": Object {
+      "__typename": "Playlist",
+      "duration": 481,
+      "id": "playlist:1",
+      "items": Object {
+        "__typename": "PlaylistItemConnection",
+        "edges": Array [
+          Object {
+            "__typename": "PlaylistItemEdge",
+            "node": Object {
+              "__typename": "PlaylistItem",
+              "id": "playlist:1:0",
+              "song": Object {
+                "__typename": "Song",
+                "album": Object {
+                  "__typename": "Album",
+                  "artworkUrl": "http://is4.mzstatic.com/image/thumb/Music5/v4/08/da/96/08da9619-3f9b-7c95-60d1-6c18cfdd4dbd/source/600x600bb.jpg",
+                  "duration": 211,
+                  "id": "44db420c-0995-4a74-9cc2-0191d65bfdd0",
+                  "name": "I'm That (Remix)",
+                  "releaseYear": 2015,
+                  Symbol(id): "Album:44db420c-0995-4a74-9cc2-0191d65bfdd0",
+                },
+                "artists": Array [],
+                "diskNumber": 1,
+                "id": "9283bed7-a183-4f54-a0d7-820946c220e3",
+                "name": "I'm That (Remix)",
+                "stats": Object {
+                  "__typename": "SongUserStats",
+                  "id": "6782c701-e219-4646-b9c1-0817d62b58d9",
+                  "lastPlayed": 0,
+                  "liked": false,
+                  "playCount": 0,
+                  Symbol(id): "SongUserStats:6782c701-e219-4646-b9c1-0817d62b58d9",
+                },
+                "streamUrl": "/music/01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a",
+                "trackNumber": 1,
+                Symbol(id): "Song:9283bed7-a183-4f54-a0d7-820946c220e3",
+              },
+              Symbol(id): "PlaylistItem:playlist:1:0",
+            },
+            Symbol(id): "$Playlist:playlist:1.items({\\"input\\":{\\"limit\\":10}}).edges.0",
+          },
+          Object {
+            "__typename": "PlaylistItemEdge",
+            "node": Object {
+              "__typename": "PlaylistItem",
+              "id": "playlist:1:1",
+              "song": Object {
+                "__typename": "Song",
+                "album": Object {
+                  "__typename": "Album",
+                  "artworkUrl": "https://upload.wikimedia.org/wikipedia/en/3/3f/AceHood_Bugatti.jpg",
+                  "duration": 270,
+                  "id": "d0941f59-2138-433c-9ccf-368040228593",
+                  "name": "Bugatti",
+                  "releaseYear": 2013,
+                  Symbol(id): "Album:d0941f59-2138-433c-9ccf-368040228593",
+                },
+                "artists": Array [],
+                "diskNumber": 1,
+                "id": "492667ee-5bed-45ff-8a2c-67277677cf86",
+                "name": "Bugatti",
+                "stats": Object {
+                  "__typename": "SongUserStats",
+                  "id": "7371509e-d31e-4f16-ae47-0ce375349fe7",
+                  "lastPlayed": 0,
+                  "liked": false,
+                  "playCount": 0,
+                  Symbol(id): "SongUserStats:7371509e-d31e-4f16-ae47-0ce375349fe7",
+                },
+                "streamUrl": "/music/01 - Bugatti (feat. Future & Rick Ross).flac",
+                "trackNumber": 1,
+                Symbol(id): "Song:492667ee-5bed-45ff-8a2c-67277677cf86",
+              },
+              Symbol(id): "PlaylistItem:playlist:1:1",
+            },
+            Symbol(id): "$Playlist:playlist:1.items({\\"input\\":{\\"limit\\":10}}).edges.1",
+          },
+        ],
+        Symbol(id): "$Playlist:playlist:1.items({\\"input\\":{\\"limit\\":10}})",
+      },
+      "name": "Quick Jam Session",
+      Symbol(id): "Playlist:playlist:1",
+    },
+    Symbol(id): "ROOT_QUERY",
+  },
+  "loading": false,
+  "networkStatus": 7,
+  "stale": false,
+}
+`;
