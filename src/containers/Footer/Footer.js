@@ -19,11 +19,16 @@ type Album = {
   artist: Artist,
 };
 
+type SongUserStats = {
+  liked: boolean,
+};
+
 export type Song = {
   streamUrl: string,
   duration: number,
   name: string,
   album: Album,
+  stats: SongUserStats,
 };
 
 type Props = {
@@ -41,6 +46,8 @@ type Props = {
   play: () => void,
   pause: () => void,
 
+  onToggleLike: () => void,
+
   // The currently playing song.
   nowPlaying?: Song,
 };
@@ -49,7 +56,6 @@ type Props = {
 // TODO: Like Mutation
 
 type State = {
-  liked: boolean,
   volume: number,
   currentTime: number,
   duration: number,
@@ -59,7 +65,6 @@ type State = {
 
 class Footer extends Component<Props, State> {
   state = {
-    liked: false,
     volume: 1.0,
     currentTime: 0,
     duration: 1,
@@ -114,8 +119,6 @@ class Footer extends Component<Props, State> {
 
   onVolume = (volume: number) => this.setState({ volume });
 
-  onToggleLike = () => this.setState(({ liked }) => ({ liked: !liked }));
-
   togglePlaying = () => {
     const { playing, play, pause } = this.props;
     if (playing) {
@@ -126,15 +129,14 @@ class Footer extends Component<Props, State> {
   };
 
   render() {
-    const { className, nowPlaying, nextSong, playing } = this.props;
     const {
-      loading,
-      currentTime,
-      duration,
-      bufferedTo,
-      volume,
-      liked,
-    } = this.state;
+      className,
+      nowPlaying,
+      nextSong,
+      playing,
+      onToggleLike,
+    } = this.props;
+    const { loading, currentTime, duration, bufferedTo, volume } = this.state;
 
     return (
       <footer className={className}>
@@ -186,8 +188,8 @@ class Footer extends Component<Props, State> {
             duration={nowPlaying && (duration || nowPlaying.duration)}
             volume={volume}
             onVolumeSet={this.onVolume}
-            like={liked}
-            onToggleLike={this.onToggleLike}
+            like={nowPlaying ? nowPlaying.stats.liked : false}
+            onToggleLike={onToggleLike}
           />
         </div>
       </footer>
