@@ -3,11 +3,18 @@ import { OptionProps } from 'react-apollo';
 
 import Query from './query.graphql';
 import type { ReduxEnhancedProps } from './redux';
-import type { FooterQuery } from '../../__generated__/queries';
+import type {
+  Footer as FooterQuery,
+  Footer_song as Song,
+} from '../../__generated__/Footer';
 
 export const defaultConfig = {
   options: ({ songId }: ReduxEnhancedProps) => ({ variables: { songId } }),
-  skip: ({ songId }: ReduxEnhancedProps) => !songId,
+  skip: ({ songId }: ReduxEnhancedProps): boolean => !songId,
+};
+
+type GraphQLEnhancedProps = ReduxEnhancedProps & {
+  nowPlaying: Song,
 };
 
 export const graphqlEnhancer = graphql(Query, {
@@ -15,7 +22,7 @@ export const graphqlEnhancer = graphql(Query, {
   props: ({
     ownProps,
     data: { song },
-  }: OptionProps<ReduxEnhancedProps, FooterQuery>) => ({
+  }: OptionProps<ReduxEnhancedProps, FooterQuery>): GraphQLEnhancedProps => ({
     ...ownProps,
     nowPlaying: song,
   }),

@@ -12,7 +12,7 @@
     source-map "^0.5.0"
     trim-right "^1.0.1"
 
-"@babel/types@7.0.0-beta.37", "@babel/types@^7.0.0-beta.35":
+"@babel/types@7.0.0-beta.37":
   version "7.0.0-beta.37"
   resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.37.tgz#fa93af9aa9d85c331729bb923495af04d9b0617d"
   dependencies:
@@ -407,12 +407,11 @@ apollo-client@^2.0.4:
   optionalDependencies:
     "@types/async" "2.0.46"
 
-apollo-codegen@^0.18.3:
+apollo-codegen@0xcaff/apollo-codegen#portable:
   version "0.18.3"
-  resolved "https://registry.yarnpkg.com/apollo-codegen/-/apollo-codegen-0.18.3.tgz#b60698562670443fe4d14b4c1cb3d030e4e9f2d0"
+  resolved "https://codeload.github.com/0xcaff/apollo-codegen/tar.gz/51b0ce7be08cba8d8e9f5ef1f249287368d98016"
   dependencies:
     "@babel/generator" "^7.0.0-beta.35"
-    "@babel/types" "^7.0.0-beta.35"
     change-case "^3.0.1"
     common-tags "^1.5.1"
     core-js "^2.5.3"

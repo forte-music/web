@@ -6,7 +6,7 @@ import type { State as ReduxState } from '../../state';
 import nowPlayingSelector from '../../selectors/nowPlaying';
 import { nextSong, pause, play, previousSong } from '../../actions';
 
-type ReduxActionEnhancedProps = {
+export type ReduxActionEnhancedProps = {
   nextSong: () => void,
   previousSong: () => void,
   play: () => void,

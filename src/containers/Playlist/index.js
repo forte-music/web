@@ -3,10 +3,14 @@ import type { ComponentType } from 'react';
 import { graphql } from 'react-apollo';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
+import type { OptionProps } from 'react-apollo';
 
 import type { State } from '../../state';
 import type { QueueItemSource } from '../../state/queue';
-import type { PlaylistModel } from './Playlist';
+import type {
+  Playlist as QueryResult,
+  Playlist_playlist as PlaylistModel,
+} from './__generated__/Playlist';
 
 import Playlist from './Playlist';
 import { Playlist as Query, PlaylistPage as PageQuery } from './query.graphql';
@@ -40,8 +44,8 @@ const graphqlEnhancer = graphql(Query, {
   }),
   props: ({
     ownProps: { match: { params: { id } } },
-    data: { playlist, loading, fetchMore, variables },
-  }): GraphQLEnhancedProps => ({
+    data: { loading, fetchMore, variables, playlist },
+  }: OptionProps<InputProps, QueryResult>): GraphQLEnhancedProps => ({
     id,
     loading,
     playlist,
@@ -60,7 +64,9 @@ const graphqlEnhancer = graphql(Query, {
         },
         updateQuery: (
           { playlist: previousResult = defaultPlaylist },
-          { fetchMoreResult: { playlist: fetchMoreResult } }
+          {
+            fetchMoreResult: { playlist: fetchMoreResult },
+          }: { fetchMoreResult: QueryResult }
         ) => ({
           playlist: {
             ...previousResult,
