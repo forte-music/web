@@ -77,7 +77,6 @@
     "graphql-cli": "^2.9.0",
     "graphql-cli-codegen": "0xcaff/graphql-cli-codegen#portable",
     "graphql-tools": "^2.16.0",
-    "husky": "^0.15.0-beta.16",
     "identity-obj-proxy": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
     "jest": "20.0.4",
@@ -93,6 +92,7 @@
   "scripts": {
     "typings": "flow-typed install",
     "fix-style": "prettier --write $npm_package_config_prettierFiles",
+    "check-all": "yarn codegen && yarn lint && yarn flow check && CI=true yarn test",
     "storybook": "start-storybook -p 9001 -c config/storybook",
     "start": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "build": "node scripts/build.js",
@@ -104,11 +104,6 @@
     "codegen": "yarn query-codegen && yarn css-modules-codegen",
     "css-modules-codegen": "css-modules-flow-types src/",
     "query-codegen": "mkdir -p src/__generated__ && graphql codegen"
-  },
-  "husky": {
-    "hooks": {
-      "pre-push": "yarn check-style"
-    }
   },
   "babel": {
     "presets": [
