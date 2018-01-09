@@ -54,10 +54,10 @@ const handleConnection = <InputType, NodeType>(
 const withSong = <T>(inner: Song => T) => (
   _: any,
   { songId }: { songId: string }
-) => inner(mustGet(songs, songId));
+): T => inner(mustGet(songs, songId));
 
 const transformStats = (transform: (old: SongUserStats) => SongUserStats) =>
-  withSong(song => {
+  withSong((song: Song): SongUserStats => {
     const { stats } = song;
     const newStats = transform(stats);
     song.stats = newStats;
