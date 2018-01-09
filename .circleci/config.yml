@@ -33,7 +33,7 @@ jobs:
 
       - run:
           name: ESLint
-          command: yarn lint-js
+          command: yarn lint-es
 
       - run:
           name: StyleLint

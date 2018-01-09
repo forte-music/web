@@ -31,7 +31,7 @@
     "extract-text-webpack-plugin": "3.0.2",
     "file-loader": "1.1.5",
     "fs-extra": "3.0.1",
-    "graphql": "^0.11.0",
+    "graphql": "^0.12.3",
     "graphql-tag": "^2.6.1",
     "html-webpack-plugin": "2.29.0",
     "object-assign": "4.1.1",
@@ -67,6 +67,7 @@
     "@storybook/addon-actions": "^3.3.3",
     "@storybook/addons": "^3.3.0",
     "@storybook/react": "^3.3.3",
+    "apollo-codegen": "^0.18.3",
     "apollo-link-schema": "^1.0.2",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
@@ -75,7 +76,6 @@
     "flow-coverage-report": "^0.4.0",
     "flow-typed": "^2.2.3",
     "graphql-cli": "^2.9.0",
-    "graphql-cli-codegen": "0xcaff/graphql-cli-codegen#portable",
     "graphql-tools": "^2.16.0",
     "identity-obj-proxy": "^3.0.0",
     "isomorphic-fetch": "^2.2.1",
@@ -85,6 +85,9 @@
     "stylelint-config-css-modules": "^1.1.0",
     "stylelint-config-recommended": "^2.0.1",
     "webpack-dev-server": "2.9.4"
+  },
+  "resolutions": {
+    "graphql": "^0.12.3"
   },
   "config": {
     "prettierFiles": "'*.js' {src,config}/**/*.{js,css} README.md"
@@ -97,13 +100,13 @@
     "start": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
-    "lint": "yarn check-style && yarn lint-js && yarn lint-css",
-    "lint-js": "eslint 'src/**/*.js'",
+    "lint": "yarn check-style && yarn lint-es && yarn lint-css",
+    "lint-es": "eslint 'src/**/*.{js,graphql}'",
     "lint-css": "stylelint 'src/**/*.css'",
     "check-style": "prettier --list-different $npm_package_config_prettierFiles",
     "codegen": "yarn query-codegen && yarn css-modules-codegen",
     "css-modules-codegen": "css-modules-flow-types src/",
-    "query-codegen": "mkdir -p src/__generated__ && graphql codegen"
+    "query-codegen": "apollo-codegen generate 'src/**/*.{graphql,js}' --target flow-modern"
   },
   "babel": {
     "presets": [

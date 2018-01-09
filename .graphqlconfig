@@ -2,11 +2,5 @@
   "schemaPath": "node_modules/schema/schema.graphql",
   "includes": [
     "src/**/*.graphql"
-  ],
-  "extensions": {
-    "codegen": {
-      "target": "flow",
-      "output": "src/__generated__/queries.js"
-    }
-  }
+  ]
 }
