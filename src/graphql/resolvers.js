@@ -1,6 +1,14 @@
 // @flow
 import { albums, artists, songs, playlists } from './data';
-import type { Playlist, PlaylistItem, Connection } from './data';
+import type {
+  Playlist,
+  PlaylistItem,
+  Connection,
+  SongUserStats,
+  Song,
+} from './data';
+import { mustGet } from './data/utils';
+import { now } from './time';
 
 type ConnectionQuery = {
   limit?: number,
@@ -14,10 +22,7 @@ type ConnectionArgs = {
 const itemResolver = <T>(map: Map<string, T>) => (
   _: any,
   { id }: { id: string }
-): T => handleItem(map, id);
-
-const handleItem = <T>(map: Map<string, T>, id: string): T =>
-  ((map.get(id): any): T);
+): T => mustGet(map, id);
 
 const connectionResolver = <T>(map: Map<string, T>) => (
   _: any,
@@ -25,7 +30,7 @@ const connectionResolver = <T>(map: Map<string, T>) => (
 ): Connection<T> =>
   handleConnection(
     Array.from(map.keys()).sort(),
-    (key: string): T => ((map.get(key): any): T),
+    (key: string): T => mustGet(map, key),
     input
   );
 
@@ -46,6 +51,19 @@ const handleConnection = <InputType, NodeType>(
   };
 };
 
+const withSong = <T>(inner: Song => T) => (
+  _: any,
+  { songId }: { songId: string }
+) => inner(mustGet(songs, songId));
+
+const transformStats = (transform: (old: SongUserStats) => SongUserStats) =>
+  withSong(song => {
+    const { stats } = song;
+    const newStats = transform(stats);
+    song.stats = newStats;
+    return newStats;
+  });
+
 // Resolvers for mock backend.
 const resolvers = {
   Query: {
@@ -60,6 +78,15 @@ const resolvers = {
 
     playlist: itemResolver(playlists),
     playlists: connectionResolver(playlists),
+  },
+
+  Mutation: {
+    toggleLike: transformStats(old => ({ ...old, liked: !old.liked })),
+    playSong: transformStats(old => ({
+      ...old,
+      playCount: old.playCount + 1,
+      lastPlayed: now(),
+    })),
   },
 
   Playlist: {

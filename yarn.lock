@@ -8404,7 +8404,7 @@ schema-utils@^0.3.0:
 
 schema@forte-music/schema:
   version "1.0.0"
-  resolved "https://codeload.github.com/forte-music/schema/tar.gz/00fe965e6921e17b2de9a11888d3cd98855d5b9c"
+  resolved "https://codeload.github.com/forte-music/schema/tar.gz/60ec90735e9eacbe7d107828ddfb3931c923f7bd"
 
 scuid@^1.0.2:
   version "1.0.2"

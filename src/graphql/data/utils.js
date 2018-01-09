@@ -35,6 +35,16 @@ export const propertyDescriptor = <T>(
   get: () => mustGet(getMap(), key),
 });
 
+export const propertyDescriptorWithSet = <T>(
+  getMap: () => Map<string, T>,
+  key: string
+) => ({
+  get: () => mustGet(getMap(), key),
+  set: (val: T): void => {
+    getMap().set(key, val);
+  },
+});
+
 export const makeMap = <T: Identifiable>(list: T[]): Map<string, T> =>
   list.reduce((map, identifiable: T) => {
     map.set(identifiable.id, identifiable);

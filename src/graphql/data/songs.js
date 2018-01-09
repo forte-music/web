@@ -1,5 +1,10 @@
 // @flow
-import { arrayPropertyDescriptor, makeMap, propertyDescriptor } from './utils';
+import {
+  arrayPropertyDescriptor,
+  makeMap,
+  propertyDescriptor,
+  propertyDescriptorWithSet,
+} from './utils';
 import { albums, artists, stats } from '.';
 import type { SongUserStats, Album, Artist } from '.';
 
@@ -64,7 +69,7 @@ const processedSongs: Map<string, Song> = makeMap(
     Object.defineProperties(song, {
       artists: arrayPropertyDescriptor(() => artists, song.artistIds),
       album: propertyDescriptor(() => albums, song.albumId),
-      stats: propertyDescriptor(() => stats, song.statsId),
+      stats: propertyDescriptorWithSet(() => stats, song.statsId),
     })
   )
 );
