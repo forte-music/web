@@ -4,7 +4,8 @@ import { storiesOf } from '@storybook/react';
 
 import { songs } from '../graphql/data';
 import type { Song } from '../graphql/data';
-import SongList, { DetailHeader, DetailRow } from '../components/SongList';
+import SongList from '../components/SongList/SongList';
+import { Header, Row } from '../components/SongList/Detail';
 
 const ids = Array.from(songs.keys());
 ids.sort();
@@ -14,14 +15,14 @@ storiesOf('SongList', module).add('interactive', () => (
     count={ids.length}
     totalItems={ids.length}
     loadMore={() => {}}
-    header={<DetailHeader />}
+    header={<Header />}
     renderItem={({ index, style }) => {
       const id = ids[index];
       const song: Song = (songs.get(id): any);
 
       return (
         <div style={style} key={id}>
-          <DetailRow song={song} />
+          <Row song={song} />
         </div>
       );
     }}

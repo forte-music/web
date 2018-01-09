@@ -1,11 +1,8 @@
 // @flow
 import React from 'react';
 import type { Node } from 'react';
-
 import VirtualList from 'react-tiny-virtual-list';
 import Measure from 'react-measure';
-
-import { formatDuration } from '../utils';
 
 import styles from './SongList.css';
 
@@ -67,43 +64,6 @@ const SongList = ({
         </div>
       )}
     </Measure>
-  </div>
-);
-
-export const DetailHeader = () => (
-  <div className={styles.header}>
-    <span className={styles.song}>Name</span>
-    <span className={styles.album}>Album</span>
-    <span className={styles.artist}>Artist</span>
-    <span className={styles.duration}>Duration</span>
-  </div>
-);
-
-type Artist = {
-  name: string,
-};
-
-type Album = {
-  name: string,
-  +artist: Artist,
-};
-
-type Song = {
-  name: string,
-  +album: Album,
-  duration: number,
-};
-
-type SongRowProps = {
-  +song: Song,
-};
-
-export const DetailRow = ({ song }: SongRowProps) => (
-  <div className={styles.row}>
-    <span className={styles.song}>{song.name}</span>
-    <span className={styles.album}>{song.album.name}</span>
-    <span className={styles.artist}>{song.album.artist.name}</span>
-    <span className={styles.duration}>{formatDuration(song.duration)}</span>
   </div>
 );
 

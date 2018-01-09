@@ -1,10 +1,4 @@
-@import '../sizes.css';
-
-.container {
-  color: #aaaaaa;
-  font-size: 14px;
-  line-height: 24px;
-}
+@import '../../sizes.css';
 
 .columns {
   display: flex;
@@ -18,7 +12,7 @@
 }
 
 .column {
-  composes: singleLine from '../shared.css';
+  composes: singleLine from '../../shared.css';
   padding-left: var(--size-very-tiny);
   padding-right: var(--size-very-tiny);
 }

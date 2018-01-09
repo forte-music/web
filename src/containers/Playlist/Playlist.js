@@ -6,10 +6,11 @@ import { formatDuration } from '../../utils';
 
 import type { PlaybackState } from '../../components/PlaybackArtwork';
 import PlaybackArtwork from '../../components/PlaybackArtwork';
-import SongList, { DetailHeader, DetailRow } from '../../components/SongList';
+import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
 
 import styles from './Playlist.css';
+import { Header, Row } from '../../components/SongList/Detail';
 
 type Artist = {
   name: string,
@@ -119,13 +120,13 @@ const Playlist = ({
         count={edges.length}
         totalItems={count}
         loadMore={fetchMore}
-        header={<DetailHeader />}
+        header={<Header />}
         renderItem={({ index, style }) => {
           const { node: { id, song } }: Edge<PlaylistItem> = edges[index];
 
           return (
             <div key={id} style={style}>
-              <DetailRow song={song} />
+              <Row song={song} />
             </div>
           );
         }}
