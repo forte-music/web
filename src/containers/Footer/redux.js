@@ -14,10 +14,12 @@ type ReduxActionEnhancedProps = {
 };
 const mapDispatchToProps = (dispatch): ReduxActionEnhancedProps =>
   bindActionCreators({ nextSong, previousSong, play, pause }, dispatch);
+
 type ReduxStateEnhancedProps = {
   songId?: string,
   playing: boolean,
 };
+
 const mapStateToProps = ({ queue }: ReduxState): ReduxStateEnhancedProps => {
   const song = nowPlayingSelector(queue) || {};
   const { shouldBePlaying } = queue;

@@ -69,7 +69,7 @@ const processedAlbums: Map<string, Album> = makeMap(
       {
         duration: {
           get() {
-            return this.songs
+            return (this: Album).songs
               .map(({ duration = 0 } = {}) => duration)
               .reduce((a, b) => a + b, 0);
           },

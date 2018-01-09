@@ -5,6 +5,14 @@ import Artwork from './Artwork';
 import DefaultCover from '../icons/DefaultCover';
 import Collage from './Collage';
 
+const must = <T>(input: ?T): T => {
+  if (!input) {
+    throw new TypeError('Invariant violated. This is probably a bug.');
+  }
+
+  return input;
+};
+
 // Ensures ensures that two of the same album artworks will never be
 // displayed next to each other, but four artworks will be displayed even
 // when less than four are provided. The album artwork not occurring next to
@@ -36,13 +44,15 @@ export const orderArtwork = <T>(arr: T[]): T[] => {
 
   // Third will never be undefined because there will always be more than
   // two elements in the array and first will not equal second.
-  const third: any = reversed.find(elem => elem !== first);
+  const third: T = must(reversed.find(elem => elem !== first));
 
   // Fourth will never be undefined because there will always be more than
   // two elements in the array. Fourth can't be second, but can be first always.
-  const fourth: any = reversed.find(elem => elem !== third && elem !== second);
+  const fourth: T = must(
+    reversed.find(elem => elem !== third && elem !== second)
+  );
 
-  return [first, second, (third: T), (fourth: T)];
+  return [first, second, third, fourth];
 };
 
 type Props = {

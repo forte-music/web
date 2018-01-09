@@ -20,12 +20,12 @@ type ConnectionArgs = {
 };
 
 const itemResolver = <T>(map: Map<string, T>) => (
-  _: any,
+  _: void,
   { id }: { id: string }
 ): T => mustGet(map, id);
 
 const connectionResolver = <T>(map: Map<string, T>) => (
-  _: any,
+  _: void,
   { input }: ConnectionArgs
 ): Connection<T> =>
   handleConnection(
@@ -52,7 +52,7 @@ const handleConnection = <InputType, NodeType>(
 };
 
 const withSong = <T>(inner: Song => T) => (
-  _: any,
+  _: void,
   { songId }: { songId: string }
 ): T => inner(mustGet(songs, songId));
 

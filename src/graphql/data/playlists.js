@@ -52,7 +52,7 @@ const map: Map<string, Playlist> = makeMap(
         },
         duration: {
           get() {
-            return this.items
+            return (this: Playlist).items
               .map(item => item.song.duration)
               .reduce((a, b) => a + b, 0);
           },
