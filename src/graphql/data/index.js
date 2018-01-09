@@ -10,3 +10,13 @@ export type { Artist } from './artists';
 export type { Song } from './songs';
 export type { SongUserStats } from './stats';
 export type { Playlist, PlaylistItem } from './playlists';
+
+export type Edge<T> = {
+  cursor: string,
+  node: T,
+};
+
+export type Connection<T> = {
+  count: number,
+  edges: Edge<T>[],
+};

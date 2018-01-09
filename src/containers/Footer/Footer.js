@@ -6,10 +6,25 @@ import NowPlaying from './NowPlaying';
 import PlaybackControls from './PlaybackControls';
 import AdditionalControls from './AdditionalControls';
 
-import type { Song } from '../../model';
-
 import styles from './Footer.css';
 import barStyles from '../../components/Bars.css';
+
+type Artist = {
+  name: string,
+};
+
+type Album = {
+  name: string,
+  artworkUrl: string,
+  artist: Artist,
+};
+
+export type Song = {
+  streamUrl: string,
+  duration: number,
+  name: string,
+  album: Album,
+};
 
 type Props = {
   // A class applied to the component's container container element.

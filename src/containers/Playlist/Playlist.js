@@ -1,10 +1,11 @@
 // @flow
 import React from 'react';
 
-import type { Connection, Edge } from '../../model';
+import type { Edge, Connection } from '../../graphql/data';
 import { formatDuration } from '../../utils';
-import PlaybackArtwork from '../../components/PlaybackArtwork';
+
 import type { PlaybackState } from '../../components/PlaybackArtwork';
+import PlaybackArtwork from '../../components/PlaybackArtwork';
 import SongList, { DetailHeader, DetailRow } from '../../components/SongList';
 import SongCollage from '../../components/SongCollage';
 

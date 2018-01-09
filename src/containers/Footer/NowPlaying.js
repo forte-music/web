@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
 
-import type { Song } from '../../model';
-
+import type { Song } from './Footer';
 import styles from './NowPlaying.css';
 
 type Props = {

@@ -1,7 +1,6 @@
 // @flow
 import { albums, artists, songs, playlists } from './data';
-import type { Playlist, PlaylistItem } from './data';
-import type { Connection } from '../model';
+import type { Playlist, PlaylistItem, Connection } from './data';
 
 type ConnectionQuery = {
   limit?: number,
