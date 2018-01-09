@@ -1,4 +1,7 @@
-process.env.REACT_APP_MOCK_RESOLVER = true;
+if (!process.env.REACT_APP_API_URL) {
+  process.env.REACT_APP_MOCK_RESOLVER = true;
+}
+
 const aliases = require('./config/aliases');
 
 module.exports = {

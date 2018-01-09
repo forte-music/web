@@ -12,6 +12,14 @@ In order to run the entire stack, you will need to run the following commands.
     $ # From the web repo.
     $ yarn start
 
+# Tests
+
+In order to run acceptance tests against an external server run the following
+command. It requires the server to have a state similar to the mock data in
+[./src/graphql/data](./src/graphql/data).
+
+    $ REACT_APP_API_URL=http://localhost:8000/graphql yarn jest src/graphql/
+
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
