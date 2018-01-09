@@ -42,8 +42,10 @@ it('should toggle the liked status of a song', async () => {
     data: { song: { stats: { id: queryId, liked } } },
   } = await client.query({
     query: gql`
-      query($songId: ID!) {
+      query LikeTest($songId: ID!) {
         song(id: $songId) {
+          id
+
           stats {
             id
             liked
@@ -60,7 +62,7 @@ it('should toggle the liked status of a song', async () => {
     data: { toggleLike: { id: mutationId, liked: actual } },
   } = await client.mutate({
     mutation: gql`
-      mutation($songId: ID!) {
+      mutation LikeMutationTest($songId: ID!) {
         toggleLike(songId: $songId) {
           id
           liked
@@ -78,8 +80,10 @@ it('should update the time a song was last played at', async () => {
   const variables = { songId: '69120ac9-1e48-494f-a1f4-4a34735fe408' };
   const { data: { song: { stats: queryStats } } } = await client.query({
     query: gql`
-      query($songId: ID!) {
+      query StatsTest($songId: ID!) {
         song(id: $songId) {
+          id
+
           stats {
             id
             playCount
@@ -99,7 +103,7 @@ it('should update the time a song was last played at', async () => {
 
   const { data: { playSong: mutationStats } } = await client.mutate({
     mutation: gql`
-      mutation($songId: ID!) {
+      mutation StatsTestMutation($songId: ID!) {
         playSong(songId: $songId) {
           id
           playCount

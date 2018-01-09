@@ -8330,7 +8330,7 @@ schema-utils@^0.3.0:
   dependencies:
     ajv "^5.0.0"
 
-schema@forte-music/schema:
+schema@forte-music/schema#60ec90735e9eacbe7d107828ddfb3931c923f7bd:
   version "1.0.0"
   resolved "https://codeload.github.com/forte-music/schema/tar.gz/60ec90735e9eacbe7d107828ddfb3931c923f7bd"
 

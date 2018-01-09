@@ -3,12 +3,7 @@
 #
 #   Playlist -> PlaylistItem -> Song -> (Album, Artist, Stats)
 
-# A query which queries for all information about the first 10 items in a
-# playlist. Links go along the following path:
-#
-#   Playlist -> PlaylistItem -> Song -> (Album, Artist, Stats)
-
-query Playlist {
+query TestPlaylist {
   playlist(id:"playlist:1") {
     ...PlaylistFields
 

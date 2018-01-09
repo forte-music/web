@@ -21,6 +21,8 @@ fragment DetailedPlaylistItem on PlaylistItem {
 
 query PlaylistPage($playlistId: ID!, $cursor: String) {
   playlist(id: $playlistId) {
+    id
+
     items(input: { limit: 100, cursor: $cursor }) {
       count
       edges {
@@ -39,7 +41,7 @@ query Playlist($playlistId: ID!) {
     name
     duration
 
-    items(input: { limit: 100, cursor: $cursor }) {
+    items(input: { limit: 100 }) {
       count
       edges {
         cursor
