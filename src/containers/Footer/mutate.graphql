@@ -1,4 +1,4 @@
-mutation($songId: ID!){
+mutation ToggleLikeMutation($songId: ID!){
   toggleLike(songId: $songId) {
     id
     liked
