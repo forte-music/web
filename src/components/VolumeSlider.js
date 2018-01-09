@@ -3,7 +3,7 @@ import React from 'react';
 import type { ComponentType } from 'react';
 
 import Slider from './Slider';
-import { Loud, Quiet, Cone } from '../icons/Volume';
+import { Loud, Quiet, Cone } from './icons/Volume';
 import styles from './VolumeSlider.css';
 
 type Props = {

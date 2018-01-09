@@ -2,7 +2,7 @@
 import React from 'react';
 
 import Artwork from './Artwork';
-import DefaultCover from '../icons/DefaultCover';
+import DefaultCover from './icons/DefaultCover';
 import Collage from './Collage';
 
 const must = <T>(input: ?T): T => {

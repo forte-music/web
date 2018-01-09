@@ -2,14 +2,14 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 import getDisplayName from 'react-display-name';
 
-import Plus from '../icons/Plus';
-import Dots from '../icons/Dots';
-import Heart from '../icons/Heart';
-import Pause from '../icons/Pause';
-import Play from '../icons/Play';
-import SkipBackwards from '../icons/SkipBackwards';
-import SkipForwards from '../icons/SkipForwards';
-import DefaultCover from '../icons/DefaultCover';
+import Plus from '../components/icons/Plus';
+import Dots from '../components/icons/Dots';
+import Heart from '../components/icons/Heart';
+import Pause from '../components/icons/Pause';
+import Play from '../components/icons/Play';
+import SkipBackwards from '../components/icons/SkipBackwards';
+import SkipForwards from '../components/icons/SkipForwards';
+import DefaultCover from '../components/icons/DefaultCover';
 
 const ICONS = [
   <Dots />,

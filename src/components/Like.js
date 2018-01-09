@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import Heart from '../icons/Heart';
+import Heart from './icons/Heart';
 import styles from './Like.css';
 
 type Props = {
