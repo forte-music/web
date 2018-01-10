@@ -11,8 +11,6 @@ src/stories
 module.file_ext=.graphql
 module.file_ext=.js
 
-module.name_mapper='.*\.graphql$' -> './src/__generated__/queries.js'
-
 suppress_comment= \\(.\\|\n\\)*\\$ExpectError
 
 

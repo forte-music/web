@@ -6,7 +6,7 @@ import type { ReduxEnhancedProps } from './redux';
 import type {
   Footer as FooterQuery,
   Footer_song as Song,
-} from '../../__generated__/Footer';
+} from './__generated__/Footer';
 
 export const defaultConfig = {
   options: ({ songId }: ReduxEnhancedProps) => ({ variables: { songId } }),
