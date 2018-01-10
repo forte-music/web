@@ -26,7 +26,9 @@ it("shouldn't have any breaking changes against the schema", async () => {
   const expectedSchema = buildASTSchema(schema);
   const actualSchema = await getSchema(client);
 
-  const changes = findBreakingChanges(actualSchema, expectedSchema);
+  const changes = findBreakingChanges(actualSchema, expectedSchema).filter(
+    change => change.type !== 'DIRECTIVE_LOCATION_REMOVED'
+  );
 
   expect(changes).toEqual([]);
 });
