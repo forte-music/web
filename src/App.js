@@ -22,7 +22,6 @@ import {
   playlists,
   queue,
   search,
-  song,
   songs,
 } from './paths';
 
@@ -46,7 +45,6 @@ const App = () => (
       <main className={styles.content}>
         <Switch>
           <Route exact path={songs} />
-          <Route exact path={song(withId)} />
 
           <Route exact path={artists} />
           <Route exact path={artist(withId)} />

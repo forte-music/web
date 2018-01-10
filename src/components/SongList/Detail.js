@@ -1,21 +1,20 @@
 // @flow
 import React from 'react';
-import type { Node } from 'react';
 import { Link } from 'react-router-dom';
 
 import { formatDuration } from '../../utils';
 import styles from './Detail.css';
-import { album, artist, song } from '../../paths';
+import { album, artist } from '../../paths';
 
 // Header and row element for the detailed song list which is used in queue,
 // playlist, etc..
 
 export const Header = () => (
   <div className={styles.header}>
-    <span className={styles.song}>Name</span>
-    <span className={styles.album}>Album</span>
-    <span className={styles.artist}>Artist</span>
-    <span className={styles.duration}>Duration</span>
+    <div className={styles.song}>Name</div>
+    <div className={styles.album}>Album</div>
+    <div className={styles.artist}>Artist</div>
+    <div className={styles.duration}>Duration</div>
   </div>
 );
 
@@ -49,55 +48,35 @@ export type SongRowProps = {
   onDoubleClick?: () => void,
 };
 
-const RowWrapper = ({
-  song,
+export const Row = ({
+  song: songDetails,
   active,
   onDoubleClick,
-  children,
-}: SongRowProps & { children: Node }) => (
+}: SongRowProps) => (
   <div
     className={[
       styles.row,
-      !song ? styles.empty : '',
+      !songDetails ? styles.empty : '',
       active ? styles.active : '',
     ].join(' ')}
     onDoubleClick={onDoubleClick}
   >
-    {children}
-  </div>
-);
+    <div className={styles.song}>{songDetails && songDetails.name}</div>
+    <div className={styles.album}>
+      {songDetails && (
+        <Link to={album(songDetails.album.id)}>{songDetails.album.name}</Link>
+      )}
+    </div>
 
-export const Row = (props: SongRowProps) => {
-  const { song: songDetails } = props;
-
-  if (!songDetails) {
-    return (
-      <RowWrapper {...props}>
-        <span className={styles.song} />
-        <span className={styles.album} />
-        <span className={styles.artist} />
-        <span className={styles.duration} />
-      </RowWrapper>
-    );
-  } else {
-    return (
-      <RowWrapper {...props}>
-        <Link to={song(songDetails.id)} className={styles.song}>
-          {songDetails.name}
-        </Link>
-        <Link to={album(songDetails.album.id)} className={styles.album}>
-          {songDetails.album.name}
-        </Link>
-        <Link
-          to={artist(songDetails.album.artist.id)}
-          className={styles.artist}
-        >
+    <div className={styles.artist}>
+      {songDetails && (
+        <Link to={artist(songDetails.album.artist.id)}>
           {songDetails.album.artist.name}
         </Link>
-        <span className={styles.duration}>
-          {formatDuration(songDetails.duration)}
-        </span>
-      </RowWrapper>
-    );
-  }
-};
+      )}
+    </div>
+    <div className={styles.duration}>
+      {songDetails && <span>{formatDuration(songDetails.duration)}</span>}
+    </div>
+  </div>
+);

@@ -4,6 +4,7 @@ import type { Node } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { ApolloProvider } from 'react-apollo';
+import { HashRouter } from 'react-router-dom';
 
 import { songs } from '../graphql/data';
 import type { Song } from '../graphql/data';
@@ -72,6 +73,7 @@ const Story = ({
 );
 
 storiesOf('SongList', module)
+  .addDecorator(story => <HashRouter>{story()}</HashRouter>)
   .add('a few items', () => <Story />)
   .add('single row loading', () => <Row />)
   .add('the same items many times', () => (
@@ -88,6 +90,7 @@ storiesOf('SongList', module)
     <Row
       song={mustGet(songs, '69120ac9-1e48-494f-a1f4-4a34735fe408')}
       active={true}
+      onDoubleClick={action('double click')}
     />
   ))
   .add('connected detail row', () => (

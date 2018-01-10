@@ -7,34 +7,20 @@
   --active-text-color: #ffffff;
 }
 
-a.column,
-.columns {
-  color: var(--text-color);
-}
-
-a.column {
-  text-decoration: none;
-}
-
-a.column:hover {
-  text-decoration: underline;
-}
-
 .columns {
   /* A collection of columns. It's used by both rows and headers. */
   display: flex;
   height: 36px;
   align-items: center;
   box-sizing: border-box;
+  color: var(--text-color);
   font-size: 14px;
 
   user-select: none;
 
   padding-left: var(--size-small);
   padding-right: var(--size-small);
-}
 
-.bordered {
   border-bottom-color: var(--table-separator-color);
   border-bottom-style: solid;
 }
@@ -44,6 +30,13 @@ a.column:hover {
   margin-left: var(--size-very-tiny);
   margin-right: var(--size-very-tiny);
   height: auto;
+
+  /*
+  The element should have a height even when it's empty so the loading area
+  shows.
+   */
+  min-height: 14px;
+  transition: 0.1s background ease-out;
 }
 
 @keyframes loading-background {
@@ -56,11 +49,7 @@ a.column:hover {
   }
 }
 
-.empty.columns {
-  align-items: stretch;
-}
-
-.empty .loading {
+.empty .column {
   margin-top: var(--size-tiny);
   margin-bottom: var(--size-tiny);
 
@@ -72,23 +61,30 @@ a.column:hover {
 }
 
 .header {
-  composes: bordered;
   text-transform: uppercase;
   border-bottom-width: 2px;
 }
 
 .row {
-  composes: bordered;
   border-bottom-width: 1px;
-  transition: 0.1s background ease-out;
-}
-
-.row.active {
-  color: var(--active-text-color);
 }
 
 .row:hover {
   background: #252525;
+}
+
+.row a {
+  color: var(--text-color);
+  text-decoration: none;
+}
+
+.row.active,
+.row.active a {
+  color: var(--active-text-color);
+}
+
+.row a:hover {
+  text-decoration: underline;
 }
 
 .row,
@@ -101,7 +97,6 @@ a.column:hover {
 .artist,
 .duration {
   composes: column;
-  composes: loading;
 }
 
 .song,
