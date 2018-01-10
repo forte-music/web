@@ -1,6 +1,7 @@
 .container {
   display: flex;
   align-items: stretch;
+  justify-content: center;
 
   /*
   Disable user selection because finding a good highlight color is hard. People

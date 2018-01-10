@@ -52,8 +52,7 @@ type Props = {
   nowPlaying?: Song,
 };
 
-// TODO: Loading and Inactive States
-// TODO: Like Mutation
+// TODO: Loading States
 
 type State = {
   volume: number,
@@ -173,7 +172,7 @@ class Footer extends Component<Props, State> {
         </div>
 
         <div className={styles.container}>
-          <NowPlaying song={nowPlaying} />
+          {nowPlaying && <NowPlaying song={nowPlaying} />}
 
           <PlaybackControls
             next={nextSong}
@@ -183,14 +182,16 @@ class Footer extends Component<Props, State> {
             onTogglePlayback={this.togglePlaying}
           />
 
-          <AdditionalControls
-            currentTime={nowPlaying && currentTime}
-            duration={nowPlaying && (duration || nowPlaying.duration)}
-            volume={volume}
-            onVolumeSet={this.onVolume}
-            like={nowPlaying ? nowPlaying.stats.liked : false}
-            onToggleLike={onToggleLike}
-          />
+          {nowPlaying && (
+            <AdditionalControls
+              currentTime={currentTime}
+              duration={duration || nowPlaying.duration}
+              volume={volume}
+              onVolumeSet={this.onVolume}
+              like={nowPlaying.stats.liked}
+              onToggleLike={onToggleLike}
+            />
+          )}
         </div>
       </footer>
     );

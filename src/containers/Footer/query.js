@@ -15,7 +15,7 @@ export const defaultConfig = {
 };
 
 export type QueryEnhancedProps = ReduxEnhancedProps & {
-  nowPlaying: Song,
+  nowPlaying?: Song,
 };
 
 export const graphqlEnhancer = graphql(Query, {

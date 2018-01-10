@@ -8,7 +8,7 @@ import type { ToggleLikeMutation } from './__generated__/ToggleLikeMutation';
 import type { QueryEnhancedProps } from './query';
 
 type GraphQLEnhancedProps = QueryEnhancedProps & {
-  onToggleLike: () => void,
+  onToggleLike?: () => void,
 };
 
 export const graphqlMutationEnhancer = graphql(Mutation, {

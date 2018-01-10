@@ -17,7 +17,7 @@ type PlaybackControlsProps = {
 
   // Whether or not the buttons are disabled. When the buttons are disabled,
   // they can't be pressed and they display a different style.
-  disabled?: boolean,
+  disabled: boolean,
 
   // Called when the skip ahead button is clicked.
   next: () => void,
@@ -28,7 +28,7 @@ type PlaybackControlsProps = {
 
 const PlaybackControls = ({
   playing,
-  disabled = false,
+  disabled,
   onTogglePlayback,
   next,
   previous,

@@ -8,10 +8,12 @@ import { formatDuration } from '../../utils';
 import styles from './AdditionalControls.css';
 
 type Props = {
-  duration?: number,
-  currentTime?: number,
+  duration: number,
+  currentTime: number,
+
   volume: number,
   onVolumeSet: number => void,
+
   like: boolean,
   onToggleLike: () => void,
 };
@@ -19,20 +21,17 @@ type Props = {
 const AdditionalControls = ({
   duration,
   currentTime,
+  onToggleLike,
+  like,
   volume,
   onVolumeSet,
-  like,
-  onToggleLike,
 }: Props) => (
   <div className={styles.container}>
-    {!!currentTime &&
-      !!duration && (
-        <div className={styles.time}>
-          {formatDuration(currentTime)}
-          {' / '}
-          {formatDuration(duration)}
-        </div>
-      )}
+    <div className={styles.time}>
+      {formatDuration(currentTime)}
+      {' / '}
+      {formatDuration(duration)}
+    </div>
 
     <Like like={like} onToggleLike={onToggleLike} />
     <VolumeSlider volume={volume} onVolume={onVolumeSet} />
