@@ -82,6 +82,7 @@ const Playlist = ({
   onPlay,
   onPause,
   onStartPlayback,
+  nowPlayingSongSource,
 }: Props) => (
   <div className={styles.container}>
     <header className={styles.header}>
@@ -126,7 +127,10 @@ const Playlist = ({
 
           return (
             <div key={id} style={style}>
-              <Row song={song} />
+              <Row
+                song={song}
+                active={state !== 'STOPPED' && nowPlayingSongSource === id}
+              />
             </div>
           );
         }}
