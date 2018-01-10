@@ -8,15 +8,17 @@ import type { PlaybackState } from '../../components/PlaybackArtwork';
 import PlaybackArtwork from '../../components/PlaybackArtwork';
 import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
-
-import styles from './Playlist.css';
 import { Header, Row } from '../../components/SongList/Detail';
 
+import styles from './Playlist.css';
+
 type Artist = {
+  id: string,
   name: string,
 };
 
 type Album = {
+  id: string,
   name: string,
   artworkUrl?: string,
   artist: Artist,

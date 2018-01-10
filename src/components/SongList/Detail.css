@@ -7,13 +7,25 @@
   --active-text-color: #ffffff;
 }
 
+a.column,
+.columns {
+  color: var(--text-color);
+}
+
+a.column {
+  text-decoration: none;
+}
+
+a.column:hover {
+  text-decoration: underline;
+}
+
 .columns {
   /* A collection of columns. It's used by both rows and headers. */
   display: flex;
   height: 36px;
   align-items: center;
   box-sizing: border-box;
-  color: var(--text-color);
   font-size: 14px;
 
   user-select: none;
