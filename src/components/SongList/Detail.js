@@ -34,10 +34,24 @@ export type Song = {
 export type SongRowProps = {
   // When this is undefined, the component is in a loading state.
   +song?: Song,
+
+  // Whether or not the current item should be styled as if it is active.
+  // Defaults to false.
+  active?: boolean,
+
+  // Called when the component is double clicked.
+  onDoubleClick?: () => void,
 };
 
-export const Row = ({ song }: SongRowProps) => (
-  <div className={[styles.row, !song ? styles.empty : ''].join(' ')}>
+export const Row = ({ song, active, onDoubleClick }: SongRowProps) => (
+  <div
+    className={[
+      styles.row,
+      !song ? styles.empty : '',
+      active ? styles.active : '',
+    ].join(' ')}
+    onDoubleClick={onDoubleClick}
+  >
     <span className={styles.song}>{song && song.name}</span>
     <span className={styles.album}>{song && song.album.name}</span>
     <span className={styles.artist}>{song && song.album.artist.name}</span>

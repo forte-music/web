@@ -2,6 +2,7 @@
 import React, { Component } from 'react';
 import type { Node } from 'react';
 import { storiesOf } from '@storybook/react';
+import { action } from '@storybook/addon-actions';
 
 import { songs } from '../graphql/data';
 import type { Song } from '../graphql/data';
@@ -38,11 +39,13 @@ class DelayedLoadingRow extends Component<SongRowProps, State> {
 const Story = ({
   count = ids.length,
   getId = index => ids[index],
-  getRowForSong = song => <Row song={song} />,
+  getRowForSong = (song, index) => (
+    <Row song={song} onDoubleClick={action(`clicked ${index}`)} />
+  ),
 }: {
   count?: number,
   getId?: number => string,
-  getRowForSong?: SongDetail => Node,
+  getRowForSong?: (SongDetail, number) => Node,
 }) => (
   // loadMore is never called if count is Infinity.
   <SongList
@@ -58,7 +61,7 @@ const Story = ({
 
       return (
         <div style={style} key={index}>
-          {getRowForSong(song)}
+          {getRowForSong(song, index)}
         </div>
       );
     }}
@@ -76,5 +79,11 @@ storiesOf('SongList', module)
       count={1000}
       getId={index => ids[index % ids.length]}
       getRowForSong={song => <DelayedLoadingRow song={song} />}
+    />
+  ))
+  .add('an active row', () => (
+    <Row
+      song={mustGet(songs, '69120ac9-1e48-494f-a1f4-4a34735fe408')}
+      active={true}
     />
   ));
