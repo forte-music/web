@@ -43,7 +43,6 @@ const SongList = ({
 }: Props) => (
   <div className={rootClassName}>
     {header}
-
     <Measure bounds>
       {({ measureRef, contentRect: { bounds: { height, width } } }) => (
         <div ref={measureRef} className={className}>

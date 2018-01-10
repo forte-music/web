@@ -1,0 +1,22 @@
+@import '../../sizes.css';
+
+.heading {
+  color: #ffffff;
+  font-size: var(--font-size-large);
+
+  margin: var(--size-medium);
+
+  /* This will line the title up with the song list's 16px left padding. */
+  margin-left: calc(var(--size-medium) + var(--size-small));
+}
+
+.body {
+  margin-top: var(--size-small);
+  margin-left: var(--size-medium);
+  margin-right: var(--size-medium);
+}
+
+.prompt {
+  color: #eeeeee;
+  text-align: center;
+}

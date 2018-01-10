@@ -8,6 +8,7 @@ import { ApolloProvider } from 'react-apollo';
 import Sidebar from './components/Sidebar';
 import Footer from './containers/Footer';
 import Playlist from './containers/Playlist';
+import Queue from './containers/Queue';
 import store from './store';
 import client from './graphql/client';
 
@@ -57,7 +58,7 @@ const App = () => (
           <Route exact path={playlist(withId)} component={Playlist} />
 
           <Route exact path={home} />
-          <Route exact path={queue} />
+          <Route exact path={queue} component={Queue} />
           <Route exact path={search} />
 
           <Redirect from="/" to="/home" />
