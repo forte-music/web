@@ -6,6 +6,7 @@ import {
   removeFromQueue,
   skip,
   setPlayback,
+  skipToPosition,
 } from './queue';
 
 const initialState = {
@@ -133,6 +134,18 @@ describe('skip reducer', () => {
     };
     const newState = skip(initialState, action);
     expect(newState).toEqual(initialState);
+  });
+});
+
+describe('skip to absolute position', () => {
+  it('skips to a position', () => {
+    const action = {
+      type: 'SKIP_TO_POSITION',
+      position: 1,
+    };
+
+    const newState = skipToPosition(initialState, action);
+    expect(newState.position).toEqual(1);
   });
 });
 

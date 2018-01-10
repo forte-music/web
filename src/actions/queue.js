@@ -52,6 +52,13 @@ export const previousSong = (): SkipRelativeAction => ({
   offset: -1,
 });
 
+export type SkipPositionAction = { type: 'SKIP_TO_POSITION', position: number };
+
+export const skipToPosition = (position: number) => ({
+  type: 'SKIP_TO_POSITION',
+  position,
+});
+
 export type SkipAction = { type: 'SKIP_TO', cursor: ID };
 
 export const skipToSong = (cursor: ID): SkipAction => ({
@@ -76,4 +83,5 @@ export type QueueAction =
   | RemoveFromQueueAction
   | SkipRelativeAction
   | SkipAction
+  | SkipPositionAction
   | SetPlaybackAction;

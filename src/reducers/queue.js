@@ -1,5 +1,5 @@
 // @flow
-import type { Action, SetPlaybackAction } from '../actions';
+import type { Action, SetPlaybackAction, SkipPositionAction } from '../actions';
 import type { QueueItem, QueueItemSource, QueueState } from '../state/queue';
 import { initialState, getId } from '../state/queue';
 import type {
@@ -26,6 +26,9 @@ const reducer = (
 
     case 'SKIP_TO':
       return skip(state, action);
+
+    case 'SKIP_TO_POSITION':
+      return skipToPosition(state, action);
 
     case 'REPLACE_QUEUE':
       return replaceQueue(state, action);
@@ -134,6 +137,17 @@ export const skip = (state: QueueState, action: SkipAction): QueueState => {
   const foundIndex = items.findIndex(({ id }) => id === cursor);
   const position = foundIndex === -1 ? oldPosition : foundIndex;
   return { ...state, position };
+};
+
+export const skipToPosition = (
+  state: QueueState,
+  action: SkipPositionAction
+): QueueState => {
+  const { position } = action;
+  const { items } = state;
+  const newPosition = bounded(position, 0, items.length);
+
+  return { ...state, position: newPosition };
 };
 
 export const setPlayback = (
