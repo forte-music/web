@@ -11,6 +11,20 @@ import Playlist from './containers/Playlist';
 import store from './store';
 import client from './graphql/client';
 
+import {
+  album,
+  albums,
+  artist,
+  artists,
+  home,
+  playlist,
+  playlists,
+  queue,
+  search,
+  song,
+  songs,
+} from './paths';
+
 import styles from './App.css';
 
 const Providers = ({ children }: { children: Node }) => (
@@ -21,6 +35,8 @@ const Providers = ({ children }: { children: Node }) => (
   </HashRouter>
 );
 
+const withId = ':id';
+
 const App = () => (
   <Providers>
     <div className={styles.grid}>
@@ -28,21 +44,21 @@ const App = () => (
 
       <main className={styles.content}>
         <Switch>
-          <Route exact path="/songs" />
-          <Route exact path="/songs/:id" />
+          <Route exact path={songs} />
+          <Route exact path={song(withId)} />
 
-          <Route exact path="/artists" />
-          <Route exact path="/artists/:id" />
+          <Route exact path={artists} />
+          <Route exact path={artist(withId)} />
 
-          <Route exact path="/albums" />
-          <Route exact path="/albums/:id" />
+          <Route exact path={albums} />
+          <Route exact path={album(withId)} />
 
-          <Route exact path="/playlists" />
-          <Route exact path="/playlists/:id" component={Playlist} />
+          <Route exact path={playlists} />
+          <Route exact path={playlist(withId)} component={Playlist} />
 
-          <Route exact path="/home" />
-          <Route exact path="/queue" />
-          <Route exact path="/search" />
+          <Route exact path={home} />
+          <Route exact path={queue} />
+          <Route exact path={search} />
 
           <Redirect from="/" to="/home" />
         </Switch>

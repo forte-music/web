@@ -3,6 +3,16 @@ import React from 'react';
 import type { Node } from 'react';
 import { NavLink } from 'react-router-dom';
 
+import {
+  albums,
+  artists,
+  home,
+  playlists,
+  queue,
+  search,
+  songs,
+} from '../paths';
+
 import styles from './Sidebar.css';
 
 type Props = {
@@ -11,13 +21,13 @@ type Props = {
 
 const Sidebar = ({ className }: Props) => (
   <aside className={className}>
-    <Link to="/home">Home</Link>
-    <Link to="/queue">Queue</Link>
-    <Link to="/songs">Songs</Link>
-    <Link to="/artists">Artists</Link>
-    <Link to="/albums">Albums</Link>
-    <Link to="/playlists">Playlists</Link>
-    <Link to="/search">Search</Link>
+    <Link to={home}>Home</Link>
+    <Link to={queue}>Queue</Link>
+    <Link to={songs}>Songs</Link>
+    <Link to={artists}>Artists</Link>
+    <Link to={albums}>Albums</Link>
+    <Link to={playlists}>Playlists</Link>
+    <Link to={search}>Search</Link>
   </aside>
 );
 
