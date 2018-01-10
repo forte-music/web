@@ -3,6 +3,7 @@ import React, { Component } from 'react';
 import type { Node } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
+import { ApolloProvider } from 'react-apollo';
 
 import { songs } from '../graphql/data';
 import type { Song } from '../graphql/data';
@@ -14,6 +15,8 @@ import type {
   Song as SongDetail,
   SongRowProps,
 } from '../components/SongList/Detail';
+import client from '../graphql/client';
+import ConnectedDetailRow from '../containers/SongList/Detail';
 
 const ids = Array.from(songs.keys());
 ids.sort();
@@ -86,4 +89,9 @@ storiesOf('SongList', module)
       song={mustGet(songs, '69120ac9-1e48-494f-a1f4-4a34735fe408')}
       active={true}
     />
+  ))
+  .add('connected detail row', () => (
+    <ApolloProvider client={client}>
+      <ConnectedDetailRow songId={'69120ac9-1e48-494f-a1f4-4a34735fe408'} />
+    </ApolloProvider>
   ));
