@@ -22,9 +22,7 @@ export type QueueItem = {
   // used because it varies based on position. The song id wasn't used because
   // it could appear multiple times in a queue.
   id: ID,
-
-  ...QueueItemSource,
-};
+} & QueueItemSource;
 
 // State to represent a queue of songs.
 export type QueueState = {

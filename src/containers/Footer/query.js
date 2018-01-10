@@ -1,3 +1,4 @@
+// @flow
 import { graphql } from 'react-apollo';
 import { OptionProps } from 'react-apollo';
 
@@ -13,7 +14,7 @@ export const defaultConfig = {
   skip: ({ songId }: ReduxEnhancedProps): boolean => !songId,
 };
 
-type GraphQLEnhancedProps = ReduxEnhancedProps & {
+export type QueryEnhancedProps = ReduxEnhancedProps & {
   nowPlaying: Song,
 };
 
@@ -22,7 +23,7 @@ export const graphqlEnhancer = graphql(Query, {
   props: ({
     ownProps,
     data: { song },
-  }: OptionProps<ReduxEnhancedProps, FooterQuery>): GraphQLEnhancedProps => ({
+  }: OptionProps<ReduxEnhancedProps, FooterQuery>): QueryEnhancedProps => ({
     ...ownProps,
     nowPlaying: song,
   }),

@@ -1,3 +1,4 @@
+// @flow
 export const songs = '/songs';
 export const song = (id: string) => `${songs}/${id}`;
 

@@ -1,3 +1,4 @@
+// @flow
 import { graphql } from 'react-apollo';
 import type { OptionProps } from 'react-apollo';
 import gql from 'graphql-tag';

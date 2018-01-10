@@ -1,10 +1,13 @@
+// @flow
 import { graphql } from 'react-apollo';
+import type { OptionProps } from 'react-apollo';
 
 import { defaultConfig } from './query';
 import Mutation from './mutate.graphql';
 import type { ToggleLikeMutation } from './__generated__/ToggleLikeMutation';
+import type { QueryEnhancedProps } from './query';
 
-type GraphQLEnhancedProps = ReduxEnhancedProps & {
+type GraphQLEnhancedProps = QueryEnhancedProps & {
   onToggleLike: () => void,
 };
 
@@ -14,11 +17,11 @@ export const graphqlMutationEnhancer = graphql(Mutation, {
     ownProps,
     mutate,
   }: OptionProps<
-    ReduxEnhancedProps,
+    QueryEnhancedProps,
     ToggleLikeMutation
   >): GraphQLEnhancedProps => ({
     ...ownProps,
-    onToggleLike: () =>
+    onToggleLike: () => {
       mutate({
         optimisticResponse: {
           toggleLike: {
@@ -26,6 +29,7 @@ export const graphqlMutationEnhancer = graphql(Mutation, {
             liked: !ownProps.nowPlaying.stats.liked,
           },
         },
-      }),
+      });
+    },
   }),
 });
