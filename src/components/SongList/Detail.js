@@ -25,21 +25,24 @@ type Album = {
   +artist: Artist,
 };
 
-type Song = {
+export type Song = {
   name: string,
   +album: Album,
   duration: number,
 };
 
-type SongRowProps = {
-  +song: Song,
+export type SongRowProps = {
+  // When this is undefined, the component is in a loading state.
+  +song?: Song,
 };
 
 export const Row = ({ song }: SongRowProps) => (
-  <div className={styles.row}>
-    <span className={styles.song}>{song.name}</span>
-    <span className={styles.album}>{song.album.name}</span>
-    <span className={styles.artist}>{song.album.artist.name}</span>
-    <span className={styles.duration}>{formatDuration(song.duration)}</span>
+  <div className={[styles.row, !song ? styles.empty : ''].join(' ')}>
+    <span className={styles.song}>{song && song.name}</span>
+    <span className={styles.album}>{song && song.album.name}</span>
+    <span className={styles.artist}>{song && song.album.artist.name}</span>
+    <span className={styles.duration}>
+      {song && formatDuration(song.duration)}
+    </span>
   </div>
 );

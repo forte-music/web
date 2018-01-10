@@ -1,20 +1,59 @@
 @import '../../sizes.css';
+@import '../../colors.css';
+
+:root {
+  --table-separator-color: #323232;
+  --text-color: #aaaaaa;
+}
 
 .columns {
+  /* A collection of columns. It's used by both rows and headers. */
   display: flex;
+  height: 36px;
+  align-items: center;
+  box-sizing: border-box;
+  color: var(--text-color);
+  font-size: 14px;
+
   padding-left: var(--size-small);
   padding-right: var(--size-small);
 }
 
 .bordered {
-  border-bottom-color: #323232;
+  border-bottom-color: var(--table-separator-color);
   border-bottom-style: solid;
 }
 
 .column {
   composes: singleLine from '../../shared.css';
-  padding-left: var(--size-very-tiny);
-  padding-right: var(--size-very-tiny);
+  margin-left: var(--size-very-tiny);
+  margin-right: var(--size-very-tiny);
+  height: auto;
+}
+
+@keyframes loading-background {
+  from {
+    background: color(var(--main-background-color) tint(15%));
+  }
+
+  to {
+    background: color(var(--main-background-color) tint(17%));
+  }
+}
+
+.empty.columns {
+  align-items: stretch;
+}
+
+.empty .loading {
+  margin-top: var(--size-tiny);
+  margin-bottom: var(--size-tiny);
+
+  animation-direction: alternate;
+  animation-duration: 0.7s;
+  animation-iteration-count: infinite;
+  animation-name: loading-background;
+  animation-timing-function: ease-in-out;
 }
 
 .header {
@@ -38,6 +77,7 @@
 .artist,
 .duration {
   composes: column;
+  composes: loading;
 }
 
 .song,
