@@ -52,7 +52,8 @@ class Audio extends Component<Props> {
 
     const wasPlaying = !audioElem.paused;
     const { playing: nowPlaying, volume } = this.props;
-    if (volume && audioElem.volume !== volume) {
+
+    if (volume !== undefined && audioElem.volume !== volume) {
       audioElem.volume = volume;
     }
 
