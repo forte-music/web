@@ -1,5 +1,5 @@
 import { configure } from '@storybook/react';
-import './decorators';
+import './styles.css';
 
 configure(() => {
   require('../../src/stories/index');
