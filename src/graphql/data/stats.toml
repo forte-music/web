@@ -1,17 +1,17 @@
 [[stats]]
-id = 'c15cb775-ed42-436d-a2fb-f68d34d3e206'
+id = 'stats:1:1'
 playCount = 3
 lastPlayed = 1515279968
 liked = true
 
 [[stats]]
-id = '6782c701-e219-4646-b9c1-0817d62b58d9'
+id = 'stats:2:1'
 playCount = 0
 lastPlayed = 0
 liked = false
 
 [[stats]]
-id = '7371509e-d31e-4f16-ae47-0ce375349fe7'
+id = 'stats:3:1'
 playCount = 0
 lastPlayed = 0
 liked = false

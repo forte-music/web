@@ -1,23 +1,23 @@
 [[songs]]
-id = '69120ac9-1e48-494f-a1f4-4a34735fe408'
+id = 'song:1:1'
 streamUrl = '/music/01 - Stole the Show (feat. Parson James).flac'
 name = 'Stole the Show'
-albumId = '0d9396f5-5454-47ce-9bd8-dacaf2fbf6d0'
+albumId = 'album:1'
 duration = 223
-statsId = 'c15cb775-ed42-436d-a2fb-f68d34d3e206'
+statsId = 'stats:1:1'
 
 [[songs]]
-id = '9283bed7-a183-4f54-a0d7-820946c220e3'
+id = 'song:2:1'
 streamUrl = "/music/01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a"
 name = "I'm That (Remix)"
-albumId = '44db420c-0995-4a74-9cc2-0191d65bfdd0'
+albumId = 'album:2'
 duration = 211
-statsId = '6782c701-e219-4646-b9c1-0817d62b58d9'
+statsId = 'stats:2:1'
 
 [[songs]]
-id = '492667ee-5bed-45ff-8a2c-67277677cf86'
+id = 'song:3:1'
 streamUrl = '/music/01 - Bugatti (feat. Future & Rick Ross).flac'
 name = 'Bugatti'
-albumId = 'd0941f59-2138-433c-9ccf-368040228593'
+albumId = 'album:3'
 duration = 270
-statsId = '7371509e-d31e-4f16-ae47-0ce375349fe7'
+statsId = 'stats:3:1'
