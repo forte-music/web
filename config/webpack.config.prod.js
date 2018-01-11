@@ -177,6 +177,10 @@ module.exports = {
             loader: require.resolve('graphql-tag/loader'),
           },
           {
+            test: /\.toml$/,
+            loader: './config/loaders/toml',
+          },
+          {
             test: /\.css$/,
             resourceQuery: /^\?raw$/,
             loader: getCSSLoader({ modules: false }),

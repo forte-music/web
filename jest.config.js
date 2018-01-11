@@ -22,7 +22,8 @@ module.exports = {
     "testURL": "http://localhost",
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
-      "\\.js$": "babel-jest"
+      "\\.js$": "babel-jest",
+      "\\.toml$": "<rootDir>/config/jest/tomlTransform.js",
     },
     "transformIgnorePatterns": [
       "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"

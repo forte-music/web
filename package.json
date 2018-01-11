@@ -84,6 +84,7 @@
     "prettier": "1.9.2",
     "stylelint-config-css-modules": "^1.1.0",
     "stylelint-config-recommended": "^2.0.1",
+    "toml": "^2.3.3",
     "webpack-dev-server": "2.9.4"
   },
   "resolutions": {
