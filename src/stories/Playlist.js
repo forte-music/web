@@ -1,5 +1,6 @@
 // @flow
 import React from 'react';
+import { HashRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 
 import StatefulComponent from './StatefulComponent';
@@ -25,18 +26,20 @@ const playlist = (({
   },
 }: any): PlaylistModel);
 
-storiesOf('Playlist', module).add('isolated', () => (
-  <StatefulComponent state={{ playbackState: 'STOPPED' }}>
-    {({ playbackState }, setState) => (
-      <Playlist
-        fetchMore={() => {}}
-        loading={false}
-        playlist={playlist}
-        onPause={() => setState({ playbackState: 'PAUSED' })}
-        onPlay={() => setState({ playbackState: 'PLAYING' })}
-        onStartPlayback={() => setState({ playbackState: 'PLAYING' })}
-        state={playbackState}
-      />
-    )}
-  </StatefulComponent>
-));
+storiesOf('Playlist', module)
+  .addDecorator(story => <HashRouter>{story()}</HashRouter>)
+  .add('isolated', () => (
+    <StatefulComponent state={{ playbackState: 'STOPPED' }}>
+      {({ playbackState }, setState) => (
+        <Playlist
+          fetchMore={() => {}}
+          loading={false}
+          playlist={playlist}
+          onPause={() => setState({ playbackState: 'PAUSED' })}
+          onPlay={() => setState({ playbackState: 'PLAYING' })}
+          onStartPlayback={() => setState({ playbackState: 'PLAYING' })}
+          state={playbackState}
+        />
+      )}
+    </StatefulComponent>
+  ));
