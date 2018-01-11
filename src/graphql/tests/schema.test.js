@@ -39,7 +39,7 @@ it('should resolve a query for data stemming from a playlist', async () => {
 });
 
 it('should toggle the liked status of a song', async () => {
-  const variables = { songId: '69120ac9-1e48-494f-a1f4-4a34735fe408' };
+  const variables = { songId: 'song:1:1' };
   const {
     data: { song: { stats: { id: queryId, liked } } },
   } = await client.query({
@@ -79,7 +79,7 @@ it('should toggle the liked status of a song', async () => {
 });
 
 it('should update the time a song was last played at', async () => {
-  const variables = { songId: '69120ac9-1e48-494f-a1f4-4a34735fe408' };
+  const variables = { songId: 'song:1:1' };
   const { data: { song: { stats: queryStats } } } = await client.query({
     query: gql`
       query StatsTest($songId: ID!) {
@@ -117,4 +117,22 @@ it('should update the time a song was last played at', async () => {
   });
 
   expect(mutationStats).toEqual(expected);
+});
+
+it('should calculate the duration for an album', async () => {
+  const variables = { albumId: 'album:4' };
+  const { data: { album } } = await client.query({
+    query: gql`
+      query AlbumDurationTest($albumId: ID!) {
+        album(id: $albumId) {
+          id
+          duration
+        }
+      }
+    `,
+    variables,
+  });
+
+  expect(album.id).toEqual(variables.albumId);
+  expect(album.duration).toEqual(74 * 60 + 22);
 });

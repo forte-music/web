@@ -1,23 +1,226 @@
 [[songs]]
 id = 'song:1:1'
-streamUrl = '/music/01 - Stole the Show (feat. Parson James).flac'
 name = 'Stole the Show'
 albumId = 'album:1'
+artistIds = ['artist:1']
+streamUrl = '/music/01 - Stole the Show (feat. Parson James).flac'
 duration = 223
 statsId = 'stats:1:1'
 
 [[songs]]
 id = 'song:2:1'
-streamUrl = "/music/01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a"
 name = "I'm That (Remix)"
 albumId = 'album:2'
+artistIds = ['artist:2', 'artist:21', 'artist:22']
+streamUrl = "/music/01 - I'm That... (Remix) [feat. Beenie Man & Azealia Banks].m4a"
 duration = 211
 statsId = 'stats:2:1'
 
 [[songs]]
 id = 'song:3:1'
-streamUrl = '/music/01 - Bugatti (feat. Future & Rick Ross).flac'
 name = 'Bugatti'
 albumId = 'album:3'
+artistIds = ['artist:3', 'artist:23', 'artist:24']
+streamUrl = '/music/01 - Bugatti (feat. Future & Rick Ross).flac'
 duration = 270
 statsId = 'stats:3:1'
+
+[[songs]]
+id = 'song:4:1'
+name = 'The Beautiful & Damned'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:5']
+trackNumber = 1
+streamUrl = ''
+duration = 189
+statsId = 'stats:4:1'
+
+[[songs]]
+id = 'song:4:2'
+name = 'Pray for Me'
+albumId = 'album:4'
+artistIds = ['artist:4']
+trackNumber = 2
+streamUrl = ''
+duration = 207
+statsId = 'stats:4:2'
+
+[[songs]]
+id = 'song:4:3'
+name = 'Him & I'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:6']
+trackNumber = 3
+streamUrl = ''
+duration = 268
+statsId = 'stats:4:3'
+
+[[songs]]
+id = 'song:4:4'
+name = 'But a Dream'
+albumId = 'album:4'
+artistIds = ['artist:4']
+trackNumber = 4
+streamUrl = ''
+duration = 206
+statsId = 'stats:4:4'
+
+[[songs]]
+id = 'song:4:5'
+name = 'Sober'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:7']
+trackNumber = 5
+streamUrl = ''
+duration = 203
+statsId = 'stats:4:5'
+
+[[songs]]
+id = 'song:4:6'
+name = 'Legend'
+albumId = 'album:4'
+artistIds = ['artist:4']
+trackNumber = 6
+streamUrl = ''
+duration = 205
+statsId = 'stats:4:6'
+
+[[songs]]
+id = 'song:4:7'
+name = 'No Limit'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:8', 'artist:9']
+trackNumber = 7
+streamUrl = ''
+duration = 245
+statsId = 'stats:4:7'
+
+[[songs]]
+id = 'song:4:8'
+name = 'The Plan'
+albumId = 'album:4'
+artistIds = ['artist:4']
+trackNumber = 8
+streamUrl = ''
+duration = 250
+statsId = 'stats:4:8'
+
+[[songs]]
+id = 'song:4:9'
+name = "That's a Lot"
+albumId = 'album:4'
+artistIds = ['artist:4']
+trackNumber = 9
+streamUrl = ''
+duration = 214
+statsId = 'stats:4:9'
+
+[[songs]]
+id = 'song:4:10'
+name = 'Pick Me Up'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:10']
+trackNumber = 10
+streamUrl = ''
+duration = 227
+statsId = 'stats:4:10'
+
+[[songs]]
+id = 'song:4:11'
+name = 'Gotdamn'
+albumId = 'album:4'
+artistIds = ['artist:4']
+trackNumber = 11
+streamUrl = ''
+duration = 172
+statsId = 'stats:4:11'
+
+[[songs]]
+id = 'song:4:12'
+name = 'Leviathan'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:11']
+trackNumber = 12
+streamUrl = ''
+duration = 227
+statsId = 'stats:4:12'
+
+[[songs]]
+id = 'song:4:13'
+name = 'Crash & Burn'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:12']
+trackNumber = 13
+streamUrl = ''
+duration = 180
+statsId = 'stats:4:13'
+
+[[songs]]
+id = 'song:4:14'
+name = 'Summer in December'
+albumId = 'album:4'
+artistIds = ['artist:4']
+trackNumber = 14
+streamUrl = ''
+duration = 186
+statsId = 'stats:4:14'
+
+[[songs]]
+id = 'song:4:15'
+name = 'Charles Brown'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:13', 'artist:14']
+trackNumber = 15
+streamUrl = ''
+duration = 288
+statsId = 'stats:4:15'
+
+[[songs]]
+id = 'song:4:16'
+name = 'No Less'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:15', 'artist:16']
+trackNumber = 16
+streamUrl = ''
+duration = 250
+statsId = 'stats:4:16'
+
+[[songs]]
+id = 'song:4:17'
+name = 'Mama Always Told Me'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:17']
+trackNumber = 17
+streamUrl = ''
+duration = 191
+statsId = 'stats:4:17'
+
+[[songs]]
+id = 'song:4:18'
+name = 'Fly Away'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:18']
+trackNumber = 18
+streamUrl = ''
+duration = 211
+statsId = 'stats:4:18'
+
+[[songs]]
+id = 'song:4:19'
+name = 'Love Is Gone'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:19']
+trackNumber = 19
+streamUrl = ''
+duration = 234
+statsId = 'stats:4:19'
+
+[[songs]]
+id = 'song:4:20'
+name = 'Eazy'
+albumId = 'album:4'
+artistIds = ['artist:4', 'artist:20']
+trackNumber = 20
+streamUrl = ''
+duration = 309
+statsId = 'stats:4:20'

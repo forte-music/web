@@ -17,3 +17,103 @@ albumIds = ['album:3']
 id = 'artist:4'
 name = 'G-Eazy'
 albumIds = ['album:4']
+
+[[artists]]
+id = 'artist:5'
+name = 'Zoe Nash'
+albumIds = []
+
+[[artists]]
+id = 'artist:6'
+name = 'Halsey'
+albumIds = []
+
+[[artists]]
+id = 'artist:7'
+name = 'Charlie Puth'
+albumIds = []
+
+[[artists]]
+id = 'artist:8'
+name = 'ASAP Rocky'
+albumIds = []
+
+[[artists]]
+id = 'artist:9'
+name = 'Cardi B'
+albumIds = []
+
+[[artists]]
+id = 'artist:10'
+name = 'Anna of the North'
+albumIds = []
+
+[[artists]]
+id = 'artist:11'
+name = 'Leviathan'
+albumIds = []
+
+[[artists]]
+id = 'artist:12'
+name = 'Kehlani'
+albumIds = []
+
+[[artists]]
+id = 'artist:13'
+name = 'E-40'
+albumIds = []
+
+[[artists]]
+id = 'artist:14'
+name = 'Jay Ant'
+albumIds = []
+
+[[artists]]
+id = 'artist:15'
+name = 'SG Lewis'
+albumIds = []
+
+[[artists]]
+id = 'artist:16'
+name = 'Louis Mattrs'
+albumIds = []
+
+[[artists]]
+id = 'artist:17'
+name = 'Madison Love'
+albumIds = []
+
+[[artists]]
+id = 'artist:18'
+name = 'Ugochi'
+albumIds = []
+
+[[artists]]
+id = 'artist:19'
+name = 'Drew Love'
+albumIds = []
+
+[[artists]]
+id = 'artist:20'
+name = 'Son Lux'
+albumIds = []
+
+[[artists]]
+id = 'artist:21'
+name = 'Beenie Man'
+albumIds = []
+
+[[artists]]
+id = 'artist:22'
+name = 'Azealia Banks'
+albumIds = []
+
+[[artists]]
+id = 'artist:23'
+name = 'Rick Ross'
+albumIds = []
+
+[[artists]]
+id = 'artist:24'
+name = 'Future'
+albumIds = []

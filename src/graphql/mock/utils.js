@@ -4,11 +4,11 @@ type Identifiable = {
   id: string,
 };
 
-export const mustGet = <K, V>(map: Map<K, V>, key: K): V => {
+export const mustGet = <K: string, V>(map: Map<K, V>, key: K): V => {
   const value = map.get(key);
 
   if (value === undefined) {
-    throw new TypeError('Schema invalid. Value not found in map.');
+    throw new TypeError(`Schema invalid. Value not found in map. Key: ${key}`);
   }
 
   return value;

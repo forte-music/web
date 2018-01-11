@@ -1,12 +1,9 @@
 [[playlists]]
 id = 'playlist:1'
 name = 'Quick Jam Session'
-songIds = [
-  '9283bed7-a183-4f54-a0d7-820946c220e3',
-  '492667ee-5bed-45ff-8a2c-67277677cf86',
-]
+songIds = ['song:2:1', 'song:3:1']
 
 [[playlists]]
 id = 'playlist:2'
 name = 'Chill and Netflix'
-songIds = ['69120ac9-1e48-494f-a1f4-4a34735fe408']
+songIds = ['song:1:1']
