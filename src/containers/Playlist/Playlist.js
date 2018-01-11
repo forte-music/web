@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import type { Edge, Connection } from '../../graphql/data';
+import type { Edge, Connection } from '../../graphql/mock';
 import { formatDuration } from '../../utils';
 
 import type { PlaybackState } from '../../components/PlaybackArtwork';

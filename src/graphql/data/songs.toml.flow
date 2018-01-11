@@ -1,0 +1,4 @@
+// @flow
+import type { SongSource } from '../mock/songs';
+
+declare export var songs: SongSource[];

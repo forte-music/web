@@ -6,12 +6,12 @@ import { action } from '@storybook/addon-actions';
 import { ApolloProvider } from 'react-apollo';
 import { HashRouter } from 'react-router-dom';
 
-import { songs } from '../graphql/data';
-import type { Song } from '../graphql/data';
+import { songs } from '../graphql/mock';
+import type { Song } from '../graphql/mock';
 import SongList from '../components/SongList/SongList';
 import { Header, Row } from '../components/SongList/Detail';
 import styles from './SongList.css';
-import { mustGet } from '../graphql/data/utils';
+import { mustGet } from '../graphql/mock/utils';
 import type {
   Song as SongDetail,
   SongRowProps,

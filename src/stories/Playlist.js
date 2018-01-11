@@ -5,8 +5,8 @@ import { storiesOf } from '@storybook/react';
 import StatefulComponent from './StatefulComponent';
 import Playlist from '../containers/Playlist/Playlist';
 import type { PlaylistModel } from '../containers/Playlist/Playlist';
-import { playlists } from '../graphql/data';
-import type { Playlist as PlaylistDataModel } from '../graphql/data';
+import { playlists } from '../graphql/mock';
+import type { Playlist as PlaylistDataModel } from '../graphql/mock';
 
 const playlistModel: PlaylistDataModel = ((playlists.get(
   'playlist:1'

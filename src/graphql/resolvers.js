@@ -1,13 +1,13 @@
 // @flow
-import { albums, artists, songs, playlists } from './data';
+import { albums, artists, songs, playlists } from './mock';
 import type {
   Playlist,
   PlaylistItem,
   Connection,
   SongUserStats,
   Song,
-} from './data';
-import { mustGet } from './data/utils';
+} from './mock';
+import { mustGet } from './mock/utils';
 import { now } from './time';
 
 type ConnectionQuery = {
