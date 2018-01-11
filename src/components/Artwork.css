@@ -1,3 +1,5 @@
 .container {
+  display: block;
+  width: 100%;
   user-select: none;
 }

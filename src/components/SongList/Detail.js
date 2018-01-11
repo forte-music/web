@@ -2,9 +2,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import { formatDuration } from '../../utils';
-import styles from './Detail.css';
+import { formatDuration, join, unique } from '../../utils';
 import { album, artist } from '../../paths';
+import styles from './Detail.css';
 
 // Header and row element for the detailed song list which is used in queue,
 // playlist, etc..
@@ -13,7 +13,7 @@ export const Header = () => (
   <div className={styles.header}>
     <div className={styles.song}>Name</div>
     <div className={styles.album}>Album</div>
-    <div className={styles.artist}>Artist</div>
+    <div className={styles.artist}>Artists</div>
     <div className={styles.duration}>Duration</div>
   </div>
 );
@@ -26,13 +26,13 @@ type Artist = {
 type Album = {
   id: string,
   name: string,
-  +artist: Artist,
 };
 
 export type Song = {
   id: string,
   name: string,
   +album: Album,
+  +artists: $ReadOnlyArray<Artist>,
   duration: number,
 };
 
@@ -69,11 +69,15 @@ export const Row = ({
     </div>
 
     <div className={styles.artist}>
-      {songDetails && (
-        <Link to={artist(songDetails.album.artist.id)}>
-          {songDetails.album.artist.name}
-        </Link>
-      )}
+      {songDetails &&
+        unique(
+          join(
+            songDetails.artists.map(({ id, name }) => (
+              <Link to={artist(id)}>{name}</Link>
+            )),
+            <span>, </span>
+          )
+        )}
     </div>
     <div className={styles.duration}>
       {songDetails && <span>{formatDuration(songDetails.duration)}</span>}

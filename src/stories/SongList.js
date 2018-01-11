@@ -88,7 +88,7 @@ storiesOf('SongList', module)
   ))
   .add('an active row', () => (
     <Row
-      song={mustGet(songs, '69120ac9-1e48-494f-a1f4-4a34735fe408')}
+      song={mustGet(songs, 'song:1:1')}
       active={true}
       onDoubleClick={action('double click')}
     />

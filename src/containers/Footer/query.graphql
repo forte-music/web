@@ -1,8 +1,3 @@
-fragment ArtistDetails on Artist {
-  id
-  name
-}
-
 query Footer($songId:ID!){
   song(id:$songId){
     id
@@ -14,14 +9,11 @@ query Footer($songId:ID!){
       id
       artworkUrl
       name
-
-      artist {
-        ...ArtistDetails
-      }
     }
 
     artists {
-      ...ArtistDetails
+      id
+      name
     }
 
     stats {

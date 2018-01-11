@@ -28,11 +28,6 @@ const graphqlEnhancer = graphql(
         album {
           id
           name
-
-          artist {
-            id
-            name
-          }
         }
       }
     }

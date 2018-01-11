@@ -1,5 +1,8 @@
 // @flow
 
+import React from 'react';
+import type { Element } from 'react';
+
 type DurationSpec = {
   // The short suffix used when generating humanized time stamps.
   suffix: string,
@@ -48,3 +51,19 @@ export const formatDuration = (num: number): string => {
 
   return output.join(':');
 };
+
+export const join = <T>(input: T[], btwn: T): T[] =>
+  input.reduce((acc, val, idx, arr) => {
+    const addedVal = acc.concat(val);
+
+    if (idx < arr.length - 1) {
+      return addedVal.concat(btwn);
+    }
+
+    return addedVal;
+  }, []);
+
+export const unique = (elems: Element<any>[]) =>
+  elems.map((e: Element<any>, i: number): Element<any> =>
+    React.cloneElement(e, { key: i })
+  );

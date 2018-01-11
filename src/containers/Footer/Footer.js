@@ -10,13 +10,14 @@ import styles from './Footer.css';
 import barStyles from '../../components/Bars.css';
 
 type Artist = {
+  id: string,
   name: string,
 };
 
 type Album = {
+  id: string,
   name: string,
   artworkUrl: string,
-  artist: Artist,
 };
 
 type SongUserStats = {
@@ -28,6 +29,7 @@ export type Song = {
   duration: number,
   name: string,
   album: Album,
+  artists: Artist[],
   stats: SongUserStats,
 };
 

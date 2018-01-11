@@ -21,7 +21,6 @@ type Album = {
   id: string,
   name: string,
   artworkUrl?: string,
-  artist: Artist,
 };
 
 type Song = {
@@ -29,6 +28,7 @@ type Song = {
   name: string,
   duration: number,
   album: Album,
+  artists: Artist[],
 };
 
 type PlaylistItem = {

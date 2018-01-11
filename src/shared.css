@@ -8,3 +8,12 @@
   overflow: hidden;
   min-width: 0;
 }
+
+.link {
+  text-decoration: none;
+  color: inherit;
+}
+
+.link:hover {
+  text-decoration: underline;
+}

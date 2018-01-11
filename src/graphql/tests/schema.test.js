@@ -136,3 +136,25 @@ it('should calculate the duration for an album', async () => {
   expect(album.id).toEqual(variables.albumId);
   expect(album.duration).toEqual(74 * 60 + 22);
 });
+
+it('should get the artists of a song', async () => {
+  const variables = { songId: 'song:2:1' };
+  const { data: { song } } = await client.query({
+    query: gql`
+      query SongArtistsTest($songId: ID!) {
+        song(id: $songId) {
+          id
+          name
+
+          artists {
+            id
+            name
+          }
+        }
+      }
+    `,
+    variables,
+  });
+
+  expect(song.artists).not.toEqual([]);
+});

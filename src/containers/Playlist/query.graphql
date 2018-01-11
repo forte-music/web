@@ -6,15 +6,15 @@ fragment DetailedPlaylistItem on PlaylistItem {
     name
     duration
 
+    artists {
+      id
+      name
+    }
+
     album {
       id
       name
       artworkUrl
-
-      artist {
-        id
-        name
-      }
     }
   }
 }

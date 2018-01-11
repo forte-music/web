@@ -1,6 +1,10 @@
 // @flow
 import React from 'react';
+import { Link } from 'react-router-dom';
 
+import Artwork from '../../components/Artwork';
+import { join, unique } from '../../utils';
+import { album, artist } from '../../paths';
 import type { Song } from './Footer';
 import styles from './NowPlaying.css';
 
@@ -11,21 +15,31 @@ type Props = {
 const NowPlaying = ({
   song: {
     name: songName,
-    album: { name: albumName, artworkUrl, artist: { name: artistName } },
+    album: { id: albumId, name: albumName, artworkUrl },
+    artists,
   },
 }: Props) => (
   <div className={styles.container}>
-    <img
-      className={styles.image}
-      src={artworkUrl}
-      alt="now playing album artwork"
-    />
+    <div className={styles.image}>
+      <Artwork src={artworkUrl} alt="now playing album artwork" />
+    </div>
     <div className={styles.infoContainer}>
       <div className={styles.title}>{songName}</div>
       <div className={styles.detail}>
-        <span>{artistName}</span>
+        {unique(
+          join(
+            artists.map(({ id, name }) => (
+              <Link className={styles.artist} to={artist(id)}>
+                {name}
+              </Link>
+            )),
+            <span>, </span>
+          )
+        )}
         {' - '}
-        <span>{albumName}</span>
+        <Link className={styles.album} to={album(albumId)}>
+          {albumName}
+        </Link>
       </div>
     </div>
   </div>

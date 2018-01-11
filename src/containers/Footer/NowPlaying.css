@@ -16,6 +16,8 @@
 }
 
 .image {
+  min-width: var(--image-size);
+  width: var(--image-size);
   height: var(--image-size);
 }
 
@@ -38,4 +40,9 @@
   font-size: var(--font-size-very-tiny);
 
   margin-top: var(--size-very-tiny);
+}
+
+.album,
+.artist {
+  composes: link from '../../shared.css';
 }
