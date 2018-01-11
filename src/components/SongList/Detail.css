@@ -73,18 +73,12 @@
   background: #252525;
 }
 
-.row a {
-  color: var(--text-color);
-  text-decoration: none;
+.link {
+  composes: link from '../../shared.css';
 }
 
-.row.active,
-.row.active a {
+.row.active {
   color: var(--active-text-color);
-}
-
-.row a:hover {
-  text-decoration: underline;
 }
 
 .row,

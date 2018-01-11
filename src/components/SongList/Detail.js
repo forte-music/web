@@ -64,7 +64,9 @@ export const Row = ({
     <div className={styles.song}>{songDetails && songDetails.name}</div>
     <div className={styles.album}>
       {songDetails && (
-        <Link to={album(songDetails.album.id)}>{songDetails.album.name}</Link>
+        <Link to={album(songDetails.album.id)} className={styles.link}>
+          {songDetails.album.name}
+        </Link>
       )}
     </div>
 
@@ -73,7 +75,9 @@ export const Row = ({
         unique(
           join(
             songDetails.artists.map(({ id, name }) => (
-              <Link to={artist(id)}>{name}</Link>
+              <Link to={artist(id)} className={styles.link}>
+                {name}
+              </Link>
             )),
             <span>, </span>
           )
