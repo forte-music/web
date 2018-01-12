@@ -5,7 +5,9 @@ import { storiesOf } from '@storybook/react';
 import Collage from '../components/Collage';
 import Artwork from '../components/Artwork';
 
-storiesOf('Collage', module).add('interactive', () => collage);
+storiesOf('Collage', module).add('interactive', () => (
+  <div style={{ width: 300 }}>{collage}</div>
+));
 
 export const collage = (
   <Collage

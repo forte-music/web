@@ -39,15 +39,17 @@ const Story = ({
 }) => (
   <StatefulComponent state={{ playback: initialState }}>
     {({ playback }, setState) => (
-      <PlaybackArtwork
-        state={playback}
-        onPlaying={() => setState({ playback: 'PLAYING' })}
-        onPaused={() => setState({ playback: 'PAUSED' })}
-        onStartPlayback={() => setState({ playback: 'PLAYING' })}
-        backgroundInteraction={backgroundInteraction}
-      >
-        {children || collage}
-      </PlaybackArtwork>
+      <div style={{ width: 400 }}>
+        <PlaybackArtwork
+          state={playback}
+          onPlaying={() => setState({ playback: 'PLAYING' })}
+          onPaused={() => setState({ playback: 'PAUSED' })}
+          onStartPlayback={() => setState({ playback: 'PLAYING' })}
+          backgroundInteraction={backgroundInteraction}
+        >
+          {children || collage}
+        </PlaybackArtwork>
+      </div>
     )}
   </StatefulComponent>
 );

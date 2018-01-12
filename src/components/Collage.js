@@ -14,10 +14,12 @@ type Props = {
 // A collage of four square elements.
 const Collage = ({ topLeft, topRight, bottomLeft, bottomRight }: Props) => (
   <div className={styles.container}>
-    {topLeft}
-    {topRight}
-    {bottomLeft}
-    {bottomRight}
+    <div className={styles.inner}>
+      {topLeft}
+      {topRight}
+      {bottomLeft}
+      {bottomRight}
+    </div>
   </div>
 );
 
