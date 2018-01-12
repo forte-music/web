@@ -1,10 +1,10 @@
 @import './colors.css';
 
 .grid {
+  min-height: 100%;
   display: grid;
   grid-template-columns: 220px 1fr;
   grid-template-rows: 1fr 100px;
-  height: 100%;
 }
 
 .sidebar {
@@ -14,8 +14,12 @@
 }
 
 .footer {
-  grid-column-end: span 2;
   background: color(var(--secondary-color) tint(10%));
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
 }
 
 .content {

@@ -1,6 +1,7 @@
 html,
 body,
 :global(#root) {
+  min-height: 100%;
   height: 100%;
 }
 
