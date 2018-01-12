@@ -34,3 +34,205 @@ songIds = [
 ]
 artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/3/31/G-Eazy_-_The_Beautiful_%26_Damned.png'
 releaseYear = 2017
+
+[[albums]]
+id = 'album:5'
+name = 'These Things Happen'
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/7/7a/G-Eazy_These_Things_Happen.jpg'
+releaseYear = 2014
+
+[[albums]]
+id = 'album:6'
+name = "When It's Dark Out"
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/d/d7/G-Eazy_When_Its_Dark_Out.jpg'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:7'
+name = 'Bone Marrow'
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://is5-ssl.mzstatic.com/image/thumb/Music71/v4/e6/c1/f8/e6c1f863-2269-2920-b5f0-74482fbbddd9/886446252223.jpg/1200x1200bb.jpg'
+releaseYear = 2016
+
+[[albums]]
+id = 'album:8'
+name = 'Oh Well'
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://images.rapgenius.com/a9a376813cbeeb13bbc0f8bb1e94d3e9.499x499x1.jpg'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:9'
+name = 'Get a Bag'
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://sslf.ulximg.com/image/355x355/cover/1501734871_a9452d9fb03d6600c972dcdffb77728b.jpg/db4d500fb70da631973c5c8d8e0055ee/1501734871_df6742a614ed1f9a5dda8d6ce699d622.jpg'
+releaseYear = 2017
+
+[[albums]]
+id = 'album:10'
+name = 'Wave'
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://sslf.ulximg.com/image/355x355/cover/1501734968_6b53cb69af483bbfb5f707b96542c68c.jpg/412b1f3ffd01ebf08354aef8bc92c21e/1501734968_58d3f07d73c5c46934a3890c5496a441.jpg'
+releaseYear = 2017
+
+# TODO: Figure out Multiple Artists
+[[albums]]
+id = 'album:11'
+name = 'What a Time to Be Alive'
+artistId = 'artist:25'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/9/94/Drake_and_Future_-_What_a_Time_to_Be_Alive_cover.jpg'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:12'
+name = 'Nothing Was The Same'
+artistId = 'artist:25'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/b/b9/Nothing_Was_the_Same_cover_2.png'
+releaseYear = 2013
+
+[[albums]]
+id = 'album:13'
+name = "If You're Reading This It's Too Late"
+artistId = 'artist:25'
+songIds = []
+artworkUrl = 'https://is3-ssl.mzstatic.com/image/thumb/Music3/v4/82/38/9c/82389c8a-a3df-f279-9f24-f6dc0d6984da/UMG_cvrart_00602547261892_01_RGB72_1500x1500_15UMGIM08570.jpg/268x0w.jpg'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:14'
+name = 'Views'
+artistId = 'artist:25'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/a/af/Drake_-_Views_cover.jpg'
+releaseYear = 2016
+
+[[albums]]
+id = 'album:15'
+name = 'Charged Up'
+artistId = 'artist:25'
+songIds = []
+artworkUrl = 'https://i1.sndcdn.com/artworks-000124551288-ampufy-t500x500.jpg'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:16'
+name = 'No Limit'
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/e/ed/G-Eazy_No_Limit.jpg'
+releaseYear = 2017
+
+[[albums]]
+id = 'album:17'
+name = 'Nothing Wrong'
+artistId = 'artist:4'
+songIds = []
+artworkUrl = 'https://images.genius.com/f8992603f153caab19442c06fffdd0ee.1000x1000x1.jpg'
+releaseYear = 2017
+
+[[albums]]
+id = 'album:18'
+name = '1989'
+artistId = 'artist:26'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/f/f6/Taylor_Swift_-_1989.png'
+releaseYear = 2014
+
+[[albums]]
+id = 'album:19'
+name = 'Free'
+artistId = 'artist:27'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/e/ee/Free_-_Cody_Simpson_album_art.png'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:20'
+name = 'Surfers Paradise'
+artistId = 'artist:27'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/b/bc/Cody_Simpson_-_Surfer%27s_Paradise.png'
+releaseYear = 2013
+
+[[albums]]
+id = 'album:21'
+name = 'Purpose'
+artistId = 'artist:28'
+songIds = []
+artworkUrl = 'https://is1-ssl.mzstatic.com/image/thumb/Music6/v4/f6/40/c8/f640c8b9-b2f8-905a-9fff-2d38d8bfe35b/UMG_cvrart_00602547587428_01_RGB72_1500x1500_15UMGIM59808.jpg/1200x630bb.jpg'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:22'
+name = '÷'
+artistId = 'artist:29'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/4/45/Divide_cover.png'
+releaseYear = 2017
+
+[[albums]]
+id = 'album:23'
+name = 'Closer'
+artistId = 'artist:30'
+songIds = []
+artworkUrl = 'https://images.genius.com/6e44a91448d28714d0a0f91a27193e91.1000x1000x1.jpg'
+releaseYear = 2016
+
+[[albums]]
+id = 'album:24'
+name =' Joytime'
+artistId = 'artist:31'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/9/91/Joytime_Album_Cover_Art.jpg'
+releaseYear = 2016
+
+[[albums]]
+id = 'album:25'
+name = 'Dark Sky Paradise'
+artistId = 'artist:32'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/c/c8/Big_Sean_-_Dark_Sky_Paradise_%28Official_Album_Cover%29.png'
+releaseYear = 2015
+
+[[albums]]
+id = 'album:26'
+name = 'I Decided'
+artistId = 'artist:32'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/a/a8/BigSeanIDecided.jpg'
+releaseYear = 2017
+
+[[albums]]
+id = 'album:27'
+name = 'Bobby Tarantino'
+artistId = 'artist:33'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/c/c9/Logic_-_Bobby_Tarantino_%28album_cover%29.jpg'
+releaseYear = 2016
+
+[[albums]]
+id = 'album:28'
+name = 'Under Pressure'
+artistId = 'artist:33'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/9/9c/Logic_-_Under_Pressure_%28Deluxe_Edition%29.jpg'
+releaseYear = 2014
+
+
+[[albums]]
+id = 'album:29'
+name = 'Is There Anybody Out There?'
+artistId = 'artist:34'
+songIds = []
+artworkUrl = 'https://upload.wikimedia.org/wikipedia/en/0/0d/Is-There-Anybody-Out-There-album.jpg'
+releaseYear = 2014

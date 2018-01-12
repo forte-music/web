@@ -16,7 +16,10 @@ albumIds = ['album:3']
 [[artists]]
 id = 'artist:4'
 name = 'G-Eazy'
-albumIds = ['album:4']
+albumIds = [
+  'album:4', 'album:5', 'album:6', 'album:7', 'album:8', 'album:9', 'album:10',
+  'album:16', 'album:17'
+]
 
 [[artists]]
 id = 'artist:5'
@@ -117,3 +120,53 @@ albumIds = []
 id = 'artist:24'
 name = 'Future'
 albumIds = []
+
+[[artists]]
+id = 'artist:25'
+name = 'Drake'
+albumIds = ['album:11', 'alubm:12', 'alubm:13', 'alubm:14', 'album:15']
+
+[[artists]]
+id = 'artist:26'
+name = 'Taylor Swift'
+albumIds = ['album:18']
+
+[[artists]]
+id = 'artist:27'
+name = 'Cody Simpson'
+albumIds = ['album:19', 'album:20']
+
+[[artists]]
+id = 'artist:28'
+name = 'Justin Bieber'
+albumIds = ['album:21']
+
+[[artists]]
+id = 'artist:29'
+name = 'Ed Sheeran'
+albumIds = ['album:22']
+
+[[artists]]
+id = 'artist:30'
+name = 'The Chainsmokers'
+albumIds = ['album:23']
+
+[[artists]]
+id = 'artist:31'
+name = 'Marshmello'
+albumIds = ['album:24']
+
+[[artists]]
+id = 'artist:32'
+name = 'Big Sean'
+albumIds = ['album:25', 'album:26']
+
+[[artists]]
+id = 'artist:33'
+name = 'Logic'
+albumIds = ['album:27', 'album:28']
+
+[[artists]]
+id = 'artist:34'
+name = 'A Great Big World'
+albumIds = ['album:29']
