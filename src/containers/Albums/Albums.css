@@ -1,0 +1,46 @@
+@import '../../sizes.css';
+
+.heading {
+  font-size: var(--font-size-large);
+  color: #ffffff;
+
+  margin: var(--size-medium);
+}
+
+.container {
+  margin-left: var(--size-medium);
+  margin-right: var(--size-medium);
+
+  display: grid;
+  grid-column-gap: var(--size-small);
+  grid-row-gap: var(--size-small);
+
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+}
+
+.albumContainer {
+  display: flex;
+  flex-direction: column;
+  color: white;
+
+  text-align: center;
+}
+
+.link {
+  composes: link from '../../shared.css';
+}
+
+.album {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #ddd;
+  margin-bottom: 4px;
+}
+
+.artist {
+  margin-top: 4px;
+  margin-bottom: 4px;
+
+  font-size: 12px;
+  color: #bbb;
+}

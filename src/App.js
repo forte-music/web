@@ -9,6 +9,7 @@ import Sidebar from './components/Sidebar';
 import Footer from './containers/Footer';
 import Playlist from './containers/Playlist';
 import Queue from './containers/Queue';
+import Albums from './containers/Albums';
 import store from './store';
 import client from './graphql/client';
 
@@ -49,7 +50,7 @@ const App = () => (
           <Route exact path={artists} />
           <Route exact path={artist(withId)} />
 
-          <Route exact path={albums} />
+          <Route exact path={albums} component={Albums} />
           <Route exact path={album(withId)} />
 
           <Route exact path={playlists} />
