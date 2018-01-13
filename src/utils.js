@@ -1,7 +1,7 @@
 // @flow
 
-import React from 'react';
 import type { Element } from 'react';
+import React from 'react';
 
 type DurationSpec = {
   // The short suffix used when generating humanized time stamps.
@@ -66,4 +66,26 @@ export const join = <T>(input: T[], btwn: T): T[] =>
 export const unique = (elems: Element<any>[]) =>
   elems.map((e: Element<any>, i: number): Element<any> =>
     React.cloneElement(e, { key: i })
+  );
+
+export const last = <T>(arr: T[]): ?T => arr[arr.length - 1];
+
+// Splits a collection of items into two buckets based on the return value
+// of a predicate.
+export const split = <T>(
+  arr: T[],
+  predicate: (T, number, T[]) => any
+): { accepted: T[], failed: T[] } =>
+  arr.reduce(
+    ({ accepted, failed }, value, idx, arr) => {
+      const result = predicate(value, idx, arr);
+      if (result) {
+        accepted = [...accepted, value];
+      } else {
+        failed = [...failed, value];
+      }
+
+      return { accepted, failed };
+    },
+    { accepted: [], failed: [] }
   );
