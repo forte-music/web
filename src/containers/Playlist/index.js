@@ -1,9 +1,8 @@
 // @flow
 import type { ComponentType } from 'react';
-import { graphql } from 'react-apollo';
+import type { OptionProps } from 'react-apollo';
 import { connect } from 'react-redux';
 import { compose } from 'redux';
-import type { OptionProps } from 'react-apollo';
 
 import type { State } from '../../state';
 import type { QueueItemSource } from '../../state/queue';
@@ -13,21 +12,14 @@ import type {
 } from './__generated__/Playlist';
 
 import Playlist from './Playlist';
-import { Playlist as Query, PlaylistPage as PageQuery } from './query.graphql';
+import Query from './query.graphql';
 import nowPlayingSelector from '../../selectors/nowPlaying';
 import { pause, play, replaceQueue } from '../../actions';
 import type { PlaybackState } from '../../components/PlaybackArtwork';
+import { connectionQuery } from '../../components/ConnectionQuery';
 
 type InputProps = {
   match: { params: { id: string } },
-};
-
-const last = <T>(arr: T[]): ?T => arr[arr.length - 1];
-
-const defaultPlaylist = {
-  items: {
-    edges: [],
-  },
 };
 
 type GraphQLEnhancedProps = {
@@ -36,7 +28,7 @@ type GraphQLEnhancedProps = {
   fetchMore: () => void,
 };
 
-const graphqlEnhancer = graphql(Query, {
+const graphqlEnhancer = connectionQuery(Query, {
   options: ({ match: { params: { id } } }: InputProps) => ({
     variables: {
       playlistId: id,
@@ -44,44 +36,13 @@ const graphqlEnhancer = graphql(Query, {
   }),
   props: ({
     ownProps: { match: { params: { id } } },
-    data: { loading, fetchMore, variables, playlist },
-  }: OptionProps<InputProps, QueryResult>): GraphQLEnhancedProps => ({
-    id,
-    loading,
-    playlist,
-    fetchMore: () => {
-      if (loading || !playlist) {
-        return;
-      }
-
-      const { cursor: lastCursor = '' } = last(playlist.items.edges) || {};
-
-      fetchMore({
-        query: PageQuery,
-        variables: {
-          ...variables,
-          cursor: lastCursor,
-        },
-        updateQuery: (
-          { playlist: previousResult = defaultPlaylist },
-          {
-            fetchMoreResult: { playlist: fetchMoreResult },
-          }: { fetchMoreResult: QueryResult }
-        ) => ({
-          playlist: {
-            ...previousResult,
-            items: {
-              ...previousResult.items,
-              edges: [
-                ...previousResult.items.edges,
-                ...fetchMoreResult.items.edges,
-              ],
-            },
-          },
-        }),
-      });
-    },
-  }),
+    data: { loading, playlist },
+  }: OptionProps<InputProps, QueryResult>): GraphQLEnhancedProps =>
+    ({
+      id,
+      loading,
+      playlist,
+    }: any),
 });
 
 type ReduxStateEnhancedProps = {
