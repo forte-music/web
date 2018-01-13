@@ -22,6 +22,10 @@
   display: flex;
 }
 
+.artworkContainer {
+  width: 160px;
+}
+
 .infoContainer {
   display: flex;
   flex-direction: column;

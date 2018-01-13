@@ -89,22 +89,24 @@ const Playlist = ({
   <div className={styles.container}>
     <header className={styles.header}>
       <div className={styles.headerContainer}>
-        <PlaybackArtwork
-          state={state}
-          onPlaying={onPlay}
-          onPaused={onPause}
-          onStartPlayback={onStartPlayback}
-          backgroundInteraction
-        >
-          <SongCollage
-            artworkUrls={
-              ((edges
-                .map(({ node }) => node.song.album.artworkUrl)
-                .filter(url => !!url): any): string[])
-            }
-            alt="Playlist Artwork"
-          />
-        </PlaybackArtwork>
+        <div className={styles.artworkContainer}>
+          <PlaybackArtwork
+            state={state}
+            onPlaying={onPlay}
+            onPaused={onPause}
+            onStartPlayback={onStartPlayback}
+            backgroundInteraction
+          >
+            <SongCollage
+              artworkUrls={
+                ((edges
+                  .map(({ node }) => node.song.album.artworkUrl)
+                  .filter(url => !!url): any): string[])
+              }
+              alt="Playlist Artwork"
+            />
+          </PlaybackArtwork>
+        </div>
 
         <div className={styles.infoContainer}>
           <div className={styles.name}>{name}</div>
