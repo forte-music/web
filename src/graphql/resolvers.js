@@ -92,8 +92,8 @@ const resolvers = {
   Playlist: {
     items: (
       { items }: Playlist,
-      args: ConnectionQuery
-    ): Connection<PlaylistItem> => handleConnection(items, item => item, args),
+      { input }: ConnectionArgs
+    ): Connection<PlaylistItem> => handleConnection(items, item => item, input),
   },
 };
 
