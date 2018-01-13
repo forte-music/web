@@ -14,8 +14,8 @@ const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
       <SongList
         loadMore={() => {}}
         header={<Header />}
-        totalItems={items.length}
-        count={Infinity}
+        totalItems={Infinity}
+        countAvailableRows={items.length}
         renderItem={({ index, style }) => {
           const { id, songId } = items[index];
 

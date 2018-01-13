@@ -58,7 +58,7 @@ const Story = ({
     loadMore={() => {}}
     header={<Header />}
     totalItems={count}
-    count={Infinity}
+    countAvailableRows={Infinity}
     renderItem={({ index, style }) => {
       const id = getId(index);
       const song: Song = mustGet(songs, id);

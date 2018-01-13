@@ -120,7 +120,7 @@ const Playlist = ({
 
     <div className={styles.bodyContainer}>
       <SongList
-        count={edges.length}
+        countAvailableRows={edges.length}
         totalItems={count}
         loadMore={fetchMore}
         header={<Header />}

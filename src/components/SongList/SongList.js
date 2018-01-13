@@ -8,7 +8,7 @@ type Props = {
   // The number of rows currently available to render by calls to
   // renderItem. If rows need to be rendered which exceed this number,
   // loadMore will be called first.
-  count: number,
+  countAvailableRows: number,
 
   // Called when it is time to load more ids. This function should update
   // the value of the prop ids passed into this component.
@@ -33,7 +33,7 @@ type Props = {
 };
 
 const SongList = ({
-  count,
+  countAvailableRows,
   loadMore,
   totalItems,
   className = '',
@@ -49,16 +49,19 @@ const SongList = ({
           <VirtualList
             height={height || 100}
             width={width}
-            itemCount={totalItems}
+            itemCount={countAvailableRows}
             itemSize={36}
             onItemsRendered={({ startIndex, stopIndex }) => {
-              if (count >= totalItems) {
+              if (countAvailableRows >= totalItems) {
                 // No additional items to fetch.
                 return;
               }
 
-              const lastIndex = count - 1;
-              if (startIndex >= lastIndex || stopIndex >= lastIndex) {
+              const lastLoadedIndex = countAvailableRows - 1;
+              if (
+                startIndex >= lastLoadedIndex ||
+                stopIndex >= lastLoadedIndex
+              ) {
                 loadMore();
               }
             }}
