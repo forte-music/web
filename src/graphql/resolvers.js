@@ -40,7 +40,10 @@ const handleConnection = <InputType, NodeType>(
   { limit = 25, cursor }: ConnectionQuery
 ): Connection<NodeType> => {
   const offset = cursor ? parseInt(cursor, 10) + 1 : 0;
-  const acceptedKeys = keys.slice(offset, offset + limit);
+  const acceptedKeys = keys.slice(
+    offset,
+    limit !== -1 ? offset + limit : Infinity
+  );
 
   return {
     count: keys.length,

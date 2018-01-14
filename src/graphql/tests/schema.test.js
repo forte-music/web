@@ -158,3 +158,23 @@ it('should get the artists of a song', async () => {
 
   expect(song.artists).not.toEqual([]);
 });
+
+it('should get all items when limit is -1', async () => {
+  const { data: { songs } } = await client.query({
+    query: gql`
+      query LimitSongConnectionTest {
+        songs(input: { limit: -1 }) {
+          count
+          edges {
+            cursor
+            node {
+              id
+            }
+          }
+        }
+      }
+    `,
+  });
+
+  expect(songs.count).toEqual(songs.edges.length);
+});
