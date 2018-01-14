@@ -7,7 +7,10 @@ import type { Kind, QueueItemSource } from '../../state/queue';
 import type { State } from '../../state';
 import type { PlaybackState } from '../../components/PlaybackArtwork';
 import { play, pause, replaceQueue } from '../../actions';
-import nowPlayingSelector from '../../selectors/nowPlaying';
+import {
+  isSource,
+  nowPlaying as nowPlayingSelector,
+} from '../../selectors/nowPlaying';
 import PlaybackArtwork from '../../components/PlaybackArtwork';
 
 type Props = {
@@ -39,10 +42,9 @@ type ReduxActionEnhancedProps = {
 
 const reduxEnhancer = connect(
   ({ queue }: State, { kind, list }: Props): ReduxStateEnhancedProps => {
-    const { source: { list: listSource, kind: kindSource } = {} } =
-      nowPlayingSelector(queue) || {};
+    const { source } = nowPlayingSelector(queue) || {};
 
-    const nowPlaying = listSource === list && kindSource === kind;
+    const nowPlaying = isSource(source, kind, list);
 
     return {
       state: nowPlaying

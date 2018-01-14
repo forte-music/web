@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 
 import type { State } from '../../state';
 import type { QueueItem } from '../../state/queue';
-import nowPlayingSelector from '../../selectors/nowPlaying';
+import { nowPlaying as nowPlayingSelector } from '../../selectors/nowPlaying';
 
 import Queue from './Queue';
 import { skipToPosition } from '../../actions';

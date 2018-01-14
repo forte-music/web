@@ -5,7 +5,7 @@ import type { Edge, Connection } from '../../graphql/mock';
 import { formatDuration } from '../../utils';
 
 import type { PlaybackState } from '../../components/PlaybackArtwork';
-import PlaybackArtwork from '../../components/PlaybackArtwork';
+import PlaybackArtwork from '../../containers/PlaybackArtwork';
 import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
 import { Header, Row } from '../../components/SongList/Detail';
@@ -57,14 +57,6 @@ export type Props = {
   // supplied when state is PLAYING.
   nowPlayingSongSource?: string,
 
-  // Called when it is time to transition from a playing state to a paused
-  // state.
-  onPause: () => void,
-
-  // Called when it is time to transition from a paused or stopped sate to a
-  // playing state.
-  onPlay: () => void,
-
   // Called when it is time to transition from a stopped state to a playing
   // state.
   onStartPlayback: () => void,
@@ -75,15 +67,13 @@ export type Props = {
 
 const Playlist = ({
   playlist: {
+    id,
     items: { count = 0, edges = [] } = {},
     name = '',
     duration = 0,
   } = {},
   state,
   fetchMore,
-  onPlay,
-  onPause,
-  onStartPlayback,
   nowPlayingSongSource,
 }: Props) => (
   <div className={styles.container}>
@@ -91,10 +81,17 @@ const Playlist = ({
       <div className={styles.headerContainer}>
         <div className={styles.artworkContainer}>
           <PlaybackArtwork
+            kind={'PLAYLIST'}
+            list={id}
             state={state}
-            onPlaying={onPlay}
-            onPaused={onPause}
-            onStartPlayback={onStartPlayback}
+            onStartPlayback={async () =>
+              edges.map(
+                ({ node: { id: songSource, song: { id: songId } } }) => ({
+                  source: { song: songSource },
+                  songId,
+                })
+              )
+            }
             backgroundInteraction
           >
             <SongCollage

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import type { InputProps } from '.';
 import type { State as ReduxState } from '../../state';
-import nowPlayingSelector from '../../selectors/nowPlaying';
+import { nowPlaying as nowPlayingSelector } from '../../selectors/nowPlaying';
 import { nextSong, pause, play, previousSong } from '../../actions';
 
 export type ReduxActionEnhancedProps = {

@@ -5,7 +5,6 @@ import { connect } from 'react-redux';
 import { compose } from 'redux';
 
 import type { State } from '../../state';
-import type { QueueItemSource } from '../../state/queue';
 import type {
   Playlist as QueryResult,
   Playlist_playlist as PlaylistModel,
@@ -13,9 +12,10 @@ import type {
 
 import Playlist from './Playlist';
 import Query from './query.graphql';
-import nowPlayingSelector from '../../selectors/nowPlaying';
-import { pause, play, replaceQueue } from '../../actions';
-import type { PlaybackState } from '../../components/PlaybackArtwork';
+import {
+  isSource,
+  nowPlaying as nowPlayingSelector,
+} from '../../selectors/nowPlaying';
 import { connectionQuery } from '../../components/ConnectionQuery';
 
 type InputProps = {
@@ -46,14 +46,7 @@ const graphqlEnhancer = connectionQuery(Query, {
 });
 
 type ReduxStateEnhancedProps = {
-  state: PlaybackState,
   nowPlayingSongSource?: string,
-};
-
-type ReduxActionEnhancedProps = {
-  onPause: () => void,
-  onPlay: () => void,
-  onStartPlayback: () => void,
 };
 
 const reduxEnhancer = connect(
@@ -61,41 +54,13 @@ const reduxEnhancer = connect(
     { queue }: State,
     { playlist: { id } = {} }: GraphQLEnhancedProps
   ): ReduxStateEnhancedProps => {
-    const { listSource, songSource } = nowPlayingSelector(queue) || {};
-    const nowPlaying = listSource === id;
+    const { source } = nowPlayingSelector(queue);
+    const nowPlaying = isSource(source, 'PLAYLIST', id);
 
     return {
-      state: nowPlaying
-        ? queue.shouldBePlaying ? 'PLAYING' : 'PAUSED'
-        : 'STOPPED',
-      nowPlayingSongSource: nowPlaying ? songSource : undefined,
+      nowPlayingSongSource: nowPlaying ? source.song : undefined,
     };
-  },
-  (
-    dispatch,
-    { playlist: { id, items: playlistItems } = {} }: GraphQLEnhancedProps
-  ): ReduxActionEnhancedProps => ({
-    onPause: () => dispatch(pause()),
-    onPlay: () => dispatch(play()),
-    onStartPlayback: () => {
-      // Collect Items
-      // TODO: This collects only loaded items.
-      if (!playlistItems) {
-        return;
-      }
-
-      const items: QueueItemSource[] = playlistItems.edges.map(
-        ({ node: { id: songSource, song: { id: songId } } }) => ({
-          songSource,
-          listSource: id,
-          songId,
-        })
-      );
-
-      dispatch(replaceQueue(items));
-      dispatch(play());
-    },
-  })
+  }
 );
 
 const enhancer = compose(graphqlEnhancer, reduxEnhancer);
