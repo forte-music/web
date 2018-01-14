@@ -4,7 +4,6 @@ import React from 'react';
 import type { Edge, Connection } from '../../graphql/mock';
 import { formatDuration } from '../../utils';
 
-import type { PlaybackState } from '../../components/PlaybackArtwork';
 import PlaybackArtwork from '../../containers/PlaybackArtwork';
 import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
@@ -47,19 +46,15 @@ export type Props = {
   // Called when more items in the playlist are needed.
   fetchMore: () => void,
 
+  // Whether or not this playlist is currently playing.
+  isPlaying: boolean,
+
   // The playlist to render.
   playlist?: PlaylistModel,
-
-  // The state of this list's playback.
-  state: PlaybackState,
 
   // The QueueItem.songSource of the currently playing song. This may be
   // supplied when state is PLAYING.
   nowPlayingSongSource?: string,
-
-  // Called when it is time to transition from a stopped state to a playing
-  // state.
-  onStartPlayback: () => void,
 };
 
 // TODO: Loading State
@@ -72,7 +67,7 @@ const Playlist = ({
     name = '',
     duration = 0,
   } = {},
-  state,
+  isPlaying,
   fetchMore,
   nowPlayingSongSource,
 }: Props) => (
@@ -83,8 +78,7 @@ const Playlist = ({
           <PlaybackArtwork
             kind={'PLAYLIST'}
             list={id}
-            state={state}
-            onStartPlayback={async () =>
+            loadTracks={async () =>
               edges.map(
                 ({ node: { id: songSource, song: { id: songId } } }) => ({
                   source: { song: songSource },
@@ -130,7 +124,7 @@ const Playlist = ({
             <div key={id} style={style}>
               <Row
                 song={song}
-                active={state !== 'STOPPED' && nowPlayingSongSource === id}
+                active={isPlaying && nowPlayingSongSource === id}
               />
             </div>
           );

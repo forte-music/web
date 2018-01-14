@@ -46,6 +46,7 @@ const graphqlEnhancer = connectionQuery(Query, {
 });
 
 type ReduxStateEnhancedProps = {
+  isPlaying: boolean,
   nowPlayingSongSource?: string,
 };
 
@@ -58,6 +59,7 @@ const reduxEnhancer = connect(
     const nowPlaying = isSource(source, 'PLAYLIST', id);
 
     return {
+      isPlaying: nowPlaying,
       nowPlayingSongSource: nowPlaying ? source.song : undefined,
     };
   }

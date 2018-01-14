@@ -5,7 +5,6 @@ import { HashRouter } from 'react-router-dom';
 import { storiesOf } from '@storybook/react';
 
 import store from '../store';
-import StatefulComponent from './StatefulComponent';
 import Playlist from '../containers/Playlist/Playlist';
 import { playlists } from '../graphql/mock';
 import type { PlaylistModel } from '../containers/Playlist/Playlist';
@@ -35,17 +34,5 @@ storiesOf('Playlist', module)
     </Provider>
   ))
   .add('isolated', () => (
-    <StatefulComponent state={{ playbackState: 'STOPPED' }}>
-      {({ playbackState }, setState) => (
-        <Playlist
-          fetchMore={() => {}}
-          loading={false}
-          playlist={playlist}
-          onPause={() => setState({ playbackState: 'PAUSED' })}
-          onPlay={() => setState({ playbackState: 'PLAYING' })}
-          onStartPlayback={() => setState({ playbackState: 'PLAYING' })}
-          state={playbackState}
-        />
-      )}
-    </StatefulComponent>
+    <Playlist isPlaying={true} fetchMore={() => {}} playlist={playlist} />
   ));
