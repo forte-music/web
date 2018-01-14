@@ -3,7 +3,43 @@ import React from 'react';
 
 import styles from './Slider.css';
 
+type SliderInputProps = {
+  value?: number,
+  min: number,
+  max: number,
+  inputClass?: string,
+  onValueChange: number => void,
+  onStartSliding?: () => void,
+  onEndSliding?: () => void,
+};
+
+export const SliderInput = ({
+  inputClass,
+  onValueChange,
+  min,
+  max,
+  value,
+  onStartSliding = () => {},
+  onEndSliding = () => {},
+}: SliderInputProps) => (
+  <input
+    className={[styles.input, inputClass].join(' ')}
+    onChange={(e: SyntheticInputEvent<HTMLInputElement>) =>
+      onValueChange(Number(e.target.value))
+    }
+    onMouseDown={() => onStartSliding()}
+    onMouseUp={() => onEndSliding()}
+    min={min}
+    max={max}
+    value={value}
+    type="range"
+  />
+);
+
 type Props = {
+  // The value of the slider is set to this.
+  value: number,
+
   // Class applied to the container. This can be used to adjust sizing among
   // other things.
   containerClass?: string,
@@ -12,47 +48,51 @@ type Props = {
   // other things.
   barClass?: string,
 
+  // The inclusive lower bound of the output values. The default is 0.
+  min: number,
+
+  // The inclusive upper bound of the output values. The default is 100.
+  max: number,
+
   // Class applied to the input which reacts to dragging.
   inputClass?: string,
 
   // Called when the slider is moved.
   onValueChange: number => void,
 
-  // The value of the slider is set to this.
-  value: number,
+  // Called when the user starts interacting with the slider.
+  onStartSliding?: () => void,
 
-  // The inclusive lower bound of the output values. The default is 0.
-  min: number,
-
-  // The inclusive upper bound of the output values. The default is 100.
-  max: number,
+  // Called when the user releases the slider.
+  onEndSliding?: () => void,
 };
 
 // An simple, flat, interactive slider.
 const Slider = ({
   onValueChange,
+  onStartSliding,
+  onEndSliding,
   value,
-  containerClass: userContainerClass = '',
-  barClass: userBarClass = '',
-  inputClass: userInputClass = '',
+  containerClass = '',
+  barClass = '',
+  inputClass = '',
   min = 0,
   max = 100,
 }: Props) => (
-  <div className={[styles.container, userContainerClass].join(' ')}>
+  <div className={[styles.container, containerClass].join(' ')}>
     <div
-      className={[styles.bar, userBarClass].join(' ')}
+      className={[styles.bar, barClass].join(' ')}
       style={{ width: `${(value - min) / (max - min) * 100}%` }}
     />
 
-    <input
-      className={[styles.input, userInputClass].join(' ')}
-      onChange={(e: SyntheticInputEvent<HTMLInputElement>) =>
-        onValueChange(Number(e.target.value))
-      }
+    <SliderInput
+      inputClass={inputClass}
+      onValueChange={onValueChange}
+      onStartSliding={onStartSliding}
+      onEndSliding={onEndSliding}
       min={min}
       max={max}
       value={value}
-      type="range"
     />
   </div>
 );

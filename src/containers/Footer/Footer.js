@@ -5,6 +5,7 @@ import Audio from '../../components/Audio';
 import NowPlaying from './NowPlaying';
 import PlaybackControls from './PlaybackControls';
 import AdditionalControls from './AdditionalControls';
+import { SliderInput } from '../../components/Slider';
 
 import styles from './Footer.css';
 import barStyles from '../../components/Bars.css';
@@ -107,15 +108,11 @@ class Footer extends Component<Props, State> {
   onLoadingChanged = (loading: boolean) => this.setState({ loading });
 
   onSeek = (position: number) => {
-    if (this.state.loading) {
+    if (this.state.loading || !this.audio) {
       return;
     }
 
-    const time = position / 100 * this.state.duration;
-
-    if (this.audio) {
-      this.audio.seek(time);
-    }
+    this.audio.seek(position);
   };
 
   onVolume = (volume: number) => this.setState({ volume });
@@ -136,6 +133,8 @@ class Footer extends Component<Props, State> {
       nextSong,
       playing,
       onToggleLike,
+      pause,
+      play,
     } = this.props;
     const { loading, currentTime, duration, bufferedTo, volume } = this.state;
 
@@ -170,7 +169,13 @@ class Footer extends Component<Props, State> {
             )}
           />
 
-          <BarSlider onChange={this.onSeek} />
+          <SliderInput
+            min={0}
+            max={duration}
+            onValueChange={this.onSeek}
+            onStartSliding={pause}
+            onEndSliding={play}
+          />
         </div>
 
         <div className={styles.container}>
@@ -209,22 +214,6 @@ const Bar = ({ className, position }: BarProps) => (
   <div
     style={{ width: `${position * 100}%` }}
     className={[barStyles.bar, className].join(' ')}
-  />
-);
-
-type BarSliderProps = {
-  onChange: (position: number) => void,
-};
-
-const BarSlider = ({ onChange }: BarSliderProps) => (
-  <input
-    onChange={(e: SyntheticInputEvent<HTMLInputElement>) =>
-      onChange(Number(e.target.value))
-    }
-    className={[barStyles.bar, barStyles.seek].join(' ')}
-    min={0}
-    max={100}
-    type="range"
   />
 );
 
