@@ -54,7 +54,7 @@ const reduxEnhancer = connect(
     { queue }: State,
     { playlist: { id } = {} }: GraphQLEnhancedProps
   ): ReduxStateEnhancedProps => {
-    const { source } = nowPlayingSelector(queue);
+    const { source = {} } = nowPlayingSelector(queue) || {};
     const nowPlaying = isSource(source, 'PLAYLIST', id);
 
     return {

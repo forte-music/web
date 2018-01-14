@@ -118,7 +118,7 @@
     "extends": "react-app",
     "rules": {
       "graphql/template-strings": [
-        "error",
+        "warn",
         {
           "env": "literal"
         }

@@ -42,7 +42,7 @@ type ReduxActionEnhancedProps = {
 
 const reduxEnhancer = connect(
   ({ queue }: State, { kind, list }: Props): ReduxStateEnhancedProps => {
-    const { source } = nowPlayingSelector(queue) || {};
+    const { source = {} } = nowPlayingSelector(queue) || {};
 
     const nowPlaying = isSource(source, kind, list);
 

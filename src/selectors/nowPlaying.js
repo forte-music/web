@@ -6,10 +6,7 @@ export const nowPlaying = ({ items, position }: QueueState): ?QueueItem =>
 
 // Checks whether the list of kind with identifier list is the same as source.
 export const isSource = (
-  source: ?Source,
+  { kind: sourceKind, list: sourceList }: Source,
   kind: Kind,
   list: string
-): boolean => {
-  const { kind: sourceKind, list: sourceList } = source || {};
-  return sourceKind === kind && sourceList === list;
-};
+): boolean => sourceKind === kind && sourceList === list;

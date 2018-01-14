@@ -1,4 +1,5 @@
 @import '../../sizes.css';
+@import '../../colors.css';
 
 .heading {
   font-size: var(--font-size-large);
@@ -21,7 +22,7 @@
 .albumContainer {
   display: flex;
   flex-direction: column;
-  color: white;
+  color: var(--active-color);
 
   text-align: center;
 }
@@ -33,7 +34,6 @@
 .album {
   margin-top: 8px;
   font-size: 14px;
-  color: #ddd;
   margin-bottom: 4px;
 }
 
@@ -42,5 +42,5 @@
   margin-bottom: 4px;
 
   font-size: 12px;
-  color: #bbb;
+  color: var(--secondary-text-color);
 }
