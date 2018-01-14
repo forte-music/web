@@ -1,20 +1,30 @@
 // @flow
 export type ID = string;
 
-export type QueueItemSource = {
-  // The id of the song to play. Full information about this song can be
-  // resolved by querying the graphql API.
-  songId: string,
+export type Kind = 'PLAYLIST' | 'ALBUM' | 'ARTIST';
 
+// A collection of information about where a song was queued from.
+export type Source = {
   // An opaque string identifying the source list (playlist, album's tracks,
   // artist's songs) from which a song is being played.
-  listSource?: string,
+  list?: string,
+
+  // The kind of list the song was created from.
+  kind?: Kind,
 
   // An opaque string identifying an item in the source list. If a
   // listSource is specified, a songSource may be specified. For
   // example, for playlists, this could be PlaylistItem.id, for albums this
   // might not be specified because a song id can only occur once in an album.
-  songSource?: string,
+  song?: string,
+};
+
+export type QueueItemSource = {
+  // The id of the song to play. Full information about this song can be
+  // resolved by querying the graphql API.
+  songId: string,
+
+  source?: Source,
 };
 
 export type QueueItem = {
