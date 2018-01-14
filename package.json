@@ -67,7 +67,7 @@
     "@storybook/addon-actions": "^3.3.3",
     "@storybook/addons": "^3.3.0",
     "@storybook/react": "^3.3.3",
-    "apollo-codegen": "0xcaff/apollo-codegen#portable",
+    "apollo-codegen": "0xcaff/apollo-codegen#ac135e67ce2335c7ff6eba0bd059d6f9535d2335",
     "apollo-link-schema": "^1.0.2",
     "babel-eslint": "7.2.3",
     "babel-jest": "20.0.3",
