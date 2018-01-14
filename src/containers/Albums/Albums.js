@@ -1,12 +1,14 @@
+// @flow
 import React from 'react';
 
 import Artwork from '../../components/Artwork';
 import type { Connection, Edge } from '../../graphql/mock';
 
-import styles from './Albums.css';
 import { Link } from 'react-router-dom';
 import { album, artist } from '../../paths';
-import PlaybackArtwork from '../../components/PlaybackArtwork';
+import PlaybackArtwork from '../../containers/PlaybackArtwork';
+import type { QueueItemSource } from '../../state/queue';
+import styles from './Albums.css';
 
 // TODO: Design Album Count
 
@@ -22,23 +24,35 @@ type Album = {
   artist: Artist,
 };
 
+type LoadAlbumTracks = (albumId: string) => Promise<QueueItemSource[]>;
+
 export type Props = {
   albums?: Connection<Album>,
   fetchMore: () => void,
   loading: boolean,
+  loadAlbumTracks: LoadAlbumTracks,
 };
 
-const Albums = ({ albums }: Props) => (
+const Albums = ({ albums, loadAlbumTracks }: Props) => (
   <div>
     <div className={styles.heading}>Albums</div>
     <div className={styles.container}>
       {albums &&
         albums.edges.map(({ node }: Edge<Album>) => (
-          <AlbumInfo key={node.id} album={node} />
+          <AlbumInfo
+            key={node.id}
+            album={node}
+            loadAlbumTracks={loadAlbumTracks}
+          />
         ))}
     </div>
   </div>
 );
+
+type AlbumInfoProps = {
+  album: Album,
+  loadAlbumTracks: LoadAlbumTracks,
+};
 
 const AlbumInfo = ({
   album: {
@@ -47,14 +61,14 @@ const AlbumInfo = ({
     name,
     artist: { id: artistId, name: artistName },
   },
-}: {
-  album: Album,
-}) => (
+  loadAlbumTracks,
+}: AlbumInfoProps) => (
   <div className={styles.albumContainer}>
-    <div className={styles.artwork}>
+    <div>
       <PlaybackArtwork
-        onStartPlayback={x => console.log('asdf', x)}
-        state={'STOPPED'}
+        kind={'ALBUM'}
+        list={albumId}
+        loadTracks={async () => await loadAlbumTracks(albumId)}
       >
         <Link to={album(albumId)}>
           <Artwork src={artworkUrl} alt={name} />
