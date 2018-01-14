@@ -20,6 +20,10 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
+"@forte-music/schema@^0.0.7":
+  version "0.0.7"
+  resolved "https://registry.yarnpkg.com/@forte-music/schema/-/schema-0.0.7.tgz#bf286c68ba098475886a4c0ae48b1609b5c44c86"
+
 "@storybook/addon-actions@^3.3.3", "@storybook/addon-actions@^3.3.7":
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/@storybook/addon-actions/-/addon-actions-3.3.7.tgz#edc2d4fe3472a3f542d7c3ed990400b5433e58fc"
@@ -8328,10 +8332,6 @@ schema-utils@^0.4.2:
   dependencies:
     ajv "^5.0.0"
     ajv-keywords "^2.1.0"
-
-schema@forte-music/schema#bccc6bdd93afaa820666b7b389ecd80a9c9c1e84:
-  version "1.0.0"
-  resolved "https://codeload.github.com/forte-music/schema/tar.gz/bccc6bdd93afaa820666b7b389ecd80a9c9c1e84"
 
 scuid@^1.0.2:
   version "1.0.2"

@@ -1,5 +1,5 @@
 {
-  "schemaPath": "node_modules/schema/schema.graphql",
+  "schemaPath": "node_modules/@forte-music/schema/schema.graphql",
   "includes": [
     "src/**/*.graphql"
   ]

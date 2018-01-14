@@ -11,7 +11,7 @@ import {
 import query from './query.graphql';
 import client from '../client';
 import { now } from '../time';
-import schema from 'schema/schema.graphql';
+import schema from '@forte-music/schema/schema.graphql';
 
 const introspectionQuery = gql(rawIntrospectionQuery);
 
