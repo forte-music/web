@@ -5,7 +5,7 @@ import { compose } from 'redux';
 import Footer from './Footer';
 import { reduxEnhancer } from './redux';
 import { graphqlEnhancer } from './query';
-import { graphqlMutationEnhancer } from './mutate';
+import { likeMutationEnhancer, playSongMutationEnhancer } from './mutate';
 
 export type InputProps = {
   className: string,
@@ -14,7 +14,8 @@ export type InputProps = {
 const enhancer = compose(
   reduxEnhancer,
   graphqlEnhancer,
-  graphqlMutationEnhancer
+  likeMutationEnhancer,
+  playSongMutationEnhancer
 );
 const EnhancedFooter: ComponentType<InputProps> = enhancer(Footer);
 

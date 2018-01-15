@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 
 import type { InputProps } from '.';
 import type { State as ReduxState } from '../../state';
+import type { QueueItem } from '../../state/queue';
 import { nowPlaying as nowPlayingSelector } from '../../selectors/nowPlaying';
 import { nextSong, pause, play, previousSong } from '../../actions';
 
@@ -17,15 +18,14 @@ const mapDispatchToProps = (dispatch): ReduxActionEnhancedProps =>
   bindActionCreators({ nextSong, previousSong, play, pause }, dispatch);
 
 type ReduxStateEnhancedProps = {
-  songId?: string,
+  queueItem?: QueueItem,
   playing: boolean,
 };
 
 const mapStateToProps = ({ queue }: ReduxState): ReduxStateEnhancedProps => {
-  const song = nowPlayingSelector(queue) || {};
+  const queueItem = nowPlayingSelector(queue) || undefined;
   const { shouldBePlaying } = queue;
-  const { songId } = song;
-  return { songId, playing: shouldBePlaying };
+  return { queueItem, playing: shouldBePlaying };
 };
 
 export type ReduxEnhancedProps = InputProps &

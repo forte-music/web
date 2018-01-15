@@ -9,6 +9,7 @@ import { SliderInput } from '../../components/Slider';
 
 import styles from './Footer.css';
 import barStyles from '../../components/Bars.css';
+import type { QueueItem } from '../../state/queue';
 
 type Artist = {
   id: string,
@@ -38,21 +39,35 @@ type Props = {
   // A class applied to the component's container container element.
   className: string,
 
-  playing: boolean,
-
   // Called to skip to the next song in the queue.
   nextSong: () => void,
 
   // Called to skip to the previous song in the queue.
   previousSong: () => void,
 
+  // Called to report the currently playing song. This is after playing or
+  // seek past the four minutes mark or after half of the track, whichever
+  // comes first. This should be called at most once per song.
+  playSong: () => void,
+
+  // Whether or not audio should be playing.
+  playing: boolean,
+
+  // Called to start playback.
   play: () => void,
+
+  // Called to temporarily stop playback.
   pause: () => void,
 
+  // Toggles the liked state of this song. (nowPlaying.stats.liked).
   onToggleLike: () => void,
 
-  // The currently playing song.
+  // The currently playing song. If this is not defined no song is playing
+  // and an inactive footer is rendered.
   nowPlaying?: Song,
+
+  // The currently playing queue item.
+  queueItem?: QueueItem,
 };
 
 // TODO: Loading States
@@ -78,6 +93,9 @@ class Footer extends Component<Props, State> {
   // audio files.
   audio: ?Audio;
 
+  // Whether playSong was called for the current queueItem.
+  hasCalledPlaySong: boolean = false;
+
   onAudioRef = (audio: ?Audio) => (this.audio = audio);
 
   onPrevious = () => {
@@ -99,7 +117,22 @@ class Footer extends Component<Props, State> {
     }
   };
 
-  onCurrentTime = (currentTime: number) => this.setState({ currentTime });
+  onCurrentTime = (currentTime: number) => {
+    this.setState({ currentTime });
+
+    const { duration } = this.state;
+    if (!duration) {
+      return;
+    }
+
+    if (
+      !this.hasCalledPlaySong &&
+      (currentTime >= duration / 2 || currentTime >= 4 * 60)
+    ) {
+      this.hasCalledPlaySong = true;
+      this.props.playSong();
+    }
+  };
 
   onDuration = (duration: number) => this.setState({ duration });
 
@@ -125,6 +158,13 @@ class Footer extends Component<Props, State> {
       play();
     }
   };
+
+  componentWillUpdate(nextProps: Props) {
+    if (this.props.queueItem !== nextProps.queueItem) {
+      // The playing song has changed, reset flag variable.
+      this.hasCalledPlaySong = false;
+    }
+  }
 
   render() {
     const {

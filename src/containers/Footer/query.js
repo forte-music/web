@@ -10,8 +10,10 @@ import type {
 } from './__generated__/Footer';
 
 export const defaultConfig = {
-  options: ({ songId }: ReduxEnhancedProps) => ({ variables: { songId } }),
-  skip: ({ songId }: ReduxEnhancedProps): boolean => !songId,
+  options: ({ queueItem: { songId } = {} }: ReduxEnhancedProps) => ({
+    variables: { songId },
+  }),
+  skip: ({ queueItem }: ReduxEnhancedProps): boolean => !queueItem,
 };
 
 export type QueryEnhancedProps = ReduxEnhancedProps & {
