@@ -46,6 +46,16 @@ describe('add to queue reducer', () => {
     const newState = addItemsToQueue(initialState, action);
     expect(newState).toMatchSnapshot();
   });
+
+  it('adds before current playing item', () => {
+    const action = {
+      type: 'ADD_ITEMS_TO_QUEUE',
+      items,
+      position: 'BEFORE_CURRENT',
+    };
+    const newState = addItemsToQueue(initialState, action);
+    expect(newState).toMatchSnapshot();
+  });
 });
 
 describe('replace reducer', () => {

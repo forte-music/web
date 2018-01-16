@@ -63,6 +63,9 @@ export const addItemsToQueue = (
   } else if (position === 'AFTER_CURRENT') {
     const { position } = state;
     idx = position + 1;
+  } else if (position === 'BEFORE_CURRENT') {
+    const { position } = state;
+    idx = position - 1;
   }
 
   const items = [

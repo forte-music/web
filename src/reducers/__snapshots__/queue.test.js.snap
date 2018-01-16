@@ -37,6 +37,43 @@ Object {
 }
 `;
 
+exports[`add to queue reducer adds before current playing item 1`] = `
+Object {
+  "items": Array [
+    Object {
+      "id": "a",
+      "songId": "Legend",
+    },
+    Object {
+      "id": "4",
+      "songId": "this is a song",
+    },
+    Object {
+      "id": "5",
+      "songId": "this is another song",
+    },
+    Object {
+      "id": "b",
+      "songId": "Blessings (Explicit) ft. Drake, Kanye West",
+    },
+    Object {
+      "id": "c",
+      "songId": "Pick Me Up ft. Anna of the North",
+    },
+    Object {
+      "id": "d",
+      "songId": "No Less",
+    },
+    Object {
+      "id": "e",
+      "songId": "Love Is Gone (Audio) ft. Drew Love (of THEY.)",
+    },
+  ],
+  "position": 2,
+  "shouldBePlaying": false,
+}
+`;
+
 exports[`add to queue reducer adds to end of queue 1`] = `
 Object {
   "items": Array [
@@ -145,11 +182,11 @@ exports[`replace reducer replaces the queue 1`] = `
 Object {
   "items": Array [
     Object {
-      "id": "4",
+      "id": "6",
       "songId": "Just The Way You Are",
     },
     Object {
-      "id": "5",
+      "id": "7",
       "songId": "Glad You Came",
     },
   ],

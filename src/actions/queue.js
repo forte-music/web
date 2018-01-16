@@ -1,7 +1,7 @@
 // @flow
 import type { ID, QueueItemSource } from '../state/queue';
 
-type Position = 'END' | 'AFTER_CURRENT';
+type Position = 'END' | 'AFTER_CURRENT' | 'BEFORE_CURRENT';
 
 export type AddItemsToQueueAction = {
   type: 'ADD_ITEMS_TO_QUEUE',
@@ -10,11 +10,11 @@ export type AddItemsToQueueAction = {
 };
 
 export const addToQueue = (
-  songs: string[],
+  items: QueueItemSource[],
   position: Position
 ): AddItemsToQueueAction => ({
   type: 'ADD_ITEMS_TO_QUEUE',
-  items: songs.map(songId => ({ songId })),
+  items,
   position,
 });
 
@@ -41,6 +41,11 @@ export const removeFromQueue = (songs: ID[]): RemoveFromQueueAction => ({
 });
 
 export type SkipRelativeAction = { type: 'SKIP_RELATIVE', offset: number };
+
+export const skipRelative = (offset: number): SkipRelativeAction => ({
+  type: 'SKIP_RELATIVE',
+  offset,
+});
 
 export const nextSong = (): SkipRelativeAction => ({
   type: 'SKIP_RELATIVE',
