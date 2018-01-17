@@ -2,7 +2,7 @@
 import type { ComponentType } from 'react';
 import type { OptionProps } from 'react-apollo';
 import { connect } from 'react-redux';
-import { compose } from 'redux';
+import { bindActionCreators, compose } from 'redux';
 
 import type { State } from '../../state';
 import type {
@@ -16,7 +16,15 @@ import {
   isSource,
   nowPlaying as nowPlayingSelector,
 } from '../../selectors/nowPlaying';
+import {
+  skipRelative,
+  replaceQueue,
+  skipToPosition,
+  play,
+} from '../../actions';
+import { playList } from '../../actions/creators/queue';
 import { connectionQuery } from '../../components/ConnectionQuery';
+import type { QueueItemSource } from '../../state/queue';
 
 type InputProps = {
   match: { params: { id: string } },
@@ -50,6 +58,10 @@ type ReduxStateEnhancedProps = {
   nowPlayingSongSource?: string,
 };
 
+type ReduxActionEnhancedProps = {
+  onStartPlaying: (items: QueueItemSource[], startIndex: number) => void,
+};
+
 const reduxEnhancer = connect(
   (
     { queue }: State,
@@ -62,8 +74,19 @@ const reduxEnhancer = connect(
       isPlaying: nowPlaying,
       nowPlayingSongSource: nowPlaying ? source.song : undefined,
     };
-  }
+  },
+  (dispatch): ReduxActionEnhancedProps => ({
+    ...bindActionCreators(
+      { skipRelative, replaceQueue, skipToPosition, play },
+      dispatch
+    ),
+    onStartPlaying: playList(dispatch),
+  })
 );
+
+type ReduxEnhancedProps = ReduxStateEnhancedProps & ReduxActionEnhancedProps;
+
+export type Props = GraphQLEnhancedProps & ReduxEnhancedProps;
 
 const enhancer = compose(graphqlEnhancer, reduxEnhancer);
 

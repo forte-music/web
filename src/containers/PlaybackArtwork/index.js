@@ -6,12 +6,13 @@ import type { Node } from 'react';
 import type { Kind, QueueItemSource } from '../../state/queue';
 import type { State } from '../../state';
 import type { PlaybackState } from '../../components/PlaybackArtwork';
-import { play, pause, replaceQueue } from '../../actions';
+import { play, pause } from '../../actions';
 import {
   isSource,
   nowPlaying as nowPlayingSelector,
 } from '../../selectors/nowPlaying';
 import PlaybackArtwork from '../../components/PlaybackArtwork';
+import { playList } from '../../actions/creators/queue';
 
 type Props = {
   // The kind of list this is. Used to check whether the current playing
@@ -56,6 +57,7 @@ const reduxEnhancer = connect(
     onPlaying: () => dispatch(play()),
     onPaused: () => dispatch(pause()),
     onStartPlayback: async () => {
+      // TODO: This shouldn't be a concern of the UI.
       const items = await loadTracks();
 
       const itemsWithDefaults: QueueItemSource[] = items.map(item => ({
@@ -63,8 +65,7 @@ const reduxEnhancer = connect(
         source: { list, kind, ...item.source },
       }));
 
-      dispatch(replaceQueue(itemsWithDefaults));
-      dispatch(play());
+      playList(dispatch)(itemsWithDefaults);
     },
   })
 );

@@ -10,3 +10,8 @@ export const isSource = (
   kind: Kind,
   list: string
 ): boolean => sourceKind === kind && sourceList === list;
+
+export const isSameSource = (
+  { kind: kindA, list: listA, song: songA }: Source,
+  { kind: kindB, list: listB, song: songB }: Source
+): boolean => kindA === kindB && listA === listB && songA === songB;

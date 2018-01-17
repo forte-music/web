@@ -34,5 +34,10 @@ storiesOf('Playlist', module)
     </Provider>
   ))
   .add('isolated', () => (
-    <Playlist isPlaying={true} fetchMore={() => {}} playlist={playlist} />
+    <Playlist
+      onStartPlaying={() => {}}
+      isPlaying={true}
+      fetchMore={() => {}}
+      playlist={playlist}
+    />
   ));

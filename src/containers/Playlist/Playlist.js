@@ -9,7 +9,10 @@ import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
 import { Header, Row } from '../../components/SongList/Detail';
 
+import type { Props as EnhancedProps } from './index';
+
 import styles from './Playlist.css';
+import type { QueueItemSource } from '../../state/queue';
 
 type Artist = {
   id: string,
@@ -19,7 +22,7 @@ type Artist = {
 type Album = {
   id: string,
   name: string,
-  artworkUrl?: string,
+  artworkUrl: ?string,
 };
 
 type Song = {
@@ -55,7 +58,13 @@ export type Props = {
   // The QueueItem.songSource of the currently playing song. This may be
   // supplied when state is PLAYING.
   nowPlayingSongSource?: string,
+
+  // Called when the list has started playing.
+  onStartPlaying: (items: QueueItemSource[], startIndex: number) => void,
 };
+
+// eslint-disable-next-line no-unused-expressions
+(((undefined: any): EnhancedProps): Props);
 
 // TODO: Loading State
 // TODO: Add Enqueue and Three Dots Button
@@ -70,68 +79,78 @@ const Playlist = ({
   isPlaying,
   fetchMore,
   nowPlayingSongSource,
-}: Props) => (
-  <div className={styles.container}>
-    <header className={styles.header}>
-      <div className={styles.headerContainer}>
-        <div className={styles.artworkContainer}>
-          <PlaybackArtwork
-            kind={'PLAYLIST'}
-            list={id}
-            loadTracks={async () =>
-              edges.map(
-                ({ node: { id: songSource, song: { id: songId } } }) => ({
-                  source: { song: songSource },
-                  songId,
-                })
-              )
-            }
-            backgroundInteraction
-          >
-            <SongCollage
-              artworkUrls={
-                ((edges
-                  .map(({ node }) => node.song.album.artworkUrl)
-                  .filter(url => !!url): any): string[])
-              }
-              alt="Playlist Artwork"
-            />
-          </PlaybackArtwork>
-        </div>
+  onStartPlaying,
+}: Props) => {
+  const queueItems = edges.map(
+    ({ node: { id: songSource, song: { id: songId } } }) => ({
+      source: { kind: 'PLAYLIST', song: songSource, list: id },
+      songId,
+    })
+  );
 
-        <div className={styles.infoContainer}>
-          <div className={styles.name}>{name}</div>
+  return (
+    <div className={styles.container}>
+      <header className={styles.header}>
+        <div className={styles.headerContainer}>
+          <div className={styles.artworkContainer}>
+            <PlaybackArtwork
+              kind={'PLAYLIST'}
+              list={id}
+              loadTracks={async () => queueItems}
+              backgroundInteraction
+            >
+              <SongCollage
+                artworkUrls={
+                  ((edges
+                    .map(({ node }) => node.song.album.artworkUrl)
+                    .filter(url => !!url): any): string[])
+                }
+                alt="Playlist Artwork"
+              />
+            </PlaybackArtwork>
+          </div>
 
-          <div className={styles.iconsContainer}>
-            <div className={styles.duration}>
-              {count} songs, {formatDuration(duration)}
+          <div className={styles.infoContainer}>
+            <div className={styles.name}>{name}</div>
+
+            <div className={styles.iconsContainer}>
+              <div className={styles.duration}>
+                {count} songs, {formatDuration(duration)}
+              </div>
             </div>
           </div>
         </div>
+      </header>
+
+      <div className={styles.bodyContainer}>
+        <SongList
+          countAvailableRows={edges.length}
+          totalItems={count}
+          loadMore={fetchMore}
+          header={<Header />}
+          renderItem={({ index, style }) => {
+            const { node: { id: itemId, song } }: Edge<PlaylistItem> = edges[
+              index
+            ];
+
+            return (
+              <div key={itemId} style={style}>
+                <Row
+                  song={song}
+                  active={isPlaying && nowPlayingSongSource === itemId}
+                  onDoubleClick={() => {
+                    if (!isPlaying) {
+                      onStartPlaying(queueItems, index);
+                    }
+                  }}
+                />
+              </div>
+            );
+          }}
+        />
       </div>
-    </header>
-
-    <div className={styles.bodyContainer}>
-      <SongList
-        countAvailableRows={edges.length}
-        totalItems={count}
-        loadMore={fetchMore}
-        header={<Header />}
-        renderItem={({ index, style }) => {
-          const { node: { id, song } }: Edge<PlaylistItem> = edges[index];
-
-          return (
-            <div key={id} style={style}>
-              <Row
-                song={song}
-                active={isPlaying && nowPlayingSongSource === id}
-              />
-            </div>
-          );
-        }}
-      />
     </div>
-  </div>
-);
+  );
+};
 
 export default Playlist;
