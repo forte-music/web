@@ -39,6 +39,8 @@ class DelayedLoadingRow extends Component<SongRowProps, State> {
   }
 }
 
+const manyItems = 100000;
+
 const Story = ({
   count = ids.length,
   getId = index => ids[index],
@@ -70,11 +72,11 @@ storiesOf('SongList', module)
   .add('a few items', () => <Story />)
   .add('single row loading', () => <Row />)
   .add('the same items many times', () => (
-    <Story count={1000} getId={index => ids[index % ids.length]} />
+    <Story count={manyItems} getId={index => ids[index % ids.length]} />
   ))
   .add('lots of loading items', () => (
     <Story
-      count={1000}
+      count={manyItems}
       getId={index => ids[index % ids.length]}
       getRowForSong={song => <DelayedLoadingRow song={song} />}
     />
@@ -88,6 +90,22 @@ storiesOf('SongList', module)
   ))
   .add('connected detail row', () => (
     <ApolloProvider client={client}>
-      <ConnectedDetailRow songId={'69120ac9-1e48-494f-a1f4-4a34735fe408'} />
+      <ConnectedDetailRow songId={'song:1:1'} />
+    </ApolloProvider>
+  ))
+  .add('many connected detail rows', () => (
+    <ApolloProvider client={client}>
+      <Story
+        count={manyItems}
+        getId={index => ids[index % ids.length]}
+        getRowForSong={(song, index) => (
+          <ConnectedDetailRow
+            key={index}
+            songId={song.id}
+            active={index === 30}
+            onDoubleClick={() => action('double click')}
+          />
+        )}
+      />
     </ApolloProvider>
   ));
