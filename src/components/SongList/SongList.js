@@ -4,6 +4,8 @@ import type { Node } from 'react';
 import VirtualList from 'react-tiny-virtual-list';
 import Measure from 'react-measure';
 
+import styles from './SongList.css';
+
 type Props = {
   // The number of rows currently available to render by calls to
   // renderItem. If rows need to be rendered which exceed this number,
@@ -32,6 +34,8 @@ type Props = {
   renderItem: ({ index: number, style: Object }) => Node,
 };
 
+const itemHeight = 36;
+
 const SongList = ({
   countAvailableRows,
   loadMore,
@@ -41,7 +45,7 @@ const SongList = ({
   renderItem,
   rootClassName,
 }: Props) => (
-  <div className={rootClassName}>
+  <div className={[styles.container, rootClassName].join(' ')}>
     {header}
     <Measure bounds>
       {({ measureRef, contentRect: { bounds: { height, width } } }) => (
@@ -50,7 +54,7 @@ const SongList = ({
             height={height || 100}
             width={width}
             itemCount={countAvailableRows}
-            itemSize={36}
+            itemSize={itemHeight}
             onItemsRendered={({ startIndex, stopIndex }) => {
               if (countAvailableRows >= totalItems) {
                 // No additional items to fetch.

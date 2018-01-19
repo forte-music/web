@@ -1,0 +1,9 @@
+.container {
+  /*
+  Allows the container's size not to be determined by its contents but by the
+  size of the parent container.
+  */
+
+  width: 0;
+  min-width: 100%;
+}
