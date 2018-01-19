@@ -96,11 +96,6 @@ class Audio extends Component<Props> {
     this.audioElem.currentTime = currentTime;
   };
 
-  onRef = (audioElem: ?HTMLAudioElement) => {
-    this.audioElem = audioElem;
-    this.reconcileProps();
-  };
-
   onDurationChange = () => {
     if (!this.audioElem) {
       throw new Error('Got duration callback without an audio element.');
@@ -112,8 +107,6 @@ class Audio extends Component<Props> {
     }
   };
 
-  onTimeUpdate = () => this.updateTime();
-
   updateTime = () => {
     if (!this.audioElem) {
       throw new Error('updateTime called without an audio element.');
@@ -122,10 +115,6 @@ class Audio extends Component<Props> {
     const currentTime = this.audioElem.currentTime;
     this.props.onCurrentTime(currentTime);
   };
-
-  onPlaying = () => this.updateLoaded();
-
-  onProgress = () => this.updateLoaded();
 
   // Update state from the audio element to reflect the amount of buffered
   // content.
@@ -167,29 +156,26 @@ class Audio extends Component<Props> {
     }
   };
 
-  onCanPlay = () => this.setLoaded();
-
-  // The time changes while seeking even before the new data is loaded.
-  onSeeking = () => this.updateTime();
-
-  onSeeked = () => this.setLoaded();
-
   render() {
     return (
       <audio
-        ref={this.onRef}
+        ref={(audioElem: ?HTMLAudioElement) => {
+          this.audioElem = audioElem;
+          this.reconcileProps();
+        }}
         src={this.props.src}
         onCanPlayThrough={this.props.onCanPlayThrough}
         onEnded={this.props.onEnded}
         onError={this.props.onError}
-        onTimeUpdate={this.onTimeUpdate}
-        onProgress={this.onProgress}
-        onPlaying={this.onPlaying}
+        onTimeUpdate={() => this.updateTime()}
+        onProgress={() => this.updateLoaded()}
+        onPlaying={() => this.updateLoaded()}
         onDurationChange={this.onDurationChange}
         onWaiting={this.onWaiting}
-        onCanPlay={this.onCanPlay}
-        onSeeked={this.onSeeked}
-        onSeeking={this.onSeeking}
+        onCanPlay={() => this.setLoaded()}
+        // The time changes while seeking even before the new data is loaded.
+        onSeeked={() => this.setLoaded()}
+        onSeeking={() => this.updateTime()}
       />
     );
   }
