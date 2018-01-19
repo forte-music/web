@@ -89,3 +89,9 @@ export const split = <T>(
     },
     { accepted: [], failed: [] }
   );
+
+export function* genRange(to: number): Generator<number, void, void> {
+  for (let i = 0; i < to; i++) {
+    yield i;
+  }
+}

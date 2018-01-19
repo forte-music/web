@@ -1,5 +1,5 @@
 // @flow
-import { formatDuration, join, split } from './utils';
+import { formatDuration, genRange, join, split } from './utils';
 
 describe('formatDuration', () => {
   it('should format a mm:ss duration correctly', () =>
@@ -27,4 +27,8 @@ it('should split things into two buckets', () => {
     failed: [1, 3, 5, 7],
     accepted: [2, 4, 6],
   });
+});
+
+it('should generate numbers from 0 to n-1 inclusive', () => {
+  expect(Array.from(genRange(10))).toEqual([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]);
 });

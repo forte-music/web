@@ -4,6 +4,7 @@ import type { Node } from 'react';
 import VirtualList from 'react-virtual-list';
 
 import styles from './SongList.css';
+import { genRange } from '../../utils';
 
 type Props = {
   // The number of rows currently available to render by calls to
@@ -26,12 +27,6 @@ type Props = {
   // Called to render each row. Each row must be 36px tall.
   renderItem: ({ index: number }) => Node,
 };
-
-function* genRange(to: number): Generator<number, void, void> {
-  for (let i = 0; i < to; i++) {
-    yield i;
-  }
-}
 
 // TODO: Loading More Mechanism
 
