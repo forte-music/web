@@ -14,19 +14,18 @@ const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
       <SongList
         loadMore={() => {}}
         header={<Header />}
-        totalItems={Infinity}
+        totalItems={items.length}
         countAvailableRows={items.length}
-        renderItem={({ index, style }) => {
+        renderItem={({ index }) => {
           const { id, songId } = items[index];
 
           return (
-            <div style={style} key={id}>
-              <ConnectedDetailRow
-                songId={songId}
-                active={nowPlaying ? id === nowPlaying.id : false}
-                onDoubleClick={() => skipToPosition(index)}
-              />
-            </div>
+            <ConnectedDetailRow
+              key={id}
+              songId={songId}
+              active={nowPlaying ? id === nowPlaying.id : false}
+              onDoubleClick={() => skipToPosition(index)}
+            />
           );
         }}
       />

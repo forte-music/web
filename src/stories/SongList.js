@@ -10,7 +10,6 @@ import { songs } from '../graphql/mock';
 import type { Song } from '../graphql/mock';
 import SongList from '../components/SongList/SongList';
 import { Header, Row } from '../components/SongList/Detail';
-import styles from './SongList.css';
 import { mustGet } from '../graphql/mock/utils';
 import type {
   Song as SongDetail,
@@ -44,7 +43,7 @@ const Story = ({
   count = ids.length,
   getId = index => ids[index],
   getRowForSong = (song, index) => (
-    <Row song={song} onDoubleClick={action(`clicked ${index}`)} />
+    <Row key={index} song={song} onDoubleClick={action(`clicked ${index}`)} />
   ),
 }: {
   count?: number,
@@ -53,21 +52,15 @@ const Story = ({
 }) => (
   // loadMore is never called if count is Infinity.
   <SongList
-    rootClassName={styles.root}
-    className={styles.list}
     loadMore={() => {}}
     header={<Header />}
     totalItems={count}
-    countAvailableRows={Infinity}
-    renderItem={({ index, style }) => {
+    countAvailableRows={count}
+    renderItem={({ index }) => {
       const id = getId(index);
       const song: Song = mustGet(songs, id);
 
-      return (
-        <div style={style} key={index}>
-          {getRowForSong(song, index)}
-        </div>
-      );
+      return getRowForSong(song, index);
     }}
   />
 );

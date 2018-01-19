@@ -25,7 +25,7 @@ query Playlist($playlistId: ID!, $cursor: String) {
     name
     duration
 
-    items(input: { limit: 100, cursor: $cursor }) @connection {
+    items(input: { limit: -1, cursor: $cursor }) @connection {
       count
       edges {
         cursor

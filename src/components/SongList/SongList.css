@@ -1,9 +1,5 @@
-.container {
-  /*
-  Allows the container's size not to be determined by its contents but by the
-  size of the parent container.
-  */
+@import '../../sizes.css';
 
-  width: 0;
-  min-width: 100%;
+.container {
+  padding-bottom: var(--size-small);
 }

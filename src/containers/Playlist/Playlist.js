@@ -128,23 +128,22 @@ const Playlist = ({
           totalItems={count}
           loadMore={fetchMore}
           header={<Header />}
-          renderItem={({ index, style }) => {
+          renderItem={({ index }) => {
             const { node: { id: itemId, song } }: Edge<PlaylistItem> = edges[
               index
             ];
 
             return (
-              <div key={itemId} style={style}>
-                <Row
-                  song={song}
-                  active={isPlaying && nowPlayingSongSource === itemId}
-                  onDoubleClick={() => {
-                    if (!isPlaying) {
-                      onStartPlaying(queueItems, index);
-                    }
-                  }}
-                />
-              </div>
+              <Row
+                key={itemId}
+                song={song}
+                active={isPlaying && nowPlayingSongSource === itemId}
+                onDoubleClick={() => {
+                  if (!isPlaying) {
+                    onStartPlaying(queueItems, index);
+                  }
+                }}
+              />
             );
           }}
         />

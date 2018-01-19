@@ -1,8 +1,7 @@
 // @flow
 import React from 'react';
 import type { Node } from 'react';
-import VirtualList from 'react-tiny-virtual-list';
-import Measure from 'react-measure';
+import VirtualList from 'react-virtual-list';
 
 import styles from './SongList.css';
 
@@ -20,61 +19,54 @@ type Props = {
   // loading in new data.
   totalItems: number,
 
-  // Class for the div container the song list and header.
-  rootClassName?: string,
-
-  // Class to size the wrapping div of the virtual list.
-  className?: string,
-
   // The header node is rendered inside the container above the virtual list
   // body.
   header: Node,
 
   // Called to render each row. Each row must be 36px tall.
-  renderItem: ({ index: number, style: Object }) => Node,
+  renderItem: ({ index: number }) => Node,
 };
+
+function* genRange(to: number): Generator<number, void, void> {
+  for (let i = 0; i < to; i++) {
+    yield i;
+  }
+}
+
+// TODO: Loading More Mechanism
 
 const itemHeight = 36;
 
 const SongList = ({
   countAvailableRows,
-  loadMore,
   totalItems,
-  className = '',
   header,
+  loadMore,
   renderItem,
-  rootClassName,
 }: Props) => (
-  <div className={[styles.container, rootClassName].join(' ')}>
+  <div className={styles.container}>
     {header}
-    <Measure bounds>
-      {({ measureRef, contentRect: { bounds: { height, width } } }) => (
-        <div ref={measureRef} className={className}>
-          <VirtualList
-            height={height || 100}
-            width={width}
-            itemCount={countAvailableRows}
-            itemSize={itemHeight}
-            onItemsRendered={({ startIndex, stopIndex }) => {
-              if (countAvailableRows >= totalItems) {
-                // No additional items to fetch.
-                return;
-              }
 
-              const lastLoadedIndex = countAvailableRows - 1;
-              if (
-                startIndex >= lastLoadedIndex ||
-                stopIndex >= lastLoadedIndex
-              ) {
-                loadMore();
-              }
-            }}
-            renderItem={renderItem}
-          />
-        </div>
-      )}
-    </Measure>
+    <Virtualized
+      items={Array.from(genRange(countAvailableRows))}
+      itemHeight={itemHeight}
+      renderItem={renderItem}
+    />
   </div>
 );
+
+type ListProps<T> = {
+  virtual: {
+    style: Object,
+    items: T[],
+  },
+  renderItem: ({ index: number }) => void,
+};
+
+const List = ({ virtual: { style, items }, renderItem }: ListProps<number>) => (
+  <div style={style}>{items.map(item => renderItem({ index: item }))}</div>
+);
+
+const Virtualized = VirtualList()(List);
 
 export default SongList;
