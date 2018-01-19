@@ -10,3 +10,4 @@ import './SongList';
 import './Icons';
 import './Playlist';
 import './SongCollage';
+import './Queue';
