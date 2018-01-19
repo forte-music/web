@@ -1,17 +1,13 @@
 // @flow
 import React from 'react';
-import type { Node } from 'react';
-import { Provider } from 'react-redux';
-import { HashRouter, Switch, Redirect, Route } from 'react-router-dom';
-import { ApolloProvider } from 'react-apollo';
+import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Sidebar from './components/Sidebar';
 import Footer from './containers/Footer';
 import Playlist from './containers/Playlist';
 import Queue from './containers/Queue';
 import Albums from './containers/Albums';
-import store from './store';
-import client from './graphql/client';
+import Providers from './providers';
 
 import {
   album,
@@ -24,19 +20,10 @@ import {
   queue,
   search,
   songs,
+  withId,
 } from './paths';
 
 import styles from './App.css';
-
-const Providers = ({ children }: { children: Node }) => (
-  <HashRouter>
-    <Provider store={store}>
-      <ApolloProvider client={client}>{children}</ApolloProvider>
-    </Provider>
-  </HashRouter>
-);
-
-const withId = ':id';
 
 const App = () => (
   <Providers>

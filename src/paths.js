@@ -13,3 +13,4 @@ export const playlist = (id: string) => `${playlists}/${id}`;
 export const home = `/home`;
 export const queue = `/queue`;
 export const search = `/search`;
+export const withId = ':id';
