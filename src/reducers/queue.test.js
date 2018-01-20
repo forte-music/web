@@ -7,6 +7,7 @@ import {
   skip,
   setPlayback,
   skipToPosition,
+  togglePlayback,
 } from './queue';
 
 const initialState = {
@@ -164,5 +165,20 @@ describe('set playback reducer', () => {
     const action = { type: 'SET_PLAYBACK', playing: true };
     const newState = setPlayback(initialState, action);
     expect(newState).toEqual({ ...initialState, shouldBePlaying: true });
+  });
+});
+
+describe('toggle playback reducer', () => {
+  it('changes from paused to playing', () => {
+    const action = { type: 'TOGGLE_PLAYBACK' };
+    const newState = togglePlayback(initialState, action);
+    expect(newState.shouldBePlaying).toEqual(true);
+  });
+
+  it('changes from playing to paused', () => {
+    const localState = { ...initialState, shouldBePlaying: true };
+    const action = { type: 'TOGGLE_PLAYBACK' };
+    const newState = togglePlayback(localState, action);
+    expect(newState.shouldBePlaying).toEqual(false);
   });
 });

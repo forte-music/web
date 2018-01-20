@@ -1,5 +1,10 @@
 // @flow
-import type { Action, SetPlaybackAction, SkipPositionAction } from '../actions';
+import type {
+  Action,
+  SetPlaybackAction,
+  SkipPositionAction,
+  TogglePlaybackAction,
+} from '../actions';
 import type { QueueItem, QueueItemSource, QueueState } from '../state/queue';
 import { initialState, getId } from '../state/queue';
 import type {
@@ -35,6 +40,9 @@ const reducer = (
 
     case 'SET_PLAYBACK':
       return setPlayback(state, action);
+
+    case 'TOGGLE_PLAYBACK':
+      return togglePlayback(state, action);
 
     default:
       // eslint thinks putting return state here makes something unreachable
@@ -160,6 +168,14 @@ export const setPlayback = (
   const { playing } = action;
 
   return { ...state, shouldBePlaying: playing };
+};
+
+export const togglePlayback = (
+  state: QueueState,
+  action: TogglePlaybackAction
+): QueueState => {
+  const { shouldBePlaying } = state;
+  return { ...state, shouldBePlaying: !shouldBePlaying };
 };
 
 const bounded = (num: number, lower: number, upper: number): number => {

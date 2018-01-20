@@ -82,6 +82,12 @@ export const pause = (): SetPlaybackAction => ({
   playing: false,
 });
 
+export type TogglePlaybackAction = { type: 'TOGGLE_PLAYBACK' };
+
+export const togglePlayback = (): TogglePlaybackAction => ({
+  type: 'TOGGLE_PLAYBACK',
+});
+
 export type QueueAction =
   | AddItemsToQueueAction
   | ReplaceQueueAction
@@ -89,4 +95,5 @@ export type QueueAction =
   | SkipRelativeAction
   | SkipAction
   | SkipPositionAction
-  | SetPlaybackAction;
+  | SetPlaybackAction
+  | TogglePlaybackAction;
