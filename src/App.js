@@ -8,6 +8,7 @@ import Playlist from './containers/Playlist';
 import Queue from './containers/Queue';
 import Albums from './containers/Albums';
 import Providers from './providers';
+import { KeyboardInteraction } from './keyboardInteraction';
 
 import {
   album,
@@ -22,12 +23,15 @@ import {
   songs,
   withId,
 } from './paths';
+import store from './store';
 
 import styles from './App.css';
 
 const App = () => (
   <Providers>
     <div className={styles.grid}>
+      <KeyboardInteraction store={store} />
+
       <Sidebar className={styles.sidebar} />
 
       <main className={styles.content}>
