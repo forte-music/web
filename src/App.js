@@ -7,7 +7,9 @@ import Footer from './containers/Footer';
 import Playlist from './containers/Playlist';
 import Queue from './containers/Queue';
 import Albums from './containers/Albums';
+
 import Providers from './providers';
+import Title from './components/Title';
 import { KeyboardInteraction } from './keyboardInteraction';
 
 import {
@@ -30,6 +32,7 @@ import styles from './App.css';
 const App = () => (
   <Providers>
     <div className={styles.grid}>
+      <Title />
       <KeyboardInteraction store={store} />
 
       <Sidebar className={styles.sidebar} />

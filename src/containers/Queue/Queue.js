@@ -1,13 +1,18 @@
 // @flow
 import React from 'react';
 
-import styles from './Queue.css';
+import Title from '../../components/Title';
 import { SongList, DetailHeader as Header } from '../../components/SongList';
+
 import ConnectedDetailRow from '../SongList/Detail';
+
+import styles from './Queue.css';
 import type { EnhancedProps } from '.';
 
 const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
   <div>
+    <Title segments={['Queue']} />
+
     <div className={styles.heading}>Queue</div>
 
     <div className={styles.body}>

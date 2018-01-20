@@ -1,6 +1,7 @@
 // @flow
 import React from 'react';
 
+import Title from '../../components/Title';
 import Artwork from '../../components/Artwork';
 import type { Connection, Edge } from '../../graphql/mock';
 
@@ -35,6 +36,8 @@ export type Props = {
 
 const Albums = ({ albums, loadAlbumTracks }: Props) => (
   <div>
+    <Title segments={['Albums']} />
+
     <div className={styles.heading}>Albums</div>
     <div className={styles.container}>
       {albums &&

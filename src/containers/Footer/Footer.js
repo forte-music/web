@@ -6,6 +6,7 @@ import NowPlaying from './NowPlaying';
 import PlaybackControls from './PlaybackControls';
 import AdditionalControls from './AdditionalControls';
 import { SliderInput } from '../../components/Slider';
+import Title from '../../components/Title';
 
 import styles from './Footer.css';
 import barStyles from '../../components/Bars.css';
@@ -180,6 +181,16 @@ class Footer extends Component<Props, State> {
 
     return (
       <footer className={className}>
+        {nowPlaying && (
+          <Title
+            segments={[
+              nowPlaying.album.name,
+              nowPlaying.artists.map(({ name }) => name).join(', '),
+            ]}
+            important={true}
+          />
+        )}
+
         {nowPlaying && (
           <Audio
             ref={this.onAudioRef}

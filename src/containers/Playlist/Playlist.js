@@ -4,10 +4,12 @@ import React from 'react';
 import type { Edge, Connection } from '../../graphql/mock';
 import { formatDuration } from '../../utils';
 
-import PlaybackArtwork from '../../containers/PlaybackArtwork';
+import Title from '../../components/Title';
 import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
 import { Header, Row } from '../../components/SongList/Detail';
+
+import PlaybackArtwork from '../../containers/PlaybackArtwork';
 
 import type { Props as EnhancedProps } from '.';
 
@@ -90,6 +92,8 @@ const Playlist = ({
 
   return (
     <div className={styles.container}>
+      {name && <Title segments={[name]} />}
+
       <header className={styles.header}>
         <div className={styles.headerContainer}>
           <div className={styles.artworkContainer}>
