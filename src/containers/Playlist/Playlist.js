@@ -9,7 +9,7 @@ import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
 import { Header, Row } from '../../components/SongList/Detail';
 
-import type { Props as EnhancedProps } from './index';
+import type { Props as EnhancedProps } from '.';
 
 import styles from './Playlist.css';
 import type { QueueItemSource } from '../../state/queue';

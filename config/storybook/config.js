@@ -2,5 +2,5 @@ import { configure } from '@storybook/react';
 import './styles.css';
 
 configure(() => {
-  require('../../src/stories/index');
+  require('../../src/stories');
 }, module);
