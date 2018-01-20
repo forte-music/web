@@ -42,11 +42,13 @@ const SongList = ({
   <div className={styles.container}>
     {header}
 
-    <Virtualized
-      items={Array.from(genRange(countAvailableRows))}
-      itemHeight={itemHeight}
-      renderItem={renderItem}
-    />
+    {countAvailableRows && (
+      <Virtualized
+        items={Array.from(genRange(countAvailableRows))}
+        itemHeight={itemHeight}
+        renderItem={renderItem}
+      />
+    )}
   </div>
 );
 

@@ -17,7 +17,6 @@ const reducePropsToState = (propsList: Props[]) => {
     ({ important = false }) => important
   );
   if (firstImportantIdx !== -1) {
-    console.log(propsList);
     return propsList[firstImportantIdx];
   }
 
