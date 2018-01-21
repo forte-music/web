@@ -1,4 +1,0 @@
-// @flow
-import type { PlaylistSource } from '../mock/playlists';
-
-declare export var playlists: PlaylistSource[];

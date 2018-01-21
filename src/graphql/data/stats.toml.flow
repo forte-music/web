@@ -1,4 +1,0 @@
-// @flow
-import type { SongUserStats } from '../mock/stats';
-
-declare export var stats: SongUserStats[];

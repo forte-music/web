@@ -1,5 +1,5 @@
 // @flow
-import { songs } from '../data/songs.toml';
+import { songs } from '@forte-music/schema/fixtures/songs.toml';
 import {
   arrayPropertyDescriptor,
   makeMap,

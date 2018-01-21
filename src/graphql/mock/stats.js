@@ -1,5 +1,5 @@
 // @flow
-import { stats } from '../data/stats.toml';
+import { stats } from '@forte-music/schema/fixtures/stats.toml';
 import { makeMap } from './utils';
 
 export type SongUserStats = {

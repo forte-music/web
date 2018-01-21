@@ -1,4 +1,0 @@
-// @flow
-import type { ArtistSource } from '../mock/artists';
-
-declare export var artists: ArtistSource[];

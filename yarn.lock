@@ -20,9 +20,12 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@forte-music/schema@^0.0.7":
-  version "0.0.7"
-  resolved "https://registry.yarnpkg.com/@forte-music/schema/-/schema-0.0.7.tgz#bf286c68ba098475886a4c0ae48b1609b5c44c86"
+"@forte-music/schema@^0.0.8":
+  version "0.0.8"
+  resolved "https://registry.yarnpkg.com/@forte-music/schema/-/schema-0.0.8.tgz#b794f1b78f9c844dd30f238d286a7e1ac0f6268f"
+  dependencies:
+    graphql "^0.12.3"
+    graphql-tag "^2.6.1"
 
 "@storybook/addon-actions@^3.3.3", "@storybook/addon-actions@^3.3.7":
   version "3.3.7"
@@ -5691,6 +5694,12 @@ jest-transform-graphql@^2.1.0:
   version "2.1.0"
   resolved "https://registry.yarnpkg.com/jest-transform-graphql/-/jest-transform-graphql-2.1.0.tgz#903cb66bb27bc2772fd3e5dd4f7e9b57230f5829"
 
+jest-transform-toml@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/jest-transform-toml/-/jest-transform-toml-1.0.0.tgz#0a255066d4e59620ec3c3cc5a555321bb05f153d"
+  dependencies:
+    toml-loader "^1.0.0"
+
 jest-util@^20.0.3:
   version "20.0.3"
   resolved "https://registry.yarnpkg.com/jest-util/-/jest-util-20.0.3.tgz#0c07f7d80d82f4e5a67c6f8b9c3fe7f65cfd32ad"
@@ -9365,7 +9374,13 @@ to-fast-properties@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/to-fast-properties/-/to-fast-properties-2.0.0.tgz#dc5e698cbd079265bc73e0377681a4e4e83f616e"
 
-toml@^2.3.3:
+toml-loader@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/toml-loader/-/toml-loader-1.0.0.tgz#05249b9294b623601148260caa480b22a653a19a"
+  dependencies:
+    toml "^2.2.2"
+
+toml@^2.2.2, toml@^2.3.3:
   version "2.3.3"
   resolved "https://registry.yarnpkg.com/toml/-/toml-2.3.3.tgz#8d683d729577cb286231dfc7a8affe58d31728fb"
 

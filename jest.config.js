@@ -24,10 +24,10 @@ module.exports = {
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "\\.js$": "babel-jest",
-      "\\.toml$": "<rootDir>/config/jest/tomlTransform.js",
+      "\\.toml$": "jest-transform-toml",
     },
     "transformIgnorePatterns": [
-      "[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs)$"
+      "node_modules/(?!(@forte-music/schema)/)"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",

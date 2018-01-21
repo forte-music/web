@@ -178,7 +178,7 @@ module.exports = {
           },
           {
             test: /\.toml$/,
-            loader: './config/loaders/toml',
+            loader: require.resolve('toml-loader'),
           },
           {
             test: /\.css$/,

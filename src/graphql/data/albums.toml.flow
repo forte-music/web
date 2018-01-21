@@ -1,4 +1,0 @@
-// @flow
-import type { AlbumSource } from '../mock/albums';
-
-declare export var albums: AlbumSource[];
