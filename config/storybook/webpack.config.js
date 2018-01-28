@@ -9,10 +9,6 @@ module.exports = {
   module: {
     rules: [
       {
-        test: /\.toml$/,
-        loader: require.resolve('toml-loader'),
-      },
-      {
         test: /\.(graphql|gql)$/,
         loader: require.resolve('graphql-tag/loader'),
       },

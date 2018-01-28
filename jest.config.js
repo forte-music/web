@@ -24,7 +24,6 @@ module.exports = {
     "transform": {
       "\\.(gql|graphql)$": "jest-transform-graphql",
       "\\.js$": "babel-jest",
-      "\\.toml$": "jest-transform-toml",
     },
     "transformIgnorePatterns": [
       "node_modules/(?!(@forte-music/schema)/)"

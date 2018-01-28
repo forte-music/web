@@ -1,14 +1,14 @@
 // @flow
-import { albums, artists, songs, playlists } from './mock';
+import { albums, artists, songs, playlists } from '.';
 import type {
   Playlist,
   PlaylistItem,
   Connection,
   SongUserStats,
   Song,
-} from './mock';
-import { mustGet } from './mock/utils';
-import { now } from './time';
+} from '.';
+import { mustGet } from './utils';
+import { now } from '../time';
 
 type ConnectionQuery = {
   limit?: number,

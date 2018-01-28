@@ -8,7 +8,6 @@ src/stories
 [lints]
 
 [options]
-module.file_ext=.toml
 module.file_ext=.graphql
 module.file_ext=.js
 
