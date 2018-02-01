@@ -1,22 +1,29 @@
 // @flow
-import { albums, artists, songs, playlists } from '.';
 import type {
+  Album,
+  Artist,
+  Connection,
   Playlist,
   PlaylistItem,
-  Connection,
-  SongUserStats,
   Song,
+  SongUserStats,
+  StatsCollection,
+  UserStats,
 } from '.';
+import { albums, artists, playlists, songs } from '.';
 import { mustGet } from './utils';
 import { now } from '../time';
 
-type ConnectionQuery = {
-  limit?: number,
-  cursor?: string,
+type ConnectionArgs = {
+  after?: string,
+  first?: number,
 };
 
-type ConnectionArgs = {
-  input: ConnectionQuery,
+type PlaySongArgs = {
+  songId: string,
+  artistId?: string,
+  albumId?: string,
+  playlistId?: string,
 };
 
 const itemResolver = <T>(map: Map<string, T>) => (
@@ -26,29 +33,31 @@ const itemResolver = <T>(map: Map<string, T>) => (
 
 const connectionResolver = <T>(map: Map<string, T>) => (
   _: void,
-  { input }: ConnectionArgs
+  args: ConnectionArgs
 ): Connection<T> =>
   handleConnection(
     Array.from(map.keys()).sort(),
     (key: string): T => mustGet(map, key),
-    input
+    args
   );
 
 const handleConnection = <InputType, NodeType>(
   keys: InputType[],
   getNode: (key: InputType) => NodeType,
-  { limit = 25, cursor }: ConnectionQuery
+  { first = 25, after }: ConnectionArgs
 ): Connection<NodeType> => {
-  const offset = cursor ? parseInt(cursor, 10) + 1 : 0;
-  const acceptedKeys = keys.slice(
-    offset,
-    limit !== -1 ? offset + limit : Infinity
-  );
+  const lowerBound = after ? parseInt(after, 10) + 1 : 0;
+  const upperBound = first === -1 ? keys.length : lowerBound + first;
+
+  const acceptedKeys = keys.slice(lowerBound, upperBound);
 
   return {
-    count: keys.length,
+    pageInfo: {
+      count: keys.length,
+      hasNextPage: upperBound <= keys.length,
+    },
     edges: acceptedKeys.map((key, index) => ({
-      cursor: (index + offset).toString(),
+      cursor: (index + lowerBound).toString(),
       node: getNode(key),
     })),
   };
@@ -66,6 +75,12 @@ const transformStats = (transform: (old: SongUserStats) => SongUserStats) =>
     song.stats = newStats;
     return newStats;
   });
+
+const updateStats = (old: UserStats): UserStats => ({
+  ...old,
+  playCount: old.playCount + 1,
+  lastPlayed: now(),
+});
 
 // Resolvers for mock backend.
 const resolvers = {
@@ -85,18 +100,62 @@ const resolvers = {
 
   Mutation: {
     toggleLike: transformStats(old => ({ ...old, liked: !old.liked })),
-    playSong: transformStats(old => ({
-      ...old,
-      playCount: old.playCount + 1,
-      lastPlayed: now(),
-    })),
+
+    playSong: (
+      _: void,
+      { songId, artistId, albumId, playlistId }: PlaySongArgs
+    ): StatsCollection => {
+      const validDescriptors = [artistId, albumId, playlistId].filter(
+        descriptor => !!descriptor
+      );
+
+      if (validDescriptors.length > 1) {
+        throw new TypeError(
+          'Multiple valid descriptors were passed: ' +
+            validDescriptors.join() +
+            '. Only one should be passed.'
+        );
+      }
+
+      const song: Song = mustGet(songs, songId);
+      song.stats.stats = updateStats(song.stats.stats);
+
+      const album: Album | void = albumId
+        ? mustGet(albums, albumId)
+        : undefined;
+      const artist: Artist | void = artistId
+        ? mustGet(artists, artistId)
+        : undefined;
+      const playlist: Playlist | void = playlistId
+        ? mustGet(playlists, playlistId)
+        : undefined;
+
+      if (album) {
+        album.stats = updateStats(album.stats);
+      }
+
+      if (artist) {
+        artist.stats = updateStats(artist.stats);
+      }
+
+      if (playlist) {
+        playlist.stats = updateStats(playlist.stats);
+      }
+
+      return {
+        songStats: song.stats,
+        albumStats: album && album.stats,
+        artistStats: artist && artist.stats,
+        playlistStats: playlist && playlist.stats,
+      };
+    },
   },
 
   Playlist: {
     items: (
       { items }: Playlist,
-      { input }: ConnectionArgs
-    ): Connection<PlaylistItem> => handleConnection(items, item => item, input),
+      args: ConnectionArgs
+    ): Connection<PlaylistItem> => handleConnection(items, item => item, args),
   },
 };
 

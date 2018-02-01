@@ -1,29 +1,35 @@
 // @flow
 import { playlists } from '@forte-music/schema/fixtures/playlists';
+import type { PlaylistSource } from '@forte-music/schema/fixtures/playlists';
 import { makeMap, mustGetKeys } from './utils';
 import { songs as songMap } from '.';
-import type { Song } from '.';
-
-export type PlaylistSource = {
-  id: string,
-  name: string,
-  songIds: string[],
-};
+import type { Song, UserStats } from '.';
+import { withUserStats } from './stats';
 
 export type PlaylistItem = {
   id: string,
   song: Song,
 };
 
-export type Playlist = {
+export type Playlist = {|
+  id: string,
+  name: string,
+  description: string,
+
+  stats: UserStats,
   items: PlaylistItem[],
   duration: number,
-} & PlaylistSource;
+|};
 
-const connectPlaylist = (playlist: PlaylistSource) =>
+const connectPlaylist = (playlist: PlaylistSource): Playlist =>
   // $ExpectError
-  Object.defineProperties(
-    { ...playlist },
+  (Object.defineProperties(
+    {
+      id: playlist.id,
+      name: playlist.name,
+      description: playlist.description || '',
+      stats: withUserStats(playlist),
+    },
     {
       items: {
         get() {
@@ -42,7 +48,7 @@ const connectPlaylist = (playlist: PlaylistSource) =>
         },
       },
     }
-  );
+  ): any);
 
 const map: Map<string, Playlist> = makeMap(playlists.map(connectPlaylist));
 

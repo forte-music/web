@@ -1,25 +1,29 @@
 // @flow
 import { artists } from '@forte-music/schema/fixtures/artists';
+import type { ArtistSource } from '@forte-music/schema/fixtures/artists';
 import { arrayPropertyDescriptor, makeMap } from './utils';
 import { albums } from '.';
-import type { Album } from '.';
+import type { Album, UserStats } from '.';
+import { withUserStats } from './stats';
 
-export type ArtistSource = {
+export type Artist = {|
   id: string,
   name: string,
-  albumIds: string[],
-};
 
-export type Artist = {
   albums: Album[],
-} & ArtistSource;
+  stats: UserStats,
+|};
 
-const connectArtist = (artist: ArtistSource) =>
+const connectArtist = (artist: ArtistSource): Artist =>
   // $ExpectError
-  Object.defineProperties(
-    { ...artist },
+  (Object.defineProperties(
+    {
+      id: artist.id,
+      name: artist.name,
+      stats: withUserStats(artist),
+    },
     { albums: arrayPropertyDescriptor(() => albums, artist.albumIds) }
-  );
+  ): any);
 
 const processedArtists: Map<string, Artist> = makeMap(
   artists.map(connectArtist)

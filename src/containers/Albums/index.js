@@ -14,8 +14,11 @@ import type { Props } from './Albums';
 const graphqlEnhancer = connectionQuery(
   gql`
     query AlbumsQuery($cursor: String) {
-      albums(input: { limit: 25, cursor: $cursor }) @connection {
-        count
+      albums(first: 25, after: $cursor) @connection {
+        pageInfo {
+          count
+        }
+
         edges {
           cursor
 

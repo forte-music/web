@@ -138,8 +138,11 @@ export const connectionQuery = <TProps: Object, TResult: Object, TNode: Object>(
         }
 
         const connectionRoot = getByPath(data, pathToConnectionRoot);
-        const { edges, count }: Connection<TNode> = (connectionRoot: any);
-        if (edges.length === count) {
+        const {
+          edges,
+          pageInfo: { hasNextPage },
+        }: Connection<TNode> = (connectionRoot: any);
+        if (!hasNextPage) {
           // All items have been fetched.
           return;
         }

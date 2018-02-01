@@ -55,7 +55,9 @@ export const playSongMutationEnhancer = graphql(
         albumId: $albumId
         artistId: $artistId
       ) {
-        id
+        songStats {
+          id
+        }
       }
     }
   `,
