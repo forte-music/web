@@ -6,9 +6,9 @@ import { storiesOf } from '@storybook/react';
 
 import store from '../store';
 import Playlist from '../containers/Playlist/Playlist';
-import { playlists } from '../graphql/mock';
+import { playlists } from '@forte-music/mock/models';
 import type { PlaylistModel } from '../containers/Playlist/Playlist';
-import type { Playlist as PlaylistDataModel } from '../graphql/mock';
+import type { Playlist as PlaylistDataModel } from '@forte-music/mock/models';
 
 const playlistModel: PlaylistDataModel = ((playlists.get(
   'playlist:1'

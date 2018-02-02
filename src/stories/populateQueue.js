@@ -1,6 +1,6 @@
 // @flow
 
-import { songs } from '../graphql/mock';
+import { songs } from '@forte-music/mock/models';
 import { replaceQueue } from '../actions';
 
 const ids = Array.from(songs.keys());

@@ -1,7 +1,7 @@
 // @flow
 import React from 'react';
 
-import type { Edge, Connection } from '../../graphql/mock';
+import type { Edge, Connection } from '@forte-music/mock/models';
 import { formatDuration } from '../../utils';
 
 import Title from '../../components/Title';

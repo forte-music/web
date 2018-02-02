@@ -6,11 +6,12 @@ import { action } from '@storybook/addon-actions';
 import { ApolloProvider } from 'react-apollo';
 import { HashRouter } from 'react-router-dom';
 
-import { songs } from '../graphql/mock';
-import type { Song } from '../graphql/mock';
+import { songs } from '@forte-music/mock/models';
+import type { Song } from '@forte-music/mock/models';
 import SongList from '../components/SongList/SongList';
 import { Header, Row } from '../components/SongList/Detail';
-import { mustGet } from '../graphql/mock/utils';
+import { mustGet } from '@forte-music/mock/utils';
+
 import type {
   Song as SongDetail,
   SongRowProps,

@@ -8,6 +8,7 @@
     }
   },
   "dependencies": {
+    "@forte-music/mock": "^0.0.14",
     "@forte-music/schema": "^0.0.8",
     "apollo-cache-inmemory": "^1.1.4",
     "apollo-client": "^2.0.4",
@@ -105,7 +106,6 @@
     "fix-style": "prettier --write $npm_package_config_prettierFiles",
     "check-all": "yarn codegen && yarn lint && yarn flow check && CI=true yarn test",
     "storybook": "start-storybook -p 9001 -c config/storybook",
-    "mock-server": "NODE_ENV=test babel-node src/graphql/mock/server.js",
     "start": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",

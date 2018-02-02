@@ -26,7 +26,7 @@ module.exports = {
       "\\.js$": "babel-jest",
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(@forte-music/schema)/)"
+      "node_modules/(?!(@forte-music/(schema|mock))/)"
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",

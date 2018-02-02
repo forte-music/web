@@ -2,6 +2,7 @@
 src/stories
 
 [include]
+node_modules/@forte-music/mock
 
 [libs]
 

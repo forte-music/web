@@ -3,7 +3,7 @@ import React from 'react';
 
 import Title from '../../components/Title';
 import Artwork from '../../components/Artwork';
-import type { Connection, Edge } from '../../graphql/mock';
+import type { Connection, Edge } from '@forte-music/mock/models';
 
 import { Link } from 'react-router-dom';
 import { album, artist } from '../../paths';

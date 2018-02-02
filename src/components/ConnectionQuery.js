@@ -15,7 +15,7 @@ import type {
 } from 'graphql';
 
 import { last, split } from '../utils';
-import type { Connection } from '../graphql/mock';
+import type { Connection } from '@forte-music/mock/models';
 
 type Path = string[];
 
