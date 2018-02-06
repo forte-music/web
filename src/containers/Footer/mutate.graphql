@@ -1,6 +1,10 @@
 mutation ToggleLikeMutation($songId: ID!){
   toggleLike(songId: $songId) {
     id
-    liked
+
+    songStats {
+      id
+      liked
+    }
   }
 }

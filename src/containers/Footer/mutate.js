@@ -24,16 +24,7 @@ export const likeMutationEnhancer = graphql(Mutation, {
     ToggleLikeMutation
   >): LikeMutationProps => ({
     ...ownProps,
-    onToggleLike: () => {
-      mutate({
-        optimisticResponse: {
-          toggleLike: {
-            ...ownProps.nowPlaying.stats,
-            liked: !ownProps.nowPlaying.stats.liked,
-          },
-        },
-      });
-    },
+    onToggleLike: () => mutate({}),
   }),
 });
 
@@ -55,7 +46,7 @@ export const playSongMutationEnhancer = graphql(
         albumId: $albumId
         artistId: $artistId
       ) {
-        songStats {
+        song {
           id
         }
       }

@@ -33,7 +33,7 @@ export type Song = {
   name: string,
   album: Album,
   artists: Artist[],
-  stats: SongUserStats,
+  songStats: SongUserStats,
 };
 
 type Props = {
@@ -246,7 +246,7 @@ class Footer extends Component<Props, State> {
               duration={duration || nowPlaying.duration}
               volume={volume}
               onVolumeSet={this.onVolume}
-              like={nowPlaying.stats.liked}
+              like={nowPlaying.songStats.liked}
               onToggleLike={onToggleLike}
             />
           )}

@@ -16,7 +16,7 @@ query Footer($songId:ID!){
       name
     }
 
-    stats {
+    songStats {
       id
       liked
     }

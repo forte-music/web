@@ -28,15 +28,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@forte-music/mock@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@forte-music/mock/-/mock-0.0.15.tgz#4e10f2a06548d3cb2cfb8f90a83bd469b5cf7a9e"
+"@forte-music/mock@^0.0.17":
+  version "0.0.17"
+  resolved "https://registry.yarnpkg.com/@forte-music/mock/-/mock-0.0.17.tgz#d98530bb96763b83c1138527a3c68162569d5472"
   dependencies:
-    "@forte-music/schema" "^0.0.15"
+    "@forte-music/schema" "^0.0.16"
 
-"@forte-music/schema@^0.0.15":
-  version "0.0.15"
-  resolved "https://registry.yarnpkg.com/@forte-music/schema/-/schema-0.0.15.tgz#9bbda0eecc65f7ef3be0ea020234c2290715c8a3"
+"@forte-music/schema@^0.0.16":
+  version "0.0.16"
+  resolved "https://registry.yarnpkg.com/@forte-music/schema/-/schema-0.0.16.tgz#c1cde0fc6fe40c90c44c50a8eb3598ed3d30c3ea"
   dependencies:
     babel-core "^6.26.0"
     babel-jest "^22.1.0"
@@ -530,7 +530,11 @@ apollo-tracing@^0.1.0:
   dependencies:
     graphql-extensions "^0.0.x"
 
-apollo-utilities@^1.0.0, apollo-utilities@^1.0.1, apollo-utilities@^1.0.4:
+apollo-utilities@^1.0.0:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.6.tgz#7bfd7a702b5225c9a4591fe28c5899d9b5f08889"
+
+apollo-utilities@^1.0.1, apollo-utilities@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/apollo-utilities/-/apollo-utilities-1.0.4.tgz#560009ea5541b9fdc4ee07ebb1714ee319a76c15"
 
