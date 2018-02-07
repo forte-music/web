@@ -12,4 +12,4 @@ import './Playlist';
 import './SongCollage';
 import './Queue';
 import './keyboardInteraction';
-import './Popper';
+import './Dropdown';

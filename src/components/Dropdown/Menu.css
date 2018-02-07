@@ -1,0 +1,57 @@
+:root {
+  --menu-background-color: #1f1f1f;
+  --divider-color: #2f2f2f;
+}
+
+.menu {
+  display: inline-block;
+  max-width: 320px;
+  background: var(--menu-background-color);
+  box-shadow: 0 0 2px 2px rgba(0, 0, 0, 0.2);
+}
+
+.base {
+  height: 36px;
+
+  color: #bbbbbb;
+  cursor: pointer;
+  user-select: none;
+
+  font-size: 14px;
+}
+
+.item {
+  composes: base;
+  padding-left: 16px;
+  padding-right: 16px;
+
+  line-height: 36px;
+}
+
+.composite {
+  composes: base;
+  padding-left: 16px;
+  padding-right: 8px;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.main {
+  flex: 1;
+}
+
+.aux {
+  height: 16px;
+  padding-left: 8px;
+}
+
+.base:hover {
+  background: rgba(256, 265, 256, 0.05);
+}
+
+.divider {
+  height: 1px;
+  background: var(--divider-color);
+}
