@@ -10,6 +10,7 @@ import Play from '../components/icons/Play';
 import SkipBackwards from '../components/icons/SkipBackwards';
 import SkipForwards from '../components/icons/SkipForwards';
 import DefaultCover from '../components/icons/DefaultCover';
+import Chevron from '../components/icons/Chevron';
 
 const ICONS = [
   <Dots />,
@@ -20,6 +21,7 @@ const ICONS = [
   <SkipBackwards />,
   <SkipForwards />,
   <DefaultCover />,
+  <Chevron />,
 ];
 
 ICONS.reduce(
