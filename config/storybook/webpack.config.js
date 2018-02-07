@@ -1,3 +1,5 @@
+const paths = require('../paths');
+
 if (!process.env.REACT_APP_API_URL) {
   process.env.REACT_APP_MOCK_RESOLVER = true;
 }
@@ -8,6 +10,18 @@ module.exports = {
   },
   module: {
     rules: [
+      // Process JS with Babel.
+      {
+        test: /\.(js|jsx|mjs)$/,
+        include: [paths.appSrc, paths.forteMock],
+        loader: require.resolve('babel-loader'),
+        options: {
+          // This is a feature of `babel-loader` for webpack (not Babel itself).
+          // It enables caching results in ./node_modules/.cache/babel-loader/
+          // directory for faster rebuilds.
+          cacheDirectory: true,
+        },
+      },
       {
         test: /\.(graphql|gql)$/,
         loader: require.resolve('graphql-tag/loader'),
