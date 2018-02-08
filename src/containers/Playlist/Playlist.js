@@ -100,7 +100,7 @@ const Playlist = ({
             <PlaybackArtwork
               kind={'PLAYLIST'}
               list={id}
-              loadTracks={async () => queueItems}
+              tracks={queueItems}
               backgroundInteraction
             >
               <SongCollage

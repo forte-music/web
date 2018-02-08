@@ -2,92 +2,28 @@
 import React from 'react';
 
 import Title from '../../components/Title';
-import Artwork from '../../components/Artwork';
-import type { Connection, Edge } from '@forte-music/mock/models';
-
-import { Link } from 'react-router-dom';
-import { album, artist } from '../../paths';
-import PlaybackArtwork from '../../containers/PlaybackArtwork';
-import type { QueueItemSource } from '../../state/queue';
+import type { AlbumsQuery_albums } from './__generated__/AlbumsQuery';
+import { AlbumInfo } from './AlbumInfo';
 import styles from './Albums.css';
 
 // TODO: Design Album Count
 
-type Artist = {
-  id: string,
-  name: string,
-};
-
-type Album = {
-  id: string,
-  name: string,
-  artworkUrl: string,
-  artist: Artist,
-};
-
-type LoadAlbumTracks = (albumId: string) => Promise<QueueItemSource[]>;
-
 export type Props = {
-  albums?: Connection<Album>,
+  albums?: AlbumsQuery_albums,
   fetchMore: () => void,
   loading: boolean,
-  loadAlbumTracks: LoadAlbumTracks,
 };
 
-const Albums = ({ albums, loadAlbumTracks }: Props) => (
+const Albums = ({ albums }: Props) => (
   <div>
     <Title segments={['Albums']} />
 
     <div className={styles.heading}>Albums</div>
     <div className={styles.container}>
       {albums &&
-        albums.edges.map(({ node }: Edge<Album>) => (
-          <AlbumInfo
-            key={node.id}
-            album={node}
-            loadAlbumTracks={loadAlbumTracks}
-          />
+        albums.edges.map(({ node }) => (
+          <AlbumInfo key={node.id} album={node} />
         ))}
-    </div>
-  </div>
-);
-
-type AlbumInfoProps = {
-  album: Album,
-  loadAlbumTracks: LoadAlbumTracks,
-};
-
-const AlbumInfo = ({
-  album: {
-    id: albumId,
-    artworkUrl,
-    name,
-    artist: { id: artistId, name: artistName },
-  },
-  loadAlbumTracks,
-}: AlbumInfoProps) => (
-  <div className={styles.albumContainer}>
-    <div>
-      <PlaybackArtwork
-        kind={'ALBUM'}
-        list={albumId}
-        loadTracks={async () => await loadAlbumTracks(albumId)}
-      >
-        <Link to={album(albumId)}>
-          <Artwork src={artworkUrl} alt={name} />
-        </Link>
-      </PlaybackArtwork>
-    </div>
-    <div className={styles.album}>
-      <Link to={album(albumId)} className={styles.link}>
-        {name}
-      </Link>
-    </div>
-
-    <div className={styles.artist}>
-      <Link to={artist(artistId)} className={styles.link}>
-        {artistName}
-      </Link>
     </div>
   </div>
 );

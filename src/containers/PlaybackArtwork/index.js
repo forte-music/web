@@ -14,7 +14,7 @@ import {
 import PlaybackArtwork from '../../components/PlaybackArtwork';
 import { playList } from '../../actions/creators/queue';
 
-type Props = {
+type Props = {|
   // The kind of list this is. Used to check whether the current playing
   // item is from this list. This information also passed to onStartPlayback.
   kind: Kind,
@@ -23,14 +23,13 @@ type Props = {
   // from this list. This information is also passed to onStartPlayback.
   list: string,
 
-  // Called when clicked in a stopped state. This should dispatch a loading
-  // action as soon as possible, then replace the queue and play it.
-  loadTracks: () => Promise<QueueItemSource[]>,
+  // A list of tracks to enqueue when play is pressed.
+  tracks: QueueItemSource[],
 
   // See components/PlaybackArtwork.js.
   backgroundInteraction?: boolean,
   children: Node,
-};
+|};
 
 type ReduxStateEnhancedProps = {
   state: PlaybackState,
@@ -53,14 +52,11 @@ const reduxEnhancer = connect(
         : 'STOPPED',
     };
   },
-  (dispatch, { loadTracks, list, kind }: Props): ReduxActionEnhancedProps => ({
+  (dispatch, { tracks, list, kind }: Props): ReduxActionEnhancedProps => ({
     onPlaying: () => dispatch(play()),
     onPaused: () => dispatch(pause()),
     onStartPlayback: async () => {
-      // TODO: This shouldn't be a concern of the UI.
-      const items = await loadTracks();
-
-      const itemsWithDefaults: QueueItemSource[] = items.map(item => ({
+      const itemsWithDefaults: QueueItemSource[] = tracks.map(item => ({
         ...item,
         source: { list, kind, ...item.source },
       }));
