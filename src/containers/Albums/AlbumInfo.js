@@ -1,12 +1,20 @@
+// @flow
 import React from 'react';
 import { Link } from 'react-router-dom';
 
 import type { AlbumsQuery_albums_edges_node } from './__generated__/AlbumsQuery';
 
+import { album, artist } from '../../paths';
+
 import PlaybackArtwork from '../../containers/PlaybackArtwork';
 import Artwork from '../../components/Artwork';
-import { album, artist } from '../../paths';
-import styles from './Albums.css';
+import Dots from '../../components/icons/Dots';
+import DefaultCover from '../../components/icons/DefaultCover';
+
+import styles from './AlbumInfo.css';
+
+// TODO: Click Region
+// TODO: Disable Draggable
 
 export type AlbumInfoProps = {
   album: AlbumsQuery_albums_edges_node,
@@ -21,7 +29,19 @@ export const AlbumInfo = ({
     songs,
   },
 }: AlbumInfoProps) => (
-  <div className={styles.albumContainer}>
+  <div
+    className={styles.container}
+    onContextMenu={e => {
+      if (e.altKey) {
+        // Ignore If Alt Is Pressed
+        return;
+      }
+
+      e.preventDefault();
+
+      // TODO: Launch Popup Menu
+    }}
+  >
     <div>
       <PlaybackArtwork
         kind={'ALBUM'}
@@ -32,7 +52,9 @@ export const AlbumInfo = ({
         }))}
       >
         <Link to={album(albumId)}>
-          <Artwork src={artworkUrl} alt={name} />
+          {(artworkUrl && <Artwork src={artworkUrl} alt={name} />) || (
+            <DefaultCover />
+          )}
         </Link>
       </PlaybackArtwork>
     </div>
@@ -40,6 +62,17 @@ export const AlbumInfo = ({
       <Link to={album(albumId)} className={styles.link}>
         {name}
       </Link>
+
+      <div
+        onClick={e => {
+          e.preventDefault();
+          console.log('hello world');
+          // TODO: Launch Popup Menu
+        }}
+        className={styles.iconContainer}
+      >
+        <Dots svgClass={styles.icon} />
+      </div>
     </div>
 
     <div className={styles.artist}>

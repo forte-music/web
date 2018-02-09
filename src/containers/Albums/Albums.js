@@ -6,8 +6,6 @@ import type { AlbumsQuery_albums } from './__generated__/AlbumsQuery';
 import { AlbumInfo } from './AlbumInfo';
 import styles from './Albums.css';
 
-// TODO: Design Album Count
-
 export type Props = {
   albums?: AlbumsQuery_albums,
   fetchMore: () => void,
