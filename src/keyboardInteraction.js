@@ -34,6 +34,8 @@ const handleKeydown = (store: Store) => (e: KeyboardEvent) => {
     default:
       return;
   }
+
+  e.preventDefault();
 };
 
 type Props = {
