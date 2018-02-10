@@ -66,7 +66,6 @@ export const AlbumInfo = ({
       <div
         onClick={e => {
           e.preventDefault();
-          console.log('hello world');
           // TODO: Launch Popup Menu
         }}
         className={styles.iconContainer}
