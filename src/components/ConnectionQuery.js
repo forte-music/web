@@ -142,6 +142,10 @@ export const connectionQuery = <TProps: Object, TResult: Object, TNode: Object>(
           edges,
           pageInfo: { hasNextPage },
         }: Connection<TNode> = (connectionRoot: any);
+        if (hasNextPage === undefined) {
+          throw new TypeError('hasNextPage missing from pageInfo');
+        }
+
         if (!hasNextPage) {
           // All items have been fetched.
           return;
@@ -149,6 +153,9 @@ export const connectionQuery = <TProps: Object, TResult: Object, TNode: Object>(
 
         const lastEdge = last(edges);
         const { cursor } = lastEdge || {};
+        if (lastEdge && !cursor) {
+          throw new TypeError('cursor missing from the last edge');
+        }
 
         data.fetchMore({
           variables: {

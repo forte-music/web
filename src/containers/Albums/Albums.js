@@ -5,6 +5,7 @@ import Title from '../../components/Title';
 import type { AlbumsQuery_albums } from './__generated__/AlbumsQuery';
 import { AlbumInfo } from './AlbumInfo';
 import styles from './Albums.css';
+import Observer from 'react-intersection-observer';
 
 export type Props = {
   albums?: AlbumsQuery_albums,
@@ -12,7 +13,7 @@ export type Props = {
   loading: boolean,
 };
 
-const Albums = ({ albums }: Props) => (
+const Albums = ({ albums, fetchMore }: Props) => (
   <div>
     <Title segments={['Albums']} />
 
@@ -22,6 +23,18 @@ const Albums = ({ albums }: Props) => (
         albums.edges.map(({ node }) => (
           <AlbumInfo key={node.id} album={node} />
         ))}
+      <Observer
+        key={'final'}
+        onChange={inView => {
+          if (!inView) {
+            return;
+          }
+
+          fetchMore();
+        }}
+      >
+        <div />
+      </Observer>
     </div>
   </div>
 );

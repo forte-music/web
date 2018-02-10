@@ -11,9 +11,10 @@ import type { Props } from './Albums';
 const graphqlEnhancer = connectionQuery(
   gql`
     query AlbumsQuery($cursor: String) {
-      albums(first: 25, after: $cursor) @connection {
+      albums(first: 30, after: $cursor) @connection {
         pageInfo {
           count
+          hasNextPage
         }
 
         edges {
