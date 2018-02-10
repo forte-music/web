@@ -8,6 +8,7 @@ import Title from '../../components/Title';
 import SongList from '../../components/SongList/SongList';
 import SongCollage from '../../components/SongCollage';
 import { Header, Row } from '../../components/SongList/Detail';
+import type { Playlist_playlist } from './__generated__/Playlist';
 
 import PlaybackArtwork from '../../containers/PlaybackArtwork';
 
@@ -55,7 +56,7 @@ export type Props = {
   isPlaying: boolean,
 
   // The playlist to render.
-  playlist?: PlaylistModel,
+  playlist?: Playlist_playlist,
 
   // The QueueItem.songSource of the currently playing song. This may be
   // supplied when state is PLAYING.
@@ -76,6 +77,7 @@ const Playlist = ({
     id,
     items: { pageInfo: { count = 0 } = {}, edges = [] } = {},
     name = '',
+    description,
     duration = 0,
   } = {},
   isPlaying,
@@ -116,6 +118,8 @@ const Playlist = ({
 
           <div className={styles.infoContainer}>
             <div className={styles.name}>{name}</div>
+
+            {description && <div>{description}</div>}
 
             <div className={styles.iconsContainer}>
               <div className={styles.duration}>

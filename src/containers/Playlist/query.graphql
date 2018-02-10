@@ -23,6 +23,7 @@ query Playlist($playlistId: ID!, $cursor: String) {
   playlist(id: $playlistId) {
     id
     name
+    description
     duration
 
     items(first: -1, after: $cursor) @connection {
