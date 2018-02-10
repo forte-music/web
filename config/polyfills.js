@@ -1,4 +1,5 @@
 'use strict';
+import 'intersection-observer';
 
 if (typeof Promise === 'undefined') {
   // Rejection tracking prevents a common issue where React gets into an
@@ -19,4 +20,13 @@ Object.assign = require('object-assign');
 // We don't polyfill it in the browser--this is user's responsibility.
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
+}
+
+const supportsIntersectionObserver = () =>
+  'IntersectionObserver' in global &&
+  'IntersectionObserverEntry' in global &&
+  'intersectionRatio' in IntersectionObserverEntry.prototype;
+
+if (!supportsIntersectionObserver()) {
+  require('intersection-observer');
 }
