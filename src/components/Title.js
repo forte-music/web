@@ -1,3 +1,4 @@
+// @flow
 import withSideEffect from 'react-side-effect';
 import { last } from '../utils';
 

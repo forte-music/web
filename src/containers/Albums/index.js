@@ -1,3 +1,4 @@
+// @flow
 /* global process: false */
 import gql from 'graphql-tag';
 import type { OptionProps } from 'react-apollo';
@@ -6,7 +7,6 @@ import { compose } from 'redux';
 import { connectionQuery } from '../../components/ConnectionQuery';
 import Albums from './Albums';
 import type { AlbumsQuery } from './__generated__/AlbumsQuery';
-import type { Props } from './Albums';
 
 const graphqlEnhancer = connectionQuery(
   gql`
@@ -41,7 +41,7 @@ const graphqlEnhancer = connectionQuery(
   {
     props: ({
       data: { albums, loading },
-    }: OptionProps<void, AlbumsQuery>): Props => ({
+    }: OptionProps<Object, AlbumsQuery>) => ({
       albums,
       loading,
     }),
