@@ -1,5 +1,6 @@
 // @flow
 import { connect } from 'react-redux';
+import type { Dispatch } from 'redux';
 
 import type { State } from '../../state';
 import type { QueueItem } from '../../state/queue';
@@ -7,6 +8,7 @@ import { nowPlaying as nowPlayingSelector } from '../../selectors/nowPlaying';
 
 import Queue from './Queue';
 import { skipToPosition } from '../../actions';
+import type { Action } from '../../actions';
 
 type StateEnhancedProps = {
   items: QueueItem[],
@@ -26,8 +28,10 @@ const reduxEnhancer = connect(
 
     return { nowPlaying, items };
   },
-  (dispatch): ActionEnhancedProps => ({
-    skipToPosition: (position: number) => dispatch(skipToPosition(position)),
+  (dispatch: Dispatch<Action>): ActionEnhancedProps => ({
+    skipToPosition: (position: number) => {
+      dispatch(skipToPosition(position));
+    },
   })
 );
 

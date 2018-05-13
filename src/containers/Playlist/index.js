@@ -1,5 +1,6 @@
 // @flow
 import type { ComponentType } from 'react';
+import type { Dispatch } from 'redux';
 import type { OptionProps } from 'react-apollo';
 import { connect } from 'react-redux';
 import { bindActionCreators, compose } from 'redux';
@@ -25,6 +26,7 @@ import {
 import { playList } from '../../actions/creators/queue';
 import { connectionQuery } from '../../components/ConnectionQuery';
 import type { QueueItemSource } from '../../state/queue';
+import type { Action } from '../../actions';
 
 type InputProps = {
   match: { params: { id: string } },
@@ -75,7 +77,7 @@ const reduxEnhancer = connect(
       nowPlayingSongSource: nowPlaying ? source.song : undefined,
     };
   },
-  (dispatch): ReduxActionEnhancedProps => ({
+  (dispatch: Dispatch<Action>): ReduxActionEnhancedProps => ({
     ...bindActionCreators(
       { skipRelative, replaceQueue, skipToPosition, play },
       dispatch
