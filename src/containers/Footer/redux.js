@@ -1,20 +1,28 @@
 // @flow
+import type { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import type { InputProps } from '.';
 import type { State as ReduxState } from '../../state';
 import type { QueueItem } from '../../state/queue';
+import type {
+  Action,
+  SetPlaybackAction,
+  SkipRelativeAction,
+} from '../../actions';
 import { nowPlaying as nowPlayingSelector } from '../../selectors/nowPlaying';
 import { nextSong, pause, play, previousSong } from '../../actions';
 
 export type ReduxActionEnhancedProps = {
-  nextSong: () => void,
-  previousSong: () => void,
-  play: () => void,
-  pause: () => void,
+  nextSong: () => SkipRelativeAction,
+  previousSong: () => SkipRelativeAction,
+  play: () => SetPlaybackAction,
+  pause: () => SetPlaybackAction,
 };
-const mapDispatchToProps = (dispatch): ReduxActionEnhancedProps =>
+const mapDispatchToProps = (
+  dispatch: Dispatch<Action>
+): ReduxActionEnhancedProps =>
   bindActionCreators({ nextSong, previousSong, play, pause }, dispatch);
 
 type ReduxStateEnhancedProps = {
