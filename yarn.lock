@@ -10,19 +10,19 @@
     esutils "^2.0.2"
     js-tokens "^3.0.0"
 
-"@babel/generator@^7.0.0-beta.35":
-  version "7.0.0-beta.37"
-  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.0.0-beta.37.tgz#df5183995f20af4afe3bd5499a4c1336355fc163"
+"@babel/generator@7.0.0-beta.38":
+  version "7.0.0-beta.38"
+  resolved "https://registry.yarnpkg.com/@babel/generator/-/generator-7.0.0-beta.38.tgz#6115a66663e3adfd1d6844029ffb2354680182eb"
   dependencies:
-    "@babel/types" "7.0.0-beta.37"
+    "@babel/types" "7.0.0-beta.38"
     jsesc "^2.5.1"
     lodash "^4.2.0"
     source-map "^0.5.0"
     trim-right "^1.0.1"
 
-"@babel/types@7.0.0-beta.37":
-  version "7.0.0-beta.37"
-  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.37.tgz#fa93af9aa9d85c331729bb923495af04d9b0617d"
+"@babel/types@7.0.0-beta.38":
+  version "7.0.0-beta.38"
+  resolved "https://registry.yarnpkg.com/@babel/types/-/types-7.0.0-beta.38.tgz#2ce2443f7dc6ad535a67db4940cbd34e64035a6f"
   dependencies:
     esutils "^2.0.2"
     lodash "^4.2.0"
@@ -461,19 +461,19 @@ apollo-client@^2.0.4:
   optionalDependencies:
     "@types/async" "2.0.46"
 
-apollo-codegen@0xcaff/apollo-codegen#ac135e67ce2335c7ff6eba0bd059d6f9535d2335:
-  version "0.18.3"
-  resolved "https://codeload.github.com/0xcaff/apollo-codegen/tar.gz/ac135e67ce2335c7ff6eba0bd059d6f9535d2335"
+apollo-codegen@^0.19.1:
+  version "0.19.1"
+  resolved "https://registry.yarnpkg.com/apollo-codegen/-/apollo-codegen-0.19.1.tgz#30444de019f453c0d6ec167072b8e11b52d7f92e"
   dependencies:
-    "@babel/generator" "^7.0.0-beta.35"
+    "@babel/generator" "7.0.0-beta.38"
+    "@babel/types" "7.0.0-beta.38"
     change-case "^3.0.1"
     common-tags "^1.5.1"
     core-js "^2.5.3"
     glob "^7.1.2"
-    graphql "^0.12.3"
+    graphql "^0.13.1"
     graphql-config "^1.1.1"
     inflected "^2.0.3"
-    mkdirp "^0.5.1"
     node-fetch "^1.7.3"
     rimraf "^2.6.2"
     source-map-support "^0.5.0"
@@ -4692,7 +4692,7 @@ graphql-tools@^2.16.0:
     graphql-subscriptions "^0.5.6"
     uuid "^3.1.0"
 
-graphql@0.12.3, graphql@^0.10.1, graphql@^0.12.3:
+graphql@0.12.3, graphql@^0.10.1, graphql@^0.12.3, graphql@^0.13.1:
   version "0.12.3"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.12.3.tgz#11668458bbe28261c0dcb6e265f515ba79f6ce07"
   dependencies:
