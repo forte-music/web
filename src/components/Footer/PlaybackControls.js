@@ -1,9 +1,9 @@
 // @flow
 import React from 'react';
 
-import PlaybackButton from '../../components/PlaybackButton';
-import SkipBackwards from '../../components/icons/SkipBackwards';
-import SkipForwards from '../../components/icons/SkipForwards';
+import PlaybackButton from '../PlaybackButton';
+import SkipBackwards from '../icons/SkipBackwards';
+import SkipForwards from '../icons/SkipForwards';
 
 import styles from './PlaybackControls.css';
 

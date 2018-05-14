@@ -1,8 +1,8 @@
 // @flow
 import React from 'react';
 
-import VolumeSlider from '../../components/VolumeSlider';
-import Like from '../../components/Like';
+import VolumeSlider from '../VolumeSlider';
+import Like from '../Like';
 
 import { formatDuration } from '../../utils';
 import styles from './AdditionalControls.css';

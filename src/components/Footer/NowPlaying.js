@@ -2,10 +2,10 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-import Artwork from '../../components/Artwork';
+import Artwork from '../Artwork';
 import { join, unique } from '../../utils';
 import { album, artist } from '../../paths';
-import type { Song } from './Footer';
+import type { Song } from '../../containers/Footer/Footer';
 import styles from './NowPlaying.css';
 
 type Props = {

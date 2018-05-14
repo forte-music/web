@@ -2,9 +2,9 @@
 import React, { Component } from 'react';
 
 import Audio from '../../components/Audio';
-import NowPlaying from './NowPlaying';
-import PlaybackControls from './PlaybackControls';
-import AdditionalControls from './AdditionalControls';
+import NowPlaying from '../../components/Footer/NowPlaying';
+import PlaybackControls from '../../components/Footer/PlaybackControls';
+import AdditionalControls from '../../components/Footer/AdditionalControls';
 import { SliderInput } from '../../components/Slider';
 import Title from '../../components/Title';
 
