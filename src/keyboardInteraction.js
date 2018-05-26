@@ -1,5 +1,6 @@
 // @flow
 import { Component } from 'react';
+import type { Store } from './store';
 
 import { nextSong, previousSong, togglePlayback } from './actions';
 
