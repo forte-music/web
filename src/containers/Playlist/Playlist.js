@@ -76,7 +76,7 @@ export type Props = {
 const Playlist = ({
   playlist: {
     id,
-    items: { pageInfo: { count = 0 } = {}, edges = [] } = {},
+    items: { count = 0, edges = [] } = {},
     name = '',
     description,
     duration = 0,

@@ -34,15 +34,15 @@
     lodash "^4.2.0"
     to-fast-properties "^2.0.0"
 
-"@forte-music/mock@^0.0.20":
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/@forte-music/mock/-/mock-0.0.20.tgz#8b2109b29c4b68647544999f711d8f5c254310c2"
+"@forte-music/mock@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@forte-music/mock/-/mock-0.0.26.tgz#731fe4430a1d340d1dbad57dcf09d74c9b8b9dcc"
   dependencies:
-    "@forte-music/schema" "^0.0.20"
+    "@forte-music/schema" "^0.0.26"
 
-"@forte-music/schema@^0.0.20":
-  version "0.0.20"
-  resolved "https://registry.yarnpkg.com/@forte-music/schema/-/schema-0.0.20.tgz#83c22f177f7353a3bf25f8ac1421c3c90be50ddc"
+"@forte-music/schema@^0.0.26":
+  version "0.0.26"
+  resolved "https://registry.yarnpkg.com/@forte-music/schema/-/schema-0.0.26.tgz#b469943194aeb179475504033b77f0d12518939b"
   dependencies:
     babel-core "^6.26.0"
     babel-jest "^22.1.0"

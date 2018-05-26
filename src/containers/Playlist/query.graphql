@@ -27,8 +27,8 @@ query Playlist($playlistId: ID!, $cursor: String) {
     duration
 
     items(first: -1, after: $cursor) @connection {
+      count
       pageInfo {
-        count
         hasNextPage
       }
 

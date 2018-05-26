@@ -12,8 +12,8 @@ const graphqlEnhancer = connectionQuery(
   gql`
     query AlbumsQuery($cursor: String) {
       albums(first: 30, after: $cursor) @connection {
+        count
         pageInfo {
-          count
           hasNextPage
         }
 
