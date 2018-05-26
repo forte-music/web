@@ -1,13 +1,6 @@
-if (!process.env.REACT_APP_API_URL) {
-  process.env.REACT_APP_MOCK_RESOLVER = true;
-}
-
 const aliases = require('./config/aliases');
 
 module.exports = {
-    "globals": {
-      "REACT_APP_API_URL": process.env.REACT_APP_API_URL,
-    },
     "collectCoverageFrom": [
       "src/**/*.{js,jsx,mjs}"
     ],

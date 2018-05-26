@@ -105,6 +105,7 @@
     "check-all": "yarn codegen && yarn lint && yarn flow check && CI=true yarn test",
     "storybook": "start-storybook -p 9001 -c config/storybook",
     "start": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
+    "start-integrated": "node scripts/start.js",
     "build": "node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "yarn check-style && yarn lint-es && yarn lint-css",
