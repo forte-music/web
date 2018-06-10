@@ -4,7 +4,6 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Sidebar from './components/Sidebar';
 import Footer from './containers/Footer';
-import Playlist from './containers/Playlist';
 import Queue from './containers/Queue';
 import Albums from './containers/Albums';
 
@@ -18,8 +17,6 @@ import {
   artist,
   artists,
   home,
-  playlist,
-  playlists,
   queue,
   search,
   songs,
@@ -46,9 +43,6 @@ const App = () => (
 
           <Route exact path={albums} component={Albums} />
           <Route exact path={album(withId)} />
-
-          <Route exact path={playlists} />
-          <Route exact path={playlist(withId)} component={Playlist} />
 
           <Route exact path={home} />
           <Route exact path={queue} component={Queue} />

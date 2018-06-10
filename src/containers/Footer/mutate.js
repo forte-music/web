@@ -34,18 +34,8 @@ export type PlayMutationProps = LikeMutationProps & {
 
 export const playSongMutationEnhancer = graphql(
   gql`
-    mutation PlaySongMutation(
-      $songId: ID!
-      $playlistId: ID
-      $albumId: ID
-      $artistId: ID
-    ) {
-      playSong(
-        songId: $songId
-        playlistId: $playlistId
-        albumId: $albumId
-        artistId: $artistId
-      ) {
+    mutation PlaySongMutation($songId: ID!, $albumId: ID, $artistId: ID) {
+      playSong(songId: $songId, albumId: $albumId, artistId: $artistId) {
         song {
           id
         }
