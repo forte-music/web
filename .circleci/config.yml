@@ -55,9 +55,42 @@ jobs:
           name: Run Tests
           command: yarn test --coverage
 
+  deploy:
+    docker:
+      - image: node:9.3.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-
+
+      - run:
+          name: Install Deps
+          command: yarn install
+
+      - run:
+          name: Build
+          environment:
+            REACT_APP_MOCK_RESOLVER: true
+          command: yarn build
+
+      - run:
+          name: Copy Index File
+          command: cp build/index.html build/200.html
+
+      - run:
+          name: Deploy to Surge
+          command: yarn surge --project ./build --domain forte.surge.sh
+
 workflows:
   version: 2
   test:
     jobs:
       - test
-
+      - deploy:
+          requires:
+            - test

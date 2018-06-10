@@ -91,6 +91,7 @@
     "prettier": "1.9.2",
     "stylelint-config-css-modules": "^1.1.0",
     "stylelint-config-recommended": "^2.0.1",
+    "surge": "^0.20.1",
     "webpack-dev-server": "2.9.4"
   },
   "resolutions": {
@@ -106,7 +107,7 @@
     "storybook": "start-storybook -p 9001 -c config/storybook",
     "start": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start-integrated": "node scripts/start.js",
-    "build": "node scripts/build.js",
+    "build": "yarn codegen && node scripts/build.js",
     "test": "node scripts/test.js --env=jsdom",
     "lint": "yarn check-style && yarn lint-es && yarn lint-css",
     "lint-es": "eslint 'src/**/*.{js,graphql}'",
