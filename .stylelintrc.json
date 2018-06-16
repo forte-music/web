@@ -1,0 +1,22 @@
+{
+  "extends": ["stylelint-config-recommended", "stylelint-config-css-modules"],
+  "rules": {
+    "no-descending-specificity": null,
+    "selector-pseudo-element-no-unknown": [
+      true,
+      {
+        "ignorePseudoElements": ["range-track", "range-thumb"]
+      }
+    ],
+    "color-named": "never",
+    "value-no-vendor-prefix": true,
+    "property-no-vendor-prefix": true,
+    "declaration-no-important": true,
+    "selector-no-vendor-prefix": true,
+    "media-feature-name-no-vendor-prefix": true,
+    "at-rule-no-vendor-prefix": true,
+    "no-unknown-animations": true,
+    "color-hex-case": "lower",
+    "color-hex-length": "long"
+  }
+}

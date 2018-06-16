@@ -1,0 +1,19 @@
+{
+  "extends": "react-app",
+  "rules": {
+    "graphql/template-strings": [
+      "warn",
+      {
+        "env": "literal"
+      }
+    ],
+    "graphql/required-fields": [
+      "error",
+      {
+        "env": "literal",
+        "requiredFields": ["id"]
+      }
+    ]
+  },
+  "plugins": ["graphql"]
+}
