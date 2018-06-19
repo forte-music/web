@@ -86,14 +86,14 @@ storiesOf('SongList', module)
   ))
   .add('an active row', () => (
     <Row
-      song={mustGet(songs, 'song:1:1')}
+      song={mustGet(songs, '00000000000000000000000000000001')}
       onDoubleClick={action('double click')}
       active
     />
   ))
   .add('connected detail row', () => (
     <ApolloProvider client={client}>
-      <ConnectedDetailRow songId={'song:1:1'} />
+      <ConnectedDetailRow songId={'00000000000000000000000000000001'} />
     </ApolloProvider>
   ))
   .add('many connected detail rows', () => (
