@@ -21,12 +21,3 @@ Object.assign = require('object-assign');
 if (process.env.NODE_ENV === 'test') {
   require('raf').polyfill(global);
 }
-
-const supportsIntersectionObserver = () =>
-  'IntersectionObserver' in global &&
-  'IntersectionObserverEntry' in global &&
-  'intersectionRatio' in IntersectionObserverEntry.prototype;
-
-if (!supportsIntersectionObserver()) {
-  require('intersection-observer');
-}

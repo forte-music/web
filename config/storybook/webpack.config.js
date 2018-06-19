@@ -1,15 +1,20 @@
 const paths = require('../paths');
+const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
+const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 
 module.exports = {
   resolve: {
+    extensions: ['.ts', '.tsx', '.js', '.json'],
     alias: require('../aliases'),
+    plugins: [new TsConfigPathsPlugin({ configFile: paths.appTsConfig })],
   },
   module: {
     rules: [
       // Process JS with Babel.
+      require('../ts-loader'),
       {
         test: /\.(js|jsx|mjs)$/,
-        include: [paths.appSrc, paths.forteMock],
+        include: paths.appSrc,
         loader: require.resolve('babel-loader'),
         options: {
           // This is a feature of `babel-loader` for webpack (not Babel itself).
@@ -19,35 +24,29 @@ module.exports = {
         },
       },
       {
-        test: /\.(graphql|gql)$/,
-        loader: require.resolve('graphql-tag/loader'),
-      },
-      {
         test: /\.css$/,
-        oneOf: [
+        use: [
+          require.resolve('style-loader'),
           {
-            resourceQuery: /^\?raw$/,
-            use: [
-              require.resolve('style-loader'),
-              require.resolve('css-loader'),
-            ],
+            loader: require.resolve('css-loader'),
+            options: {
+              importLoaders: 1,
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]',
+            },
           },
-          {
-            use: [
-              require.resolve('style-loader'),
-              {
-                loader: require.resolve('css-loader'),
-                options: {
-                  importLoaders: 1,
-                  modules: true,
-                  localIdentName: '[name]__[local]___[hash:base64:5]',
-                },
-              },
-              require('../postcss-loader'),
-            ],
-          },
+          require('../postcss-loader'),
         ],
       },
     ],
   },
+  plugins: [
+    // Perform type checking and linting in a separate process to speed up compilation
+    new ForkTsCheckerWebpackPlugin({
+      async: false,
+      watch: paths.appSrc,
+      tsconfig: paths.appTsConfig,
+      tslint: paths.appTsLint,
+    }),
+  ],
 };

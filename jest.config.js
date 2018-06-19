@@ -1,32 +1,35 @@
-const aliases = require('./config/aliases');
+const paths = require('./config/paths');
 
 module.exports = {
     "collectCoverageFrom": [
-      "src/**/*.{js,jsx,mjs}"
+      "src/**/*.{ts,tsx}"
     ],
     "setupFiles": [
       "<rootDir>/config/polyfills.js",
       "<rootDir>/config/setupTests.js",
     ],
     "testMatch": [
-      "<rootDir>/src/**/__tests__/**/*.{js,jsx,mjs}",
-      "<rootDir>/src/**/?(*.)(spec|test).{js,jsx,mjs}"
+      "<rootDir>/src/**/__tests__/**/*.{ts,tsx}",
+      "<rootDir>/src/**/?(*.)(spec|test).{ts,tsx}"
     ],
     "testEnvironment": "node",
     "testURL": "http://localhost",
     "transform": {
-      "\\.(gql|graphql)$": "jest-transform-graphql",
       "\\.js$": "babel-jest",
+      "\\.tsx?$": "ts-jest/preprocessor",
     },
     "transformIgnorePatterns": [
-      "node_modules/(?!(@forte-music/(schema|mock))/)"
+      '[/\\\\]node_modules[/\\\\].+\\.(js|jsx|mjs|ts|tsx)$',
     ],
     "moduleNameMapper": {
       "^react-native$": "react-native-web",
       "\\.css$": "identity-obj-proxy",
-      "^@\\/links$": aliases['@/links$'],
     },
     "moduleFileExtensions": [
+      "web.ts",
+      "ts",
+      "web.tsx",
+      "tsx",
       "web.js",
       "mjs",
       "js",
@@ -34,5 +37,10 @@ module.exports = {
       "web.jsx",
       "jsx",
       "node"
-    ]
+    ],
+    globals: {
+      'ts-jest': {
+        tsConfigFile: paths.appTsTestConfig,
+      },
+    },
 };
