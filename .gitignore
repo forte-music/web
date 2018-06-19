@@ -23,4 +23,4 @@ yarn-error.log*
 /flow-typed
 __generated__
 /coverage
-*.css.flow
+*.css.d.ts

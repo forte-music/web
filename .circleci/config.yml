@@ -17,14 +17,9 @@ jobs:
           name: Install Deps
           command: yarn install
 
-      - run:
-          name: Install Typings
-          command: yarn typings
-
       - save_cache:
           paths:
             - node_modules
-            - ~/.flow-typed/
           key: dependencies-{{ checksum "package.json" }}
 
       - run:
@@ -32,8 +27,8 @@ jobs:
           command: yarn codegen
 
       - run:
-          name: ESLint
-          command: yarn lint-es
+          name: TSLint
+          command: yarn tslint
 
       - run:
           name: StyleLint
@@ -44,16 +39,19 @@ jobs:
           command: yarn check-style
 
       - run:
-          name: Flow Check
-          command: yarn flow check
-
-      - run:
-          name: Flow Coverage
-          command: yarn flow-coverage-report
-
-      - run:
           name: Run Tests
           command: yarn test --coverage
+
+      - run:
+          name: Build
+          environment:
+            REACT_APP_MOCK_RESOLVER: true
+          command: yarn build
+      
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build/
 
   deploy:
     docker:
@@ -68,15 +66,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - dependencies-
 
+      - attach_workspace:
+          at: /project
+
       - run:
           name: Install Deps
           command: yarn install
-
-      - run:
-          name: Build
-          environment:
-            REACT_APP_MOCK_RESOLVER: true
-          command: yarn build
 
       - run:
           name: Copy Index File
@@ -94,3 +89,6 @@ workflows:
       - deploy:
           requires:
             - test
+          filters:
+            branches:
+              only: master
