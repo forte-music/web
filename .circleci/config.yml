@@ -42,6 +42,17 @@ jobs:
           name: Run Tests
           command: yarn test --coverage
 
+      - run:
+          name: Build
+          environment:
+            REACT_APP_MOCK_RESOLVER: true
+          command: yarn build
+      
+      - persist_to_workspace:
+          root: .
+          paths:
+            - build/
+
   deploy:
     docker:
       - image: node:9.3.0
@@ -55,15 +66,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - dependencies-
 
+      - attach_workspace:
+          at: /project
+
       - run:
           name: Install Deps
           command: yarn install
-
-      - run:
-          name: Build
-          environment:
-            REACT_APP_MOCK_RESOLVER: true
-          command: yarn build
 
       - run:
           name: Copy Index File
@@ -81,3 +89,6 @@ workflows:
       - deploy:
           requires:
             - test
+          filters:
+            branches:
+              only: master
