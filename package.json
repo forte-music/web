@@ -92,8 +92,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "resolutions": {
-    "graphql": "0.12.3",
-    "react-icon-base": "gorangajic/react-icon-base#478ce7e39e8255d05d74dd86ae648399c0ce6e4a"
+    "graphql": "0.12.3"
   },
   "config": {
     "prettierFiles": "'*.js' {src,config}/**/*.{js,css,ts,tsx} README.md"

@@ -8744,9 +8744,9 @@ react-html-attributes@^1.4.2:
   dependencies:
     html-element-attributes "^1.0.0"
 
-react-icon-base@2.1.0, react-icon-base@gorangajic/react-icon-base#478ce7e39e8255d05d74dd86ae648399c0ce6e4a:
-  version "2.1.2"
-  resolved "https://codeload.github.com/gorangajic/react-icon-base/tar.gz/478ce7e39e8255d05d74dd86ae648399c0ce6e4a"
+react-icon-base@2.1.0:
+  version "2.1.0"
+  resolved "https://registry.yarnpkg.com/react-icon-base/-/react-icon-base-2.1.0.tgz#a196e33fdf1e7aaa1fda3aefbb68bdad9e82a79d"
 
 react-icons@^2.2.7:
   version "2.2.7"
