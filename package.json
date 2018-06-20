@@ -104,7 +104,7 @@
     "start": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start-integrated": "node scripts/start.js",
     "build": "yarn codegen && node scripts/build.js",
-    "test": "node scripts/test.js --env=jsdom",
+    "test": "node scripts/test.js",
     "lint": "yarn check-style && yarn tslint && yarn lint-css",
     "tslint": "tslint --project .",
     "lint-css": "stylelint 'src/**/*.css'",
