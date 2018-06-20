@@ -66,12 +66,12 @@ jobs:
             # fallback to using the latest cache if no exact match is found
             - dependencies-
 
-      - attach_workspace:
-          at: /project
-
       - run:
           name: Install Deps
           command: yarn install
+
+      - attach_workspace:
+          at: .
 
       - run:
           name: Copy Index File
