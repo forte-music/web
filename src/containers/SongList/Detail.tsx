@@ -1,7 +1,7 @@
 import { graphql } from 'react-apollo';
 import { OptionProps } from 'react-apollo';
 import gql from 'graphql-tag';
-import { SongListRow } from './__generated__/SongListRow';
+import { SongListRow } from '../../__generated__/SongListRow';
 import { SongRowProps as OutputProps } from '../../components/SongList/Detail';
 import { DetailRow } from '../../components/SongList';
 

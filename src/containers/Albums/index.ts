@@ -3,7 +3,7 @@ import { OptionProps } from 'react-apollo';
 
 import { connectionQuery } from '../../components/ConnectionQuery';
 import Albums from './Albums';
-import { AlbumsQuery } from './__generated__/AlbumsQuery';
+import { AlbumsQuery } from '../../__generated__/AlbumsQuery';
 
 const graphqlEnhancer = connectionQuery(
   gql`

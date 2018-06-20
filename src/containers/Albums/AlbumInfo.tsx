@@ -9,7 +9,7 @@ import Dots from '../../components/icons/Dots';
 import DefaultCover from '../../components/icons/DefaultCover';
 
 import * as styles from './AlbumInfo.css';
-import { AlbumsQuery_albums_edges_node } from './__generated__/AlbumsQuery';
+import { AlbumsQuery_albums_edges_node } from '../../__generated__/AlbumsQuery';
 
 // TODO: Click Region
 // TODO: Disable Draggable

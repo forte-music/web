@@ -4,8 +4,8 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
-    "@forte-music/mock": "^0.0.34",
-    "@forte-music/schema": "^0.0.32",
+    "@forte-music/mock": "^0.0.36",
+    "@forte-music/schema": "^0.0.36",
     "@storybook/addon-actions": "^3.4.7",
     "@storybook/addon-storyshots": "^3.4.7",
     "@storybook/addons": "^3.4.7",
@@ -19,8 +19,8 @@
     "@types/storybook__addon-actions": "^3.0.3",
     "@types/storybook__react": "^3.0.7",
     "apollo-cache-inmemory": "^1.2.4",
-    "apollo-client": "^2.3.4",
-    "apollo-codegen": "^0.19.1",
+    "apollo-client": "^2.3.5",
+    "apollo-codegen": "^0.20.0",
     "apollo-link-http": "^1.5.4",
     "apollo-link-schema": "^1.1.0",
     "autoprefixer": "7.1.6",
@@ -42,8 +42,8 @@
     "file-loader": "1.1.5",
     "fork-ts-checker-webpack-plugin": "^0.4.2",
     "fs-extra": "3.0.1",
-    "graphql": "^0.12.0",
-    "graphql-tag": "^2.6.1",
+    "graphql": "^0.13.0",
+    "graphql-tag": "^2.9.2",
     "html-webpack-plugin": "2.29.0",
     "identity-obj-proxy": "^3.0.0",
     "intersection-observer": "^0.5.0",
@@ -92,7 +92,7 @@
     "whatwg-fetch": "2.0.3"
   },
   "resolutions": {
-    "graphql": "0.12.3"
+    "graphql": "0.13.0"
   },
   "config": {
     "prettierFiles": "'*.js' {src,config}/**/*.{js,css,ts,tsx} README.md"
@@ -111,6 +111,6 @@
     "check-style": "prettier --list-different $npm_package_config_prettierFiles",
     "codegen": "yarn query-codegen && yarn css-modules-codegen",
     "css-modules-codegen": "tcm src/",
-    "query-codegen": "apollo-codegen generate 'src/**/*.{graphql,ts,tsx}' --target ts-modern"
+    "query-codegen": "apollo-codegen generate 'src/**/*.{graphql,ts,tsx}' --target typescript --output src/__generated__/"
   }
 }

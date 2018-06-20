@@ -5,7 +5,7 @@ import { ReduxEnhancedProps } from './redux';
 import {
   Footer as FooterQuery,
   Footer_song as Song,
-} from './__generated__/Footer';
+} from '../../__generated__/Footer';
 import gql from 'graphql-tag';
 
 export const defaultConfig = {
