@@ -1,15 +1,10 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-
-import { album, artist } from '../../paths';
-
-import PlaybackArtwork from '../../containers/PlaybackArtwork';
-import Artwork from '../../components/Artwork';
+import { album as albumPath, artist as artistPath } from '../../paths';
 import Dots from '../../components/icons/Dots';
-import DefaultCover from '../../components/icons/DefaultCover';
-
 import * as styles from './AlbumInfo.css';
 import { AlbumsQuery_albums_edges_node } from '../../__generated__/AlbumsQuery';
+import { AlbumArtwork } from '../../components/AlbumArtwork';
 
 // TODO: Click Region
 // TODO: Disable Draggable
@@ -18,15 +13,7 @@ export interface AlbumInfoProps {
   album: AlbumsQuery_albums_edges_node;
 }
 
-export const AlbumInfo = ({
-  album: {
-    id: albumId,
-    artworkUrl,
-    name,
-    artist: { id: artistId, name: artistName },
-    songs,
-  },
-}: AlbumInfoProps) => (
+export const AlbumInfo = ({ album }: AlbumInfoProps) => (
   <div
     className={styles.container}
     onContextMenu={e => {
@@ -41,24 +28,11 @@ export const AlbumInfo = ({
     }}
   >
     <div>
-      <PlaybackArtwork
-        kind={'ALBUM'}
-        list={albumId}
-        tracks={songs.map(({ id }, idx) => ({
-          songId: id,
-          source: { song: idx.toString() },
-        }))}
-      >
-        <Link to={album(albumId)}>
-          {(artworkUrl && <Artwork src={artworkUrl} alt={name} />) || (
-            <DefaultCover />
-          )}
-        </Link>
-      </PlaybackArtwork>
+      <AlbumArtwork album={album} />
     </div>
     <div className={styles.album}>
-      <Link to={album(albumId)} className={styles.link}>
-        {name}
+      <Link to={albumPath(album.id)} className={styles.link}>
+        {album.name}
       </Link>
 
       <div
@@ -73,8 +47,8 @@ export const AlbumInfo = ({
     </div>
 
     <div className={styles.artist}>
-      <Link to={artist(artistId)} className={styles.link}>
-        {artistName}
+      <Link to={artistPath(album.artist.id)} className={styles.link}>
+        {album.artist.name}
       </Link>
     </div>
   </div>
