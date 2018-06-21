@@ -14,5 +14,3 @@ export const Providers = ({ children }: { children: React.ReactNode }) => (
     </Provider>
   </HashRouter>
 );
-
-export default Providers;

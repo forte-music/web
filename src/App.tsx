@@ -6,7 +6,7 @@ import Footer from './containers/Footer';
 import Queue from './containers/Queue';
 import Albums from './containers/Albums';
 
-import Providers from './providers';
+import { Providers } from './providers';
 import Title from './components/Title';
 import { KeyboardInteraction } from './keyboardInteraction';
 
