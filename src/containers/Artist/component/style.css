@@ -2,10 +2,7 @@
 @import '../../../sizes.css';
 
 .headerPanel {
-  padding-top: var(--size-medium);
-  padding-left: var(--size-medium);
-  padding-right: var(--size-medium);
-  padding-bottom: var(--size-small);
+  padding: var(--size-medium);
   background: var(--header-background-color);
 }
 
@@ -20,27 +17,7 @@
   font-size: var(--font-size-tiny);
 }
 
-.buttonContainer {
-  margin-top: var(--size-tiny);
-}
-
 .albums {
+  composes: artworkGrid from '../../../shared.css';
   padding: var(--size-medium);
-}
-
-.albumArtwork {
-  width: var(--artwork-size);
-  height: var(--artwork-size);
-}
-
-.button {
-  width: 40px;
-  height: 40px;
-  margin-left: var(--size-tiny);
-  margin-right: var(--size-tiny);
-}
-
-.album {
-  display: flex;
-  flex-direction: row;
 }

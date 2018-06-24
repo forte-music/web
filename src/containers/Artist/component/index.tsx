@@ -1,38 +1,44 @@
-import { ArtistQuery_artist } from '../../../__generated__/ArtistQuery';
 import * as React from 'react';
 import * as styles from './style.css';
+import * as sharedStyles from '../../../shared.css';
 import { pluralize } from '../../../utils';
 import { AlbumArtwork } from '../../../components/AlbumArtwork';
-import Play from '../../../components/icons/Play';
-import Plus from '../../../components/icons/Plus';
-import Dots from '../../../components/icons/Dots';
+import { ArtworkTwoInfo } from '../../../components/ArtworkTwoInfo';
+import { Link } from 'react-router-dom';
+import { album as albumPath } from '../../../paths';
+import { ArtistQuery_artist } from '../../../__generated__/ArtistQuery';
 
 export interface Props {
   artist: ArtistQuery_artist;
 }
 
+const Header = (props: {
+  artist: { name: string; albums: { length: number } };
+}) => (
+  <div className={styles.headerPanel}>
+    <div className={styles.artistName}>{props.artist.name}</div>
+    <div className={styles.artistStats}>
+      {props.artist.albums.length}{' '}
+      {pluralize('album', props.artist.albums.length)}
+    </div>
+  </div>
+);
+
 const Artist = (props: Props) => (
   <div>
-    <div className={styles.headerPanel}>
-      <div className={styles.artistName}>{props.artist.name}</div>
-      <div className={styles.artistStats}>
-        {props.artist.albums.length}{' '}
-        {pluralize('album', props.artist.albums.length)}
-      </div>
-      <div className={styles.buttonContainer}>
-        <Play svgClass={styles.button} />
-        <Plus svgClass={styles.button} />
-        <Dots svgClass={styles.button} />
-      </div>
-    </div>
+    <Header artist={props.artist} />
 
     <div className={styles.albums}>
       {props.artist.albums.map(album => (
-        <div className={styles.album}>
-          <div className={styles.albumArtwork}>
-            <AlbumArtwork album={album} />
-          </div>
-        </div>
+        <ArtworkTwoInfo
+          artwork={<AlbumArtwork album={album} />}
+          lineOne={
+            <Link to={albumPath(album.id)} className={sharedStyles.link}>
+              {album.name}
+            </Link>
+          }
+          lineTwo={album.releaseYear}
+        />
       ))}
     </div>
   </div>
