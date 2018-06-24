@@ -13,3 +13,7 @@ export const home = `/home`;
 export const queue = `/queue`;
 export const search = `/search`;
 export const withId = ':id';
+
+export interface WithIdParams {
+  id: string;
+}

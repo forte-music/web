@@ -98,3 +98,11 @@ export function* genRange(to: number): Iterable<number> {
 
 // tslint:disable-next-line: no-empty
 export const noop = () => {};
+
+export const pluralize = (prefix: string, count: number) => {
+  if (count === 1) {
+    return prefix;
+  }
+
+  return prefix + 's';
+};
