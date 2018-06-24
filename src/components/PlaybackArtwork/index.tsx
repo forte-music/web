@@ -1,7 +1,7 @@
 import * as React from 'react';
-import * as styles from './PlaybackArtwork.css';
+import * as styles from './style.css';
 
-import PlaybackButton from './PlaybackButton';
+import PlaybackButton from '../PlaybackButton';
 
 export type PlaybackState =
   // In this state, a play button is shown on hover. onStartPlayback is

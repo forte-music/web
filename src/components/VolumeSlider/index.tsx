@@ -1,8 +1,8 @@
 import * as React from 'react';
 
-import Slider from './Slider';
-import { Loud, Quiet, Cone } from './icons/Volume';
-import * as styles from './VolumeSlider.css';
+import Slider from '../Slider';
+import { Loud, Quiet, Cone } from '../icons/Volume';
+import * as styles from './styles.css';
 
 interface Props {
   // Number between 0 and 1 representing the volume.

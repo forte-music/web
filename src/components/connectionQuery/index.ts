@@ -11,7 +11,7 @@ import {
   SelectionSetNode,
 } from 'graphql';
 
-import { last, split } from '../utils';
+import { last, split } from '../../utils';
 import { Connection } from '@forte-music/mock/models';
 
 type Path = string[];

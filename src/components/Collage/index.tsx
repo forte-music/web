@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as styles from './Collage.css';
+import * as styles from './style.css';
 
 interface Props {
   topLeft: React.ReactNode;

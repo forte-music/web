@@ -3,7 +3,7 @@ import PlaybackArtwork from '../containers/PlaybackArtwork';
 import { Link } from 'react-router-dom';
 import { album } from '../paths';
 
-import Artwork from '../components/Artwork';
+import Artwork from './Artwork';
 import DefaultCover from '../components/icons/DefaultCover';
 
 export interface Album {

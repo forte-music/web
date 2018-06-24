@@ -3,9 +3,9 @@ import { OptionProps } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { defaultConfig } from './query';
-import { ToggleLikeMutation } from '../../__generated__/ToggleLikeMutation';
+import { ToggleLikeMutation } from '../../../__generated__/ToggleLikeMutation';
 import { QueryEnhancedProps } from './query';
-import { PlaySongMutation } from '../../__generated__/PlaySongMutation';
+import { PlaySongMutation } from '../../../__generated__/PlaySongMutation';
 
 interface LikeMutationProps extends QueryEnhancedProps {
   // Toggles the liked state of this song. (nowPlaying.stats.liked).

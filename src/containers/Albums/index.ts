@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 import { OptionProps } from 'react-apollo';
 
-import { connectionQuery } from '../../components/ConnectionQuery';
+import { connectionQuery } from '../../components/connectionQuery';
 import Albums from './Albums';
 import { AlbumsQuery } from '../../__generated__/AlbumsQuery';
 

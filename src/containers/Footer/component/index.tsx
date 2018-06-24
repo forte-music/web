@@ -1,15 +1,15 @@
 import * as React from 'react';
 
-import Audio from '../../components/Audio';
-import NowPlaying from '../../components/Footer/NowPlaying';
-import PlaybackControls from '../../components/Footer/PlaybackControls';
-import AdditionalControls from '../../components/Footer/AdditionalControls';
-import { SliderInput } from '../../components/Slider';
-import Title from '../../components/Title';
+import Audio from '../../../components/Audio';
+import NowPlaying from '../../../components/Footer/NowPlaying';
+import PlaybackControls from '../../../components/Footer/PlaybackControls';
+import AdditionalControls from '../../../components/Footer/AdditionalControls';
+import { SliderInput } from '../../../components/Slider';
+import Title from '../../../components/Title';
 
-import * as styles from './Footer.css';
-import * as barStyles from '../../components/Bars.css';
-import { PlayMutationProps } from './mutate';
+import * as styles from './styles.css';
+import * as barStyles from '../../../components/Bars.css';
+import { PlayMutationProps } from '../enhancers/mutate';
 
 type Props = PlayMutationProps;
 

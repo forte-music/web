@@ -1,13 +1,13 @@
 import * as React from 'react';
 
-import Title from '../../components/Title';
-import { SongList, DetailHeader as Header } from '../../components/SongList';
+import Title from '../../../components/Title';
+import { SongList, DetailHeader as Header } from '../../../components/SongList';
 
-import ConnectedDetailRow from '../SongList/Detail';
+import ConnectedDetailRow from '../../SongList/Detail';
 
-import * as styles from './Queue.css';
-import { EnhancedProps } from '.';
-import { noop } from '../../utils';
+import * as styles from './styles.css';
+import { EnhancedProps } from '../enhancers/redux';
+import { noop } from '../../../utils';
 
 const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
   <div>

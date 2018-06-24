@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import Heart from './icons/Heart';
-import * as styles from './Like.css';
+import Heart from '../icons/Heart';
+import * as styles from './style.css';
 
 interface Props {
   onToggleLike: () => void;

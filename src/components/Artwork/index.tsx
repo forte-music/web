@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as styles from './Artwork.css';
+import * as styles from './style.css';
 
 interface Props {
   src: string;

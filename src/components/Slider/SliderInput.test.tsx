@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { shallow } from 'enzyme';
 
-import { SliderInput } from './Slider';
-import { noop } from '../utils';
+import { SliderInput } from '.';
+import { noop } from '../../utils';
 
 it('renders', () => {
   shallow(<SliderInput min={0} max={100} onValueChange={noop} />);

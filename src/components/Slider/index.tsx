@@ -1,6 +1,6 @@
 import * as React from 'react';
-import * as styles from './Slider.css';
-import { noop } from '../utils';
+import * as styles from './styles.css';
+import { noop } from '../../utils';
 
 interface SliderInputProps {
   value?: number;

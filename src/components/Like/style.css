@@ -1,11 +1,11 @@
-@import '../sizes.css';
+@import '../../sizes.css';
 
 .container {
   width: var(--secondary-button-size);
 }
 
 .heartContainer {
-  composes: clickable from '../shared.css';
+  composes: clickable from '../../shared.css';
   display: block;
 }
 

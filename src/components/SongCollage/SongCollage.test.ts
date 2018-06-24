@@ -1,4 +1,4 @@
-import { orderArtwork } from './SongCollage';
+import { orderArtwork } from '.';
 
 it('works with four artworks', () => {
   const input = [1, 2, 3, 4];

@@ -4,10 +4,10 @@
 }
 
 .bar {
-  composes: bar from './Bars.css';
+  composes: bar from '../Bars.css';
   background: #ff0000;
 }
 
 .input {
-  composes: bar from './Bars.css' seek from './Bars.css';
+  composes: bar from '../Bars.css' seek from '../Bars.css';
 }

@@ -2,12 +2,16 @@ import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { InputProps } from '.';
-import { State as ReduxState } from '../../state';
-import { QueueItem } from '../../state/queue';
-import { Action, SetPlaybackAction, SkipRelativeAction } from '../../actions';
-import { nowPlaying as nowPlayingSelector } from '../../selectors/nowPlaying';
-import { nextSong, pause, play, previousSong } from '../../actions';
+import { InputProps } from '..';
+import { State as ReduxState } from '../../../state/index';
+import { QueueItem } from '../../../state/queue';
+import {
+  Action,
+  SetPlaybackAction,
+  SkipRelativeAction,
+} from '../../../actions';
+import { nowPlaying as nowPlayingSelector } from '../../../selectors/nowPlaying';
+import { nextSong, pause, play, previousSong } from '../../../actions';
 
 export interface ReduxActionEnhancedProps {
   // Called to skip to the next song in the queue.

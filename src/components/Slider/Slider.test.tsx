@@ -1,9 +1,9 @@
 import * as React from 'react';
-import * as styles from './Slider.css';
+import * as styles from '../Slider.css';
 import { shallow } from 'enzyme';
 
-import Slider from './Slider';
-import { noop } from '../utils';
+import Slider from '.';
+import { noop } from '../../utils';
 
 it('renders', () => {
   shallow(<Slider min={0} max={100} value={30} onValueChange={noop} />);

@@ -1,5 +1,4 @@
-// @flow
-import { findPathToDirective } from './ConnectionQuery';
+import { findPathToDirective } from '.';
 import gql from 'graphql-tag';
 
 // Disable the GQL codegen for this test. Needed because this query isn't
