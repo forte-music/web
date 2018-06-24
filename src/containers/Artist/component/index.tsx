@@ -7,6 +7,7 @@ import { ArtworkTwoInfo } from '../../../components/ArtworkTwoInfo';
 import { Link } from 'react-router-dom';
 import { album as albumPath } from '../../../paths';
 import { ArtistQuery_artist } from '../../../__generated__/ArtistQuery';
+import Title from '../../../components/Title';
 
 export interface Props {
   artist: ArtistQuery_artist;
@@ -26,6 +27,7 @@ const Header = (props: {
 
 const Artist = (props: Props) => (
   <div>
+    <Title segments={[props.artist.name]} />
     <Header artist={props.artist} />
 
     <div className={styles.albums}>
