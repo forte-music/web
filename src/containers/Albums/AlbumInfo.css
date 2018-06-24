@@ -1,4 +1,5 @@
 @import '../../colors.css';
+@import '../../sizes.css';
 
 .container {
   display: flex;
@@ -24,9 +25,9 @@
 
 .album {
   composes: text;
-  margin-top: 8px;
-  font-size: 14px;
-  margin-bottom: 4px;
+  margin-top: var(--size-tiny);
+  font-size: var(--font-size-tiny);
+  margin-bottom: var(--size-very-tiny);
 
   position: relative;
 }
