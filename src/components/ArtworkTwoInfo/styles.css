@@ -9,21 +9,13 @@
   text-align: center;
 }
 
-.container:hover .icon {
-  opacity: 1;
-}
-
-.link {
-  composes: link from '../../shared.css';
-}
-
 .text {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: clip;
 }
 
-.album {
+.lineOne {
   composes: text;
   margin-top: var(--size-tiny);
   font-size: var(--font-size-tiny);
@@ -32,35 +24,11 @@
   position: relative;
 }
 
-.artist {
+.lineTwo {
   composes: text;
   margin-top: 4px;
   margin-bottom: 4px;
 
   font-size: 12px;
   color: var(--secondary-text-color);
-}
-
-.iconContainer {
-  height: 16px;
-  width: 20px;
-
-  position: absolute;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  text-align: right;
-
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0) 0,
-    var(--main-background-color) 20%
-  );
-}
-
-.icon {
-  opacity: 0;
-  transform: rotate(90deg);
-  height: 100%;
-  transition: 0.3s opacity;
 }
