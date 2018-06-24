@@ -1,5 +1,5 @@
 import * as React from 'react';
-import * as styles from '../Slider.css';
+import * as styles from './styles.css';
 import { shallow } from 'enzyme';
 
 import Slider from '.';
