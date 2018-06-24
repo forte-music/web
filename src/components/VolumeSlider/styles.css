@@ -1,0 +1,57 @@
+@import '../../colors.css';
+@import '../../sizes.css';
+
+:root {
+  --thumb-size: 12px;
+  --slider-width: 100px;
+  --slider-radius: var(--size-very-tiny);
+
+  --thumb-radius: calc(var(--thumb-size) / 2);
+
+  /* TODO: These Colors */
+  --filled-color: #777777;
+  --unfilled-color: #333333;
+  --thumb-color: #aaaaaa;
+}
+
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.icon {
+  width: var(--secondary-button-size);
+  height: var(--secondary-button-size);
+  margin-right: var(--size-very-tiny);
+}
+
+.slider {
+  border-radius: var(--slider-radius);
+
+  width: var(--slider-width);
+  height: var(--size-very-tiny);
+
+  background: var(--unfilled-color);
+  margin-right: var(--size-small);
+}
+
+.bar {
+  border-top-left-radius: var(--slider-radius);
+  border-bottom-left-radius: var(--slider-radius);
+
+  background: var(--filled-color);
+}
+
+.input {
+  margin-left: calc(-1 * var(--thumb-radius));
+  width: calc(calc(2 * var(--thumb-radius)) + var(--slider-width));
+}
+
+.input::range-thumb {
+  cursor: pointer;
+
+  border-radius: var(--thumb-radius);
+  height: var(--thumb-size);
+  width: var(--thumb-size);
+  background: var(--thumb-color);
+}

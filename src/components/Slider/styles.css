@@ -1,0 +1,13 @@
+.container {
+  height: 10px;
+  position: relative;
+}
+
+.bar {
+  composes: bar from '../Bars.css';
+  background: #ff0000;
+}
+
+.input {
+  composes: bar from '../Bars.css' seek from '../Bars.css';
+}

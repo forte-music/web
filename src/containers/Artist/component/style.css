@@ -1,0 +1,23 @@
+@import '../../../colors.css';
+@import '../../../sizes.css';
+
+.headerPanel {
+  padding: var(--size-medium);
+  background: var(--header-background-color);
+}
+
+.artistName {
+  color: #ffffff;
+  font-size: var(--font-size-large);
+}
+
+.artistStats {
+  margin-top: var(--size-tiny);
+  color: var(--secondary-text-color);
+  font-size: var(--font-size-tiny);
+}
+
+.albums {
+  composes: artworkGrid from '../../../shared.css';
+  padding: var(--size-medium);
+}

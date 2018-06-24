@@ -24,3 +24,4 @@ yarn-error.log*
 __generated__
 /coverage
 *.css.d.ts
+.idea

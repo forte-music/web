@@ -9,13 +9,8 @@
 }
 
 .container {
+  composes: artworkGrid from '../../shared.css';
   margin-left: var(--size-medium);
   margin-right: var(--size-medium);
   margin-bottom: var(--size-medium);
-
-  display: grid;
-  grid-column-gap: var(--size-small);
-  grid-row-gap: var(--size-small);
-
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
 }
