@@ -27,9 +27,7 @@ export const AlbumInfo = ({ album }: AlbumInfoProps) => (
       // TODO: Launch Popup Menu
     }}
   >
-    <div>
-      <AlbumArtwork album={album} />
-    </div>
+    <AlbumArtwork album={album} />
     <div className={styles.album}>
       <Link to={albumPath(album.id)} className={styles.link}>
         {album.name}
