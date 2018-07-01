@@ -1,6 +1,6 @@
 import * as React from 'react';
 import * as styles from './styles.css';
-import { Album_album } from '../../../__generated__/Album';
+import { AlbumQuery_album } from '../../../__generated__/AlbumQuery';
 import Title from '../../../components/Title';
 import { AlbumArtwork } from '../../../components/AlbumArtwork';
 import { Link } from 'react-router-dom';
@@ -11,10 +11,10 @@ import { Header } from '../../../components/SongList/Detail';
 import ConnectedDetailRow from '../../SongList/Detail';
 
 export interface Props {
-  album: Album_album;
+  album: AlbumQuery_album;
 }
 
-const Album = ({ album }: Props) => (
+export const Album = ({ album }: Props) => (
   <div>
     <Title segments={[album.name]} />
 
@@ -60,11 +60,3 @@ const Album = ({ album }: Props) => (
     </div>
   </div>
 );
-
-export default (props: Partial<Props>) => {
-  if (props.album) {
-    return <Album album={props.album} />;
-  }
-
-  return null;
-};
