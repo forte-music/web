@@ -25,7 +25,7 @@ const Header = (props: {
   </div>
 );
 
-const Artist = (props: Props) => (
+export const Artist = (props: Props) => (
   <div>
     <Title segments={[props.artist.name]} />
     <Header artist={props.artist} />
@@ -45,11 +45,3 @@ const Artist = (props: Props) => (
     </div>
   </div>
 );
-
-export default (props: Partial<Props>) => {
-  if (props.artist) {
-    return <Artist artist={props.artist} />;
-  }
-
-  return null;
-};
