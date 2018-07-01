@@ -2,14 +2,10 @@ import { graphql } from 'react-apollo';
 import gql from 'graphql-tag';
 
 import { InputProps } from '..';
-import {
-  ArtistQuery,
-  ArtistQuery_artist,
-} from '../../../__generated__/ArtistQuery';
+import { ArtistQuery } from '../../../__generated__/ArtistQuery';
+import { Props } from '../component';
 
-export interface OutputProps {
-  artist?: ArtistQuery_artist;
-}
+type OutputProps = Partial<Props>;
 
 const query = gql`
   query ArtistQuery($artistId: ID!) {

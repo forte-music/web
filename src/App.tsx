@@ -6,6 +6,7 @@ import Footer from './containers/Footer';
 import Queue from './containers/Queue';
 import Albums from './containers/Albums';
 import Artist from './containers/Artist';
+import Album from './containers/Album';
 
 import { Providers } from './providers';
 import Title from './components/Title';
@@ -42,7 +43,7 @@ const App = () => (
           <Route exact path={artist(withId)} component={Artist} />
 
           <Route exact path={albums} component={Albums} />
-          <Route exact path={album(withId)} />
+          <Route exact path={album(withId)} component={Album} />
 
           <Route exact path={home} />
           <Route exact path={queue} component={Queue} />
