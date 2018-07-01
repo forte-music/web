@@ -1,3 +1,6 @@
+import * as React from 'react';
+import { RouteComponentProps } from 'react-router';
+
 export const songs = '/songs';
 
 export const artists = `/artists`;
@@ -17,3 +20,7 @@ export const withId = ':id';
 export interface WithIdParams {
   id: string;
 }
+
+export const withIdFromProps = (f: (id: string) => React.ReactNode) => (
+  props: RouteComponentProps<WithIdParams>
+) => f(props.match.params.id);

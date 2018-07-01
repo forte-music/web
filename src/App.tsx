@@ -22,6 +22,7 @@ import {
   search,
   songs,
   withId,
+  withIdFromProps,
 } from './paths';
 import store from './store';
 
@@ -40,10 +41,18 @@ const App = () => (
           <Route exact path={songs} />
 
           <Route exact path={artists} />
-          <Route exact path={artist(withId)} component={Artist} />
+          <Route
+            exact
+            path={artist(withId)}
+            render={withIdFromProps(id => <Artist id={id} />)}
+          />
 
           <Route exact path={albums} component={Albums} />
-          <Route exact path={album(withId)} component={Album} />
+          <Route
+            exact
+            path={album(withId)}
+            render={withIdFromProps(id => <Album id={id} />)}
+          />
 
           <Route exact path={home} />
           <Route exact path={queue} component={Queue} />

@@ -1,9 +1,9 @@
 import InnerComponent from './component';
 import { queryEnhancer } from './enhancers/query';
-import { WithIdParams } from '../../paths';
-import { RouteComponentProps } from 'react-router';
 
-export type InputProps = RouteComponentProps<WithIdParams>;
+export interface InputProps {
+  id: string;
+}
 
 const enhanced = queryEnhancer(InnerComponent);
 

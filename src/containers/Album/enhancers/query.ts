@@ -34,7 +34,7 @@ const query = gql`
 export const queryEnhancer = graphql<Album, InputProps, Partial<OutputProps>>(
   query,
   {
-    options: ({ match: { params: { id } } }) => ({
+    options: ({ id }) => ({
       variables: { albumId: id },
     }),
     props: ({
