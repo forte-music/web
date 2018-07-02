@@ -9,9 +9,43 @@ import Title from '../../../components/Title';
 
 import * as styles from './styles.css';
 import * as barStyles from '../../../components/Bars.css';
-import { PlayMutationProps } from '../enhancers/mutate';
+import { FooterQuery_song as Song } from '../../../__generated__/FooterQuery';
+import { QueueItem } from '../../../state/queue';
 
-type Props = PlayMutationProps;
+interface Props {
+  // A class applied to the component's container element.
+  className: string;
+
+  // The currently playing song. If this is not defined no song is playing
+  // and an inactive footer is rendered.
+  nowPlaying?: Song;
+
+  // Toggles the liked state of this song. (nowPlaying.stats.liked).
+  onToggleLike: () => void;
+
+  // Called to report the currently playing song. This is after playing or
+  // seek past the four minutes mark or after half of the track, whichever
+  // comes first. This should be called at most once per song.
+  playSong: () => void;
+
+  // Called to skip to the next song in the queue.
+  nextSong: () => void;
+
+  // Called to skip to the previous song in the queue.
+  previousSong: () => void;
+
+  // Called to start playback.
+  play: () => void;
+
+  // Called to temporarily stop playback.
+  pause: () => void;
+
+  // The currently playing queue item. Undefined if nothing is playing.
+  queueItem?: QueueItem;
+
+  // Whether or not audio should be playing.
+  playing: boolean;
+}
 
 // TODO: Loading States
 
