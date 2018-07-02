@@ -1,6 +1,23 @@
-import { queryEnhancer } from './enhancers/query';
+import * as React from 'react';
 import { DetailRow } from '../../components/SongList';
+import { SongListRowQuery } from './enhancers/query';
 
-const EnhancedDetailRow = queryEnhancer(DetailRow);
+interface Props {
+  songId: string;
+  active?: boolean;
+  onDoubleClick?: () => void;
+}
+
+const EnhancedDetailRow = ({ songId, active, onDoubleClick }: Props) => (
+  <SongListRowQuery variables={{ songId }}>
+    {result => (
+      <DetailRow
+        song={result.data && result.data.song}
+        active={active}
+        onDoubleClick={onDoubleClick}
+      />
+    )}
+  </SongListRowQuery>
+);
 
 export default EnhancedDetailRow;

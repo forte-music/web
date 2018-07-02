@@ -50,10 +50,6 @@ export interface SongRowProps {
 
   // Called when the component is double clicked.
   onDoubleClick?: () => void;
-
-  // Field to allow types with more properties than this type to satisfy this
-  // type.
-  [others: string]: any;
 }
 
 export const Row = ({
