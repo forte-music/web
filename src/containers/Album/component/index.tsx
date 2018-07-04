@@ -39,10 +39,8 @@ export const Album = ({ album }: Props) => (
 
     <div className={styles.songContainer}>
       <SongList
-        loadMore={noop}
         // TODO: Use Own Header and Rows
         header={<Header />}
-        totalItems={album.songs.length}
         countAvailableRows={album.songs.length}
         renderItem={index => {
           const song = album.songs[index];

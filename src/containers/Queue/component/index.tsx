@@ -7,7 +7,6 @@ import ConnectedDetailRow from '../../SongList/Detail';
 
 import * as styles from './styles.css';
 import { EnhancedProps } from '../enhancers/redux';
-import { noop } from '../../../utils';
 
 const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
   <div>
@@ -17,9 +16,7 @@ const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
 
     <div className={styles.body}>
       <SongList
-        loadMore={noop}
         header={<Header />}
-        totalItems={items.length}
         countAvailableRows={items.length}
         renderItem={index => {
           const { id, songId } = items[index];

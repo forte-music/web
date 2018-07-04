@@ -6,17 +6,8 @@ import { genRange } from '../../utils';
 
 interface Props {
   // The number of rows currently available to render by calls to
-  // renderItem. If rows need to be rendered which exceed this number,
-  // loadMore will be called first.
+  // renderItem.
   countAvailableRows: number;
-
-  // Called when it is time to load more ids. This function should update
-  // the value of the prop ids passed into this component.
-  loadMore: () => void;
-
-  // The total number of expected items. This is used to know when to stop
-  // loading in new data.
-  totalItems: number;
 
   // The header node is rendered inside the container above the virtual list
   // body.
@@ -25,8 +16,6 @@ interface Props {
   // Called to render each row. Each row must be 36px tall.
   renderItem: (index: number) => React.ReactNode;
 }
-
-// TODO: Loading More Mechanism
 
 const itemHeight = 36;
 

@@ -16,7 +16,6 @@ import {
 } from '../components/SongList/Detail';
 import client from '../graphql/client';
 import ConnectedDetailRow from '../containers/SongList/Detail';
-import { noop } from '../utils';
 
 const ids = Array.from(songs.keys());
 ids.sort();
@@ -52,13 +51,10 @@ const Story = ({
   getId?: (index: number) => string;
   getRowForSong?: (detail: SongDetail, index: number) => React.ReactNode;
 }) => (
-  // loadMore is never called if count is Infinity.
   <SongList
-    loadMore={noop}
     header={<Header />}
-    totalItems={count}
     countAvailableRows={count}
-    renderItem={({ index }) => {
+    renderItem={index => {
       const id = getId(index);
       const song: Song = mustGet(songs, id);
 
