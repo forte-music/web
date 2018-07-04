@@ -4,7 +4,7 @@ import { Redirect, Route, Switch } from 'react-router-dom';
 import Sidebar from './components/Sidebar';
 import Footer from './containers/Footer';
 import Queue from './containers/Queue';
-import Albums from './containers/Albums';
+import { Albums } from './containers/Albums';
 import Artist from './containers/Artist';
 import Album from './containers/Album';
 

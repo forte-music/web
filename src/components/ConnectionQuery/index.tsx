@@ -1,9 +1,9 @@
 // A higher order component for a relay-like cursor, edge, connection based
 // pagination pattern for apollo client.
-import { graphql } from 'react-apollo';
+import * as React from 'react';
+import { Query, QueryProps, QueryResult } from 'react-apollo';
 import { Kind } from 'graphql/language';
 
-import { OperationOption, OptionProps } from 'react-apollo';
 import {
   FieldNode,
   DocumentNode,
@@ -11,8 +11,9 @@ import {
   SelectionSetNode,
 } from 'graphql';
 
-import { last, split } from '../../utils';
+import { last, Omit, split } from '../../utils';
 import { Connection } from '@forte-music/mock/models';
+import { data } from '@forte-music/schema';
 
 type Path = string[];
 
@@ -106,68 +107,83 @@ const combineConnections = <T, TResult extends object>(
   return merged;
 };
 
-export const connectionQuery = <
-  TProps extends object,
-  TResult extends object,
-  TNode extends object
->(
-  document: DocumentNode,
-  operationOptions: OperationOption<TProps, TResult>
-) => {
-  const pathToConnectionRoot = findPathToDirective(document, 'connection');
+interface CursorVariables {
+  cursor?: string | null;
+}
+
+export type ConnectionQueryProps<
+  TData extends object,
+  TVariables extends CursorVariables
+> = Omit<QueryProps<TData, TVariables>, 'children'> & {
+  children: (
+    result: ConnectionQueryResult<TData, TVariables>
+  ) => React.ReactNode;
+};
+
+export type ConnectionQueryResult<TData, TVariables> = QueryResult<
+  TData,
+  TVariables
+> & { getNextPage: () => Promise<void> };
+
+export const ConnectionQuery = <
+  TData extends object,
+  TVariables extends CursorVariables,
+  TNode
+>({
+  children,
+  ...props
+}: ConnectionQueryProps<TData, TVariables>) => {
+  const pathToConnectionRoot = findPathToDirective(props.query, 'connection');
   if (pathToConnectionRoot == null) {
     throw new TypeError(`Connection not found in query document.`);
   }
 
-  const defaultProps = operationOptions.props || (props => props);
+  return (
+    <Query {...props}>
+      {result => {
+        const getNextPage = async (): Promise<void> => {
+          if (!result.data || !result.data.loading) {
+            return;
+          }
 
-  return graphql<TResult, TProps & { fetchMore: () => void }>(document, {
-    ...operationOptions,
-    props: (optionProps: OptionProps<TProps, TResult>) => ({
-      ...defaultProps(optionProps),
+          const connectionRoot: Connection<TNode> = getByPath(
+            data,
+            pathToConnectionRoot
+          );
+          const { edges, pageInfo: { hasNextPage } } = connectionRoot;
+          if (hasNextPage === undefined) {
+            throw new TypeError('hasNextPage missing from pageInfo');
+          }
 
-      fetchMore() {
-        const { data } = optionProps;
-        if (!data || data.loading) {
-          return;
-        }
+          if (!hasNextPage) {
+            // All items have been fetched.
+            return;
+          }
 
-        const connectionRoot: Connection<TNode> = getByPath(
-          data,
-          pathToConnectionRoot
-        );
-        const { edges, pageInfo: { hasNextPage } } = connectionRoot;
-        if (hasNextPage === undefined) {
-          throw new TypeError('hasNextPage missing from pageInfo');
-        }
+          const lastEdge = last(edges) || { cursor: undefined };
+          const { cursor } = lastEdge;
+          if (!cursor) {
+            throw new TypeError('cursor missing from the last edge');
+          }
 
-        if (!hasNextPage) {
-          // All items have been fetched.
-          return;
-        }
+          result.fetchMore({
+            variables: { cursor },
+            updateQuery: (
+              previousResult: TData,
+              { fetchMoreResult }: { fetchMoreResult?: TData }
+            ) =>
+              fetchMoreResult
+                ? combineConnections(
+                    previousResult,
+                    fetchMoreResult,
+                    pathToConnectionRoot
+                  )
+                : previousResult,
+          });
+        };
 
-        const lastEdge = last(edges);
-        const { cursor } = lastEdge || { cursor: undefined };
-        if (lastEdge && !cursor) {
-          throw new TypeError('cursor missing from the last edge');
-        }
-
-        data.fetchMore({
-          variables: {
-            ...data.variables,
-            cursor,
-          },
-          updateQuery: (
-            previousResult: TResult,
-            { fetchMoreResult }: { fetchMoreResult: TResult }
-          ) =>
-            combineConnections(
-              previousResult,
-              fetchMoreResult,
-              pathToConnectionRoot
-            ),
-        });
-      },
-    }),
-  });
+        return children({ ...result, getNextPage });
+      }}
+    </Query>
+  );
 };

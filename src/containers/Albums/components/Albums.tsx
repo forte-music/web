@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import Title from '../../components/Title';
-import { AlbumsQuery_albums } from '../../__generated__/AlbumsQuery';
+import Title from '../../../components/Title';
+import { AlbumsQuery_albums } from '../../../__generated__/AlbumsQuery';
 import { AlbumInfo } from './AlbumInfo';
 import * as styles from './Albums.css';
 import Observer from 'react-intersection-observer';
