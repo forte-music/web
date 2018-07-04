@@ -4,7 +4,7 @@ import { album as albumPath, artist as artistPath } from '../../../paths';
 import * as styles from '../../../shared.css';
 import { AlbumsQuery_albums_edges_node as Album } from '../../../__generated__/AlbumsQuery';
 import { AlbumArtwork } from '../../../components/AlbumArtwork';
-import { ArtworkTwoInfo } from '../../../components/ArtworkTwoInfo/index';
+import { ArtworkTwoInfo } from '../../../components/ArtworkTwoInfo';
 
 // TODO: Click Region
 // TODO: Disable Draggable
