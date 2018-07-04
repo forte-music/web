@@ -44,7 +44,7 @@ export const Album = ({ album }: Props) => (
         header={<Header />}
         totalItems={album.songs.length}
         countAvailableRows={album.songs.length}
-        renderItem={({ index }) => {
+        renderItem={index => {
           const song = album.songs[index];
 
           return (

@@ -23,7 +23,7 @@ interface Props {
   header: React.ReactNode;
 
   // Called to render each row. Each row must be 36px tall.
-  renderItem: (item: { index: number }) => React.ReactNode;
+  renderItem: (index: number) => React.ReactNode;
 }
 
 // TODO: Loading More Mechanism
@@ -38,7 +38,7 @@ const SongList = ({ countAvailableRows, header, renderItem }: Props) => (
       <Virtualized
         items={Array.from(genRange(countAvailableRows))}
         itemHeight={itemHeight}
-        renderItem={renderItem}
+        renderItem={({ index }) => renderItem(index)}
       />
     )}
   </div>

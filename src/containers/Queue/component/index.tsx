@@ -21,7 +21,7 @@ const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
         header={<Header />}
         totalItems={items.length}
         countAvailableRows={items.length}
-        renderItem={({ index }) => {
+        renderItem={index => {
           const { id, songId } = items[index];
 
           return (
