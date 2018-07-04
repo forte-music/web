@@ -29,7 +29,10 @@ const QueryEnhancedFooter = ({
   pause,
   playing,
 }: ReduxEnhancedProps) => (
-  <FooterQuery variables={queueItem && { songId: queueItem.songId }}>
+  <FooterQuery
+    variables={queueItem && { songId: queueItem.songId }}
+    skip={!queueItem}
+  >
     {queryResults => (
       <LikeMutation variables={queueItem && { songId: queueItem.songId }}>
         {likeCurrentSong => (
