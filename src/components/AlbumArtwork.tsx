@@ -15,12 +15,15 @@ export interface Album {
 
 export interface Props {
   album: Album;
+  backgroundInteraction?: boolean;
 }
 
 export const AlbumArtwork = ({
   album: { id: albumId, artworkUrl, name, songs },
+  backgroundInteraction,
 }: Props) => (
   <PlaybackArtwork
+    backgroundInteraction={backgroundInteraction}
     kind={'ALBUM'}
     list={albumId}
     tracks={songs.map(({ id }, idx) => ({

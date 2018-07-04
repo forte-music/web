@@ -20,7 +20,7 @@ export const Album = ({ album }: Props) => (
 
     <div className={styles.header}>
       <div className={styles.albumArtwork}>
-        <AlbumArtwork album={album} />
+        <AlbumArtwork backgroundInteraction album={album} />
       </div>
       <div className={styles.headerRightColumn}>
         <div className={styles.albumName}>{album.name}</div>
