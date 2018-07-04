@@ -68,15 +68,12 @@ storiesOf('SongList', module)
   .add('a few items', () => <Story />)
   .add('single row loading', () => <Row />)
   .add('the same items many times', () => (
-    <Story
-      count={manyItems}
-      getId={index => ids[index % ids.length] as string}
-    />
+    <Story count={manyItems} getId={index => ids[index % ids.length]} />
   ))
   .add('lots of loading items', () => (
     <Story
       count={manyItems}
-      getId={index => ids[index % ids.length] as string}
+      getId={index => ids[index % ids.length]}
       getRowForSong={song => <DelayedLoadingRow song={song} />}
     />
   ))
@@ -96,7 +93,7 @@ storiesOf('SongList', module)
     <ApolloProvider client={client}>
       <Story
         count={manyItems}
-        getId={index => ids[index % ids.length] as string}
+        getId={index => ids[index % ids.length]}
         getRowForSong={(song, index) => (
           <ConnectedDetailRow
             key={index}
