@@ -37,7 +37,7 @@ module.exports = {
   ],
   globals: {
     'ts-jest': {
-      tsConfigFile: paths.appTsTestConfig,
+      tsConfigFile: paths.appTsConfig,
     },
   },
 };

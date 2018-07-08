@@ -1,4 +1,4 @@
-import * as withSideEffect from 'react-side-effect';
+import withSideEffect from 'react-side-effect';
 import { last } from '../utils';
 
 interface OuterProps {
