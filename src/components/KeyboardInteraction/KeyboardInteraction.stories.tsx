@@ -2,9 +2,9 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import store from '../redux/store';
-import { KeyboardInteraction } from '../components/KeyboardInteraction';
-import { populateQueue } from './populateQueue';
+import store from '../../redux/store';
+import { KeyboardInteraction } from '.';
+import { populateQueue } from '../../utils/populateQueue';
 
 storiesOf('keyboard interaction', module).add('with textfield', () => {
   store.dispatch(populateQueue());

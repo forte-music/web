@@ -1,7 +1,7 @@
 import * as React from 'react';
 import PlaybackArtwork from '../containers/PlaybackArtwork';
 import { Link } from 'react-router-dom';
-import { album } from '../paths';
+import { album } from '../utils/paths';
 
 import Artwork from './Artwork';
 import DefaultCover from '../components/icons/DefaultCover';

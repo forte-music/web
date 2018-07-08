@@ -1,6 +1,6 @@
 import * as React from 'react';
-import Play from './icons/Play';
-import Pause from './icons/Pause';
+import Play from '../icons/Play';
+import Pause from '../icons/Pause';
 
 interface Props {
   onToggle: () => void;

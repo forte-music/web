@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Popper from '../components/Dropdown/Popper';
-import { Menu, Item, Divider, MoreItems } from '../components/Dropdown/Menu';
-import StatefulComponent from './StatefulComponent';
+import Popper from './Popper';
+import { Menu, Item, Divider, MoreItems } from './Menu';
+import StatefulComponent from '../../utils/StatefulComponent';
 
 storiesOf('Dropdown', module)
   .add('interactive', () => (

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Artwork from '../components/Artwork';
+import Artwork from '.';
 
 storiesOf('Artwork', module).add('interactive', () => (
   <div style={{ width: 160 }}>

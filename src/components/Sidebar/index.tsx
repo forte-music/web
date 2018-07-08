@@ -2,7 +2,7 @@ import * as React from 'react';
 import * as styles from './style.css';
 import { NavLink } from 'react-router-dom';
 
-import { albums, artists, home, queue, search, songs } from '../../paths';
+import { albums, artists, home, queue, search, songs } from '../../utils/paths';
 
 interface Props {
   className: string;

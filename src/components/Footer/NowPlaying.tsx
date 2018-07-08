@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 import Artwork from '../Artwork';
 import { join, unique } from '../../utils';
-import { album, artist } from '../../paths';
+import { album, artist } from '../../utils/paths';
 import { Song } from '../../containers/Footer/enhancers/query';
 import * as styles from './NowPlaying.css';
 import DefaultCover from '../icons/DefaultCover';

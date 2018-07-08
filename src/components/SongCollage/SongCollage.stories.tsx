@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import SongCollage from '../components/SongCollage';
+import SongCollage from '.';
 
 const songs = [
   'https://i.scdn.co/image/d345ab2a8278434f1c8cc936ace70da02ac845fb',

@@ -2,10 +2,9 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import { collage } from './Collage';
-import PlaybackArtwork from '../components/PlaybackArtwork';
-import StatefulComponent from './StatefulComponent';
-import { PlaybackState } from '../components/PlaybackArtwork';
+import { collage } from '../Collage/Collage.stories';
+import PlaybackArtwork, { PlaybackState } from '.';
+import StatefulComponent from '../../utils/StatefulComponent';
 
 storiesOf('PlaybackArtwork', module)
   .add('playing with background interaction', () => (

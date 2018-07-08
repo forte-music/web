@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Queue from '../containers/Queue';
-import { Providers } from '../components/App/Providers';
-import store from '../redux/store';
-import { populateQueue } from './populateQueue';
+import Queue from '.';
+import { Providers } from '../../components/App/Providers';
+import store from '../../redux/store';
+import { populateQueue } from '../../utils/populateQueue';
 
 store.dispatch(populateQueue());
 

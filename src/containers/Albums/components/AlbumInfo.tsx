@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Link } from 'react-router-dom';
-import { album as albumPath, artist as artistPath } from '../../../paths';
+import { album as albumPath, artist as artistPath } from '../../../utils/paths';
 import * as styles from '../../../shared.css';
 import { AlbumsQuery_albums_edges_node as Album } from '../../../__generated__/AlbumsQuery';
 import { AlbumArtwork } from '../../../components/AlbumArtwork';

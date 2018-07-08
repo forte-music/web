@@ -4,11 +4,12 @@ import { AlbumQuery_album } from '../../../__generated__/AlbumQuery';
 import Title from '../../../components/Title';
 import { AlbumArtwork } from '../../../components/AlbumArtwork';
 import { Link } from 'react-router-dom';
-import { artist as artistPath } from '../../../paths';
-import { formatDuration, noop, pluralize } from '../../../utils';
+import { artist as artistPath } from '../../../utils/paths';
+import { noop, pluralize } from '../../../utils';
 import { SongList } from '../../../components/SongList';
 import { Header } from '../../../components/SongList/Detail';
 import ConnectedDetailRow from '../../SongList/Detail';
+import { formatDuration } from '../../../utils/duration';
 
 export interface Props {
   album: AlbumQuery_album;

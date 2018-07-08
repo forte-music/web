@@ -3,7 +3,7 @@ import * as React from 'react';
 import VolumeSlider from '../VolumeSlider';
 import Like from '../Like';
 
-import { formatDuration } from '../../utils';
+import { formatDuration } from '../../utils/duration';
 import * as styles from './AdditionalControls.css';
 
 interface Props {

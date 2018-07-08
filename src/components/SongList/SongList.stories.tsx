@@ -6,16 +6,13 @@ import { HashRouter } from 'react-router-dom';
 
 import { songs } from '@forte-music/mock/models';
 import { Song } from '@forte-music/mock/models';
-import SongList from '../components/SongList/SongList';
-import { Header, Row } from '../components/SongList/Detail';
+import SongList from './SongList';
+import { Header, Row } from './Detail';
 import { mustGet } from '@forte-music/mock/utils';
 
-import {
-  Song as SongDetail,
-  SongRowProps,
-} from '../components/SongList/Detail';
-import client from '../graphql/client';
-import ConnectedDetailRow from '../containers/SongList/Detail';
+import { Song as SongDetail, SongRowProps } from './Detail';
+import client from '../../graphql/client';
+import ConnectedDetailRow from '../../containers/SongList/Detail';
 
 const ids = Array.from(songs.keys());
 ids.sort();

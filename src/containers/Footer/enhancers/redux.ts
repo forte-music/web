@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { InputProps } from '..';
-import { State as ReduxState } from '../../../redux/state/index';
+import { State as ReduxState } from '../../../redux/state';
 import { QueueItem } from '../../../redux/state/queue';
 import {
   Action,

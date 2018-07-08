@@ -1,8 +1,8 @@
 import { Store } from 'redux';
 import { Component } from 'react';
-import { State } from '../redux/state';
+import { State } from '../../redux/state';
 
-import { nextSong, previousSong, togglePlayback } from '../redux/actions';
+import { nextSong, previousSong, togglePlayback } from '../../redux/actions';
 
 // TODO: Use Connect
 const handleKeydown = (store: Store<State>) => (e: KeyboardEvent) => {

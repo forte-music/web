@@ -1,8 +1,8 @@
 import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Collage from '../components/Collage';
-import Artwork from '../components/Artwork';
+import Collage from '.';
+import Artwork from '../Artwork';
 
 storiesOf('Collage', module).add('interactive', () => (
   <div style={{ width: 300 }}>{collage}</div>
