@@ -24,7 +24,7 @@ import {
   withId,
   withIdFromProps,
 } from '../../paths';
-import store from '../../store';
+import store from '../../redux/store';
 
 import * as styles from './styles.css';
 

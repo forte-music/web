@@ -1,9 +1,9 @@
 import { createStore } from 'redux';
-import { State } from './redux/state';
+import { State } from './state/index';
 
 import { devToolsEnhancer } from 'redux-devtools-extension/logOnlyInProduction';
 
-import reducer from './redux/reducers';
+import reducer from './reducers/index';
 
 const store = createStore<State>(
   reducer,

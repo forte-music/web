@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
-import store from '../store';
+import store from '../redux/store';
 import { KeyboardInteraction } from '../components/KeyboardInteraction';
 import { populateQueue } from './populateQueue';
 
