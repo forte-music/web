@@ -10,7 +10,7 @@ import Title from '../../../components/Title';
 import * as styles from './styles.css';
 import * as barStyles from '../../../components/Bars.css';
 import { FooterQuery_song as Song } from '../../../__generated__/FooterQuery';
-import { QueueItem } from '../../../state/queue';
+import { QueueItem } from '../../../redux/state/queue';
 
 interface Props {
   // A class applied to the component's container element.

@@ -6,7 +6,7 @@ import { ReduxEnhancedProps, reduxEnhancer } from './enhancers/redux';
 import { FooterQuery } from './enhancers/query';
 import { LikeMutation } from './enhancers/likeMutation';
 import { PlaySongMutation } from './enhancers/playSongMutation';
-import { Kind, QueueItem } from '../../state/queue';
+import { Kind, QueueItem } from '../../redux/state/queue';
 
 export interface InputProps {
   className: string;

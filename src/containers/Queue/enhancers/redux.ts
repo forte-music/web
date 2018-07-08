@@ -1,9 +1,9 @@
-import { QueueItem } from '../../../state/queue';
+import { QueueItem } from '../../../redux/state/queue';
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
-import { State } from '../../../state';
-import { Action, skipToPosition } from '../../../actions';
-import { nowPlaying as nowPlayingSelector } from '../../../selectors/nowPlaying';
+import { State } from '../../../redux/state';
+import { Action, skipToPosition } from '../../../redux/actions';
+import { nowPlaying as nowPlayingSelector } from '../../../redux/selectors/nowPlaying';
 
 interface StateEnhancedProps {
   items: QueueItem[];

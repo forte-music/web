@@ -2,16 +2,16 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import { Props } from '..';
-import { QueueItemSource } from '../../../state/queue';
-import { State } from '../../../state';
+import { QueueItemSource } from '../../../redux/state/queue';
+import { State } from '../../../redux/state';
 import { PlaybackState } from '../../../components/PlaybackArtwork';
-import { play, pause } from '../../../actions';
+import { play, pause } from '../../../redux/actions';
 import {
   isSource,
   nowPlaying as nowPlayingSelector,
-} from '../../../selectors/nowPlaying';
-import { playList } from '../../../actions/creators/queue';
-import { Action } from '../../../actions';
+} from '../../../redux/selectors/nowPlaying';
+import { playList } from '../../../redux/actions/creators/queue';
+import { Action } from '../../../redux/actions';
 
 export interface ReduxStateEnhancedProps {
   state: PlaybackState;

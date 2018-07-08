@@ -1,5 +1,5 @@
 import { songs } from '@forte-music/mock/models';
-import { replaceQueue } from '../actions';
+import { replaceQueue } from '../redux/actions';
 
 const ids = Array.from(songs.keys());
 ids.sort();

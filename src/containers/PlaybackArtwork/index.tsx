@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 
-import { Kind, QueueItemSource } from '../../state/queue';
+import { Kind, QueueItemSource } from '../../redux/state/queue';
 import PlaybackArtwork from '../../components/PlaybackArtwork';
 import reduxEnhancer from './enhancers/redux';
 
