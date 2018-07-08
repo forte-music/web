@@ -2,7 +2,7 @@ import * as React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Queue from '../containers/Queue';
-import { Providers } from '../providers';
+import { Providers } from '../components/App/Providers';
 import store from '../store';
 import { populateQueue } from './populateQueue';
 

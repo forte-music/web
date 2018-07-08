@@ -1,16 +1,16 @@
 import * as React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Sidebar from './components/Sidebar';
-import Footer from './containers/Footer';
-import Queue from './containers/Queue';
-import { Albums } from './containers/Albums';
-import Artist from './containers/Artist';
-import Album from './containers/Album';
+import Sidebar from '../Sidebar';
+import Footer from '../../containers/Footer';
+import Queue from '../../containers/Queue';
+import { Albums } from '../../containers/Albums';
+import Artist from '../../containers/Artist';
+import Album from '../../containers/Album/index';
 
-import { Providers } from './providers';
-import Title from './components/Title';
-import { KeyboardInteraction } from './components/KeyboardInteraction';
+import { Providers } from './Providers';
+import Title from '../Title';
+import { KeyboardInteraction } from '../KeyboardInteraction';
 
 import {
   album,
@@ -23,12 +23,12 @@ import {
   songs,
   withId,
   withIdFromProps,
-} from './paths';
-import store from './store';
+} from '../../paths';
+import store from '../../store';
 
-import * as styles from './App.css';
+import * as styles from './styles.css';
 
-const App = () => (
+export const App = () => (
   <Providers>
     <div className={styles.grid}>
       <Title />
@@ -66,5 +66,3 @@ const App = () => (
     </div>
   </Providers>
 );
-
-export default App;
