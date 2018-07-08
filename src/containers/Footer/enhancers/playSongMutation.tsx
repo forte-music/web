@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Mutation, MutationProps } from 'react-apollo';
 import gql from 'graphql-tag';
 

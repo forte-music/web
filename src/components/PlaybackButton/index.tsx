@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Play from '../icons/Play';
 import Pause from '../icons/Pause';
 

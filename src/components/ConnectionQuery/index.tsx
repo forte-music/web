@@ -1,6 +1,6 @@
 // A higher order component for a relay-like cursor, edge, connection based
 // pagination pattern for apollo client.
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { Query, QueryProps, QueryResult } from 'react-apollo';
 import { Kind } from 'graphql/language';
 
@@ -115,9 +115,7 @@ export type ConnectionQueryProps<
   TData extends object,
   TVariables extends CursorVariables
 > = Omit<QueryProps<TData, TVariables>, 'children'> & {
-  children: (
-    result: ConnectionQueryResult<TData, TVariables>
-  ) => React.ReactNode;
+  children: (result: ConnectionQueryResult<TData, TVariables>) => ReactNode;
 };
 
 export type ConnectionQueryResult<TData, TVariables> = QueryResult<

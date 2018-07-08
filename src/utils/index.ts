@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 
 export const join = <T>(input: T[], btwn: T): T[] =>
   input.reduce(

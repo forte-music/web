@@ -1,7 +1,14 @@
-import { Action, SetPlaybackAction, SkipPositionAction } from '../actions';
-import { QueueItem, QueueItemSource, QueueState } from '../state/queue';
-import { initialState, getId } from '../state/queue';
 import {
+  QueueItem,
+  QueueItemSource,
+  QueueState,
+  initialState,
+  getId,
+} from '../state/queue';
+import {
+  Action,
+  SetPlaybackAction,
+  SkipPositionAction,
   AddItemsToQueueAction,
   RemoveFromQueueAction,
   SkipRelativeAction,

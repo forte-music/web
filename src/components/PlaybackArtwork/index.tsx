@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as styles from './style.css';
+import React, { ReactNode } from 'react';
+import styles from './style.css';
 
 import PlaybackButton from '../PlaybackButton';
 
@@ -22,7 +22,7 @@ export type PlaybackState =
 
 interface Props {
   // The child node will be rendered under the playing cover.
-  children?: React.ReactNode;
+  children?: ReactNode;
 
   // Whether or not to handle clicks on the background. This is false by
   // default to allow parent components to handle click through.

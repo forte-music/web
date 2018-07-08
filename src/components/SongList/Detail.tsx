@@ -1,9 +1,9 @@
-import * as React from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 import { join, unique } from '../../utils';
 import { album, artist } from '../../utils/paths';
-import * as styles from './Detail.css';
+import styles from './Detail.css';
 import { formatDuration } from '../../utils/duration';
 
 // Header and row element for the detailed song list which is used in queue,

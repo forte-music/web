@@ -1,7 +1,7 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import VirtualList, { InputProps } from 'react-virtual-list';
 
-import * as styles from './SongList.css';
+import styles from './SongList.css';
 import { genRange } from '../../utils';
 
 interface Props {
@@ -11,10 +11,10 @@ interface Props {
 
   // The header node is rendered inside the container above the virtual list
   // body.
-  header: React.ReactNode;
+  header: ReactNode;
 
   // Called to render each row. Each row must be 36px tall.
-  renderItem: (index: number) => React.ReactNode;
+  renderItem: (index: number) => ReactNode;
 }
 
 const itemHeight = 36;

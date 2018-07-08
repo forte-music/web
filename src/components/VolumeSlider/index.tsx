@@ -1,8 +1,8 @@
-import * as React from 'react';
+import React, { ComponentType } from 'react';
 
 import Slider from '../Slider';
 import { Loud, Quiet, Cone } from '../icons/Volume';
-import * as styles from './styles.css';
+import styles from './styles.css';
 
 interface Props {
   // Number between 0 and 1 representing the volume.
@@ -12,9 +12,7 @@ interface Props {
   onVolume: (newVolume: number) => void;
 }
 
-function getIconComponent(
-  volume: number
-): React.ComponentType<{ svgClass: string }> {
+function getIconComponent(volume: number): ComponentType<{ svgClass: string }> {
   if (volume < 0.15) {
     return Cone;
   } else if (volume < 0.75) {

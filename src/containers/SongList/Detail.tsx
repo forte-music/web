@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { DetailRow } from '../../components/SongList';
 import { SongListRowQuery } from './enhancers/query';
 

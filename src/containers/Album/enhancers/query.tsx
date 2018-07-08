@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Query, QueryProps } from 'react-apollo';
 import {
   AlbumQuery as Data,

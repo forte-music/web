@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { Component, ReactNode } from 'react';
+import React, { Component, ReactNode } from 'react';
 
 interface Props {
   // Whether or not the popper is open.

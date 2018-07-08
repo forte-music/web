@@ -1,6 +1,6 @@
-import * as React from 'react';
-import * as styles from './style.css';
-import * as sharedStyles from '../../../shared.css';
+import React from 'react';
+import styles from './style.css';
+import sharedStyles from '../../../shared.css';
 import { pluralize } from '../../../utils';
 import { AlbumArtwork } from '../../../components/AlbumArtwork';
 import { ArtworkTwoInfo } from '../../../components/ArtworkTwoInfo';

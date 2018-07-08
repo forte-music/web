@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ArtistQuery } from './enhancers/query';
 import { Artist } from './component';
 

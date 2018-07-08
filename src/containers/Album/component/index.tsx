@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as styles from './styles.css';
+import React from 'react';
+import styles from './styles.css';
 import { AlbumQuery_album } from '../../../__generated__/AlbumQuery';
 import Title from '../../../components/Title';
 import { AlbumArtwork } from '../../../components/AlbumArtwork';

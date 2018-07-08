@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import PlaybackButton from '../PlaybackButton';
 import SkipBackwards from '../icons/SkipBackwards';
 import SkipForwards from '../icons/SkipForwards';
 
-import * as styles from './PlaybackControls.css';
+import styles from './PlaybackControls.css';
 
 interface PlaybackControlsProps {
   // Whether or not the button center button is in the playing state

@@ -1,10 +1,10 @@
-import * as React from 'react';
-import * as styles from './styles.css';
+import React, { ReactNode } from 'react';
+import styles from './styles.css';
 
 export interface Props {
-  artwork: React.ReactNode;
-  lineOne: React.ReactNode;
-  lineTwo: React.ReactNode;
+  artwork: ReactNode;
+  lineOne: ReactNode;
+  lineTwo: ReactNode;
 }
 
 export const ArtworkTwoInfo = (props: Props) => (

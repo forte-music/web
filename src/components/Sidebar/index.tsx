@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as styles from './style.css';
+import React, { ReactNode } from 'react';
+import styles from './style.css';
 import { NavLink } from 'react-router-dom';
 
 import { albums, artists, home, queue, search, songs } from '../../utils/paths';
@@ -21,7 +21,7 @@ const Sidebar = ({ className }: Props) => (
 
 interface LinkProps {
   to: string;
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 const Link = ({ to, children }: LinkProps) => (

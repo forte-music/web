@@ -1,5 +1,4 @@
-import * as React from 'react';
-import { ComponentType } from 'react';
+import React, { ComponentType } from 'react';
 
 import Footer from './component';
 import { ReduxEnhancedProps, reduxEnhancer } from './enhancers/redux';

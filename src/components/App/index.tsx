@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Sidebar from '../Sidebar';
@@ -26,7 +26,7 @@ import {
 } from '../../utils/paths';
 import store from '../../redux/store';
 
-import * as styles from './styles.css';
+import styles from './styles.css';
 
 export const App = () => (
   <Providers>

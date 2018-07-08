@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { AlbumsQuery, Result } from './enhancers/query';
 import AlbumsInner from './components/Albums';
 

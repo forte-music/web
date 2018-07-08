@@ -5,13 +5,12 @@ import { Props } from '..';
 import { QueueItemSource } from '../../../redux/state/queue';
 import { State } from '../../../redux/state';
 import { PlaybackState } from '../../../components/PlaybackArtwork';
-import { play, pause } from '../../../redux/actions';
+import { play, pause, Action } from '../../../redux/actions';
 import {
   isSource,
   nowPlaying as nowPlayingSelector,
 } from '../../../redux/selectors/nowPlaying';
 import { playList } from '../../../redux/actions/creators/queue';
-import { Action } from '../../../redux/actions';
 
 export interface ReduxStateEnhancedProps {
   state: PlaybackState;

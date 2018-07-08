@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { ReactNode } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -31,7 +31,7 @@ const Story = ({
   backgroundInteraction = true,
 }: {
   initialState: PlaybackState;
-  children?: React.ReactNode;
+  children?: ReactNode;
   backgroundInteraction?: boolean;
 }) => (
   <StatefulComponent state={{ playback: initialState }}>

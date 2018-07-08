@@ -1,16 +1,14 @@
-import * as React from 'react';
+import React, { Component, ReactNode } from 'react';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { ApolloProvider } from 'react-apollo';
 import { HashRouter } from 'react-router-dom';
 
-import { songs } from '@forte-music/mock/models';
-import { Song } from '@forte-music/mock/models';
+import { Song, songs } from '@forte-music/mock/models';
 import SongList from './SongList';
-import { Header, Row } from './Detail';
+import { Header, Row, Song as SongDetail, SongRowProps } from './Detail';
 import { mustGet } from '@forte-music/mock/utils';
 
-import { Song as SongDetail, SongRowProps } from './Detail';
 import client from '../../graphql/client';
 import ConnectedDetailRow from '../../containers/SongList/Detail';
 
@@ -21,7 +19,7 @@ interface State {
   isLoaded: boolean;
 }
 
-class DelayedLoadingRow extends React.Component<SongRowProps, State> {
+class DelayedLoadingRow extends Component<SongRowProps, State> {
   public state = {
     isLoaded: false,
   };
@@ -46,7 +44,7 @@ const Story = ({
 }: {
   count?: number;
   getId?: (index: number) => string;
-  getRowForSong?: (detail: SongDetail, index: number) => React.ReactNode;
+  getRowForSong?: (detail: SongDetail, index: number) => ReactNode;
 }) => (
   <SongList
     header={<Header />}

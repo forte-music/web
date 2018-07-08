@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 
 import Audio from '../../../components/Audio';
 import NowPlaying from '../../../components/Footer/NowPlaying';
@@ -7,8 +7,8 @@ import AdditionalControls from '../../../components/Footer/AdditionalControls';
 import { SliderInput } from '../../../components/Slider';
 import Title from '../../../components/Title';
 
-import * as styles from './styles.css';
-import * as barStyles from '../../../components/Bars.css';
+import styles from './styles.css';
+import barStyles from '../../../components/Bars.css';
 import { FooterQuery_song as Song } from '../../../__generated__/FooterQuery';
 import { QueueItem } from '../../../redux/state/queue';
 
@@ -57,7 +57,7 @@ interface State {
   loading: boolean;
 }
 
-class Footer extends React.Component<Props, State> {
+class Footer extends Component<Props, State> {
   public state = {
     volume: 1.0,
     currentTime: 0,
