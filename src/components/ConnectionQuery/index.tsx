@@ -123,6 +123,7 @@ export type ConnectionQueryResult<TData, TVariables> = QueryResult<
   TVariables
 > & { getNextPage: () => Promise<void> };
 
+// A wrapper component which handles loading more of paginated data.
 export const ConnectionQuery = <
   TData extends object,
   TVariables extends CursorVariables,
