@@ -2,12 +2,12 @@ import React from 'react';
 import styles from './style.css';
 import sharedStyles from '../../../shared.css';
 import { pluralize } from '../../../utils';
-import { AlbumArtwork } from '../../../components/AlbumArtwork';
-import { ArtworkTwoInfo } from '../../../components/ArtworkTwoInfo';
+import { AlbumArtwork } from '../../AlbumArtwork';
+import { ArtworkTwoInfo } from '../../ArtworkTwoInfo';
 import { Link } from 'react-router-dom';
 import { album as albumPath } from '../../../utils/paths';
 import { ArtistQuery_artist } from '../../../__generated__/ArtistQuery';
-import Title from '../../../components/Title';
+import Title from '../../Title';
 
 export interface Props {
   artist: ArtistQuery_artist;

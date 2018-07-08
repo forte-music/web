@@ -2,11 +2,11 @@ import React from 'react';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Sidebar from '../Sidebar';
-import Footer from '../../containers/Footer';
-import Queue from '../../containers/Queue';
-import { Albums } from '../../containers/Albums';
-import Artist from '../../containers/Artist';
-import Album from '../../containers/Album';
+import Footer from '../FooterContainer';
+import Queue from '../QueueContainer';
+import { Albums } from '../AlbumsContainer';
+import Artist from '../ArtistContainer';
+import Album from '../AlbumContainer';
 
 import { Providers } from './Providers';
 import Title from '../Title';

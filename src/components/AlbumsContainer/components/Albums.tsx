@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Title from '../../../components/Title';
+import Title from '../../Title';
 import { AlbumsQuery_albums } from '../../../__generated__/AlbumsQuery';
 import { AlbumInfo } from './AlbumInfo';
 import styles from './Albums.css';

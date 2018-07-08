@@ -2,7 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react';
 
 import Queue from '.';
-import { Providers } from '../../components/App/Providers';
+import { Providers } from '../App/Providers';
 import store from '../../redux/store';
 import { populateQueue } from '../../utils/populateQueue';
 

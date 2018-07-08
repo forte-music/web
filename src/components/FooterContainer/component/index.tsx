@@ -1,14 +1,14 @@
 import React, { Component } from 'react';
 
-import Audio from '../../../components/Audio';
-import NowPlaying from '../../../components/Footer/NowPlaying';
-import PlaybackControls from '../../../components/Footer/PlaybackControls';
-import AdditionalControls from '../../../components/Footer/AdditionalControls';
-import { SliderInput } from '../../../components/Slider';
-import Title from '../../../components/Title';
+import Audio from '../../Audio';
+import NowPlaying from '../../Footer/NowPlaying';
+import PlaybackControls from '../../Footer/PlaybackControls';
+import AdditionalControls from '../../Footer/AdditionalControls';
+import { SliderInput } from '../../Slider';
+import Title from '../../Title';
 
 import styles from './styles.css';
-import barStyles from '../../../components/Bars.css';
+import barStyles from '../../Bars.css';
 import { FooterQuery_song as Song } from '../../../__generated__/FooterQuery';
 import { QueueItem } from '../../../redux/state/queue';
 

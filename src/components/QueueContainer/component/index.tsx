@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Title from '../../../components/Title';
-import { SongList, DetailHeader as Header } from '../../../components/SongList';
+import Title from '../../Title';
+import { SongList, DetailHeader as Header } from '../../SongList';
 
-import ConnectedDetailRow from '../../SongList/Detail';
+import ConnectedDetailRow from '../../SongListContainer/Detail';
 
 import styles from './styles.css';
 import { EnhancedProps } from '../enhancers/redux';

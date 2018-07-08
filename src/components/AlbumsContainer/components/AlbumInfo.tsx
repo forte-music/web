@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 import { album as albumPath, artist as artistPath } from '../../../utils/paths';
 import styles from '../../../shared.css';
 import { AlbumsQuery_albums_edges_node as Album } from '../../../__generated__/AlbumsQuery';
-import { AlbumArtwork } from '../../../components/AlbumArtwork';
-import { ArtworkTwoInfo } from '../../../components/ArtworkTwoInfo';
+import { AlbumArtwork } from '../../AlbumArtwork';
+import { ArtworkTwoInfo } from '../../ArtworkTwoInfo';
 
 // TODO: Click Region
 // TODO: Disable Draggable

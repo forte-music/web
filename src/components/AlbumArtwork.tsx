@@ -1,5 +1,5 @@
 import React from 'react';
-import PlaybackArtwork from '../containers/PlaybackArtwork';
+import PlaybackArtwork from './PlaybackArtworkContainer';
 import { Link } from 'react-router-dom';
 import { album } from '../utils/paths';
 

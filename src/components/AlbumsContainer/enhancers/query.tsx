@@ -5,7 +5,7 @@ import {
   ConnectionQuery,
   ConnectionQueryProps,
   ConnectionQueryResult,
-} from '../../../components/ConnectionQuery';
+} from '../../ConnectionQuery';
 import {
   AlbumsQuery as Data,
   AlbumsQueryVariables as Variables,

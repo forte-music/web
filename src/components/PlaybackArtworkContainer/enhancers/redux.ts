@@ -4,7 +4,7 @@ import { Dispatch } from 'redux';
 import { Props } from '..';
 import { QueueItemSource } from '../../../redux/state/queue';
 import { State } from '../../../redux/state';
-import { PlaybackState } from '../../../components/PlaybackArtwork';
+import { PlaybackState } from '../../PlaybackArtwork';
 import { play, pause, Action } from '../../../redux/actions';
 import {
   isSource,

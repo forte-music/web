@@ -10,7 +10,7 @@ import { Header, Row, Song as SongDetail, SongRowProps } from './Detail';
 import { mustGet } from '@forte-music/mock/utils';
 
 import client from '../../graphql/client';
-import ConnectedDetailRow from '../../containers/SongList/Detail';
+import ConnectedDetailRow from '../SongListContainer/Detail';
 
 const ids = Array.from(songs.keys());
 ids.sort();

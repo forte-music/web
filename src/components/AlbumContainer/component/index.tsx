@@ -1,14 +1,14 @@
 import React from 'react';
 import styles from './styles.css';
 import { AlbumQuery_album } from '../../../__generated__/AlbumQuery';
-import Title from '../../../components/Title';
-import { AlbumArtwork } from '../../../components/AlbumArtwork';
+import Title from '../../Title';
+import { AlbumArtwork } from '../../AlbumArtwork';
 import { Link } from 'react-router-dom';
 import { artist as artistPath } from '../../../utils/paths';
 import { noop, pluralize } from '../../../utils';
-import { SongList } from '../../../components/SongList';
-import { Header } from '../../../components/SongList/Detail';
-import ConnectedDetailRow from '../../SongList/Detail';
+import { SongList } from '../../SongList';
+import { Header } from '../../SongList/Detail';
+import ConnectedDetailRow from '../../SongListContainer/Detail';
 import { formatDuration } from '../../../utils/duration';
 
 export interface Props {
