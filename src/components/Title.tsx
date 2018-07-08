@@ -1,7 +1,7 @@
 import * as withSideEffect from 'react-side-effect';
 import { last } from '../utils';
 
-interface Props {
+interface OuterProps {
   // The first title with this prop set will be used, otherwise the
   // innermost rendered element will be rendered.
   important?: boolean;
@@ -10,9 +10,13 @@ interface Props {
   segments?: string[];
 }
 
+interface State {
+  segments?: string[];
+}
+
 const Title = () => null;
 
-const reducePropsToState = (propsList: Props[]) => {
+const reducePropsToState = (propsList: OuterProps[]): State => {
   const firstImportantIdx = propsList.findIndex(
     ({ important = false }) => important
   );
@@ -23,10 +27,11 @@ const reducePropsToState = (propsList: Props[]) => {
   return last(propsList) || {};
 };
 
-function handleStateChangeOnClient({ segments = [] }: Props) {
+function handleStateChangeOnClient({ segments = [] }: State) {
   document.title = [...segments, 'Forte'].join(' | ');
 }
 
-export default withSideEffect(reducePropsToState, handleStateChangeOnClient)(
-  Title
-);
+export default withSideEffect<OuterProps, State>(
+  reducePropsToState,
+  handleStateChangeOnClient
+)(Title);
