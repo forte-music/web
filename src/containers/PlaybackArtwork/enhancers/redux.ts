@@ -10,7 +10,7 @@ import {
   isSource,
   nowPlaying as nowPlayingSelector,
 } from '../../../redux/selectors/nowPlaying';
-import { playList } from '../../../redux/actions/creators/queue';
+import { startPlayingList } from '../../../redux/actions/creators/queue';
 
 export interface ReduxStateEnhancedProps {
   state: PlaybackState;
@@ -48,7 +48,7 @@ const reduxEnhancer = connect<
         source: { list, kind, ...item.source },
       }));
 
-      playList(dispatch)(itemsWithDefaults);
+      startPlayingList(dispatch)(itemsWithDefaults);
     },
   })
 );
