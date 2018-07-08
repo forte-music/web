@@ -10,7 +10,7 @@ import Album from './containers/Album';
 
 import { Providers } from './providers';
 import Title from './components/Title';
-import { KeyboardInteraction } from './keyboardInteraction';
+import { KeyboardInteraction } from './components/KeyboardInteraction';
 
 import {
   album,

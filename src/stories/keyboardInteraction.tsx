@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import store from '../store';
-import { KeyboardInteraction } from '../keyboardInteraction';
+import { KeyboardInteraction } from '../components/KeyboardInteraction';
 import { populateQueue } from './populateQueue';
 
 storiesOf('keyboard interaction', module).add('with textfield', () => {

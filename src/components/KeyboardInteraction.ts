@@ -1,10 +1,10 @@
-// @flow
 import { Store } from 'redux';
 import { Component } from 'react';
-import { State } from './state';
+import { State } from '../state';
 
-import { nextSong, previousSong, togglePlayback } from './actions';
+import { nextSong, previousSong, togglePlayback } from '../actions';
 
+// TODO: Use Connect
 const handleKeydown = (store: Store<State>) => (e: KeyboardEvent) => {
   // This receives keyboard events even from input elements. These should
   // be ignored.
