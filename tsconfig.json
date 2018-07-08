@@ -10,7 +10,8 @@
       "./node_modules/@types"
     ],
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
+    "noEmit": true,
     "jsx": "react",
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
