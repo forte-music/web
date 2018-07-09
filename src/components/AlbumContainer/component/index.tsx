@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
-import { AlbumQuery_album } from '../../../__generated__/AlbumQuery';
+import { AlbumQuery_album } from '../../AlbumContainer/enhancers/__generated__/AlbumQuery';
 import Title from '../../Title';
 import { AlbumArtwork } from '../../AlbumArtwork';
 import { Link } from 'react-router-dom';

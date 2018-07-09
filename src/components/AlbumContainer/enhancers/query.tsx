@@ -3,7 +3,7 @@ import { Query, QueryProps } from 'react-apollo';
 import {
   AlbumQuery as Data,
   AlbumQueryVariables as Variables,
-} from '../../../__generated__/AlbumQuery';
+} from './__generated__/AlbumQuery';
 import gql from 'graphql-tag';
 import { Omit } from '../../../utils';
 

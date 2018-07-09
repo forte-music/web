@@ -4,7 +4,7 @@ import gql from 'graphql-tag';
 import {
   SongListRowQuery as Data,
   SongListRowQueryVariables as Variables,
-} from '../../../__generated__/SongListRowQuery';
+} from './__generated__/SongListRowQuery';
 import { Omit } from '../../../utils';
 
 const query = gql`

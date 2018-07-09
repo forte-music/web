@@ -2,12 +2,12 @@ import React from 'react';
 import {
   FooterQuery as Data,
   FooterQueryVariables as Variables,
-} from '../../../__generated__/FooterQuery';
+} from './__generated__/FooterQuery';
 import gql from 'graphql-tag';
 import { Omit } from '../../../utils';
 import { Query, QueryProps } from 'react-apollo';
 
-export { FooterQuery_song as Song } from '../../../__generated__/FooterQuery';
+export { FooterQuery_song as Song } from './__generated__/FooterQuery';
 
 const query = gql`
   query FooterQuery($songId: ID!) {

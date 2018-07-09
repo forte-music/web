@@ -9,7 +9,7 @@ import {
 import {
   AlbumsQuery as Data,
   AlbumsQueryVariables as Variables,
-} from '../../../__generated__/AlbumsQuery';
+} from './__generated__/AlbumsQuery';
 import { Omit } from '../../../utils';
 
 const query = gql`

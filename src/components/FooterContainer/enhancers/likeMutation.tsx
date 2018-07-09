@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import {
   ToggleLikeMutation as Data,
   ToggleLikeMutationVariables as Variables,
-} from '../../../__generated__/ToggleLikeMutation';
+} from './__generated__/ToggleLikeMutation';
 import { Omit } from '../../../utils';
 
 const mutation = gql`

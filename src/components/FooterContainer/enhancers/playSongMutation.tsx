@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import {
   PlaySongMutation as Data,
   PlaySongMutationVariables as Variables,
-} from '../../../__generated__/PlaySongMutation';
+} from './__generated__/PlaySongMutation';
 import { Omit } from '../../../utils';
 
 const mutation = gql`

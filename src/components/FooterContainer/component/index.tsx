@@ -9,7 +9,7 @@ import Title from '../../Title';
 
 import styles from './styles.css';
 import barStyles from '../../Bars.css';
-import { FooterQuery_song as Song } from '../../../__generated__/FooterQuery';
+import { FooterQuery_song as Song } from '../enhancers/__generated__/FooterQuery';
 import { QueueItem } from '../../../redux/state/queue';
 
 interface Props {

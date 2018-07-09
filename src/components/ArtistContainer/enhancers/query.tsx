@@ -5,7 +5,7 @@ import gql from 'graphql-tag';
 import {
   ArtistQuery as Data,
   ArtistQueryVariables as Variables,
-} from '../../../__generated__/ArtistQuery';
+} from './__generated__/ArtistQuery';
 import { Omit } from '../../../utils';
 
 const query = gql`

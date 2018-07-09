@@ -6,7 +6,7 @@ import { AlbumArtwork } from '../../AlbumArtwork';
 import { ArtworkTwoInfo } from '../../ArtworkTwoInfo';
 import { Link } from 'react-router-dom';
 import { album as albumPath } from '../../../utils/paths';
-import { ArtistQuery_artist } from '../../../__generated__/ArtistQuery';
+import { ArtistQuery_artist } from '../enhancers/__generated__/ArtistQuery';
 import Title from '../../Title';
 
 export interface Props {
