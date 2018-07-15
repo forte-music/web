@@ -14,14 +14,24 @@ interface ActionEnhancedProps {
   skipToPosition: (position: number) => void;
 }
 
-export interface EnhancedProps
-  extends StateEnhancedProps,
+export interface ChildProps extends StateEnhancedProps, ActionEnhancedProps {}
+
+type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
+
+interface OwnProps {
+  children: ChildrenFn;
+}
+
+interface MergedProps
+  extends OwnProps,
+    StateEnhancedProps,
     ActionEnhancedProps {}
 
-export const reduxEnhancer = connect<
+const enhancer = connect<
   StateEnhancedProps,
   ActionEnhancedProps,
-  {},
+  OwnProps,
+  MergedProps,
   State
 >(
   ({ queue }) => {
@@ -34,5 +44,14 @@ export const reduxEnhancer = connect<
     skipToPosition: (position: number) => {
       dispatch(skipToPosition(position));
     },
+  }),
+  (stateProps, actionProps, ownProps) => ({
+    ...stateProps,
+    ...actionProps,
+    ...ownProps,
   })
 );
+
+const Component = ({ children, ...props }: MergedProps) => children(props);
+
+export const QueueState = enhancer(Component);

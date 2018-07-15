@@ -6,9 +6,15 @@ import { SongList, DetailHeader as Header } from '../../SongList';
 import ConnectedDetailRow from '../../SongListContainer/Detail';
 
 import styles from './styles.css';
-import { EnhancedProps } from '../enhancers/redux';
+import { QueueItem } from '../../../redux/state/queue';
 
-const Queue = ({ items, nowPlaying, skipToPosition }: EnhancedProps) => (
+interface Props {
+  items: QueueItem[];
+  nowPlaying?: QueueItem;
+  skipToPosition: (position: number) => void;
+}
+
+const Queue = ({ items, nowPlaying, skipToPosition }: Props) => (
   <div>
     <Title segments={['Queue']} />
 
