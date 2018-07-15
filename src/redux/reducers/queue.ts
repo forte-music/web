@@ -44,10 +44,6 @@ const reducer = (
 
     case 'TOGGLE_PLAYBACK':
       return togglePlayback(state);
-
-    default:
-      // eslint thinks putting return state here makes something unreachable
-      break;
   }
 
   return state;
