@@ -5,7 +5,7 @@ import Title from '../../Title';
 import { AlbumArtwork } from '../../AlbumArtwork';
 import { Link } from 'react-router-dom';
 import { artist as artistPath } from '../../../utils/paths';
-import { noop, pluralize } from '../../../utils';
+import { pluralize } from '../../../utils';
 import { SongList } from '../../SongList';
 import { Header } from '../../SongList/Detail';
 import ConnectedDetailRow from '../../SongListContainer/Detail';
@@ -13,9 +13,11 @@ import { formatDuration } from '../../../utils/duration';
 
 export interface Props {
   album: AlbumQuery_album;
+  onDoubleClick: (startIndex: number) => void;
+  currentlyPlayingId?: string;
 }
 
-export const Album = ({ album }: Props) => (
+export const Album = ({ album, onDoubleClick, currentlyPlayingId }: Props) => (
   <div>
     <Title segments={[album.name]} />
 
@@ -50,8 +52,8 @@ export const Album = ({ album }: Props) => (
             <ConnectedDetailRow
               key={song.id}
               songId={song.id}
-              active={false}
-              onDoubleClick={noop}
+              active={currentlyPlayingId === song.id}
+              onDoubleClick={() => onDoubleClick(index)}
             />
           );
         }}

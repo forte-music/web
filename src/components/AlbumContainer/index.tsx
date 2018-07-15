@@ -1,6 +1,7 @@
 import React from 'react';
 import { Album } from './component';
 import { AlbumQuery } from './enhancers/query';
+import { ReduxData } from './enhancers/redux';
 
 export interface Props {
   id: string;
@@ -13,7 +14,18 @@ const Component = ({ id }: Props) => (
         return null;
       }
 
-      return <Album album={result.data.album} />;
+      const album = result.data.album;
+      return (
+        <ReduxData album={album}>
+          {({ onDoubleClick, currentlyPlayingId }) => (
+            <Album
+              onDoubleClick={onDoubleClick}
+              album={album}
+              currentlyPlayingId={currentlyPlayingId}
+            />
+          )}
+        </ReduxData>
+      );
     }}
   </AlbumQuery>
 );
