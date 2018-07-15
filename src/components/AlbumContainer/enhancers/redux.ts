@@ -75,4 +75,4 @@ const Component: React.StatelessComponent<EnhancedProps> = (
   props: EnhancedProps
 ) => props.children(props);
 
-export const ReduxData = enhancer(Component);
+export const AlbumContainerState = enhancer(Component);
