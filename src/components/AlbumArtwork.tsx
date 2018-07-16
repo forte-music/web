@@ -1,40 +1,21 @@
 import React from 'react';
-import PlaybackArtwork from './PlaybackArtworkContainer';
-import { Link } from 'react-router-dom';
-import { album } from '../utils/paths';
-
+import DefaultCover from './icons/DefaultCover';
 import Artwork from './Artwork';
-import DefaultCover from '../components/icons/DefaultCover';
 
-export interface Album {
+interface Album {
   id: string;
-  artworkUrl: string | null;
   name: string;
-  songs: Array<{ id: string }>;
+  artworkUrl: string | null | void;
 }
 
-export interface Props {
-  album: Album;
-  backgroundInteraction?: boolean;
+interface Props {
+  album?: Album;
 }
 
-export const AlbumArtwork = ({
-  album: { id: albumId, artworkUrl, name, songs },
-  backgroundInteraction,
-}: Props) => (
-  <PlaybackArtwork
-    backgroundInteraction={backgroundInteraction}
-    kind={'ALBUM'}
-    list={albumId}
-    tracks={songs.map(({ id }, idx) => ({
-      songId: id,
-      source: { song: idx.toString() },
-    }))}
-  >
-    <Link to={album(albumId)}>
-      {(artworkUrl && <Artwork src={artworkUrl} alt={name} />) || (
-        <DefaultCover />
-      )}
-    </Link>
-  </PlaybackArtwork>
-);
+export const AlbumArtwork = ({ album }: Props) => {
+  if (!album || !album.artworkUrl) {
+    return <DefaultCover />;
+  }
+
+  return <Artwork src={album.artworkUrl} alt={album.name} />;
+};

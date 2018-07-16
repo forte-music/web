@@ -1,21 +1,18 @@
 import React from 'react';
 import { RouteComponentProps } from 'react-router';
 
-export const songs = '/songs';
+export const songsPath = '/songs';
 
-export const artists = `/artists`;
-export const artist = (id: string) => `${artists}/${id}`;
+export const artistsPath = `/artists`;
+export const artistPath = (id: string) => `${artistsPath}/${id}`;
 
-export const albums = `/albums`;
-export const album = (id: string) => `${albums}/${id}`;
+export const albumsPath = `/albums`;
+export const albumPath = (id: string) => `${albumsPath}/${id}`;
 
-export const playlists = `/playlists`;
-export const playlist = (id: string) => `${playlists}/${id}`;
-
-export const home = `/home`;
-export const queue = `/queue`;
-export const search = `/search`;
-export const withId = ':id';
+export const homePath = `/home`;
+export const queuePath = `/queue`;
+export const searchPath = `/search`;
+export const withIdPathParam = ':id';
 
 export interface WithIdParams {
   id: string;

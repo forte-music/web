@@ -13,15 +13,15 @@ import Title from '../Title';
 import { KeyboardInteraction } from '../KeyboardInteraction';
 
 import {
-  album,
-  albums,
-  artist,
-  artists,
-  home,
-  queue,
-  search,
-  songs,
-  withId,
+  albumPath,
+  albumsPath,
+  artistPath,
+  artistsPath,
+  homePath,
+  queuePath,
+  searchPath,
+  songsPath,
+  withIdPathParam,
   withIdFromProps,
 } from '../../utils/paths';
 
@@ -37,25 +37,25 @@ export const App = () => (
 
       <main className={styles.content}>
         <Switch>
-          <Route exact path={songs} />
+          <Route exact path={songsPath} />
 
-          <Route exact path={artists} />
+          <Route exact path={artistsPath} />
           <Route
             exact
-            path={artist(withId)}
+            path={artistPath(withIdPathParam)}
             render={withIdFromProps(id => <Artist id={id} />)}
           />
 
-          <Route exact path={albums} component={Albums} />
+          <Route exact path={albumsPath} component={Albums} />
           <Route
             exact
-            path={album(withId)}
+            path={albumPath(withIdPathParam)}
             render={withIdFromProps(id => <Album id={id} />)}
           />
 
-          <Route exact path={home} />
-          <Route exact path={queue} component={Queue} />
-          <Route exact path={search} />
+          <Route exact path={homePath} />
+          <Route exact path={queuePath} component={Queue} />
+          <Route exact path={searchPath} />
 
           <Redirect from="/" to="/home" />
         </Switch>

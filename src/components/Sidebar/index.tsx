@@ -2,7 +2,14 @@ import React, { ReactNode } from 'react';
 import styles from './style.css';
 import { NavLink } from 'react-router-dom';
 
-import { albums, artists, home, queue, search, songs } from '../../utils/paths';
+import {
+  albumsPath,
+  artistsPath,
+  homePath,
+  queuePath,
+  searchPath,
+  songsPath,
+} from '../../utils/paths';
 
 interface Props {
   className: string;
@@ -10,12 +17,12 @@ interface Props {
 
 const Sidebar = ({ className }: Props) => (
   <aside className={className}>
-    <Link to={home}>Home</Link>
-    <Link to={queue}>Queue</Link>
-    <Link to={songs}>Songs</Link>
-    <Link to={artists}>Artists</Link>
-    <Link to={albums}>Albums</Link>
-    <Link to={search}>Search</Link>
+    <Link to={homePath}>Home</Link>
+    <Link to={queuePath}>Queue</Link>
+    <Link to={songsPath}>Songs</Link>
+    <Link to={artistsPath}>Artists</Link>
+    <Link to={albumsPath}>Albums</Link>
+    <Link to={searchPath}>Search</Link>
   </aside>
 );
 

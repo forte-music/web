@@ -1,10 +1,8 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
-import { join, unique } from '../../utils';
-import { album, artist } from '../../utils/paths';
 import styles from './Detail.css';
 import { formatDuration } from '../../utils/duration';
+import { Artist, InlineArtistsList } from '../InlineArtistsList';
+import { AlbumLink, Album } from '../AlbumLink';
 
 // Header and row element for the detailed song list which is used in queue,
 // playlist, etc..
@@ -18,78 +16,44 @@ export const Header = () => (
   </div>
 );
 
-interface Artist {
-  id: string;
+interface Song {
   name: string;
-}
-
-interface Album {
-  id: string;
-  name: string;
-}
-
-export interface Song {
-  id: string;
-  name: string;
+  duration: number;
   album: Album;
   artists: Artist[];
-  duration: number;
 }
 
 export interface SongRowProps {
   // When this is undefined, the component is in a loading state.
-  song?: {
-    name: string;
-    duration: number;
-    album: { id: string; name: string };
-    artists: Array<{ id: string; name: string }>;
-  };
+  song?: Song;
 
   // Whether or not the current item should be styled as if it is active.
   // Defaults to false.
-  active?: boolean;
+  active: boolean;
 
   // Called when the component is double clicked.
   onDoubleClick?: () => void;
 }
 
-export const Row = ({
-  song: songDetails,
-  active,
-  onDoubleClick,
-}: SongRowProps) => (
+export const Row = ({ song, active, onDoubleClick }: SongRowProps) => (
   <div
     className={[
       styles.row,
-      !songDetails ? styles.empty : '',
+      !song ? styles.empty : '',
       active ? styles.active : '',
     ].join(' ')}
     onDoubleClick={onDoubleClick}
   >
-    <div className={styles.song}>{songDetails && songDetails.name}</div>
+    <div className={styles.song}>{song && song.name}</div>
     <div className={styles.album}>
-      {songDetails && (
-        <Link to={album(songDetails.album.id)} className={styles.link}>
-          {songDetails.album.name}
-        </Link>
-      )}
+      {song && <AlbumLink album={song.album} />}
     </div>
 
     <div className={styles.artist}>
-      {songDetails &&
-        unique(
-          join(
-            songDetails.artists.map(({ id, name }) => (
-              <Link to={artist(id)} className={styles.link}>
-                {name}
-              </Link>
-            )),
-            <span>, </span>
-          )
-        )}
+      {song && <InlineArtistsList artists={song.artists} />}
     </div>
     <div className={styles.duration}>
-      {songDetails && <span>{formatDuration(songDetails.duration)}</span>}
+      {song && <span>{formatDuration(song.duration)}</span>}
     </div>
   </div>
 );

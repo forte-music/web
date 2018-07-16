@@ -2,10 +2,10 @@ import React from 'react';
 import styles from './style.css';
 import sharedStyles from '../../../shared.css';
 import { pluralize } from '../../../utils';
-import { AlbumArtwork } from '../../AlbumArtwork';
+import { PlaybackAlbumArtwork } from '../../PlaybackAlbumArtwork';
 import { ArtworkTwoInfo } from '../../ArtworkTwoInfo';
 import { Link } from 'react-router-dom';
-import { album as albumPath } from '../../../utils/paths';
+import { albumPath } from '../../../utils/paths';
 import { ArtistQuery_artist } from '../enhancers/__generated__/ArtistQuery';
 import Title from '../../Title';
 
@@ -33,7 +33,7 @@ export const Artist = (props: Props) => (
     <div className={styles.albums}>
       {props.artist.albums.map(album => (
         <ArtworkTwoInfo
-          artwork={<AlbumArtwork album={album} />}
+          artwork={<PlaybackAlbumArtwork album={album} />}
           lineOne={
             <Link to={albumPath(album.id)} className={sharedStyles.link}>
               {album.name}

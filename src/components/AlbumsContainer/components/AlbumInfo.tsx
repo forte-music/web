@@ -1,13 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { album as albumPath, artist as artistPath } from '../../../utils/paths';
-import styles from '../../../shared.css';
-import { AlbumsQuery_albums_edges_node as Album } from '../../AlbumsContainer/enhancers/__generated__/AlbumsQuery';
-import { AlbumArtwork } from '../../AlbumArtwork';
 import { ArtworkTwoInfo } from '../../ArtworkTwoInfo';
+import {
+  PlaybackAlbumArtwork,
+  Album as PlaybackAlbumArtworkAlbum,
+} from '../../PlaybackAlbumArtwork';
+import { AlbumLink, Album as AlbumLinkAlbum } from '../../AlbumLink';
+import { ArtistLink, Artist as ArtistLinkArtist } from '../../ArtistLink';
 
 // TODO: Click Region
 // TODO: Disable Draggable
+
+interface Album extends PlaybackAlbumArtworkAlbum, AlbumLinkAlbum {
+  artist: ArtistLinkArtist;
+}
 
 export interface AlbumInfoProps {
   album: Album;
@@ -15,16 +20,8 @@ export interface AlbumInfoProps {
 
 export const AlbumInfo = ({ album }: AlbumInfoProps) => (
   <ArtworkTwoInfo
-    artwork={<AlbumArtwork album={album} />}
-    lineOne={
-      <Link to={albumPath(album.id)} className={styles.link}>
-        {album.name}
-      </Link>
-    }
-    lineTwo={
-      <Link to={artistPath(album.artist.id)} className={styles.link}>
-        {album.artist.name}
-      </Link>
-    }
+    artwork={<PlaybackAlbumArtwork album={album} />}
+    lineOne={<AlbumLink album={album} />}
+    lineTwo={<ArtistLink artist={album.artist} />}
   />
 );

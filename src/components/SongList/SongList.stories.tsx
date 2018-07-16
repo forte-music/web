@@ -6,7 +6,7 @@ import { HashRouter } from 'react-router-dom';
 
 import { Song, songs } from '@forte-music/mock/models';
 import SongList from './SongList';
-import { Header, Row, Song as SongDetail, SongRowProps } from './Detail';
+import { Header, Row, SongRowProps } from './Detail';
 import { mustGet } from '@forte-music/mock/utils';
 
 import client from '../../graphql/client';
@@ -29,7 +29,12 @@ class DelayedLoadingRow extends Component<SongRowProps, State> {
   }
 
   public render() {
-    return <Row song={this.state.isLoaded ? this.props.song : undefined} />;
+    return (
+      <Row
+        song={this.state.isLoaded ? this.props.song : undefined}
+        active={false}
+      />
+    );
   }
 }
 
@@ -39,12 +44,17 @@ const Story = ({
   count = ids.length,
   getId = index => ids[index],
   getRowForSong = (song, index) => (
-    <Row key={index} song={song} onDoubleClick={action(`clicked ${index}`)} />
+    <Row
+      key={index}
+      song={song}
+      onDoubleClick={action(`clicked ${index}`)}
+      active={false}
+    />
   ),
 }: {
   count?: number;
   getId?: (index: number) => string;
-  getRowForSong?: (detail: SongDetail, index: number) => ReactNode;
+  getRowForSong?: (detail: Song, index: number) => ReactNode;
 }) => (
   <SongList
     header={<Header />}
@@ -61,7 +71,7 @@ const Story = ({
 storiesOf('SongList', module)
   .addDecorator(story => <HashRouter>{story()}</HashRouter>)
   .add('a few items', () => <Story />)
-  .add('single row loading', () => <Row />)
+  .add('single row loading', () => <Row active={false} />)
   .add('the same items many times', () => (
     <Story count={manyItems} getId={index => ids[index % ids.length]} />
   ))
@@ -69,7 +79,7 @@ storiesOf('SongList', module)
     <Story
       count={manyItems}
       getId={index => ids[index % ids.length]}
-      getRowForSong={song => <DelayedLoadingRow song={song} />}
+      getRowForSong={song => <DelayedLoadingRow song={song} active={false} />}
     />
   ))
   .add('an active row', () => (
@@ -81,7 +91,10 @@ storiesOf('SongList', module)
   ))
   .add('connected detail row', () => (
     <ApolloProvider client={client}>
-      <ConnectedDetailRow songId={'00000000000000000000000000000001'} />
+      <ConnectedDetailRow
+        songId={'00000000000000000000000000000001'}
+        active={false}
+      />
     </ApolloProvider>
   ))
   .add('many connected detail rows', () => (

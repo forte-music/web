@@ -4,7 +4,7 @@ import { SongListRowQuery } from './enhancers/query';
 
 interface Props {
   songId: string;
-  active?: boolean;
+  active: boolean;
   onDoubleClick?: () => void;
 }
 

@@ -2,9 +2,9 @@ import React from 'react';
 import styles from './styles.css';
 import { AlbumQuery_album } from '../../AlbumContainer/enhancers/__generated__/AlbumQuery';
 import Title from '../../Title';
-import { AlbumArtwork } from '../../AlbumArtwork';
+import { PlaybackAlbumArtwork } from '../../PlaybackAlbumArtwork';
 import { Link } from 'react-router-dom';
-import { artist as artistPath } from '../../../utils/paths';
+import { artistPath } from '../../../utils/paths';
 import { pluralize } from '../../../utils';
 import { SongList } from '../../SongList';
 import { Header } from '../../SongList/Detail';
@@ -23,7 +23,7 @@ export const Album = ({ album, onDoubleClick, currentlyPlayingId }: Props) => (
 
     <div className={styles.header}>
       <div className={styles.albumArtwork}>
-        <AlbumArtwork backgroundInteraction album={album} />
+        <PlaybackAlbumArtwork backgroundInteraction album={album} />
       </div>
       <div className={styles.headerRightColumn}>
         <div className={styles.albumName}>{album.name}</div>
