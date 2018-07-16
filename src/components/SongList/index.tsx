@@ -19,7 +19,7 @@ interface Props {
 
 const itemHeight = 36;
 
-const SongList = ({ countAvailableRows, header, renderItem }: Props) => (
+export const SongList = ({ countAvailableRows, header, renderItem }: Props) => (
   <div className={styles.container}>
     {header}
 
@@ -48,5 +48,3 @@ const List = ({ virtual: { style, items }, renderItem }: ListProps<number>) => (
 const Virtualized = VirtualList<
   InputProps<number> & { renderItem: (item: { index: number }) => void }
 >()(List);
-
-export default SongList;

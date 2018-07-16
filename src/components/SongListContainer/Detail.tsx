@@ -1,5 +1,5 @@
 import React from 'react';
-import { DetailRow } from '../SongList';
+import { DetailRow } from '../DetailRow';
 import { SongListRowQuery } from './enhancers/query';
 
 interface Props {

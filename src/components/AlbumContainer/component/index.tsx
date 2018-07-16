@@ -1,13 +1,13 @@
 import React from 'react';
 import styles from './styles.css';
-import { AlbumQuery_album } from '../../AlbumContainer/enhancers/__generated__/AlbumQuery';
+import { AlbumQuery_album } from '../enhancers/__generated__/AlbumQuery';
 import Title from '../../Title';
 import { PlaybackAlbumArtwork } from '../../PlaybackAlbumArtwork';
 import { Link } from 'react-router-dom';
 import { artistPath } from '../../../utils/paths';
 import { pluralize } from '../../../utils';
 import { SongList } from '../../SongList';
-import { Header } from '../../SongList/Detail';
+import { DetailHeader } from '../../DetailRow';
 import ConnectedDetailRow from '../../SongListContainer/Detail';
 import { formatDuration } from '../../../utils/duration';
 
@@ -43,7 +43,7 @@ export const Album = ({ album, onDoubleClick, currentlyPlayingId }: Props) => (
     <div className={styles.songContainer}>
       <SongList
         // TODO: Use Own Header and Rows
-        header={<Header />}
+        header={<DetailHeader />}
         countAvailableRows={album.songs.length}
         renderItem={index => {
           const song = album.songs[index];

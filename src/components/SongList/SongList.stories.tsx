@@ -5,8 +5,8 @@ import { ApolloProvider } from 'react-apollo';
 import { HashRouter } from 'react-router-dom';
 
 import { Song, songs } from '@forte-music/mock/models';
-import SongList from './SongList';
-import { Header, Row, SongRowProps } from './Detail';
+import { SongList } from '.';
+import { DetailRow, DetailRowProps, DetailHeader } from '../DetailRow';
 import { mustGet } from '@forte-music/mock/utils';
 
 import client from '../../graphql/client';
@@ -19,7 +19,7 @@ interface State {
   isLoaded: boolean;
 }
 
-class DelayedLoadingRow extends Component<SongRowProps, State> {
+class DelayedLoadingRow extends Component<DetailRowProps, State> {
   public state = {
     isLoaded: false,
   };
@@ -30,7 +30,7 @@ class DelayedLoadingRow extends Component<SongRowProps, State> {
 
   public render() {
     return (
-      <Row
+      <DetailRow
         song={this.state.isLoaded ? this.props.song : undefined}
         active={false}
       />
@@ -44,7 +44,7 @@ const Story = ({
   count = ids.length,
   getId = index => ids[index],
   getRowForSong = (song, index) => (
-    <Row
+    <DetailRow
       key={index}
       song={song}
       onDoubleClick={action(`clicked ${index}`)}
@@ -57,7 +57,7 @@ const Story = ({
   getRowForSong?: (detail: Song, index: number) => ReactNode;
 }) => (
   <SongList
-    header={<Header />}
+    header={<DetailHeader />}
     countAvailableRows={count}
     renderItem={index => {
       const id = getId(index);
@@ -71,7 +71,7 @@ const Story = ({
 storiesOf('SongList', module)
   .addDecorator(story => <HashRouter>{story()}</HashRouter>)
   .add('a few items', () => <Story />)
-  .add('single row loading', () => <Row active={false} />)
+  .add('single row loading', () => <DetailRow active={false} />)
   .add('the same items many times', () => (
     <Story count={manyItems} getId={index => ids[index % ids.length]} />
   ))
@@ -83,7 +83,7 @@ storiesOf('SongList', module)
     />
   ))
   .add('an active row', () => (
-    <Row
+    <DetailRow
       song={mustGet(songs, '00000000000000000000000000000001')}
       onDoubleClick={action('double click')}
       active

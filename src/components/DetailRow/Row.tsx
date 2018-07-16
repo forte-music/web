@@ -1,20 +1,11 @@
 import React from 'react';
-import styles from './Detail.css';
+import styles from './index.css';
 import { formatDuration } from '../../utils/duration';
 import { Artist, InlineArtistsList } from '../InlineArtistsList';
 import { AlbumLink, Album } from '../AlbumLink';
 
 // Header and row element for the detailed song list which is used in queue,
 // playlist, etc..
-
-export const Header = () => (
-  <div className={styles.header}>
-    <div className={styles.song}>Name</div>
-    <div className={styles.album}>Album</div>
-    <div className={styles.artist}>Artists</div>
-    <div className={styles.duration}>Duration</div>
-  </div>
-);
 
 interface Song {
   name: string;
@@ -23,7 +14,7 @@ interface Song {
   artists: Artist[];
 }
 
-export interface SongRowProps {
+export interface Props {
   // When this is undefined, the component is in a loading state.
   song?: Song;
 
@@ -35,7 +26,7 @@ export interface SongRowProps {
   onDoubleClick?: () => void;
 }
 
-export const Row = ({ song, active, onDoubleClick }: SongRowProps) => (
+export const Row = ({ song, active, onDoubleClick }: Props) => (
   <div
     className={[
       styles.row,
