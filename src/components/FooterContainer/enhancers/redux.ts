@@ -1,13 +1,10 @@
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { InputProps } from '..';
-import { State as ReduxState } from '../../../redux/state';
+import { State } from '../../../redux/state';
 import { QueueItem } from '../../../redux/state/queue';
 import {
   Action,
-  SetPlaybackAction,
-  SkipRelativeAction,
   nextSong,
   pause,
   play,
@@ -15,25 +12,7 @@ import {
 } from '../../../redux/actions';
 import { nowPlaying as nowPlayingSelector } from '../../../redux/selectors/nowPlaying';
 
-export interface ReduxActionEnhancedProps {
-  // Called to skip to the next song in the queue.
-  nextSong: () => SkipRelativeAction;
-
-  // Called to skip to the previous song in the queue.
-  previousSong: () => SkipRelativeAction;
-
-  // Called to start playback.
-  play: () => SetPlaybackAction;
-
-  // Called to temporarily stop playback.
-  pause: () => SetPlaybackAction;
-}
-const mapDispatchToProps = (
-  dispatch: Dispatch<Action>
-): ReduxActionEnhancedProps =>
-  bindActionCreators({ nextSong, previousSong, play, pause }, dispatch);
-
-interface ReduxStateEnhancedProps {
+interface StateEnhancedProps {
   // The currently playing queue item. Undefined if nothing is playing.
   queueItem?: QueueItem;
 
@@ -41,20 +20,58 @@ interface ReduxStateEnhancedProps {
   playing: boolean;
 }
 
-const mapStateToProps = ({ queue }: ReduxState): ReduxStateEnhancedProps => {
+const mapStateToProps = ({ queue }: State): StateEnhancedProps => {
   const queueItem = nowPlayingSelector(queue);
   const { shouldBePlaying } = queue;
   return { queueItem, playing: shouldBePlaying };
 };
 
-export interface ReduxEnhancedProps
-  extends InputProps,
-    ReduxActionEnhancedProps,
-    ReduxStateEnhancedProps {}
+interface DispatchProps {
+  // Called to skip to the next song in the queue.
+  nextSong: () => void;
 
-export const reduxEnhancer = connect<
-  ReduxStateEnhancedProps,
-  ReduxActionEnhancedProps,
-  InputProps,
-  ReduxState
->(mapStateToProps, mapDispatchToProps);
+  // Called to skip to the previous song in the queue.
+  previousSong: () => void;
+
+  // Called to start playback.
+  play: () => void;
+
+  // Called to temporarily stop playback.
+  pause: () => void;
+}
+
+const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps =>
+  bindActionCreators({ nextSong, previousSong, play, pause }, dispatch);
+
+interface OwnProps {
+  children: ChildrenFn;
+}
+
+interface ChildProps extends DispatchProps, StateEnhancedProps {}
+
+interface EnhancedProps extends ChildProps, OwnProps {}
+
+type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
+
+const enhancer = connect<
+  StateEnhancedProps,
+  DispatchProps,
+  OwnProps,
+  EnhancedProps,
+  State
+>(
+  mapStateToProps,
+  mapDispatchToProps,
+  (
+    stateProps: StateEnhancedProps,
+    dispatchProps: DispatchProps,
+    ownProps: OwnProps
+  ) => ({ ...stateProps, ...dispatchProps, ...ownProps })
+);
+
+const Component: React.StatelessComponent<EnhancedProps> = ({
+  children,
+  ...props
+}: EnhancedProps) => children(props);
+
+export const FooterState: React.ComponentType<OwnProps> = enhancer(Component);

@@ -1,11 +1,11 @@
-import React, { ComponentType } from 'react';
+import React from 'react';
 
 import Footer from './component';
-import { ReduxEnhancedProps, reduxEnhancer } from './enhancers/redux';
 import { FooterQuery } from './enhancers/query';
 import { LikeMutation } from './enhancers/likeMutation';
 import { PlaySongMutation } from './enhancers/playSongMutation';
 import { Kind, QueueItem } from '../../redux/state/queue';
+import { FooterState } from './enhancers/redux';
 
 export interface InputProps {
   className: string;
@@ -19,53 +19,45 @@ const getIdForSourceKind = (
     ? queueItem.source.list
     : undefined;
 
-const QueryEnhancedFooter = ({
-  queueItem,
-  className,
-  nextSong,
-  previousSong,
-  play,
-  pause,
-  playing,
-}: ReduxEnhancedProps) => (
-  <FooterQuery
-    variables={queueItem && { songId: queueItem.songId }}
-    skip={!queueItem}
-  >
-    {queryResults => (
-      <LikeMutation variables={queueItem && { songId: queueItem.songId }}>
-        {likeCurrentSong => (
-          <PlaySongMutation
-            variables={
-              queueItem && {
-                songId: queueItem.songId,
-                albumId: getIdForSourceKind('ALBUM', queueItem),
-                artistId: getIdForSourceKind('ARTIST', queueItem),
-              }
-            }
-          >
-            {playCurrentSong => (
-              <Footer
-                nowPlaying={queryResults.data && queryResults.data.song}
-                className={className}
-                onToggleLike={() => likeCurrentSong()}
-                playSong={() => playCurrentSong()}
-                nextSong={nextSong}
-                previousSong={previousSong}
-                play={play}
-                pause={pause}
-                playing={playing}
-              />
+const EnhancedFooter = ({ className }: InputProps) => (
+  <FooterState>
+    {({ queueItem, nextSong, previousSong, play, pause, playing }) => (
+      <FooterQuery
+        variables={queueItem && { songId: queueItem.songId }}
+        skip={!queueItem}
+      >
+        {queryResults => (
+          <LikeMutation variables={queueItem && { songId: queueItem.songId }}>
+            {likeCurrentSong => (
+              <PlaySongMutation
+                variables={
+                  queueItem && {
+                    songId: queueItem.songId,
+                    albumId: getIdForSourceKind('ALBUM', queueItem),
+                    artistId: getIdForSourceKind('ARTIST', queueItem),
+                  }
+                }
+              >
+                {playCurrentSong => (
+                  <Footer
+                    nowPlaying={queryResults.data && queryResults.data.song}
+                    className={className}
+                    onToggleLike={() => likeCurrentSong()}
+                    playSong={() => playCurrentSong()}
+                    nextSong={nextSong}
+                    previousSong={previousSong}
+                    play={play}
+                    pause={pause}
+                    playing={playing}
+                  />
+                )}
+              </PlaySongMutation>
             )}
-          </PlaySongMutation>
+          </LikeMutation>
         )}
-      </LikeMutation>
+      </FooterQuery>
     )}
-  </FooterQuery>
-);
-
-const EnhancedFooter: ComponentType<InputProps> = reduxEnhancer(
-  QueryEnhancedFooter
+  </FooterState>
 );
 
 export default EnhancedFooter;
