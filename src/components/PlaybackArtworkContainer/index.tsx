@@ -27,8 +27,6 @@ export interface Props {
 const EnhancedComponent = ({
   kind,
   list,
-  // A connected playback artwork. It updates its state based on the current
-  // playing item and calls a prop when time to play more items.
   tracks,
   backgroundInteraction,
   children,
