@@ -1,4 +1,5 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
@@ -19,9 +20,11 @@ storiesOf('keyboard interaction', module).add('with textfield', () => {
   });
 
   return (
-    <div>
-      <KeyboardInteraction store={store} />
-      <textarea defaultValue="This is some text." />;
-    </div>
+    <Provider store={store}>
+      <div>
+        <KeyboardInteraction />
+        <textarea defaultValue="This is some text." />;
+      </div>
+    </Provider>
   );
 });

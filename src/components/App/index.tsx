@@ -24,7 +24,6 @@ import {
   withId,
   withIdFromProps,
 } from '../../utils/paths';
-import store from '../../redux/store';
 
 import styles from './styles.css';
 
@@ -32,7 +31,7 @@ export const App = () => (
   <Providers>
     <div className={styles.grid}>
       <Title />
-      <KeyboardInteraction store={store} />
+      <KeyboardInteraction />
 
       <Sidebar className={styles.sidebar} />
 
