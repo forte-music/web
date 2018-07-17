@@ -2,7 +2,7 @@ import React from 'react';
 
 import Title from '../../Title';
 import { SongList } from '../../SongList';
-import { DetailHeader } from '../../DetailRow';
+import { DetailRowHeader } from '../../DetailRow';
 
 import ConnectedDetailRow from '../../SongListContainer/Detail';
 
@@ -23,7 +23,7 @@ const Queue = ({ items, nowPlaying, skipToPosition }: Props) => (
 
     <div className={styles.body}>
       <SongList
-        header={<DetailHeader />}
+        header={<DetailRowHeader />}
         countAvailableRows={items.length}
         renderItem={index => {
           const { id, songId } = items[index];

@@ -6,7 +6,7 @@ import { HashRouter } from 'react-router-dom';
 
 import { Song, songs } from '@forte-music/mock/models';
 import { SongList } from '.';
-import { DetailRow, DetailRowProps, DetailHeader } from '../DetailRow';
+import { DetailRow, DetailRowProps, DetailRowHeader } from '../DetailRow';
 import { mustGet } from '@forte-music/mock/utils';
 
 import client from '../../graphql/client';
@@ -57,7 +57,7 @@ const Story = ({
   getRowForSong?: (detail: Song, index: number) => ReactNode;
 }) => (
   <SongList
-    header={<DetailHeader />}
+    header={<DetailRowHeader />}
     countAvailableRows={count}
     renderItem={index => {
       const id = getId(index);

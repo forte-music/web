@@ -7,9 +7,8 @@ import { Link } from 'react-router-dom';
 import { artistPath } from '../../../utils/paths';
 import { pluralize } from '../../../utils';
 import { SongList } from '../../SongList';
-import { DetailHeader } from '../../DetailRow';
-import ConnectedDetailRow from '../../SongListContainer/Detail';
 import { formatDuration } from '../../../utils/duration';
+import { AlbumRowHeader, AlbumRow } from '../../AlbumRow';
 
 export interface Props {
   album: AlbumQuery_album;
@@ -42,16 +41,15 @@ export const Album = ({ album, onDoubleClick, currentlyPlayingId }: Props) => (
 
     <div className={styles.songContainer}>
       <SongList
-        // TODO: Use Own Header and Rows
-        header={<DetailHeader />}
+        header={<AlbumRowHeader />}
         countAvailableRows={album.songs.length}
         renderItem={index => {
           const song = album.songs[index];
 
           return (
-            <ConnectedDetailRow
+            <AlbumRow
               key={song.id}
-              songId={song.id}
+              song={song}
               active={currentlyPlayingId === song.id}
               onDoubleClick={() => onDoubleClick(index)}
             />

@@ -1,16 +1,15 @@
-.song,
-.album,
-.artist,
+.trackNumber,
+.name,
+.artists,
 .duration {
   composes: column from '../BaseRow/index.css';
 }
 
-.song,
-.album,
-.artist {
-  flex: 2;
-}
-
+.artists,
 .duration {
   flex: 1;
+}
+
+.name {
+  flex: 5;
 }
