@@ -1,7 +1,7 @@
 import React, { ReactNode } from 'react';
 import VirtualList, { InputProps } from 'react-virtual-list';
 
-import styles from './SongList.css';
+import styles from './styles.css';
 import { genRange } from '../../utils';
 
 interface Props {
