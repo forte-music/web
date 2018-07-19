@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { AlbumQuery_album as Album } from './__generated__/AlbumQuery';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
-import { Kind } from '../../../redux/state/queue';
 import {
   nowPlaying as nowPlayingSelector,
   isSource,
 } from '../../../redux/selectors/nowPlaying';
 import { State } from '../../../redux/state';
+import { getTracks } from '../../PlaybackAlbumArtwork';
 
 interface StateEnhancedProps {
   // The identifier of the currently playing song in this album. Undefined, when
@@ -53,13 +53,7 @@ const enhancer = connect<
   },
   (dispatch: Dispatch<State>, props: OwnProps): DispatchProps => ({
     onDoubleClick: (startIndex: number) => {
-      const queueSources = props.album.songs.map(song => ({
-        songId: song.id,
-        source: {
-          list: props.album.id,
-          kind: 'ALBUM' as Kind,
-        },
-      }));
+      const queueSources = getTracks(props.album);
 
       startPlayingList(dispatch)(queueSources, startIndex);
     },
