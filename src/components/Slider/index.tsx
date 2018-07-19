@@ -1,5 +1,5 @@
-import * as React from 'react';
-import * as styles from './styles.css';
+import React from 'react';
+import styles from './styles.css';
 import { noop } from '../../utils';
 
 interface SliderInputProps {

@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { Component } from 'react';
 
 interface Props {
   // The source. Passed to the audio element.
@@ -38,7 +38,7 @@ interface Props {
 }
 
 // A simple, declarative wrapper around the HTML audio element.
-class Audio extends React.Component<Props> {
+class Audio extends Component<Props> {
   // The audio element which handles playback.
   private audioElem: HTMLAudioElement | null = null;
 

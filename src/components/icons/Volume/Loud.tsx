@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Cone, InnerWave, OuterWave } from './Paths';
 
 interface Props {

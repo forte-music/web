@@ -15,9 +15,9 @@ Forte Music's web client. It's built using React and TypeScript.
 This will run the web interface against an embedded mock graphql source.
 
 ## External Server
-To use an external graphql resolver, run `yarn start` instead of `yarn
-start-mock` and configure the [Create React App Proxy][proxy-guide] to proxy
-requests to your server.
+
+To use an external graphql resolver, run `yarn start` instead of `yarn start-mock` and configure the
+[Create React App Proxy][proxy-guide] to proxy requests to your server.
 
 [demo-site]: https://forte.surge.sh/
 [proxy-guide]: https://github.com/facebook/create-react-app/blob/cb1608b3e02e0eef5fd350f6e4cf5ce32bdfc215/packages/react-scripts/template/README.md#proxying-api-requests-in-development

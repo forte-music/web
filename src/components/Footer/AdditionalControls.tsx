@@ -1,10 +1,10 @@
-import * as React from 'react';
+import React from 'react';
 
 import VolumeSlider from '../VolumeSlider';
 import Like from '../Like';
 
-import { formatDuration } from '../../utils';
-import * as styles from './AdditionalControls.css';
+import { formatDuration } from '../../utils/duration';
+import styles from './AdditionalControls.css';
 
 interface Props {
   duration: number;

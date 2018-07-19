@@ -5,13 +5,13 @@ declare module 'react-side-effect' {
     reducePropsToState: (propsList: TProp[]) => TState,
     handleStateChangeOnClient: (state: TState) => void,
     mapStateOnServer?: (state: TState) => void
-  ): ClassDecorator;
+  ): ClassDecorator<TProp>;
 
-  declare class ElementClass extends React.Component<any> {}
-
-  interface ClassDecorator<TProp> {
-    <TInnerComponent extends React.ComponentType<TProp>>(component: T): T;
-  }
+  type ClassDecorator<TProp> = <
+    TInnerComponent extends React.ComponentType<TProp>
+  >(
+    component: TInnerComponent
+  ) => React.ComponentType<TProp>;
 
   declare namespace withSideEffect {
 

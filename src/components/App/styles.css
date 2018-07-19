@@ -1,0 +1,27 @@
+@import '../../colors.css';
+
+.grid {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 1fr 100px;
+}
+
+.sidebar {
+  padding-top: 3em;
+  border-right: 1px solid color(var(--secondary-color) tint(10%));
+  background: var(--secondary-color);
+}
+
+.footer {
+  background: color(var(--secondary-color) tint(10%));
+
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.content {
+  background: var(--main-background-color);
+}

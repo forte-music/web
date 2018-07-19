@@ -1,0 +1,16 @@
+@import '../../../sizes.css';
+@import '../../../colors.css';
+
+.heading {
+  font-size: var(--font-size-large);
+  color: #ffffff;
+
+  margin: var(--size-medium);
+}
+
+.container {
+  composes: artworkGrid from '../../../shared.css';
+  margin-left: var(--size-medium);
+  margin-right: var(--size-medium);
+  margin-bottom: var(--size-medium);
+}

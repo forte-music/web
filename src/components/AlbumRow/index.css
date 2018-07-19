@@ -1,0 +1,15 @@
+.trackNumber,
+.name,
+.artists,
+.duration {
+  composes: column from '../BaseRow/index.css';
+}
+
+.artists,
+.duration {
+  flex: 1;
+}
+
+.name {
+  flex: 5;
+}

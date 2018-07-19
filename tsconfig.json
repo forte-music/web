@@ -2,7 +2,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "outDir": "build/dist",
-    "module": "commonjs",
+    "module": "es2015",
     "target": "es5",
     "lib": ["es6", "dom", "es2017"],
     "typeRoots": [
@@ -10,9 +10,11 @@
       "./node_modules/@types"
     ],
     "sourceMap": true,
-    "allowJs": true,
+    "allowJs": false,
+    "noEmit": true,
     "jsx": "react",
     "moduleResolution": "node",
+    "allowSyntheticDefaultImports": true,
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
     "suppressImplicitAnyIndexErrors": true,
