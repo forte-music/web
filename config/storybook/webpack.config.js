@@ -1,6 +1,10 @@
 const paths = require('../paths');
 const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
+const webpack = require('webpack');
+const getClientEnvironment = require('../env');
+
+const env = getClientEnvironment();
 
 module.exports = {
   resolve: {
@@ -41,6 +45,7 @@ module.exports = {
     ],
   },
   plugins: [
+    new webpack.DefinePlugin(env.stringified),
     // Perform type checking and linting in a separate process to speed up compilation
     new ForkTsCheckerWebpackPlugin({
       async: false,

@@ -101,7 +101,7 @@
   "scripts": {
     "fix-style": "prettier --write $npm_package_config_prettierFiles",
     "check-all": "yarn codegen && yarn lint && CI=true yarn test",
-    "storybook": "start-storybook -p 9001 -c config/storybook",
+    "storybook": "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
     "start-mock": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start": "node scripts/start.js",
     "build": "yarn codegen && node scripts/build.js",
