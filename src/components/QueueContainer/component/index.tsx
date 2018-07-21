@@ -11,11 +11,11 @@ import { QueueItem } from '../../../redux/state/queue';
 
 interface Props {
   items: QueueItem[];
-  nowPlaying?: QueueItem;
+  nowPlayingId?: string;
   skipToPosition: (position: number) => void;
 }
 
-const Queue = ({ items, nowPlaying, skipToPosition }: Props) => (
+const Queue = ({ items, nowPlayingId, skipToPosition }: Props) => (
   <div>
     <Title segments={['Queue']} />
 
@@ -32,7 +32,7 @@ const Queue = ({ items, nowPlaying, skipToPosition }: Props) => (
             <ConnectedDetailRow
               key={id}
               songId={songId}
-              active={nowPlaying ? id === nowPlaying.id : false}
+              active={id === nowPlayingId}
               onDoubleClick={() => skipToPosition(index)}
             />
           );

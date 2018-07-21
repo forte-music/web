@@ -4,10 +4,10 @@ import { QueueState } from './enhancers/redux';
 
 const QueueContainer = () => (
   <QueueState>
-    {({ items, nowPlaying, skipToPosition }) => (
+    {({ items, nowPlayingId, skipToPosition }) => (
       <Queue
         items={items}
-        nowPlaying={nowPlaying}
+        nowPlayingId={nowPlayingId}
         skipToPosition={skipToPosition}
       />
     )}
