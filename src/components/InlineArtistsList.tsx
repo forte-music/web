@@ -1,8 +1,7 @@
 import React from 'react';
 import { join, unique } from '../utils';
-import { Link } from 'react-router-dom';
 import commonStyles from '../shared.css';
-import { artistPath } from '../utils/paths';
+import { ArtistLink } from './ArtistLink';
 
 export interface Artist {
   id: string;
@@ -21,10 +20,8 @@ export const InlineArtistsList = ({
   <React.Fragment>
     {unique(
       join(
-        artists.map(({ id, name }) => (
-          <Link to={artistPath(id)} className={className}>
-            {name}
-          </Link>
+        artists.map(artist => (
+          <ArtistLink artist={artist} className={className} />
         )),
         <span>, </span>
       )
