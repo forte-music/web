@@ -33,6 +33,7 @@ export const Artist = (props: Props) => (
     <div className={styles.albums}>
       {props.artist.albums.map(album => (
         <ArtworkTwoInfo
+          key={album.id}
           artwork={<PlaybackAlbumArtwork album={album} />}
           lineOne={
             <Link to={albumPath(album.id)} className={sharedStyles.link}>
