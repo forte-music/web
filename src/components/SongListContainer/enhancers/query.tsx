@@ -7,24 +7,32 @@ import {
 } from './__generated__/SongListRowQuery';
 import { Omit } from '../../../utils';
 
+export const fragment = gql`
+  fragment SongDetailFragment on Song {
+    id
+    name
+    duration
+
+    artists {
+      id
+      name
+    }
+
+    album {
+      id
+      name
+    }
+  }
+`;
+
 const query = gql`
   query SongListRowQuery($songId: ID!) {
     song(id: $songId) {
-      id
-      name
-      duration
-
-      artists {
-        id
-        name
-      }
-
-      album {
-        id
-        name
-      }
+      ...SongDetailFragment
     }
   }
+  
+  ${fragment}
 `;
 
 export const SongListRowQuery = (
