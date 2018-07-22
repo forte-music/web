@@ -14,11 +14,11 @@ import { Omit } from '../../../utils';
 import { fragment } from '../../SongListContainer/enhancers/query';
 
 const query = gql`
-  query SongsQuery($cursor: String, $isReverse: Boolean, $sortBy: SortBy) {
+  query SongsQuery($cursor: String, $isReverse: Boolean!, $sortBy: SortBy!) {
     songs(
-      first: 1
+      first: 5
       after: $cursor
-      sort: { reverse: $reverse, sortBy: $sortBy }
+      sort: { reverse: $isReverse, sortBy: $sortBy }
     ) @connection {
       count
       pageInfo {
