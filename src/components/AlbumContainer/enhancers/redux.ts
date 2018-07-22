@@ -3,10 +3,7 @@ import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { AlbumQuery_album as Album } from './__generated__/AlbumQuery';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
-import {
-  nowPlaying as nowPlayingSelector,
-  isSourceActive,
-} from '../../../redux/selectors/nowPlaying';
+import { getActiveQueueItemForList } from '../../../redux/selectors/nowPlaying';
 import { State } from '../../../redux/state';
 import { getTracks } from '../../PlaybackAlbumArtwork';
 
@@ -39,13 +36,16 @@ const enhancer = connect<
   State
 >(
   (state: State, props: OwnProps): StateEnhancedProps => {
-    const isActive = isSourceActive(state.queue, 'ALBUM', props.album.id);
-    if (!isActive) {
+    const activeQueueItem = getActiveQueueItemForList(
+      state.queue,
+      'ALBUM',
+      props.album.id
+    );
+    if (!activeQueueItem) {
       return {};
     }
 
-    const nowPlaying = nowPlayingSelector(state.queue);
-    return { currentlyPlayingId: nowPlaying!.songId };
+    return { currentlyPlayingId: activeQueueItem.songId };
   },
   (dispatch: Dispatch<State>, props: OwnProps): DispatchProps => ({
     onDoubleClick: (startIndex: number) => {

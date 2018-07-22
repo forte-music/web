@@ -5,7 +5,7 @@ import { Kind, QueueItemSource, QueueState } from '../../../redux/state/queue';
 import { State } from '../../../redux/state';
 import { PlaybackState } from '../../PlaybackArtwork';
 import { Action, pause, play } from '../../../redux/actions';
-import { isSourceActive } from '../../../redux/selectors/nowPlaying';
+import { getActiveQueueItemForList } from '../../../redux/selectors/nowPlaying';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
 
 interface StateEnhancedProps {
@@ -36,8 +36,8 @@ const getPlayingState = (
   kind: Kind,
   listId: string
 ): PlaybackState => {
-  const isActive = isSourceActive(queue, kind, listId);
-  if (!isActive) {
+  const activeQueueItem = getActiveQueueItemForList(queue, kind, listId);
+  if (!activeQueueItem) {
     return 'STOPPED';
   }
 
