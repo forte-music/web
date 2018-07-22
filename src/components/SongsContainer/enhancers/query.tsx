@@ -14,11 +14,7 @@ import { Omit } from '../../../utils';
 import { fragment } from '../../SongListContainer/enhancers/query';
 
 const query = gql`
-  query SongsQuery(
-    $cursor: String
-    $reverse: Boolean
-    $sortBy: SortBy = LEXICOGRAPHICALLY
-  ) {
+  query SongsQuery($cursor: String, $isReverse: Boolean, $sortBy: SortBy) {
     songs(
       first: 1
       after: $cursor

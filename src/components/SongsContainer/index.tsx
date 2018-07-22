@@ -5,9 +5,9 @@ import { SongsContainerState } from './enhancers/state';
 import { SortBy } from './enhancers/__generated__/SongsQuery';
 
 export const Songs = () => (
-  <SongsContainerState sortedBy={SortBy.LEXICOGRAPHICALLY} isReversed>
-    {({ isReversed, sortedBy, setReversed, setSortedBy }) => (
-      <SongsQuery>
+  <SongsContainerState sortBy={SortBy.LEXICOGRAPHICALLY} isReverse>
+    {({ isReverse, setReverse, sortBy, setSortBy }) => (
+      <SongsQuery variables={{ isReverse, sortBy }}>
         {(result: Result) => {
           if (result.loading || !result.data) {
             return null;
@@ -18,10 +18,10 @@ export const Songs = () => (
               songs={result.data.songs.edges.map(({ node }) => node)}
               hasMore={result.data.songs.pageInfo.hasNextPage}
               loadMore={result.getNextPage}
-              isReversed={isReversed}
-              sortedBy={sortedBy}
-              setReversed={setReversed}
-              setSortedBy={setSortedBy}
+              isReverse={isReverse}
+              setReverse={setReverse}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
             />
           );
         }}

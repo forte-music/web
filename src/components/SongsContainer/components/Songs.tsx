@@ -17,11 +17,11 @@ interface Props {
   hasMore: boolean;
   loadMore: () => Promise<void>;
 
-  sortedBy: SortBy;
-  setSortedBy: (newSort: SortBy) => void;
+  sortBy: SortBy;
+  setSortBy: (newSort: SortBy) => void;
 
-  setReversed: (newReverse: boolean) => void;
-  isReversed: boolean;
+  setReverse: (newReverse: boolean) => void;
+  isReverse: boolean;
 }
 
 // TODO: Loading More
@@ -44,7 +44,7 @@ const Songs = (props: Props) => (
         renderItem={index => (
           <DetailRow
             key={index}
-            song={props.songs[index]}
+            song={props.songs[index] as DetailRowSong}
             active={false}
             onDoubleClick={noop}
           />

@@ -2,8 +2,8 @@ import React from 'react';
 import { SortBy } from './__generated__/SongsQuery';
 
 interface State {
-  isReversed: boolean;
-  sortedBy: SortBy;
+  isReverse: boolean;
+  sortBy: SortBy;
 }
 
 interface Props extends State {
@@ -11,8 +11,8 @@ interface Props extends State {
 }
 
 interface ChildrenProps extends State {
-  setReversed: (isReversed: boolean) => void;
-  setSortedBy: (newSort: SortBy) => void;
+  setReverse: (isReversed: boolean) => void;
+  setSortBy: (newSort: SortBy) => void;
 }
 
 export class SongsContainerState extends React.Component<Props, State> {
@@ -24,10 +24,10 @@ export class SongsContainerState extends React.Component<Props, State> {
 
   public render() {
     return this.props.children({
-      isReversed: this.state.isReversed,
-      setReversed: isReversed => this.setState({ isReversed }),
-      sortedBy: this.state.sortedBy,
-      setSortedBy: sortedBy => this.setState({ sortedBy }),
+      isReverse: this.state.isReverse,
+      setReverse: isReverse => this.setState({ isReverse }),
+      sortBy: this.state.sortBy,
+      setSortBy: sortBy => this.setState({ sortBy }),
     });
   }
 }
