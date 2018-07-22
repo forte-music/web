@@ -5,7 +5,7 @@ import { Artist, InlineArtistsList } from '../InlineArtistsList';
 import { AlbumLink, Album } from '../AlbumLink';
 import { BaseRow } from '../BaseRow';
 
-interface Song {
+export interface Song {
   name: string;
   duration: number;
   album: Album;
