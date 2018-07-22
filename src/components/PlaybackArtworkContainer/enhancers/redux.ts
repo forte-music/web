@@ -1,14 +1,11 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { QueueItemSource, Kind } from '../../../redux/state/queue';
+import { Kind, QueueItemSource, QueueState } from '../../../redux/state/queue';
 import { State } from '../../../redux/state';
 import { PlaybackState } from '../../PlaybackArtwork';
-import { play, pause, Action } from '../../../redux/actions';
-import {
-  isSource,
-  nowPlaying as nowPlayingSelector,
-} from '../../../redux/selectors/nowPlaying';
+import { Action, pause, play } from '../../../redux/actions';
+import { getActiveQueueItemForList } from '../../../redux/selectors/nowPlaying';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
 
 interface StateEnhancedProps {
@@ -34,6 +31,23 @@ interface EnhancedProps extends ChildProps, OwnProps {}
 
 type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
 
+const getPlayingState = (
+  queue: QueueState,
+  kind: Kind,
+  listId: string
+): PlaybackState => {
+  const activeQueueItem = getActiveQueueItemForList(queue, kind, listId);
+  if (!activeQueueItem) {
+    return 'STOPPED';
+  }
+
+  if (queue.shouldBePlaying) {
+    return 'PLAYING';
+  }
+
+  return 'PAUSED';
+};
+
 const enhancer = connect<
   StateEnhancedProps,
   ActionEnhancedProps,
@@ -41,17 +55,9 @@ const enhancer = connect<
   EnhancedProps,
   State
 >(
-  ({ queue }, { kind, list }) => {
-    const { source = {} } = nowPlayingSelector(queue) || {};
-
-    const nowPlaying = isSource(source, kind, list);
-
-    return {
-      state: nowPlaying
-        ? queue.shouldBePlaying ? 'PLAYING' : 'PAUSED'
-        : 'STOPPED',
-    };
-  },
+  ({ queue }, { kind, list }) => ({
+    state: getPlayingState(queue, kind, list),
+  }),
   (dispatch: Dispatch<Action>, { tracks, list, kind }) => ({
     onPlaying: () => dispatch(play()),
     onPaused: () => dispatch(pause()),

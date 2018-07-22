@@ -7,7 +7,7 @@ import { nowPlaying as nowPlayingSelector } from '../../../redux/selectors/nowPl
 
 interface StateEnhancedProps {
   items: QueueItem[];
-  nowPlaying?: QueueItem;
+  nowPlayingId?: string;
 }
 
 interface ActionEnhancedProps {
@@ -36,9 +36,8 @@ const enhancer = connect<
 >(
   ({ queue }) => {
     const nowPlaying = nowPlayingSelector(queue);
-    const { items } = queue;
 
-    return { nowPlaying, items };
+    return { nowPlayingId: nowPlaying && nowPlaying.id, items: queue.items };
   },
   (dispatch: Dispatch<Action>): ActionEnhancedProps => ({
     skipToPosition: (position: number) => {
