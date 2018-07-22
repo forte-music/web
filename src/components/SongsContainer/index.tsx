@@ -5,7 +5,7 @@ import { SongsContainerState } from './enhancers/state';
 import { SortBy } from './enhancers/__generated__/SongsQuery';
 
 export const Songs = () => (
-  <SongsContainerState sortBy={SortBy.LEXICOGRAPHICALLY} isReverse>
+  <SongsContainerState sortBy={SortBy.LEXICOGRAPHICALLY} isReverse={false}>
     {({ isReverse, setReverse, sortBy, setSortBy }) => (
       <SongsQuery variables={{ isReverse, sortBy }}>
         {(result: Result) => {
