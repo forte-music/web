@@ -11,6 +11,7 @@ import { mustGet } from '@forte-music/mock/utils';
 
 import client from '../../graphql/client';
 import ConnectedDetailRow from '../SongListContainer/Detail';
+import { genRange } from '../../utils';
 
 const ids = Array.from(songs.keys());
 ids.sort();
@@ -58,8 +59,8 @@ const Story = ({
 }) => (
   <SongList
     header={<DetailRowHeader />}
-    countAvailableRows={count}
-    renderItem={index => {
+    rows={Array.from(genRange(count))}
+    render={index => {
       const id = getId(index);
       const song: Song = mustGet(songs, id);
 
@@ -79,7 +80,9 @@ storiesOf('SongList', module)
     <Story
       count={manyItems}
       getId={index => ids[index % ids.length]}
-      getRowForSong={song => <DelayedLoadingRow song={song} active={false} />}
+      getRowForSong={(song, index) => (
+        <DelayedLoadingRow key={index} song={song} active={false} />
+      )}
     />
   ))
   .add('an active row', () => (

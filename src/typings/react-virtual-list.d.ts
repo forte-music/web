@@ -6,38 +6,43 @@ declare module 'react-virtual-list' {
     lastItemIndex: number;
   }
 
-  export interface DefaultVirtualProps<TItem> {
+  export interface Options<TState> {
+    container: Element;
+    initialState: Partial<TState>;
+  }
+
+  export interface VirtualProps<TItem> {
     virtual: {
       items: TItem[];
       style: object;
     };
   }
 
-  export interface Options<TState> {
-    container: Element;
-    initialState: Partial<TState>;
-  }
-
-  export interface InputProps<TItem> {
+  export interface OwnProps<TItem> {
     items: TItem[];
     itemHeight: number;
     itemBuffer?: number;
   }
 
-  interface VirtualListDecarator<TInputProps, TVirtualProps, TState> {
-    <T extends React.ComponentType<TVirtualProps & TInputProps>>(
-      inner: T
-    ): React.ComponentClass<TInputProps>;
-  }
+  type Decorator<TItem, TChildProps> = <
+    TOuterProps extends OwnProps<TItem>,
+    TMergedProps extends TOuterProps & TChildProps,
+    TInnerProps
+  >(
+    inner: React.ComponentType<TMergedProps>
+  ) => React.ComponentClass<TOuterProps>;
 
   function hoc<
-    TInputProps = InputProps<any>,
-    TVirtualProps = DefaultVirtualProps<any>,
-    TState = DefaultState
+    TItem,
+    TMappedProps = VirtualProps<TItem>,
+    TState extends DefaultState
   >(
     options?: Options<TState>,
-    mapVirtualToProps?: (props: TInputProps, state: TState) => TVirtualProps
-  ): VirtualListDecarator<TInputProps, TVirtualProps, TState>;
+    mapVirtualToProps?: (
+      props: VirtualProps<TItem>,
+      state: TState
+    ) => TMappedProps
+  ): Decorator<TItem, TMappedProps>;
 
   export default hoc;
 }
