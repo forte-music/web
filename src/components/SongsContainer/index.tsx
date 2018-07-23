@@ -9,13 +9,14 @@ export const Songs = () => (
     {({ isReverse, setReverse, sortBy, setSortBy }) => (
       <SongsQuery variables={{ isReverse, sortBy }}>
         {(result: Result) => {
-          if (result.loading || !result.data) {
+          if (!result.data || !result.data.songs) {
             return null;
           }
 
           return (
             <SongsInner
               songs={result.data.songs.edges.map(({ node }) => node)}
+              isLoadingMore={result.loading}
               hasMore={result.data.songs.pageInfo.hasNextPage}
               loadMore={result.getNextPage}
               isReverse={isReverse}

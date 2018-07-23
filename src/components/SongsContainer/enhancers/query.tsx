@@ -16,7 +16,7 @@ import { fragment } from '../../SongListContainer/enhancers/query';
 const query = gql`
   query SongsQuery($cursor: String, $isReverse: Boolean!, $sortBy: SortBy!) {
     songs(
-      first: 5
+      first: 1000
       after: $cursor
       sort: { reverse: $isReverse, sortBy: $sortBy }
     ) @connection {

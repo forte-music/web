@@ -1,22 +1,19 @@
 import React from 'react';
 import Title from '../../Title';
-import { Song as DetailRowSong } from '../../DetailRow/Row';
 
 import styles from '../../QueueContainer/component/styles.css';
-import { DetailRow } from '../../DetailRow';
+import { Row as DetailRow, Song } from '../../DetailRow/Row';
 import { noop } from '../../../utils';
-import { SongList } from '../../SongList';
 import { SortBy } from '../enhancers/__generated__/SongsQuery';
 import { InteractiveDetailRowHeader } from './InteractiveDetailRowHeader';
-
-interface Song extends DetailRowSong {
-  id: string;
-}
+import { InfiniteSongList } from '../../InfiniteSongList';
+import { LoadingRow } from '../../LoadingRow';
 
 interface Props {
   songs: Song[];
   hasMore: boolean;
-  loadMore: () => Promise<void>;
+  loadMore: () => void;
+  isLoadingMore: boolean;
 
   sortBy: SortBy;
   setSortBy: (newSort: SortBy) => void;
@@ -25,7 +22,7 @@ interface Props {
   isReverse: boolean;
 }
 
-// TODO: Loading More
+// TODO: Tune Page Sizing and Loading More
 // TODO: On Double Click
 // TODO: Active
 // TODO: Style Hoisting
@@ -37,8 +34,15 @@ const Songs = (props: Props) => (
     <div className={styles.heading}>Songs</div>
 
     <div className={styles.body}>
-      <SongList
-        countAvailableRows={props.songs.length}
+      <InfiniteSongList
+        rows={props.songs}
+        hasMoreRows={props.hasMore}
+        loadMoreRows={props.loadMore}
+        isLoadingMore={props.isLoadingMore}
+        render={song => (
+          <DetailRow song={song} active={false} onDoubleClick={noop} />
+        )}
+        loading={<LoadingRow />}
         header={
           <InteractiveDetailRowHeader
             sortBy={props.sortBy}
@@ -47,14 +51,6 @@ const Songs = (props: Props) => (
             setReverse={props.setReverse}
           />
         }
-        renderItem={index => (
-          <DetailRow
-            key={index}
-            song={props.songs[index] as DetailRowSong}
-            active={false}
-            onDoubleClick={noop}
-          />
-        )}
       />
     </div>
   </div>
