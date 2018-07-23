@@ -20,11 +20,10 @@ interface StateEnhancedProps {
   playing: boolean;
 }
 
-const mapStateToProps = ({ queue }: State): StateEnhancedProps => {
-  const queueItem = nowPlayingSelector(queue);
-  const { shouldBePlaying } = queue;
-  return { queueItem, playing: shouldBePlaying };
-};
+const mapStateToProps = ({ queue }: State): StateEnhancedProps => ({
+  queueItem: nowPlayingSelector(queue),
+  playing: queue.shouldBePlaying,
+});
 
 interface DispatchProps {
   // Called to skip to the next song in the queue.
