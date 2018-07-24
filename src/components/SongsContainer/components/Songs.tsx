@@ -42,28 +42,37 @@ const Songs = (props: Props) => (
     <div className={styles.heading}>Songs</div>
 
     <div className={styles.body}>
-      <InfiniteSongList
-        rows={props.songs}
-        hasMoreRows={props.hasMore}
-        loadMoreRows={props.loadMore}
-        isLoadingMore={props.isLoadingMore}
-        render={(song, index) => (
-          <DetailRow
-            song={song}
-            active={song.id === props.activeSongId}
-            onDoubleClick={() => props.startPlayingFrom(index)}
-          />
-        )}
-        loading={<LoadingRow />}
-        header={
-          <InteractiveDetailRowHeader
-            sortBy={props.sortBy}
-            setSortBy={props.setSortBy}
-            isReverse={props.isReverse}
-            setReverse={props.setReverse}
-          />
-        }
-      />
+      {props.songs.length && (
+        <InfiniteSongList
+          rows={props.songs}
+          hasMoreRows={props.hasMore}
+          loadMoreRows={props.loadMore}
+          isLoadingMore={props.isLoadingMore}
+          render={(song, index) => (
+            <DetailRow
+              song={song}
+              active={song.id === props.activeSongId}
+              onDoubleClick={() => props.startPlayingFrom(index)}
+            />
+          )}
+          loading={<LoadingRow />}
+          header={
+            <InteractiveDetailRowHeader
+              sortBy={props.sortBy}
+              setSortBy={props.setSortBy}
+              isReverse={props.isReverse}
+              setReverse={props.setReverse}
+            />
+          }
+        />
+      )}
+
+      {!props.songs.length && (
+        <div className={styles.prompt}>
+          Hmm, it doesn't look like there were any items in your library. Try
+          importing some.
+        </div>
+      )}
     </div>
   </div>
 );
