@@ -3,7 +3,6 @@ import Title from '../../Title';
 
 import styles from '../../QueueContainer/component/styles.css';
 import { Row as DetailRow, Song as DetailRowSong } from '../../DetailRow/Row';
-import { noop } from '../../../utils';
 import { SortBy } from '../enhancers/__generated__/SongsQuery';
 import { InteractiveDetailRowHeader } from './InteractiveDetailRowHeader';
 import { InfiniteSongList } from '../../InfiniteSongList';
@@ -26,14 +25,15 @@ interface Props {
   sortBy: SortBy;
   setSortBy: (newSort: SortBy) => void;
 
-  setReverse: (newReverse: boolean) => void;
   isReverse: boolean;
+  setReverse: (newReverse: boolean) => void;
+
+  // Starts playing all the songs in the view sorted order starting from the
+  // song at index.
+  startPlayingFrom: (index: number) => void;
 }
 
-// TODO: Tune Page Sizing and Loading More
-// TODO: On Double Click
 // TODO: Style Hoisting
-// TODO: Song List Width Growing Too Much
 
 const Songs = (props: Props) => (
   <div>
@@ -47,11 +47,11 @@ const Songs = (props: Props) => (
         hasMoreRows={props.hasMore}
         loadMoreRows={props.loadMore}
         isLoadingMore={props.isLoadingMore}
-        render={song => (
+        render={(song, index) => (
           <DetailRow
             song={song}
             active={song.id === props.activeSongId}
-            onDoubleClick={noop}
+            onDoubleClick={() => props.startPlayingFrom(index)}
           />
         )}
         loading={<LoadingRow />}
