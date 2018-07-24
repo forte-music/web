@@ -33,8 +33,6 @@ interface Props {
   startPlayingFrom: (index: number) => void;
 }
 
-// TODO: Style Hoisting
-
 const Songs = (props: Props) => (
   <div>
     <Title segments={['Songs']} />
