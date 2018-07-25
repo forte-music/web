@@ -67,7 +67,7 @@ const Songs = (props: Props) => (
 
       {!props.songs.length && (
         <div className={styles.prompt}>
-          Hmm, it doesn't look like there were any items in your library. Try
+          Hmm, it doesn't look like there are any items in your library. Try
           importing some.
         </div>
       )}
