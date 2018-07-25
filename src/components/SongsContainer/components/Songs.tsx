@@ -40,7 +40,7 @@ const Songs = (props: Props) => (
     <div className={styles.heading}>Songs</div>
 
     <div className={styles.body}>
-      {props.songs.length && (
+      {props.songs.length > 0 ? (
         <InfiniteSongList
           rows={props.songs}
           hasMoreRows={props.hasMore}
@@ -63,9 +63,7 @@ const Songs = (props: Props) => (
             />
           }
         />
-      )}
-
-      {!props.songs.length && (
+      ) : (
         <div className={styles.prompt}>
           Hmm, it doesn't look like there are any items in your library. Try
           importing some.
