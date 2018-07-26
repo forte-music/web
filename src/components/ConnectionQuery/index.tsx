@@ -13,7 +13,6 @@ import {
 
 import { last, Omit, split } from '../../utils';
 import { Connection } from '@forte-music/mock/models';
-import { data } from '@forte-music/schema';
 
 type Path = string[];
 
@@ -139,14 +138,14 @@ export const ConnectionQuery = <
 
   return (
     <Query {...props}>
-      {result => {
+      {(result: QueryResult<TData, TVariables>) => {
         const getNextPage = async (): Promise<void> => {
-          if (!result.data || !result.data.loading) {
+          if (!result.data || result.loading) {
             return;
           }
 
           const connectionRoot: Connection<TNode> = getByPath(
-            data,
+            result.data,
             pathToConnectionRoot
           );
           const { edges, pageInfo: { hasNextPage } } = connectionRoot;

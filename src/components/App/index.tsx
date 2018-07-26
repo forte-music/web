@@ -7,6 +7,7 @@ import Queue from '../QueueContainer';
 import { Albums } from '../AlbumsContainer';
 import Artist from '../ArtistContainer';
 import Album from '../AlbumContainer';
+import { Songs } from '../SongsContainer';
 
 import { Providers } from './Providers';
 import Title from '../Title';
@@ -37,7 +38,7 @@ export const App = () => (
 
       <main className={styles.content}>
         <Switch>
-          <Route exact path={songsPath} />
+          <Route exact path={songsPath} component={Songs} />
 
           <Route exact path={artistsPath} />
           <Route

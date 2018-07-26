@@ -42,19 +42,15 @@ export const Album = ({ album, onDoubleClick, currentlyPlayingId }: Props) => (
     <div className={styles.songContainer}>
       <SongList
         header={<AlbumRowHeader />}
-        countAvailableRows={album.songs.length}
-        renderItem={index => {
-          const song = album.songs[index];
-
-          return (
-            <AlbumRow
-              key={song.id}
-              song={song}
-              active={currentlyPlayingId === song.id}
-              onDoubleClick={() => onDoubleClick(index)}
-            />
-          );
-        }}
+        rows={album.songs}
+        render={(song, index) => (
+          <AlbumRow
+            key={index}
+            song={song}
+            active={currentlyPlayingId === song.id}
+            onDoubleClick={() => onDoubleClick(index)}
+          />
+        )}
       />
     </div>
   </div>

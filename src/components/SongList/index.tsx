@@ -1,50 +1,60 @@
 import React, { ReactNode } from 'react';
-import VirtualList, { InputProps } from 'react-virtual-list';
+import VirtualList, {
+  DefaultState,
+  OwnProps,
+  VirtualProps,
+} from 'react-virtual-list';
 
 import styles from './styles.css';
-import { genRange } from '../../utils';
 
-interface Props {
-  // The number of rows currently available to render by calls to
-  // renderItem.
-  countAvailableRows: number;
-
+interface Props<T> {
   // The header node is rendered inside the container above the virtual list
   // body.
   header: ReactNode;
 
+  // The data to be rendered in the list.
+  rows: T[];
+
   // Called to render each row. Each row must be 36px tall.
-  renderItem: (index: number) => ReactNode;
+  render: (item: T, index: number) => ReactNode;
 }
 
 const itemHeight = 36;
 
-export const SongList = ({ countAvailableRows, header, renderItem }: Props) => (
-  <div className={styles.container}>
-    {header}
+export function SongList<T>(props: Props<T>) {
+  return (
+    <div className={styles.container}>
+      {props.header}
 
-    {countAvailableRows > 0 && (
-      <Virtualized
-        items={Array.from(genRange(countAvailableRows))}
-        itemHeight={itemHeight}
-        renderItem={({ index }) => renderItem(index)}
-      />
-    )}
-  </div>
-);
-
-interface ListProps<T> {
-  virtual: {
-    style: object;
-    items: T[];
-  };
-  renderItem: (item: { index: number }) => void;
+      {props.rows.length > 0 && (
+        <Virtualized
+          items={props.rows.map((item, index) => ({ item, index }))}
+          itemHeight={itemHeight}
+          renderItem={({ item, index }) => props.render(item, index)}
+        />
+      )}
+    </div>
+  );
 }
 
-const List = ({ virtual: { style, items }, renderItem }: ListProps<number>) => (
-  <div style={style}>{items.map(item => renderItem({ index: item }))}</div>
-);
+interface ChildProps<T> extends VirtualProps<T>, RenderItem<T> {}
 
-const Virtualized = VirtualList<
-  InputProps<number> & { renderItem: (item: { index: number }) => void }
+function List<T>(props: ChildProps<T>) {
+  return (
+    <div style={props.virtual.style}>
+      {props.virtual.items.map(item => props.renderItem(item))}
+    </div>
+  );
+}
+
+interface VirtualizedProps<T> extends OwnProps<T>, RenderItem<T> {}
+
+interface RenderItem<T> {
+  renderItem: (item: T) => React.ReactNode;
+}
+
+const Virtualized: React.ComponentType<VirtualizedProps<any>> = VirtualList<
+  any,
+  VirtualProps<any>,
+  DefaultState
 >()(List);

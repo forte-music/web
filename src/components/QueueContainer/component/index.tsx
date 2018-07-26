@@ -24,19 +24,15 @@ const Queue = ({ items, nowPlayingId, skipToPosition }: Props) => (
     <div className={styles.body}>
       <SongList
         header={<DetailRowHeader />}
-        countAvailableRows={items.length}
-        renderItem={index => {
-          const { id, songId } = items[index];
-
-          return (
-            <ConnectedDetailRow
-              key={id}
-              songId={songId}
-              active={id === nowPlayingId}
-              onDoubleClick={() => skipToPosition(index)}
-            />
-          );
-        }}
+        rows={items}
+        render={(item, index) => (
+          <ConnectedDetailRow
+            key={item.id}
+            songId={item.songId}
+            active={item.id === nowPlayingId}
+            onDoubleClick={() => skipToPosition(index)}
+          />
+        )}
       />
 
       {!items.length && (

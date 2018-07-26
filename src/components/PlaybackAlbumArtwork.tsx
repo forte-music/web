@@ -3,7 +3,7 @@ import PlaybackArtwork from './PlaybackArtworkContainer';
 import { Link } from 'react-router-dom';
 import { albumPath } from '../utils/paths';
 import { AlbumArtwork } from './AlbumArtwork';
-import { QueueItemSource } from '../redux/state/queue';
+import { Kind, QueueItemSource } from '../redux/state/queue';
 
 export interface Album {
   id: string;
@@ -20,7 +20,7 @@ export interface Props {
 export const getTracks = (album: Album): QueueItemSource[] =>
   album.songs.map(({ id }, idx) => ({
     songId: id,
-    source: { song: idx.toString() },
+    source: { song: idx.toString(), list: album.id, kind: 'ALBUM' as Kind },
   }));
 
 export const PlaybackAlbumArtwork = ({

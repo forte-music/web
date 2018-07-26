@@ -1,6 +1,6 @@
 export type ID = string;
 
-export type Kind = 'PLAYLIST' | 'ALBUM' | 'ARTIST';
+export type Kind = 'PLAYLIST' | 'ALBUM' | 'ARTIST' | 'SONGS';
 
 // A collection of information about where a song was queued from.
 export interface Source {

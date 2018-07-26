@@ -17,16 +17,22 @@ export const getActiveQueueItemForList = (
   kind: Kind,
   listId?: string
 ): QueueItem | void => {
-  const source = nowPlaying(queue);
-  if (!source) {
+  const queueItem = nowPlaying(queue);
+  if (!queueItem) {
     // Nothing is playing.
     return;
   }
 
-  if (!isSource(source, kind, listId)) {
+  if (!queueItem.source) {
+    // Something is playing but no information about its origin is attached
+    // to it.
+    return;
+  }
+
+  if (!isSource(queueItem.source, kind, listId)) {
     // There is something playing but it isn't from the provided list.
     return;
   }
 
-  return source;
+  return queueItem;
 };
