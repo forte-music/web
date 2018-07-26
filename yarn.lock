@@ -490,9 +490,9 @@
     "@types/history" "*"
     "@types/react" "*"
 
-"@types/react-side-effect@^1.0.6":
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/@types/react-side-effect/-/react-side-effect-1.0.6.tgz#33ed4cf69207164711bce0786527b5f7e56dc48d"
+"@types/react-side-effect@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/react-side-effect/-/react-side-effect-1.1.0.tgz#753c08ba75d39aabfd935c9d59460cce9477f826"
   dependencies:
     "@types/react" "*"
 
