@@ -38,7 +38,7 @@ export const App = () => (
 
       <main className={styles.content}>
         <Switch>
-          <Route exact path={songsPath} component={Songs} />
+          <Route exact path={songsPath} render={() => <Songs />} />
 
           <Route exact path={artistsPath} />
           <Route
@@ -47,7 +47,8 @@ export const App = () => (
             render={withIdFromProps(id => <Artist id={id} />)}
           />
 
-          <Route exact path={albumsPath} component={Albums} />
+          <Route exact path={albumsPath} render={() => <Albums />} />
+
           <Route
             exact
             path={albumPath(withIdPathParam)}
@@ -55,7 +56,7 @@ export const App = () => (
           />
 
           <Route exact path={homePath} />
-          <Route exact path={queuePath} component={Queue} />
+          <Route exact path={queuePath} render={() => <Queue />} />
           <Route exact path={searchPath} />
 
           <Redirect from="/" to="/home" />
