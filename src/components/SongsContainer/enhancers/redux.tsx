@@ -1,6 +1,4 @@
-import React from 'react';
 import { Dispatch } from 'redux';
-import { connect } from 'react-redux';
 import { State } from '../../../redux/state';
 import {
   getPlayingMatching,
@@ -8,6 +6,7 @@ import {
 } from '../../../redux/selectors/nowPlaying';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
 import { PlayingFromSongs, QueueItemSource } from '../../../redux/state/queue';
+import { createReduxComponent } from '../../../redux/render';
 
 interface StateEnhancedProps {
   activeSongId?: string;
@@ -17,20 +16,13 @@ interface ActionEnhancedProps {
   startPlayingFrom: (index: number) => void;
 }
 
-interface ChildProps extends StateEnhancedProps, ActionEnhancedProps {}
-
-type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
-
 interface Song {
   id: string;
 }
 
 interface OwnProps {
-  children: ChildrenFn;
   songs: Song[];
 }
-
-interface MergedProps extends ChildProps, OwnProps {}
 
 const getTracks = (songs: Song[]): QueueItemSource[] =>
   songs.map(song => ({
@@ -38,12 +30,11 @@ const getTracks = (songs: Song[]): QueueItemSource[] =>
     playingFrom: { type: 'SONGS' } as PlayingFromSongs,
   }));
 
-const enhancer = connect<
+export const SongsContainerReduxState = createReduxComponent<
+  State,
   StateEnhancedProps,
   ActionEnhancedProps,
-  OwnProps,
-  MergedProps,
-  State
+  OwnProps
 >(
   (state: State): StateEnhancedProps => {
     const activeQueueItem = getPlayingMatching(state.queue, isPlayingFromSongs);
@@ -57,21 +48,5 @@ const enhancer = connect<
   (dispatch: Dispatch<State>, props: OwnProps) => ({
     startPlayingFrom: (index: number) =>
       startPlayingList(dispatch)(getTracks(props.songs), index),
-  }),
-  (
-    stateProps: StateEnhancedProps,
-    dispatchProps: ActionEnhancedProps,
-    ownProps: OwnProps
-  ) => ({
-    ...stateProps,
-    ...dispatchProps,
-    ...ownProps,
   })
-);
-
-const Component: React.StatelessComponent<MergedProps> = (props: MergedProps) =>
-  props.children(props);
-
-export const SongsContainerReduxState: React.ComponentType<OwnProps> = enhancer(
-  Component
 );
