@@ -190,10 +190,12 @@ class Footer extends Component<Props, State> {
             className={barStyles.played}
             position={(nowPlaying && currentTime / duration) || 0}
           />
+
           <div
-            className={[barStyles.bar, loading ? barStyles.loading : ''].join(
-              ' '
-            )}
+            className={[
+              barStyles.bar,
+              nowPlaying && loading ? barStyles.loading : '',
+            ].join(' ')}
           />
 
           <SliderInput

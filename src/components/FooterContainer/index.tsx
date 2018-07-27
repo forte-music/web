@@ -20,7 +20,11 @@ const EnhancedFooter = ({ className }: InputProps) => (
               <PlaySongMutation variables={sourceMetadata}>
                 {playCurrentSong => (
                   <Footer
-                    nowPlaying={queryResults.data && queryResults.data.song}
+                    nowPlaying={
+                      sourceMetadata &&
+                      queryResults.data &&
+                      queryResults.data.song
+                    }
                     className={className}
                     onToggleLike={() => likeCurrentSong()}
                     playSong={() => playCurrentSong()}
