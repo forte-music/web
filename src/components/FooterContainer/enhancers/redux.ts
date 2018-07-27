@@ -1,6 +1,4 @@
-import React from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
 
 import { State } from '../../../redux/state';
 import { QueueItem } from '../../../redux/state/queue';
@@ -12,6 +10,7 @@ import {
   previousSong,
 } from '../../../redux/actions';
 import { nowPlaying as nowPlayingSelector } from '../../../redux/selectors/nowPlaying';
+import { createReduxComponent } from '../../../redux/render';
 
 interface StateEnhancedProps {
   // Information about the currently playing item in the queue. Undefined if
@@ -70,35 +69,8 @@ interface DispatchProps {
 const mapDispatchToProps = (dispatch: Dispatch<Action>): DispatchProps =>
   bindActionCreators({ nextSong, previousSong, play, pause }, dispatch);
 
-interface OwnProps {
-  children: ChildrenFn;
-}
-
-interface ChildProps extends DispatchProps, StateEnhancedProps {}
-
-interface EnhancedProps extends ChildProps, OwnProps {}
-
-type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
-
-const enhancer = connect<
+export const FooterState = createReduxComponent<
+  State,
   StateEnhancedProps,
-  DispatchProps,
-  OwnProps,
-  EnhancedProps,
-  State
->(
-  mapStateToProps,
-  mapDispatchToProps,
-  (
-    stateProps: StateEnhancedProps,
-    dispatchProps: DispatchProps,
-    ownProps: OwnProps
-  ) => ({ ...stateProps, ...dispatchProps, ...ownProps })
-);
-
-const Component: React.StatelessComponent<EnhancedProps> = ({
-  children,
-  ...props
-}: EnhancedProps) => children(props);
-
-export const FooterState: React.ComponentType<OwnProps> = enhancer(Component);
+  DispatchProps
+>(mapStateToProps, mapDispatchToProps);

@@ -1,9 +1,9 @@
 import { QueueItem } from '../../../redux/state/queue';
-import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 import { State } from '../../../redux/state';
 import { Action, skipToPosition } from '../../../redux/actions';
 import { nowPlaying as nowPlayingSelector } from '../../../redux/selectors/nowPlaying';
+import { createReduxComponent } from '../../../redux/render';
 
 interface StateEnhancedProps {
   items: QueueItem[];
@@ -14,25 +14,10 @@ interface ActionEnhancedProps {
   skipToPosition: (position: number) => void;
 }
 
-export interface ChildProps extends StateEnhancedProps, ActionEnhancedProps {}
-
-type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
-
-interface OwnProps {
-  children: ChildrenFn;
-}
-
-interface MergedProps
-  extends OwnProps,
-    StateEnhancedProps,
-    ActionEnhancedProps {}
-
-const enhancer = connect<
+export const QueueState = createReduxComponent<
+  State,
   StateEnhancedProps,
-  ActionEnhancedProps,
-  OwnProps,
-  MergedProps,
-  State
+  ActionEnhancedProps
 >(
   ({ queue }) => {
     const nowPlaying = nowPlayingSelector(queue);
@@ -43,18 +28,5 @@ const enhancer = connect<
     skipToPosition: (position: number) => {
       dispatch(skipToPosition(position));
     },
-  }),
-  (
-    stateProps: StateEnhancedProps,
-    actionProps: ActionEnhancedProps,
-    ownProps: OwnProps
-  ) => ({
-    ...stateProps,
-    ...actionProps,
-    ...ownProps,
   })
 );
-
-const Component = ({ children, ...props }: MergedProps) => children(props);
-
-export const QueueState = enhancer(Component);

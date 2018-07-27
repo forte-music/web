@@ -1,4 +1,3 @@
-import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
 import { QueueItemSource, QueueState } from '../../../redux/state/queue';
@@ -10,6 +9,7 @@ import {
   getPlayingMatching,
 } from '../../../redux/selectors/nowPlaying';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
+import { createReduxComponent } from '../../../redux/render';
 
 interface StateEnhancedProps {
   state: PlaybackState;
@@ -22,16 +22,9 @@ interface ActionEnhancedProps {
 }
 
 interface OwnProps {
-  children: ChildrenFn;
   checkPlayingFrom: CheckPlayingFromFn;
   tracks: QueueItemSource[];
 }
-
-interface ChildProps extends StateEnhancedProps, ActionEnhancedProps {}
-
-interface EnhancedProps extends ChildProps, OwnProps {}
-
-type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
 
 const getPlayingState = (
   queue: QueueState,
@@ -49,12 +42,11 @@ const getPlayingState = (
   return 'PAUSED';
 };
 
-const enhancer = connect<
+export const PlaybackArtworkState = createReduxComponent<
+  State,
   StateEnhancedProps,
   ActionEnhancedProps,
-  OwnProps,
-  EnhancedProps,
-  State
+  OwnProps
 >(
   (state, props) => ({
     state: getPlayingState(state.queue, props.checkPlayingFrom),
@@ -65,18 +57,5 @@ const enhancer = connect<
     onStartPlayback: async () => {
       startPlayingList(dispatch)(props.tracks);
     },
-  }),
-  (
-    stateProps: StateEnhancedProps,
-    actionProps: ActionEnhancedProps,
-    ownProps: OwnProps
-  ) => ({
-    ...stateProps,
-    ...actionProps,
-    ...ownProps,
   })
 );
-
-const Component = ({ children, ...props }: EnhancedProps) => children(props);
-
-export const PlaybackArtworkState = enhancer(Component);
