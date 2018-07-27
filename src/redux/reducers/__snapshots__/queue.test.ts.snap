@@ -2,195 +2,228 @@
 
 exports[`add to queue reducer adds after current playing item 1`] = `
 Object {
+  "isPlaying": false,
   "items": Array [
     Object {
       "id": "a",
+      "playingFrom": Object {},
       "songId": "Legend",
     },
     Object {
       "id": "b",
+      "playingFrom": Object {},
       "songId": "Blessings (Explicit) ft. Drake, Kanye West",
     },
     Object {
       "id": "c",
+      "playingFrom": Object {},
       "songId": "Pick Me Up ft. Anna of the North",
     },
     Object {
       "id": "2",
+      "playingFrom": Object {},
       "songId": "this is a song",
     },
     Object {
       "id": "3",
+      "playingFrom": Object {},
       "songId": "this is another song",
     },
     Object {
       "id": "d",
+      "playingFrom": Object {},
       "songId": "No Less",
     },
     Object {
       "id": "e",
+      "playingFrom": Object {},
       "songId": "Love Is Gone (Audio) ft. Drew Love (of THEY.)",
     },
   ],
   "position": 2,
-  "shouldBePlaying": false,
 }
 `;
 
 exports[`add to queue reducer adds before current playing item 1`] = `
 Object {
+  "isPlaying": false,
   "items": Array [
     Object {
       "id": "a",
+      "playingFrom": Object {},
       "songId": "Legend",
     },
     Object {
       "id": "4",
+      "playingFrom": Object {},
       "songId": "this is a song",
     },
     Object {
       "id": "5",
+      "playingFrom": Object {},
       "songId": "this is another song",
     },
     Object {
       "id": "b",
+      "playingFrom": Object {},
       "songId": "Blessings (Explicit) ft. Drake, Kanye West",
     },
     Object {
       "id": "c",
+      "playingFrom": Object {},
       "songId": "Pick Me Up ft. Anna of the North",
     },
     Object {
       "id": "d",
+      "playingFrom": Object {},
       "songId": "No Less",
     },
     Object {
       "id": "e",
+      "playingFrom": Object {},
       "songId": "Love Is Gone (Audio) ft. Drew Love (of THEY.)",
     },
   ],
   "position": 2,
-  "shouldBePlaying": false,
 }
 `;
 
 exports[`add to queue reducer adds to end of queue 1`] = `
 Object {
+  "isPlaying": false,
   "items": Array [
     Object {
       "id": "a",
+      "playingFrom": Object {},
       "songId": "Legend",
     },
     Object {
       "id": "b",
+      "playingFrom": Object {},
       "songId": "Blessings (Explicit) ft. Drake, Kanye West",
     },
     Object {
       "id": "c",
+      "playingFrom": Object {},
       "songId": "Pick Me Up ft. Anna of the North",
     },
     Object {
       "id": "d",
+      "playingFrom": Object {},
       "songId": "No Less",
     },
     Object {
       "id": "e",
+      "playingFrom": Object {},
       "songId": "Love Is Gone (Audio) ft. Drew Love (of THEY.)",
     },
     Object {
       "id": "0",
+      "playingFrom": Object {},
       "songId": "this is a song",
     },
     Object {
       "id": "1",
+      "playingFrom": Object {},
       "songId": "this is another song",
     },
   ],
   "position": 2,
-  "shouldBePlaying": false,
 }
 `;
 
 exports[`remove reducer removes songs after the current playing song 1`] = `
 Object {
+  "isPlaying": false,
   "items": Array [
     Object {
       "id": "a",
+      "playingFrom": Object {},
       "songId": "Legend",
     },
     Object {
       "id": "b",
+      "playingFrom": Object {},
       "songId": "Blessings (Explicit) ft. Drake, Kanye West",
     },
     Object {
       "id": "c",
+      "playingFrom": Object {},
       "songId": "Pick Me Up ft. Anna of the North",
     },
   ],
   "position": 2,
-  "shouldBePlaying": false,
 }
 `;
 
 exports[`remove reducer removes songs before the current playing song 1`] = `
 Object {
+  "isPlaying": false,
   "items": Array [
     Object {
       "id": "c",
+      "playingFrom": Object {},
       "songId": "Pick Me Up ft. Anna of the North",
     },
     Object {
       "id": "d",
+      "playingFrom": Object {},
       "songId": "No Less",
     },
     Object {
       "id": "e",
+      "playingFrom": Object {},
       "songId": "Love Is Gone (Audio) ft. Drew Love (of THEY.)",
     },
   ],
   "position": 0,
-  "shouldBePlaying": false,
 }
 `;
 
 exports[`remove reducer removes the currently playing song 1`] = `
 Object {
+  "isPlaying": false,
   "items": Array [
     Object {
       "id": "a",
+      "playingFrom": Object {},
       "songId": "Legend",
     },
     Object {
       "id": "b",
+      "playingFrom": Object {},
       "songId": "Blessings (Explicit) ft. Drake, Kanye West",
     },
     Object {
       "id": "d",
+      "playingFrom": Object {},
       "songId": "No Less",
     },
     Object {
       "id": "e",
+      "playingFrom": Object {},
       "songId": "Love Is Gone (Audio) ft. Drew Love (of THEY.)",
     },
   ],
   "position": 2,
-  "shouldBePlaying": false,
 }
 `;
 
 exports[`replace reducer replaces the queue 1`] = `
 Object {
+  "isPlaying": false,
   "items": Array [
     Object {
       "id": "6",
+      "playingFrom": Object {},
       "songId": "Just The Way You Are",
     },
     Object {
       "id": "7",
+      "playingFrom": Object {},
       "songId": "Glad You Came",
     },
   ],
   "position": 0,
-  "shouldBePlaying": false,
 }
 `;

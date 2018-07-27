@@ -13,7 +13,7 @@ storiesOf('keyboard interaction', module).add('with textfield', () => {
   store.subscribe(() => {
     const labeledAction = action('store updated');
     const state = store.getState();
-    const isPlaying = state.queue.shouldBePlaying;
+    const isPlaying = state.queue.isPlaying;
     const position = state.queue.position;
 
     labeledAction(isPlaying, position);

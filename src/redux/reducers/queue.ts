@@ -164,12 +164,11 @@ export const setPlayback = (
 ): QueueState => {
   const { playing } = action;
 
-  return { ...state, shouldBePlaying: playing };
+  return { ...state, isPlaying: playing };
 };
 
 export const togglePlayback = (state: QueueState): QueueState => {
-  const { shouldBePlaying } = state;
-  return { ...state, shouldBePlaying: !shouldBePlaying };
+  return { ...state, isPlaying: !state.isPlaying };
 };
 
 const bounded = (num: number, lower: number, upper: number): number => {
