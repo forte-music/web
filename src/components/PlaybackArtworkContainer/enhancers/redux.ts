@@ -1,11 +1,14 @@
 import { connect } from 'react-redux';
 import { Dispatch } from 'redux';
 
-import { Kind, QueueItemSource, QueueState } from '../../../redux/state/queue';
+import { QueueItemSource, QueueState } from '../../../redux/state/queue';
 import { State } from '../../../redux/state';
 import { PlaybackState } from '../../PlaybackArtwork';
 import { Action, pause, play } from '../../../redux/actions';
-import { getActiveQueueItemForList } from '../../../redux/selectors/nowPlaying';
+import {
+  CheckPlayingFromFn,
+  getPlayingMatching,
+} from '../../../redux/selectors/nowPlaying';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
 
 interface StateEnhancedProps {
@@ -20,8 +23,7 @@ interface ActionEnhancedProps {
 
 interface OwnProps {
   children: ChildrenFn;
-  kind: Kind;
-  list: string;
+  checkPlayingFrom: CheckPlayingFromFn;
   tracks: QueueItemSource[];
 }
 
@@ -33,15 +35,14 @@ type ChildrenFn = (props: ChildProps) => React.ReactElement<any> | null;
 
 const getPlayingState = (
   queue: QueueState,
-  kind: Kind,
-  listId: string
+  checkPlaying: CheckPlayingFromFn
 ): PlaybackState => {
-  const activeQueueItem = getActiveQueueItemForList(queue, kind, listId);
+  const activeQueueItem = getPlayingMatching(queue, checkPlaying);
   if (!activeQueueItem) {
     return 'STOPPED';
   }
 
-  if (queue.shouldBePlaying) {
+  if (queue.isPlaying) {
     return 'PLAYING';
   }
 
@@ -55,19 +56,14 @@ const enhancer = connect<
   EnhancedProps,
   State
 >(
-  ({ queue }, { kind, list }) => ({
-    state: getPlayingState(queue, kind, list),
+  (state, props) => ({
+    state: getPlayingState(state.queue, props.checkPlayingFrom),
   }),
-  (dispatch: Dispatch<Action>, { tracks, list, kind }) => ({
+  (dispatch: Dispatch<Action>, props) => ({
     onPlaying: () => dispatch(play()),
     onPaused: () => dispatch(pause()),
     onStartPlayback: async () => {
-      const itemsWithDefaults: QueueItemSource[] = tracks.map(item => ({
-        ...item,
-        source: { list, kind, ...item.source },
-      }));
-
-      startPlayingList(dispatch)(itemsWithDefaults);
+      startPlayingList(dispatch)(props.tracks);
     },
   }),
   (

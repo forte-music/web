@@ -2,9 +2,12 @@ import React from 'react';
 import { Dispatch } from 'redux';
 import { connect } from 'react-redux';
 import { State } from '../../../redux/state';
-import { getActiveQueueItemForList } from '../../../redux/selectors/nowPlaying';
+import {
+  getPlayingMatching,
+  isPlayingFromSongs,
+} from '../../../redux/selectors/nowPlaying';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
-import { Kind, QueueItemSource } from '../../../redux/state/queue';
+import { PlayingFromSongs, QueueItemSource } from '../../../redux/state/queue';
 
 interface StateEnhancedProps {
   activeSongId?: string;
@@ -30,7 +33,10 @@ interface OwnProps {
 interface MergedProps extends ChildProps, OwnProps {}
 
 const getTracks = (songs: Song[]): QueueItemSource[] =>
-  songs.map(song => ({ songId: song.id, source: { kind: 'SONGS' as Kind } }));
+  songs.map(song => ({
+    songId: song.id,
+    playingFrom: { type: 'SONGS' } as PlayingFromSongs,
+  }));
 
 const enhancer = connect<
   StateEnhancedProps,
@@ -40,11 +46,7 @@ const enhancer = connect<
   State
 >(
   (state: State): StateEnhancedProps => {
-    const activeQueueItem = getActiveQueueItemForList(
-      state.queue,
-      'SONGS',
-      undefined
-    );
+    const activeQueueItem = getPlayingMatching(state.queue, isPlayingFromSongs);
 
     if (!activeQueueItem) {
       return {};

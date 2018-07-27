@@ -18,23 +18,36 @@ import {
   SkipPositionAction,
   SkipRelativeAction,
 } from '../actions';
+import { emptyPlayingFrom } from '../../utils/populateQueue';
 
 const initialState = {
   items: [
-    { id: 'a', songId: 'Legend' },
-    { id: 'b', songId: 'Blessings (Explicit) ft. Drake, Kanye West' },
-    { id: 'c', songId: 'Pick Me Up ft. Anna of the North' },
-    { id: 'd', songId: 'No Less' },
-    { id: 'e', songId: 'Love Is Gone (Audio) ft. Drew Love (of THEY.)' },
+    { id: 'a', songId: 'Legend', playingFrom: emptyPlayingFrom },
+    {
+      id: 'b',
+      songId: 'Blessings (Explicit) ft. Drake, Kanye West',
+      playingFrom: emptyPlayingFrom,
+    },
+    {
+      id: 'c',
+      songId: 'Pick Me Up ft. Anna of the North',
+      playingFrom: emptyPlayingFrom,
+    },
+    { id: 'd', songId: 'No Less', playingFrom: emptyPlayingFrom },
+    {
+      id: 'e',
+      songId: 'Love Is Gone (Audio) ft. Drew Love (of THEY.)',
+      playingFrom: emptyPlayingFrom,
+    },
   ],
   position: 2,
-  shouldBePlaying: false,
+  isPlaying: false,
 };
 
 describe('add to queue reducer', () => {
   const items = [
-    { songId: 'this is a song' },
-    { songId: 'this is another song' },
+    { songId: 'this is a song', playingFrom: emptyPlayingFrom },
+    { songId: 'this is another song', playingFrom: emptyPlayingFrom },
   ];
 
   it('adds to end of queue', () => {
@@ -72,7 +85,10 @@ describe('replace reducer', () => {
   it('replaces the queue', () => {
     const action: ReplaceQueueAction = {
       type: 'REPLACE_QUEUE',
-      items: [{ songId: 'Just The Way You Are' }, { songId: 'Glad You Came' }],
+      items: [
+        { songId: 'Just The Way You Are', playingFrom: emptyPlayingFrom },
+        { songId: 'Glad You Came', playingFrom: emptyPlayingFrom },
+      ],
     };
     const newState = replaceQueue(initialState, action);
     expect(newState).toMatchSnapshot();
@@ -173,19 +189,19 @@ describe('set playback reducer', () => {
   it('sets playing to true', () => {
     const action: SetPlaybackAction = { type: 'SET_PLAYBACK', playing: true };
     const newState = setPlayback(initialState, action);
-    expect(newState).toEqual({ ...initialState, shouldBePlaying: true });
+    expect(newState).toEqual({ ...initialState, isPlaying: true });
   });
 });
 
 describe('toggle playback reducer', () => {
   it('changes from paused to playing', () => {
     const newState = togglePlayback(initialState);
-    expect(newState.shouldBePlaying).toEqual(true);
+    expect(newState.isPlaying).toEqual(true);
   });
 
   it('changes from playing to paused', () => {
-    const localState = { ...initialState, shouldBePlaying: true };
+    const localState = { ...initialState, isPlaying: true };
     const newState = togglePlayback(localState);
-    expect(newState.shouldBePlaying).toEqual(false);
+    expect(newState.isPlaying).toEqual(false);
   });
 });

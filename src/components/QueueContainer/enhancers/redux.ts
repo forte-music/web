@@ -44,7 +44,11 @@ const enhancer = connect<
       dispatch(skipToPosition(position));
     },
   }),
-  (stateProps, actionProps, ownProps) => ({
+  (
+    stateProps: StateEnhancedProps,
+    actionProps: ActionEnhancedProps,
+    ownProps: OwnProps
+  ) => ({
     ...stateProps,
     ...actionProps,
     ...ownProps,

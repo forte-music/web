@@ -1,20 +1,16 @@
 import React from 'react';
 
-import { Kind, QueueItemSource } from '../../redux/state/queue';
+import { QueueItemSource } from '../../redux/state/queue';
 import PlaybackArtwork from '../PlaybackArtwork';
 import { PlaybackArtworkState } from './enhancers/redux';
+import { CheckPlayingFromFn } from '../../redux/selectors/nowPlaying';
 
 export interface Props {
-  // The kind of list this is. Used to check whether the current playing
-  // item is from this list. This information also passed to onStartPlayback.
-  kind: Kind;
-
-  // The id of this list. Used to check whether the current playing item is
-  // from this list. This information is also passed to onStartPlayback.
-  list: string;
-
   // A list of tracks to enqueue when play is pressed.
   tracks: QueueItemSource[];
+
+  // Used to check whether the currently playing item is from the current list.
+  checkPlayingFrom: CheckPlayingFromFn;
 
   // See components/PlaybackArtwork.js.
   backgroundInteraction?: boolean;
@@ -24,23 +20,20 @@ export interface Props {
 
 // A connected playback artwork. It updates its state based on the current
 // playing item and calls a prop when time to play more items.
-const EnhancedComponent = ({
-  kind,
-  list,
-  tracks,
-  backgroundInteraction,
-  children,
-}: Props) => (
-  <PlaybackArtworkState kind={kind} list={list} tracks={tracks}>
+const EnhancedComponent = (props: Props) => (
+  <PlaybackArtworkState
+    checkPlayingFrom={props.checkPlayingFrom}
+    tracks={props.tracks}
+  >
     {({ state, onPlaying, onPaused, onStartPlayback }) => (
       <PlaybackArtwork
         state={state}
         onPlaying={onPlaying}
         onPaused={onPaused}
         onStartPlayback={onStartPlayback}
-        backgroundInteraction={backgroundInteraction}
+        backgroundInteraction={props.backgroundInteraction}
       >
-        {children}
+        {props.children}
       </PlaybackArtwork>
     )}
   </PlaybackArtworkState>

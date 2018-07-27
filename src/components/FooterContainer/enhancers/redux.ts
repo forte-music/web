@@ -1,3 +1,4 @@
+import React from 'react';
 import { Dispatch, bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -13,17 +14,44 @@ import {
 import { nowPlaying as nowPlayingSelector } from '../../../redux/selectors/nowPlaying';
 
 interface StateEnhancedProps {
-  // The currently playing queue item. Undefined if nothing is playing.
-  queueItem?: QueueItem;
+  // Information about the currently playing item in the queue. Undefined if
+  // nothing is playing.
+  sourceMetadata?: PlaybackSourceMetadata;
 
   // Whether or not audio should be playing.
   playing: boolean;
 }
 
-const mapStateToProps = ({ queue }: State): StateEnhancedProps => ({
-  queueItem: nowPlayingSelector(queue),
-  playing: queue.shouldBePlaying,
-});
+const mapStateToProps = ({ queue }: State): StateEnhancedProps => {
+  const nowPlaying = nowPlayingSelector(queue);
+  if (!nowPlaying) {
+    return { playing: queue.isPlaying };
+  }
+
+  const currentlyPlaying = getMetadata(nowPlaying);
+
+  return { playing: queue.isPlaying, sourceMetadata: currentlyPlaying };
+};
+
+const getMetadata = (item: QueueItem): PlaybackSourceMetadata => {
+  const songId = item.songId;
+  const playingFrom = item.playingFrom;
+  if (playingFrom.type === 'ALBUM') {
+    return { songId, albumId: playingFrom.albumId };
+  }
+
+  if (playingFrom.type === 'ARTIST') {
+    return { songId, artistId: playingFrom.artistId };
+  }
+
+  return { songId };
+};
+
+type PlayingFromIdentifier = { albumId: string } | { artistId: string } | {};
+
+type PlaybackSourceMetadata = {
+  songId: string;
+} & PlayingFromIdentifier;
 
 interface DispatchProps {
   // Called to skip to the next song in the queue.
