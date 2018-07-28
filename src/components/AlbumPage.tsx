@@ -3,45 +3,48 @@ import styled from '../styled-components';
 
 import Title from './Title';
 import { PlaybackAlbumArtwork } from './PlaybackAlbumArtwork';
-import { pluralize } from '../utils';
 import { SongList } from './SongList';
-import { formatDuration } from '../utils/duration';
-import { AlbumRowHeader, AlbumRow } from './AlbumRow/index';
+import { AlbumRow, AlbumRowHeader } from './AlbumRow/index';
 import { Container } from './Container';
 import { ArtistLink } from './ArtistLink';
+import { HeaderContainer } from './styled/HeaderContainer';
+import { Contents } from './styled/Contents';
+import { Heading } from './styled/Heading';
+import { Pluralize } from './Pluralize';
+import { FormattedDuration } from './FormattedDuration';
 
-import { AlbumQuery_album } from './AlbumContainer/enhancers/__generated__/AlbumQuery';
+import { AlbumQuery_album as Album } from './AlbumContainer/enhancers/__generated__/AlbumQuery';
 
 export interface Props {
-  album: AlbumQuery_album;
+  album: Album;
   onDoubleClick: (startIndex: number) => void;
   currentlyPlayingId?: string;
 }
 
-export const Album = (props: Props) => (
+export const AlbumPage = (props: Props) => (
   <div>
     <Title segments={[props.album.name]} />
 
     <HeaderContainer>
       <Container>
-        <HeaderContents>
+        <AlbumHeaderContents>
           <ArtworkContainer>
             <PlaybackAlbumArtwork backgroundInteraction album={props.album} />
           </ArtworkContainer>
 
           <DetailsContainer>
-            <Name>{props.album.name}</Name>
+            <Heading>{props.album.name}</Heading>
             <ArtistLinkContainer>
               <ArtistLink artist={props.album.artist} />
             </ArtistLinkContainer>
 
             <StatsContainer>
-              {props.album.songs.length}{' '}
-              {pluralize('song', props.album.songs.length)},{' '}
-              {formatDuration(props.album.duration)}
+              <Pluralize singular={'song'} items={props.album.songs} />
+              {', '}
+              <FormattedDuration duration={props.album.duration} />
             </StatsContainer>
           </DetailsContainer>
-        </HeaderContents>
+        </AlbumHeaderContents>
       </Container>
     </HeaderContainer>
 
@@ -64,13 +67,7 @@ export const Album = (props: Props) => (
   </div>
 );
 
-const HeaderContainer = styled.div`
-  background: ${props => props.theme.headerBackgroundColor};
-`;
-
-const HeaderContents = styled.div`
-  padding: ${props => props.theme.sizeMedium};
-
+const AlbumHeaderContents = Contents.extend`
   display: flex;
   flex-direction: row;
 `;
@@ -86,11 +83,6 @@ const DetailsContainer = styled.div`
   flex-direction: column;
   margin-left: ${props => props.theme.sizeMedium};
   margin-top: ${props => props.theme.sizeSmall};
-`;
-
-const Name = styled.div`
-  color: ${props => props.theme.headerPrimaryTextColor};
-  font-size: ${props => props.theme.fontSizeLarge};
 `;
 
 const ArtistLinkContainer = styled.div`
