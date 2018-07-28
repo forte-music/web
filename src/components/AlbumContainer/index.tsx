@@ -1,5 +1,5 @@
 import React from 'react';
-import { Album } from './component';
+import { Album } from '../Album';
 import { AlbumQuery } from './enhancers/query';
 import { AlbumContainerState } from './enhancers/redux';
 
