@@ -14,20 +14,12 @@ import { Contents } from './styled/Contents';
 import { artworkGrid } from '../styled-mixins/artworkGrid';
 
 import { ArtistQuery_artist as Artist } from './ArtistContainer/enhancers/__generated__/ArtistQuery';
+import { StyledComponentClass } from 'styled-components';
+import { Theme } from '../theme';
 
 export interface Props {
   artist: Artist;
 }
-
-const SecondaryInfoContainer = styled.div`
-  margin-top: ${props => props.theme.sizeTiny};
-  color: ${props => props.theme.headerSecondaryTextColor};
-  font-size: ${props => props.theme.fontSizeTiny};
-`;
-
-const AlbumsContents = Contents.extend`
-  ${artworkGrid};
-`;
 
 export const ArtistPage = (props: Props) => (
   <div>
@@ -45,8 +37,6 @@ export const ArtistPage = (props: Props) => (
     </HeaderContainer>
 
     <Container>
-      {/*
-      // @ts-ignore */}
       <AlbumsContents>
         {props.artist.albums.map(album => (
           <ArtworkTwoInfo
@@ -60,3 +50,14 @@ export const ArtistPage = (props: Props) => (
     </Container>
   </div>
 );
+
+// @ts-ignore
+const AlbumsContents: StyledComponentClass<{}, Theme> = Contents.extend`
+  ${artworkGrid};
+`;
+
+const SecondaryInfoContainer = styled.div`
+  margin-top: ${props => props.theme.sizeTiny};
+  color: ${props => props.theme.headerSecondaryTextColor};
+  font-size: ${props => props.theme.fontSizeTiny};
+`;
