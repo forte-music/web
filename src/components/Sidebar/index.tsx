@@ -12,7 +12,7 @@ import {
 } from '../../utils/paths';
 
 interface Props {
-  className: string;
+  className?: string;
 }
 
 const Sidebar = ({ className }: Props) => (

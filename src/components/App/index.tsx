@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '../../styled-components';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
 import Sidebar from '../Sidebar';
@@ -26,17 +27,41 @@ import {
   withIdFromProps,
 } from '../../utils/paths';
 
-import styles from './styles.css';
+const Grid = styled.div`
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  grid-template-rows: 1fr 100px;
+`;
+
+const SidebarStyled = styled(Sidebar)`
+  padding-top: 3em;
+  border-right: 1px solid ${props => props.theme.sidebarBorderColor};
+  background: ${props => props.theme.sidebarBackgroundColor};
+`;
+
+const Content = styled.main`
+  background: ${props => props.theme.contentBackgroundColor};
+`;
+
+const FooterStyled = styled(Footer)`
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+
+  background: ${props => props.theme.footerBackgroundColor};
+`;
 
 export const App = () => (
   <Providers>
-    <div className={styles.grid}>
+    <Grid>
       <Title />
       <KeyboardInteraction />
 
-      <Sidebar className={styles.sidebar} />
+      <SidebarStyled />
 
-      <main className={styles.content}>
+      <Content>
         <Switch>
           <Route exact path={songsPath} render={() => <Songs />} />
 
@@ -61,9 +86,9 @@ export const App = () => (
 
           <Redirect from="/" to="/home" />
         </Switch>
-      </main>
+      </Content>
 
-      <Footer className={styles.footer} />
-    </div>
+      <FooterStyled />
+    </Grid>
   </Providers>
 );

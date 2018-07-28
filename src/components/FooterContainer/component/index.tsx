@@ -14,7 +14,7 @@ import { QueueItem } from '../../../redux/state/queue';
 
 interface Props {
   // A class applied to the component's container element.
-  className: string;
+  className?: string;
 
   // The currently playing song. If this is not defined no song is playing
   // and an inactive footer is rendered.

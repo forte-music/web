@@ -7,10 +7,10 @@ import { PlaySongMutation } from './enhancers/playSongMutation';
 import { FooterState } from './enhancers/redux';
 
 export interface InputProps {
-  className: string;
+  className?: string;
 }
 
-const EnhancedFooter = ({ className }: InputProps) => (
+const EnhancedFooter = (ownProps: InputProps) => (
   <FooterState>
     {({ sourceMetadata, nextSong, previousSong, play, pause, playing }) => (
       <FooterQuery variables={sourceMetadata} skip={!sourceMetadata}>
@@ -25,7 +25,7 @@ const EnhancedFooter = ({ className }: InputProps) => (
                       queryResults.data &&
                       queryResults.data.song
                     }
-                    className={className}
+                    className={ownProps.className}
                     onToggleLike={() => likeCurrentSong()}
                     playSong={() => playCurrentSong()}
                     nextSong={nextSong}
