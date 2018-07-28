@@ -26,7 +26,7 @@ const SecondaryInfoContainer = styled.div`
 `;
 
 const AlbumsContents = Contents.extend`
-  ${() => artworkGrid};
+  ${artworkGrid};
 `;
 
 export const ArtistPage = (props: Props) => (
