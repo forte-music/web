@@ -4,6 +4,17 @@ const colors = {
   secondaryColor: '#121212',
 };
 
+const sizes = {
+  veryTiny: 4,
+  tiny: 8,
+  small: 16,
+  base: 24,
+  medium: 36,
+  large: 48,
+};
+
+const withPx = (dim: number) => `${dim}px`;
+
 export const theme = {
   sidebarBorderColor: lighten(0.1, colors.secondaryColor),
   sidebarBackgroundColor: colors.secondaryColor,
@@ -14,12 +25,12 @@ export const theme = {
   headerSecondaryTextColor: '#bbbbbb',
   headerTertiaryTextColor: '#aaaaaa',
 
-  sizeVeryTiny: '4px',
-  sizeTiny: '8px',
-  sizeSmall: '16px',
-  sizeBase: '24px',
-  sizeMedium: '36px',
-  sizeLarge: '48px',
+  sizeVeryTiny: withPx(sizes.veryTiny),
+  sizeTiny: withPx(sizes.tiny),
+  sizeSmall: withPx(sizes.small),
+  sizeBase: withPx(sizes.base),
+  sizeMedium: withPx(sizes.medium),
+  sizeLarge: withPx(sizes.large),
 
   fontSizeVeryTiny: '12px',
   fontSizeTiny: '14px',
@@ -27,6 +38,12 @@ export const theme = {
   fontSizeLarge: '40px',
 
   secondaryButtonSize: '40px',
+
+  // 1110 (maximum container inner size)
+  // - 2 * sizes.medium (padding)
+  // - 5 * sizes.small (gutters)
+  // / 6 (each column)
+  gridArtworkSize: `150px`,
   artworkSize: '160px',
 };
 
