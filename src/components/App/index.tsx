@@ -2,7 +2,7 @@ import React from 'react';
 import styled from '../../styled-components';
 import { Redirect, Route, Switch } from 'react-router-dom';
 
-import Sidebar from '../Sidebar';
+import { Sidebar } from '../../Sidebar';
 import Footer from '../FooterContainer';
 import Queue from '../QueueContainer';
 import { Albums } from '../AlbumsContainer';

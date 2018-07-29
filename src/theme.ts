@@ -26,6 +26,9 @@ export const theme = {
   headerTertiaryTextColor: '#aaaaaa',
   playbackOverlayColor: opacify(0.3, 'rgba(0, 0, 0, 0)'),
   promptTextColor: '#bbbbbb',
+  sidebarLinkActiveColor: '#ffffff',
+  sidebarLinkInactiveColor: '#aaaaaa',
+  accentColor: '#11a858',
 
   sizeVeryTiny: withPx(sizes.veryTiny),
   sizeTiny: withPx(sizes.tiny),
