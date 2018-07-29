@@ -32,6 +32,8 @@ export const theme = {
   footerSongTitleTextColor: '#ffffff',
   footerSongDetailTextColor: '#aaaaaa',
   footerCurrentTimeTextColor: '#777777',
+  footerButtonDisabledColor: '#bbbbbb',
+  footerPlaybackButtonBackgroundColor: '#444444',
 
   sizeVeryTiny: withPx(sizes.veryTiny),
   sizeTiny: withPx(sizes.tiny),
