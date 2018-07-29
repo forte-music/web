@@ -4,13 +4,13 @@ import Audio from '../../Audio';
 import { NowPlaying } from '../../Footer/NowPlaying';
 import { PlaybackControls } from '../../Footer/PlaybackControls';
 import { AdditionalControls } from '../../Footer/AdditionalControls';
-import { SliderInput } from '../../Slider';
+import { SliderInput } from '../../SliderInput';
 import Title from '../../Title';
 
 import styles from './styles.css';
-import barStyles from '../../Bars.css';
 import { FooterQuery_song as Song } from '../enhancers/__generated__/FooterQuery';
 import { QueueItem } from '../../../redux/state/queue';
+import { BarsContainer, BufferedBar, LoadingBar, PlayedBar } from '../../Bars';
 
 interface Props {
   // A class applied to the component's container element.
@@ -181,31 +181,24 @@ class Footer extends Component<Props, State> {
           />
         )}
 
-        <div className={barStyles.bars}>
-          <Bar
-            className={barStyles.buffered}
-            position={(nowPlaying && bufferedTo / duration) || 0}
-          />
-          <Bar
-            className={barStyles.played}
-            position={(nowPlaying && currentTime / duration) || 0}
-          />
+        <BarsContainer>
+          <BufferedBar position={(nowPlaying && bufferedTo / duration) || 0} />
+          <PlayedBar position={(nowPlaying && currentTime / duration) || 0} />
 
-          <div
-            className={[
-              barStyles.bar,
-              nowPlaying && loading ? barStyles.loading : '',
-            ].join(' ')}
-          />
+          {nowPlaying && loading && <LoadingBar />}
 
-          <SliderInput
-            min={0}
-            max={duration}
-            onValueChange={this.onSeek}
-            onStartSliding={pause}
-            onEndSliding={play}
-          />
-        </div>
+          {nowPlaying &&
+            !loading && (
+              <SliderInput
+                min={0}
+                max={duration}
+                value={currentTime}
+                onValueChange={this.onSeek}
+                onStartSliding={pause}
+                onEndSliding={play}
+              />
+            )}
+        </BarsContainer>
 
         <div className={styles.container}>
           {nowPlaying && <NowPlaying song={nowPlaying} />}
@@ -233,17 +226,5 @@ class Footer extends Component<Props, State> {
     );
   }
 }
-
-interface BarProps {
-  className: string;
-  position: number;
-}
-
-const Bar = ({ className, position }: BarProps) => (
-  <div
-    style={{ width: `${position * 100}%` }}
-    className={[barStyles.bar, className].join(' ')}
-  />
-);
 
 export default Footer;

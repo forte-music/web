@@ -41,7 +41,7 @@ const VolumeSlider = ({ volume, onVolume }: Props) => (
     <Slider
       containerClass={styles.slider}
       barClass={styles.bar}
-      inputClass={styles.input}
+      // inputClass={styles.input}
       min={0}
       max={100}
       value={volume * 100}

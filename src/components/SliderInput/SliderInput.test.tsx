@@ -5,13 +5,13 @@ import { SliderInput } from '.';
 import { noop } from '../../utils';
 
 it('renders', () => {
-  shallow(<SliderInput min={0} max={100} onValueChange={noop} />);
+  shallow(<SliderInput min={0} max={100} value={0} onValueChange={noop} />);
 });
 
 it('calls onValueChange when the slider moves', () => {
   const onValueChange = jest.fn();
   const wrapper = shallow(
-    <SliderInput min={0} max={100} onValueChange={onValueChange} />
+    <SliderInput value={0} min={0} max={100} onValueChange={onValueChange} />
   );
 
   wrapper.find('input').simulate('change', { target: { value: 20 } });

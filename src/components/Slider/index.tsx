@@ -1,37 +1,6 @@
 import React from 'react';
 import styles from './styles.css';
-import { noop } from '../../utils';
-
-interface SliderInputProps {
-  value?: number;
-  min: number;
-  max: number;
-  inputClass?: string;
-  onValueChange: (newValue: number) => void;
-  onStartSliding?: () => void;
-  onEndSliding?: () => void;
-}
-
-export const SliderInput = ({
-  inputClass,
-  onValueChange,
-  min,
-  max,
-  value,
-  onStartSliding = noop,
-  onEndSliding = noop,
-}: SliderInputProps) => (
-  <input
-    className={[styles.input, inputClass].join(' ')}
-    onChange={e => onValueChange(Number(e.target.value))}
-    onMouseDown={onStartSliding}
-    onMouseUp={onEndSliding}
-    min={min}
-    max={max}
-    value={value}
-    type="range"
-  />
-);
+import { SliderInput } from '../SliderInput';
 
 interface Props {
   // The value of the slider is set to this.
@@ -51,9 +20,6 @@ interface Props {
   // The inclusive upper bound of the output values. The default is 100.
   max?: number;
 
-  // Class applied to the input which reacts to dragging.
-  inputClass?: string;
-
   // Called when the slider is moved.
   onValueChange: (newValue: number) => void;
 
@@ -72,7 +38,6 @@ const Slider = ({
   value,
   containerClass = '',
   barClass = '',
-  inputClass = '',
   min = 0,
   max = 100,
 }: Props) => (
@@ -83,7 +48,6 @@ const Slider = ({
     />
 
     <SliderInput
-      inputClass={inputClass}
       onValueChange={onValueChange}
       onStartSliding={onStartSliding}
       onEndSliding={onEndSliding}
