@@ -7,12 +7,11 @@ export const SongListPageHeading = PositionedHeading.extend`
 `;
 
 export const SongListContainer = styled.div`
-  margin-top: ${props => props.theme.sizeSmall};
-  margin-left: ${props => props.theme.sizeMedium};
-  margin-right: ${props => props.theme.sizeMedium};
+  margin: ${props => props.theme.sizeSmall} ${props => props.theme.sizeMedium};
 `;
 
 export const Prompt = styled.div`
+  margin-top: ${props => props.theme.sizeSmall};
   color: ${props => props.theme.promptTextColor};
   text-align: center;
 `;

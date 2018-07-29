@@ -5,8 +5,6 @@ import VirtualList, {
   VirtualProps,
 } from 'react-virtual-list';
 
-import styles from './styles.css';
-
 interface Props<T> {
   // The header node is rendered inside the container above the virtual list
   // body.
@@ -23,7 +21,7 @@ const itemHeight = 36;
 
 export function SongList<T>(props: Props<T>) {
   return (
-    <div className={styles.container}>
+    <div>
       {props.header}
 
       {props.rows.length > 0 && (
