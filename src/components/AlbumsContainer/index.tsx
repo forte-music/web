@@ -1,6 +1,6 @@
 import React from 'react';
 import { AlbumsQuery, Result } from './enhancers/query';
-import AlbumsInner from './components/Albums';
+import { AlbumsPage } from './components/AlbumsPage';
 
 export const Albums = () => (
   <AlbumsQuery>
@@ -10,7 +10,7 @@ export const Albums = () => (
       }
 
       return (
-        <AlbumsInner
+        <AlbumsPage
           albums={result.data.albums}
           fetchMore={result.getNextPage}
         />
