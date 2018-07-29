@@ -1,10 +1,9 @@
 import React from 'react';
+import styled from '../../styled-components';
 
 import VolumeSlider from '../VolumeSlider';
 import { Like } from '../Like';
-
-import { formatDuration } from '../../utils/duration';
-import styles from './AdditionalControls.css';
+import { FormattedDuration } from '../FormattedDuration';
 
 interface Props {
   duration: number;
@@ -17,24 +16,35 @@ interface Props {
   onToggleLike: () => void;
 }
 
-const AdditionalControls = ({
-  duration,
-  currentTime,
-  onToggleLike,
-  like,
-  volume,
-  onVolumeSet,
-}: Props) => (
-  <div className={styles.container}>
-    <div className={styles.time}>
-      {formatDuration(currentTime)}
+export const AdditionalControls = (props: Props) => (
+  <AdditionalControlsContainer>
+    <CurrentTimeContainer>
+      <FormattedDuration duration={props.currentTime} />
       {' / '}
-      {formatDuration(duration)}
-    </div>
+      <FormattedDuration duration={props.duration} />
+    </CurrentTimeContainer>
 
-    <Like isLiked={like} onToggleLike={onToggleLike} />
-    <VolumeSlider volume={volume} onVolume={onVolumeSet} />
-  </div>
+    <Like isLiked={props.like} onToggleLike={props.onToggleLike} />
+    <VolumeSlider volume={props.volume} onVolume={props.onVolumeSet} />
+  </AdditionalControlsContainer>
 );
 
-export default AdditionalControls;
+const AdditionalControlsContainer = styled.div`
+  flex: 1;
+
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+`;
+
+const CurrentTimeContainer = styled.div`
+  position: absolute;
+  top: 0;
+  right: 0;
+  font-size: ${props => props.theme.fontSizeTiny};
+
+  margin: ${props => props.theme.sizeTiny};
+
+  color: ${props => props.theme.footerCurrentTimeTextColor};
+`;

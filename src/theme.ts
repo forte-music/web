@@ -31,6 +31,7 @@ export const theme = {
   accentColor: '#11a858',
   footerSongTitleTextColor: '#ffffff',
   footerSongDetailTextColor: '#aaaaaa',
+  footerCurrentTimeTextColor: '#777777',
 
   sizeVeryTiny: withPx(sizes.veryTiny),
   sizeTiny: withPx(sizes.tiny),
