@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { QueueItemSource } from '../../redux/state/queue';
-import PlaybackArtwork from '../PlaybackArtwork';
+import { PlaybackArtwork } from '../PlaybackArtwork';
 import { PlaybackArtworkState } from './enhancers/redux';
 import { CheckPlayingFromFn } from '../../redux/selectors/nowPlaying';
 
@@ -12,8 +12,8 @@ export interface Props {
   // Used to check whether the currently playing item is from the current list.
   checkPlayingFrom: CheckPlayingFromFn;
 
-  // See components/PlaybackArtwork.js.
-  backgroundInteraction?: boolean;
+  // See components/PlaybackArtwork
+  handlesBackgroundInteraction: boolean;
 
   children: React.ReactNode;
 }
@@ -31,7 +31,7 @@ const EnhancedComponent = (props: Props) => (
         onPlaying={onPlaying}
         onPaused={onPaused}
         onStartPlayback={onStartPlayback}
-        backgroundInteraction={props.backgroundInteraction}
+        handlesBackgroundInteraction={props.handlesBackgroundInteraction}
       >
         {props.children}
       </PlaybackArtwork>

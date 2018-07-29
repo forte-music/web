@@ -14,13 +14,18 @@ interface Album extends PlaybackAlbumArtworkAlbum, AlbumLinkAlbum {
   artist: ArtistLinkArtist;
 }
 
-export interface AlbumInfoProps {
+export interface Props {
   album: Album;
 }
 
-export const AlbumInfo = ({ album }: AlbumInfoProps) => (
+export const AlbumInfo = ({ album }: Props) => (
   <ArtworkTwoInfo
-    artwork={<PlaybackAlbumArtwork album={album} />}
+    artwork={
+      <PlaybackAlbumArtwork
+        album={album}
+        handlesBackgroundInteraction={false}
+      />
+    }
     lineOne={<AlbumLink album={album} />}
     lineTwo={<ArtistLink artist={album.artist} />}
   />

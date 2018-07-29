@@ -29,7 +29,10 @@ export const AlbumPage = (props: Props) => (
       <Container>
         <AlbumHeaderContents>
           <ArtworkContainer>
-            <PlaybackAlbumArtwork backgroundInteraction album={props.album} />
+            <PlaybackAlbumArtwork
+              handlesBackgroundInteraction
+              album={props.album}
+            />
           </ArtworkContainer>
 
           <DetailsContainer>

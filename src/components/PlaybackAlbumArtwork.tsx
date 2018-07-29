@@ -15,7 +15,7 @@ export interface Album {
 
 export interface Props {
   album: Album;
-  backgroundInteraction?: boolean;
+  handlesBackgroundInteraction: boolean;
 }
 
 export const getTracks = (album: Album): QueueItemSource[] =>
@@ -30,10 +30,10 @@ export const getTracks = (album: Album): QueueItemSource[] =>
 
 export const PlaybackAlbumArtwork = ({
   album,
-  backgroundInteraction,
+  handlesBackgroundInteraction,
 }: Props) => (
   <PlaybackArtwork
-    backgroundInteraction={backgroundInteraction}
+    handlesBackgroundInteraction={handlesBackgroundInteraction}
     checkPlayingFrom={isPlayingFromAlbum(album.id)}
     tracks={getTracks(album)}
   >

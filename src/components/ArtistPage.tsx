@@ -38,7 +38,12 @@ export const ArtistPage = (props: Props) => (
         {props.artist.albums.map(album => (
           <ArtworkTwoInfo
             key={album.id}
-            artwork={<PlaybackAlbumArtwork album={album} />}
+            artwork={
+              <PlaybackAlbumArtwork
+                handlesBackgroundInteraction={false}
+                album={album}
+              />
+            }
             lineOne={<AlbumLink album={album} />}
             lineTwo={album.releaseYear}
           />

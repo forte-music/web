@@ -1,4 +1,4 @@
-import { lighten } from 'polished';
+import { lighten, opacify } from 'polished';
 
 const colors = {
   secondaryColor: '#121212',
@@ -24,6 +24,7 @@ export const theme = {
   headerPrimaryTextColor: '#ffffff',
   headerSecondaryTextColor: '#bbbbbb',
   headerTertiaryTextColor: '#aaaaaa',
+  playbackOverlayColor: opacify(0.3, 'rgba(0, 0, 0, 0)'),
 
   sizeVeryTiny: withPx(sizes.veryTiny),
   sizeTiny: withPx(sizes.tiny),
