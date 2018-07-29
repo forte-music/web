@@ -17,21 +17,21 @@ interface Props {
 
 const Sidebar = ({ className }: Props) => (
   <aside className={className}>
-    <Link to={homePath}>Home</Link>
-    <Link to={queuePath}>Queue</Link>
-    <Link to={songsPath}>Songs</Link>
-    <Link to={artistsPath}>Artists</Link>
-    <Link to={albumsPath}>Albums</Link>
-    <Link to={searchPath}>Search</Link>
+    <SidebarLink to={homePath}>Home</SidebarLink>
+    <SidebarLink to={queuePath}>Queue</SidebarLink>
+    <SidebarLink to={songsPath}>Songs</SidebarLink>
+    <SidebarLink to={artistsPath}>Artists</SidebarLink>
+    <SidebarLink to={albumsPath}>Albums</SidebarLink>
+    <SidebarLink to={searchPath}>Search</SidebarLink>
   </aside>
 );
 
-interface LinkProps {
+interface SidebarLinkProps {
   to: string;
   children: ReactNode;
 }
 
-const Link = ({ to, children }: LinkProps) => (
+const SidebarLink = ({ to, children }: SidebarLinkProps) => (
   <NavLink activeClassName={styles.active} className={styles.link} to={to}>
     {children}
   </NavLink>
