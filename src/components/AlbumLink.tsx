@@ -1,6 +1,6 @@
 import React from 'react';
-import commonStyles from '../shared.css';
-import { Link } from 'react-router-dom';
+import { LinkStyled } from './LinkStyled';
+
 import { albumPath } from '../utils/paths';
 
 export interface Album {
@@ -10,11 +10,9 @@ export interface Album {
 
 interface Props {
   album: Album;
-  className?: string;
+  children?: React.ReactNode;
 }
 
-export const AlbumLink = ({ album, className = commonStyles.link }: Props) => (
-  <Link className={className} to={albumPath(album.id)}>
-    {album.name}
-  </Link>
+export const AlbumLink = ({ album, children = album.name }: Props) => (
+  <LinkStyled to={albumPath(album.id)}>{children}</LinkStyled>
 );

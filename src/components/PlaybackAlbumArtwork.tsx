@@ -1,8 +1,9 @@
 import React from 'react';
+
 import PlaybackArtwork from './PlaybackArtworkContainer';
-import { Link } from 'react-router-dom';
-import { albumPath } from '../utils/paths';
 import { AlbumArtwork } from './AlbumArtwork';
+import { AlbumLink } from './AlbumLink';
+
 import { PlayingFromAlbum, QueueItemSource } from '../redux/state/queue';
 import { isPlayingFromAlbum } from '../redux/selectors/nowPlaying';
 
@@ -37,8 +38,8 @@ export const PlaybackAlbumArtwork = ({
     checkPlayingFrom={isPlayingFromAlbum(album.id)}
     tracks={getTracks(album)}
   >
-    <Link to={albumPath(album.id)}>
+    <AlbumLink album={album}>
       <AlbumArtwork album={album} />
-    </Link>
+    </AlbumLink>
   </PlaybackArtwork>
 );

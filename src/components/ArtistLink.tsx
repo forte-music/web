@@ -1,6 +1,6 @@
 import React from 'react';
-import commonStyles from '../shared.css';
-import { Link } from 'react-router-dom';
+import { LinkStyled } from './LinkStyled';
+
 import { artistPath } from '../utils/paths';
 
 export interface Artist {
@@ -10,14 +10,9 @@ export interface Artist {
 
 interface Props {
   artist: Artist;
-  className?: string;
+  children?: React.ReactNode;
 }
 
-export const ArtistLink = ({
-  artist,
-  className = commonStyles.link,
-}: Props) => (
-  <Link className={className} to={artistPath(artist.id)}>
-    {artist.name}
-  </Link>
+export const ArtistLink = ({ artist, children = artist.name }: Props) => (
+  <LinkStyled to={artistPath(artist.id)}>{children}</LinkStyled>
 );
