@@ -1,7 +1,7 @@
 import React from 'react';
 
 import VolumeSlider from '../VolumeSlider';
-import Like from '../Like';
+import { Like } from '../Like';
 
 import { formatDuration } from '../../utils/duration';
 import styles from './AdditionalControls.css';
@@ -32,7 +32,7 @@ const AdditionalControls = ({
       {formatDuration(duration)}
     </div>
 
-    <Like like={like} onToggleLike={onToggleLike} />
+    <Like isLiked={like} onToggleLike={onToggleLike} />
     <VolumeSlider volume={volume} onVolume={onVolumeSet} />
   </div>
 );
