@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Audio from '../../Audio';
-import NowPlaying from '../../Footer/NowPlaying';
+import { NowPlaying } from '../../Footer/NowPlaying';
 import PlaybackControls from '../../Footer/PlaybackControls';
 import AdditionalControls from '../../Footer/AdditionalControls';
 import { SliderInput } from '../../Slider';

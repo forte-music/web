@@ -29,6 +29,8 @@ export const theme = {
   sidebarLinkActiveColor: '#ffffff',
   sidebarLinkInactiveColor: '#aaaaaa',
   accentColor: '#11a858',
+  footerSongTitleTextColor: '#ffffff',
+  footerSongDetailTextColor: '#aaaaaa',
 
   sizeVeryTiny: withPx(sizes.veryTiny),
   sizeTiny: withPx(sizes.tiny),
