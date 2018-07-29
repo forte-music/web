@@ -155,7 +155,7 @@ const ButtonBackdrop =
     background: ${props =>
       props.handlesBackgroundInteraction
         ? buttonBackgroundColorActive
-        : 'initial'};
+        : buttonBackgroundColor};
   }
   
   &:active {
