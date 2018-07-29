@@ -3,7 +3,7 @@ import Observer from 'react-intersection-observer';
 
 import Title from '../../Title';
 import { AlbumInfo } from './AlbumInfo';
-import { Heading } from '../../styled/Heading';
+import { PositionedHeading } from '../../styled/PositionedHeading';
 import { Container } from '../../Container';
 import { ArtworkGridContents } from '../../styled/ArtworkGridContents';
 
@@ -43,7 +43,6 @@ export const AlbumsPage = ({ albums, fetchMore }: Props) => (
   </div>
 );
 
-const AlbumsHeading = Heading.extend`
-  margin: ${props => props.theme.sizeMedium};
+const AlbumsHeading = PositionedHeading.extend`
   margin-bottom: 0;
 `;

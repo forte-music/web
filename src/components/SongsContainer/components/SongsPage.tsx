@@ -1,12 +1,17 @@
 import React from 'react';
-import Title from '../../Title';
 
-import styles from '../../QueueContainer/component/styles.css';
+import Title from '../../Title';
 import { Row as DetailRow, Song as DetailRowSong } from '../../DetailRow/Row';
 import { SortBy } from '../enhancers/__generated__/SongsQuery';
 import { InteractiveDetailRowHeader } from './InteractiveDetailRowHeader';
 import { InfiniteSongList } from '../../InfiniteSongList';
 import { LoadingRow } from '../../LoadingRow';
+import {
+  Prompt,
+  SongListContainer,
+  SongListPageHeading,
+} from '../../styled/SongListPage';
+import { Container } from '../../Container';
 
 interface Song extends DetailRowSong {
   id: string;
@@ -33,14 +38,14 @@ interface Props {
   startPlayingFrom: (index: number) => void;
 }
 
-const Songs = (props: Props) => (
+export const SongsPage = (props: Props) => (
   <div>
     <Title segments={['Songs']} />
 
-    <div className={styles.heading}>Songs</div>
+    <Container>
+      <SongListPageHeading>Songs</SongListPageHeading>
 
-    <div className={styles.body}>
-      {props.songs.length > 0 ? (
+      <SongListContainer>
         <InfiniteSongList
           rows={props.songs}
           hasMoreRows={props.hasMore}
@@ -63,14 +68,13 @@ const Songs = (props: Props) => (
             />
           }
         />
-      ) : (
-        <div className={styles.prompt}>
-          Hmm, it doesn't look like there are any items in your library. Try
-          importing some.
-        </div>
-      )}
-    </div>
+        {!props.songs.length && (
+          <Prompt>
+            Hmm, it doesn't look like there are any items in your library. Try
+            importing some.
+          </Prompt>
+        )}
+      </SongListContainer>
+    </Container>
   </div>
 );
-
-export default Songs;

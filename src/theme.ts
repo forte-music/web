@@ -4,7 +4,7 @@ const colors = {
   secondaryColor: '#121212',
 };
 
-const sizes = {
+export const sizes = {
   veryTiny: 4,
   tiny: 8,
   small: 16,
@@ -13,7 +13,7 @@ const sizes = {
   large: 48,
 };
 
-const withPx = (dim: number) => `${dim}px`;
+export const withPx = (dim: number) => `${dim}px`;
 
 export const theme = {
   sidebarBorderColor: lighten(0.1, colors.secondaryColor),
@@ -25,6 +25,7 @@ export const theme = {
   headerSecondaryTextColor: '#bbbbbb',
   headerTertiaryTextColor: '#aaaaaa',
   playbackOverlayColor: opacify(0.3, 'rgba(0, 0, 0, 0)'),
+  promptTextColor: '#bbbbbb',
 
   sizeVeryTiny: withPx(sizes.veryTiny),
   sizeTiny: withPx(sizes.tiny),
