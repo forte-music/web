@@ -10,12 +10,9 @@ import { Pluralize } from './Pluralize';
 import { HeaderContainer } from './styled/HeaderContainer';
 import { Heading } from './styled/Heading';
 import { Contents } from './styled/Contents';
-
-import { artworkGrid } from '../styled-mixins/artworkGrid';
+import { ArtworkGridContents } from './styled/ArtworkGridContents';
 
 import { ArtistQuery_artist as Artist } from './ArtistContainer/enhancers/__generated__/ArtistQuery';
-import { StyledComponentClass } from 'styled-components';
-import { Theme } from '../theme';
 
 export interface Props {
   artist: Artist;
@@ -37,7 +34,7 @@ export const ArtistPage = (props: Props) => (
     </HeaderContainer>
 
     <Container>
-      <AlbumsContents>
+      <ArtworkGridContents>
         {props.artist.albums.map(album => (
           <ArtworkTwoInfo
             key={album.id}
@@ -46,15 +43,10 @@ export const ArtistPage = (props: Props) => (
             lineTwo={album.releaseYear}
           />
         ))}
-      </AlbumsContents>
+      </ArtworkGridContents>
     </Container>
   </div>
 );
-
-// @ts-ignore
-const AlbumsContents: StyledComponentClass<{}, Theme> = Contents.extend`
-  ${artworkGrid};
-`;
 
 const SecondaryInfoContainer = styled.div`
   margin-top: ${props => props.theme.sizeTiny};
