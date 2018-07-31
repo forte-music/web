@@ -29,9 +29,7 @@ export const AdditionalControls = (props: Props) => (
   </AdditionalControlsContainer>
 );
 
-const AdditionalControlsContainer = styled.div`
-  flex: 1;
-
+export const AdditionalControlsContainer = styled.div`
   position: relative;
   display: flex;
   justify-content: flex-end;

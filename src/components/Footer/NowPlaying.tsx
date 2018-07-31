@@ -32,10 +32,9 @@ export const NowPlaying = ({ song }: Props) => (
 
 const footerArtworkSize = 90;
 
-const NowPlayingContainer = styled.div`
+export const NowPlayingContainer = styled.div`
   flex: 1;
   min-width: ${withPx(footerArtworkSize + sizes.veryTiny)};
-
   display: flex;
   align-items: center;
 `;

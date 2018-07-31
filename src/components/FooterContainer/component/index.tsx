@@ -1,16 +1,19 @@
 import React, { Component } from 'react';
+import styled from '../../../styled-components';
 
 import Audio from '../../Audio';
-import { NowPlaying } from '../../Footer/NowPlaying';
+import { NowPlaying, NowPlayingContainer } from '../../Footer/NowPlaying';
 import { PlaybackControls } from '../../Footer/PlaybackControls';
-import { AdditionalControls } from '../../Footer/AdditionalControls';
+import {
+  AdditionalControls,
+  AdditionalControlsContainer,
+} from '../../Footer/AdditionalControls';
 import { SliderInput } from '../../SliderInput';
 import Title from '../../Title';
+import { BarsContainer, BufferedBar, LoadingBar, PlayedBar } from '../../Bars';
 
-import styles from './styles.css';
 import { FooterQuery_song as Song } from '../enhancers/__generated__/FooterQuery';
 import { QueueItem } from '../../../redux/state/queue';
-import { BarsContainer, BufferedBar, LoadingBar, PlayedBar } from '../../Bars';
 
 interface Props {
   // A class applied to the component's container element.
@@ -200,7 +203,7 @@ class Footer extends Component<Props, State> {
             )}
         </BarsContainer>
 
-        <div className={styles.container}>
+        <PlayerContainer>
           {nowPlaying && <NowPlaying song={nowPlaying} />}
 
           <PlaybackControls
@@ -221,10 +224,26 @@ class Footer extends Component<Props, State> {
               onToggleLike={onToggleLike}
             />
           )}
-        </div>
+        </PlayerContainer>
       </footer>
     );
   }
 }
+
+const PlayerContainer = styled.div`
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+
+  /*
+  Disable user selection because finding a good highlight color is hard. People
+  who really want to copy stuff can use inspect element.
+  */
+  user-select: none;
+
+  & ${NowPlayingContainer}, & ${AdditionalControlsContainer} {
+    flex: 1;
+  }
+`;
 
 export default Footer;
