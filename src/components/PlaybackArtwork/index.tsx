@@ -3,6 +3,7 @@ import styled from '../../styled-components';
 import { opacify } from 'polished';
 
 import PlaybackButton from '../PlaybackButton';
+import { stretchContainingBlock } from '../../styled-mixins/stretchContainingBlock';
 
 export type PlaybackState =
   // In this state, a play button is shown on hover. onStartPlayback is
@@ -67,11 +68,7 @@ export const PlaybackArtwork = (props: Props) => (
 );
 
 const ChildrenContainer = styled.div`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
+  ${stretchContainingBlock};
 
   margin: auto;
 `;

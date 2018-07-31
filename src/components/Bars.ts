@@ -1,10 +1,14 @@
-import styled, { css, keyframes } from '../styled-components';
+import styled, { keyframes } from '../styled-components';
 import { shade, tint } from 'polished';
+import { stretchContainingBlock } from '../styled-mixins/stretchContainingBlock';
 
-export const BarsContainer = styled.div`
+export const BaseBarsContainer = styled.div`
   position: relative;
 
   height: 10px;
+`;
+
+export const BarsContainer = BaseBarsContainer.extend`
   background: ${props => shade(0.9, props.theme.contentBackgroundColor)};
 `;
 
@@ -15,8 +19,8 @@ interface BarProps {
 
 export const BaseBar = styled.div`
   position: absolute;
-  height: 100%;
   width: 100%;
+  height: 100%;
 `;
 
 export const Bar =
@@ -47,14 +51,6 @@ const loadingBackground = keyframes`
   to {
     background-position: ${backgroundSize} ${backgroundSize};
   }
-`;
-
-const stretchContainingBlock = css`
-  position: absolute;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  right: 0;
 `;
 
 export const LoadingBar = BaseBar.extend`

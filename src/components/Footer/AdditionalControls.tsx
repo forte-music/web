@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from '../../styled-components';
 
-import VolumeSlider from '../VolumeSlider';
+import { VolumeSlider } from '../VolumeSlider';
 import { Like } from '../Like';
 import { FormattedDuration } from '../FormattedDuration';
 
