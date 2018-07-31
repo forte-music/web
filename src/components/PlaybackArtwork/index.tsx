@@ -3,7 +3,9 @@ import styled from '../../styled-components';
 import { opacify } from 'polished';
 
 import PlaybackButton from '../PlaybackButton';
+
 import { stretchContainingBlock } from '../../styled-mixins/stretchContainingBlock';
+import { squareContainer } from '../../styled-mixins/squareContainer';
 
 export type PlaybackState =
   // In this state, a play button is shown on hover. onStartPlayback is
@@ -73,14 +75,8 @@ const ChildrenContainer = styled.div`
   margin: auto;
 `;
 
-const Square = styled.div`
-  width: 100%;
-  height: 0;
-  padding-bottom: 100%;
-`;
-
-const SquareContainer = Square.extend`
-  position: relative;
+const SquareContainer = styled.div`
+  ${squareContainer};
 `;
 
 interface ChildrenContainerOverlayProps {

@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Artwork } from '../Artwork';
 import DefaultCover from '../icons/DefaultCover';
-import Collage from '../Collage';
+import { Collage } from '../Collage';
 
 export function must<T>(input: T | undefined): T {
   if (!input) {

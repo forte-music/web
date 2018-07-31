@@ -1,11 +1,14 @@
 import React from 'react';
 import { storiesOf } from '@storybook/react';
 
-import Collage from '.';
+import { Collage } from '.';
 import { Artwork } from '../Artwork';
+import { RootThemeProvider } from '../App/RootThemeProvider';
 
 storiesOf('Collage', module).add('interactive', () => (
-  <div style={{ width: 300 }}>{collage}</div>
+  <RootThemeProvider>
+    <div style={{ width: 300 }}>{collage}</div>
+  </RootThemeProvider>
 ));
 
 export const collage = (
