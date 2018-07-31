@@ -1,4 +1,4 @@
-import { css } from '../../styled-components';
+import { css } from '../styled-components';
 import { InterpolationValue } from 'styled-components';
 
 const trackSelectors = [
@@ -16,9 +16,14 @@ const thumbSelectors = [
 const makeDuplicatorForSelectors = (selectors: string[]) => (
   interpolated: InterpolationValue[]
 ) => {
-  const rules = selectors
-    .map(selector => `&${selector} { ${interpolated} }`)
-    .join('\n');
+  const rules = selectors.map(
+    selector =>
+      css`
+        &${selector} {
+          ${interpolated};
+        }
+      `
+  );
 
   return css`
     ${rules};
