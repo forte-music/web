@@ -2,7 +2,7 @@ import React from 'react';
 
 import Title from '../../Title';
 import { SongList } from '../../SongList';
-import { DetailRowHeader } from '../../DetailRow';
+import { DetailRowHeader } from '../../DetailSongTable';
 import ConnectedDetailRow from '../../SongListContainer/Detail';
 import { QueueItem } from '../../../redux/state/queue';
 import { Container } from '../../Container';

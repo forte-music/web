@@ -6,7 +6,7 @@ import { HashRouter } from 'react-router-dom';
 
 import { Song, songs } from '@forte-music/mock/models';
 import { SongList } from '.';
-import { DetailRow, DetailRowProps, DetailRowHeader } from '../DetailRow';
+import { DetailRow, Props, DetailRowHeader } from '../DetailSongTable';
 import { mustGet } from '@forte-music/mock/utils';
 
 import client from '../../graphql/client';
@@ -20,7 +20,7 @@ interface State {
   isLoaded: boolean;
 }
 
-class DelayedLoadingRow extends Component<DetailRowProps, State> {
+class DelayedLoadingRow extends Component<Props, State> {
   public state = {
     isLoaded: false,
   };

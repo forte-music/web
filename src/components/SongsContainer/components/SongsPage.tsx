@@ -1,9 +1,9 @@
 import React from 'react';
 
 import Title from '../../Title';
-import { Row as DetailRow, Song as DetailRowSong } from '../../DetailRow/Row';
+import { DetailRow, Song as DetailRowSong } from '../../DetailSongTable';
 import { SortBy } from '../enhancers/__generated__/SongsQuery';
-import { InteractiveDetailRowHeader } from './InteractiveDetailRowHeader';
+import { InteractiveDetailTableHeader } from './InteractiveDetailTableHeader';
 import { InfiniteSongList } from '../../InfiniteSongList';
 import { LoadingRow } from '../../LoadingRow';
 import {
@@ -60,7 +60,7 @@ export const SongsPage = (props: Props) => (
           )}
           loading={<LoadingRow />}
           header={
-            <InteractiveDetailRowHeader
+            <InteractiveDetailTableHeader
               sortBy={props.sortBy}
               setSortBy={props.setSortBy}
               isReverse={props.isReverse}

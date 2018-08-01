@@ -17,7 +17,7 @@ interface Props<T> {
   render: (item: T, index: number) => ReactNode;
 }
 
-const itemHeight = 36;
+export const itemHeight = 36;
 
 export function SongList<T>(props: Props<T>) {
   return (

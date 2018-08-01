@@ -4,7 +4,7 @@ import styled from '../styled-components';
 import Title from './Title';
 import { PlaybackAlbumArtwork } from './PlaybackAlbumArtwork';
 import { SongList } from './SongList';
-import { AlbumRow, AlbumRowHeader } from './AlbumRow/index';
+import { AlbumRow, AlbumRowHeader } from './AlbumSongTable';
 import { Container } from './Container';
 import { ArtistLink } from './ArtistLink';
 import { HeaderContainer } from './styled/HeaderContainer';
