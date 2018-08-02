@@ -87,7 +87,6 @@
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-react": "^3.6.0",
-    "typed-css-modules": "^0.3.4",
     "typescript": "^2.9.2",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
@@ -103,7 +102,7 @@
   },
   "scripts": {
     "fix-style": "prettier --write $npm_package_config_prettierFiles",
-    "check-all": "yarn codegen && yarn lint && CI=true yarn test",
+    "check-all": "yarn query-codegen && yarn lint && CI=true yarn test",
     "storybook": "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
     "start-mock": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start": "node scripts/start.js",
@@ -113,8 +112,6 @@
     "tslint": "tslint --project .",
     "lint-css": "stylelint 'src/**/*.css'",
     "check-style": "prettier --list-different $npm_package_config_prettierFiles",
-    "codegen": "yarn query-codegen && yarn css-modules-codegen",
-    "css-modules-codegen": "tcm src/",
     "query-codegen": "apollo codegen:generate --schema node_modules/@forte-music/schema/schema.json --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
   }
 }
