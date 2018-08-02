@@ -40,33 +40,6 @@ if (env.stringified['process.env'].NODE_ENV !== '"production"') {
 // Note: defined here because it will be used more than once.
 const cssFilename = 'static/css/[name].[contenthash:8].css';
 
-const getCSSLoader = ({ modules } = { modules: true }) =>
-  ExtractTextPlugin.extract(
-    Object.assign(
-      {
-        fallback: {
-          loader: require.resolve('style-loader'),
-          options: {
-            hmr: false,
-          },
-        },
-        use: [
-          {
-            loader: require.resolve('css-loader'),
-            options: {
-              importLoaders: 1,
-              modules,
-              minimize: true,
-              sourceMap: shouldUseSourceMap,
-            },
-          },
-          require('./postcss-loader'),
-        ],
-      },
-      extractTextPluginOptions
-    )
-  );
-
 // ExtractTextPlugin expects the build output to be flat.
 // (See https://github.com/webpack-contrib/extract-text-webpack-plugin/issues/27)
 // However, our output is structured with css, js and media folders.
@@ -185,7 +158,29 @@ module.exports = {
           // in the main CSS file.
           {
             test: /\.css$/,
-            loader: getCSSLoader(),
+            loader: ExtractTextPlugin.extract(
+              Object.assign(
+                {
+                  fallback: {
+                    loader: require.resolve('style-loader'),
+                    options: {
+                      hmr: false,
+                    },
+                  },
+                  use: [
+                    {
+                      loader: require.resolve('css-loader'),
+                      options: {
+                        importLoaders: 1,
+                        minimize: true,
+                        sourceMap: shouldUseSourceMap,
+                      },
+                    },
+                  ],
+                },
+                extractTextPluginOptions
+              )
+            ),
             // Note: this won't work without `new ExtractTextPlugin()` in `plugins`.
           },
           // "file" loader makes sure assets end up in the `build` folder.

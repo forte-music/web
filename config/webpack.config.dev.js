@@ -151,11 +151,8 @@ module.exports = {
                 loader: require.resolve('css-loader'),
                 options: {
                   importLoaders: 1,
-                  modules: true,
-                  localIdentName: '[name]__[local]___[hash:base64:5]',
                 },
               },
-              require('./postcss-loader'),
             ],
           },
           // "file" loader makes sure those assets get served by WebpackDevServer.
