@@ -77,9 +77,6 @@
     "redux-devtools-extension": "^2.13.2",
     "style-loader": "0.19.0",
     "styled-components": "^3.3.3",
-    "stylelint": "^8.4.0",
-    "stylelint-config-css-modules": "^1.1.0",
-    "stylelint-config-recommended": "^2.0.1",
     "surge": "^0.20.1",
     "ts-jest": "^22.4.6",
     "ts-loader": "^2.3.7",
@@ -103,15 +100,17 @@
   "scripts": {
     "fix-style": "prettier --write $npm_package_config_prettierFiles",
     "check-all": "yarn query-codegen && yarn lint && CI=true yarn test",
-    "storybook": "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
+    "storybook":
+      "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
     "start-mock": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start": "node scripts/start.js",
     "build": "yarn codegen && node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "yarn tsc && yarn check-style && yarn tslint && yarn lint-css",
+    "lint": "yarn tsc && yarn check-style && yarn tslint",
     "tslint": "tslint --project .",
-    "lint-css": "stylelint 'src/**/*.css'",
-    "check-style": "prettier --list-different $npm_package_config_prettierFiles",
-    "query-codegen": "apollo codegen:generate --schema node_modules/@forte-music/schema/schema.json --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
+    "check-style":
+      "prettier --list-different $npm_package_config_prettierFiles",
+    "query-codegen":
+      "apollo codegen:generate --schema node_modules/@forte-music/schema/schema.json --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
   }
 }
