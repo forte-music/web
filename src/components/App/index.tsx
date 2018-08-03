@@ -9,10 +9,10 @@ import { Albums } from '../AlbumsContainer';
 import Artist from '../ArtistContainer';
 import Album from '../AlbumContainer';
 import { Songs } from '../SongsContainer';
-
 import { Providers } from './Providers';
 import Title from '../Title';
 import { KeyboardInteraction } from '../KeyboardInteraction';
+import { Search } from '../SearchContainer';
 
 import {
   albumPath,
@@ -82,7 +82,7 @@ export const App = () => (
 
           <Route exact path={homePath} />
           <Route exact path={queuePath} render={() => <Queue />} />
-          <Route exact path={searchPath} />
+          <Route exact path={searchPath} render={() => <Search />} />
 
           <Redirect from="/" to="/home" />
         </Switch>
