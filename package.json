@@ -96,7 +96,7 @@
       "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
     "start-mock": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start": "node scripts/start.js",
-    "build": "yarn codegen && node scripts/build.js",
+    "build": "yarn query-codegen && node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "yarn tsc && yarn check-style && yarn tslint",
     "tslint": "tslint --project .",
