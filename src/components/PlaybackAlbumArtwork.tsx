@@ -1,8 +1,9 @@
 import React from 'react';
+
 import PlaybackArtwork from './PlaybackArtworkContainer';
-import { Link } from 'react-router-dom';
-import { albumPath } from '../utils/paths';
 import { AlbumArtwork } from './AlbumArtwork';
+import { AlbumLink } from './AlbumLink';
+
 import { PlayingFromAlbum, QueueItemSource } from '../redux/state/queue';
 import { isPlayingFromAlbum } from '../redux/selectors/nowPlaying';
 
@@ -15,7 +16,7 @@ export interface Album {
 
 export interface Props {
   album: Album;
-  backgroundInteraction?: boolean;
+  handlesBackgroundInteraction: boolean;
 }
 
 export const getTracks = (album: Album): QueueItemSource[] =>
@@ -30,15 +31,15 @@ export const getTracks = (album: Album): QueueItemSource[] =>
 
 export const PlaybackAlbumArtwork = ({
   album,
-  backgroundInteraction,
+  handlesBackgroundInteraction,
 }: Props) => (
   <PlaybackArtwork
-    backgroundInteraction={backgroundInteraction}
+    handlesBackgroundInteraction={handlesBackgroundInteraction}
     checkPlayingFrom={isPlayingFromAlbum(album.id)}
     tracks={getTracks(album)}
   >
-    <Link to={albumPath(album.id)}>
+    <AlbumLink album={album}>
       <AlbumArtwork album={album} />
-    </Link>
+    </AlbumLink>
   </PlaybackArtwork>
 );

@@ -1,5 +1,8 @@
 import React, { ReactNode } from 'react';
-import styles from './style.css';
+import styled from '../../styled-components';
+
+import { squareContainer } from '../../styled-mixins/squareContainer';
+import { stretchContainingBlock } from '../../styled-mixins/stretchContainingBlock';
 
 interface Props {
   topLeft: ReactNode;
@@ -9,15 +12,27 @@ interface Props {
 }
 
 // A collage of four square elements.
-const Collage = ({ topLeft, topRight, bottomLeft, bottomRight }: Props) => (
-  <div className={styles.container}>
-    <div className={styles.inner}>
-      {topLeft}
-      {topRight}
-      {bottomLeft}
-      {bottomRight}
-    </div>
-  </div>
+export const Collage = (props: Props) => (
+  <CollageContainer>
+    <CollegeContents>
+      {props.topLeft}
+      {props.topRight}
+      {props.bottomLeft}
+      {props.bottomRight}
+    </CollegeContents>
+  </CollageContainer>
 );
 
-export default Collage;
+const CollageContainer = styled.div`
+  ${squareContainer};
+`;
+
+const CollegeContents = styled.div`
+  ${stretchContainingBlock};
+
+  display: grid;
+  grid-template-columns: repeat(2, 50%);
+  grid-template-rows: repeat(2, 50%);
+  justify-items: stretch;
+  align-items: stretch;
+`;

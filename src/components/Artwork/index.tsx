@@ -1,14 +1,7 @@
-import React from 'react';
-import styles from './style.css';
+import styled from '../../styled-components';
 
-interface Props {
-  src: string;
-  alt: string;
-}
-
-// A styled image for consistent album artwork.
-const Artwork = ({ src, alt }: Props) => (
-  <img draggable={false} className={styles.container} src={src} alt={alt} />
-);
-
-export default Artwork;
+export const Artwork = styled.img.attrs({ draggable: false })`
+  display: block;
+  width: 100%;
+  user-select: none;
+`;

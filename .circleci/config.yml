@@ -24,7 +24,7 @@ jobs:
 
       - run:
           name: Codegen
-          command: yarn codegen
+          command: yarn query-codegen
 
       - run:
           name: Typescript Check
@@ -33,10 +33,6 @@ jobs:
       - run:
           name: TSLint
           command: yarn tslint
-
-      - run:
-          name: StyleLint
-          command: yarn lint-css
 
       - run:
           name: Code Style Lint

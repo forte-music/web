@@ -6,11 +6,14 @@ import { HashRouter } from 'react-router-dom';
 
 import store from '../../redux/store';
 import client from '../../graphql/client';
+import { RootThemeProvider } from './RootThemeProvider';
 
 export const Providers = ({ children }: { children: ReactNode }) => (
-  <HashRouter>
-    <Provider store={store}>
-      <ApolloProvider client={client}>{children}</ApolloProvider>
-    </Provider>
-  </HashRouter>
+  <RootThemeProvider>
+    <HashRouter>
+      <Provider store={store}>
+        <ApolloProvider client={client}>{children}</ApolloProvider>
+      </Provider>
+    </HashRouter>
+  </RootThemeProvider>
 );

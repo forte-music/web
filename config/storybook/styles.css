@@ -1,20 +1,18 @@
-@import '../../src/colors.css';
-@import '../../src/sizes.css';
-
-:global(html) {
+html {
   height: 100%;
   background: #ffffff;
 }
 
-:global(body) {
-  min-height: calc(100% - (2 * var(--size-tiny)));
-  margin: var(--size-tiny);
+body {
+  min-height: calc(100% - 2 * 8px);
+  margin: 8px;
 
-  background: var(--main-background-color);
+  background: #1b1b1b;
   box-shadow: #000000 0 0 20px 0;
+  font-family: sans-serif;
 }
 
-:global(#root) {
+#root {
   width: 100%;
   height: 100%;
 }

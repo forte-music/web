@@ -1,11 +1,11 @@
 import React from 'react';
-import Queue from './component';
+import { QueuePage } from './component';
 import { QueueState } from './enhancers/redux';
 
 const QueueContainer = () => (
   <QueueState>
     {({ items, nowPlayingId, skipToPosition }) => (
-      <Queue
+      <QueuePage
         items={items}
         nowPlayingId={nowPlayingId}
         skipToPosition={skipToPosition}

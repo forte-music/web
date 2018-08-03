@@ -1,7 +1,6 @@
 import React from 'react';
-import { join, unique } from '../utils';
-import commonStyles from '../shared.css';
 import { ArtistLink } from './ArtistLink';
+import { join, unique } from '../utils';
 
 export interface Artist {
   id: string;
@@ -10,19 +9,13 @@ export interface Artist {
 
 interface Props {
   artists: Artist[];
-  className?: string;
 }
 
-export const InlineArtistsList = ({
-  artists,
-  className = commonStyles.link,
-}: Props) => (
+export const InlineArtistsList = ({ artists }: Props) => (
   <React.Fragment>
     {unique(
       join(
-        artists.map(artist => (
-          <ArtistLink artist={artist} className={className} />
-        )),
+        artists.map(artist => <ArtistLink artist={artist} />),
         <span>, </span>
       )
     )}

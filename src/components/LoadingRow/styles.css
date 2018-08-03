@@ -1,9 +1,0 @@
-.row {
-  composes: baseColumns from '../BaseRow/index.css';
-
-  color: #ffffff;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}

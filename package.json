@@ -24,7 +24,6 @@
     "apollo-client": "^2.3.5",
     "apollo-link-http": "^1.5.4",
     "apollo-link-schema": "^1.1.0",
-    "autoprefixer": "7.1.6",
     "babel-cli": "^6.26.0",
     "babel-core": "6.26.0",
     "babel-eslint": "7.2.3",
@@ -52,12 +51,7 @@
     "jest": "^23.1.0",
     "jest-enzyme": "^6.0.1",
     "object-assign": "4.1.1",
-    "postcss-color-function": "^4.0.1",
-    "postcss-custom-properties": "^6.2.0",
-    "postcss-flexbugs-fixes": "3.2.0",
-    "postcss-import": "^11.0.0",
-    "postcss-input-range": "^4.0.0",
-    "postcss-loader": "2.0.8",
+    "polished": "^1.9.3",
     "prettier": "1.9.2",
     "promise": "8.0.1",
     "raf": "3.4.0",
@@ -74,9 +68,7 @@
     "redux": "^3.0.0",
     "redux-devtools-extension": "^2.13.2",
     "style-loader": "0.19.0",
-    "stylelint": "^8.4.0",
-    "stylelint-config-css-modules": "^1.1.0",
-    "stylelint-config-recommended": "^2.0.1",
+    "styled-components": "^3.3.3",
     "surge": "^0.20.1",
     "ts-jest": "^22.4.6",
     "ts-loader": "^2.3.7",
@@ -84,7 +76,6 @@
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.13.0",
     "tslint-react": "^3.6.0",
-    "typed-css-modules": "^0.3.4",
     "typescript": "^2.9.2",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
@@ -100,18 +91,18 @@
   },
   "scripts": {
     "fix-style": "prettier --write $npm_package_config_prettierFiles",
-    "check-all": "yarn codegen && yarn lint && CI=true yarn test",
-    "storybook": "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
+    "check-all": "yarn query-codegen && yarn lint && CI=true yarn test",
+    "storybook":
+      "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
     "start-mock": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start": "node scripts/start.js",
     "build": "yarn codegen && node scripts/build.js",
     "test": "node scripts/test.js",
-    "lint": "yarn tsc && yarn check-style && yarn tslint && yarn lint-css",
+    "lint": "yarn tsc && yarn check-style && yarn tslint",
     "tslint": "tslint --project .",
-    "lint-css": "stylelint 'src/**/*.css'",
-    "check-style": "prettier --list-different $npm_package_config_prettierFiles",
-    "codegen": "yarn query-codegen && yarn css-modules-codegen",
-    "css-modules-codegen": "tcm src/",
-    "query-codegen": "apollo codegen:generate --schema node_modules/@forte-music/schema/schema.json --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
+    "check-style":
+      "prettier --list-different $npm_package_config_prettierFiles",
+    "query-codegen":
+      "apollo codegen:generate --schema node_modules/@forte-music/schema/schema.json --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
   }
 }

@@ -1,20 +1,23 @@
 import React, { Component } from 'react';
+import styled from '../../../styled-components';
 
 import Audio from '../../Audio';
-import NowPlaying from '../../Footer/NowPlaying';
-import PlaybackControls from '../../Footer/PlaybackControls';
-import AdditionalControls from '../../Footer/AdditionalControls';
-import { SliderInput } from '../../Slider';
+import { NowPlaying, NowPlayingContainer } from '../../Footer/NowPlaying';
+import { PlaybackControls } from '../../Footer/PlaybackControls';
+import {
+  AdditionalControls,
+  AdditionalControlsContainer,
+} from '../../Footer/AdditionalControls';
+import { SliderInput } from '../../SliderInput';
 import Title from '../../Title';
+import { BarsContainer, BufferedBar, LoadingBar, PlayedBar } from '../../Bars';
 
-import styles from './styles.css';
-import barStyles from '../../Bars.css';
 import { FooterQuery_song as Song } from '../enhancers/__generated__/FooterQuery';
 import { QueueItem } from '../../../redux/state/queue';
 
 interface Props {
   // A class applied to the component's container element.
-  className: string;
+  className?: string;
 
   // The currently playing song. If this is not defined no song is playing
   // and an inactive footer is rendered.
@@ -181,33 +184,26 @@ class Footer extends Component<Props, State> {
           />
         )}
 
-        <div className={barStyles.bars}>
-          <Bar
-            className={barStyles.buffered}
-            position={(nowPlaying && bufferedTo / duration) || 0}
-          />
-          <Bar
-            className={barStyles.played}
-            position={(nowPlaying && currentTime / duration) || 0}
-          />
+        <BarsContainer>
+          <BufferedBar position={(nowPlaying && bufferedTo / duration) || 0} />
+          <PlayedBar position={(nowPlaying && currentTime / duration) || 0} />
 
-          <div
-            className={[
-              barStyles.bar,
-              nowPlaying && loading ? barStyles.loading : '',
-            ].join(' ')}
-          />
+          {nowPlaying && loading && <LoadingBar />}
 
-          <SliderInput
-            min={0}
-            max={duration}
-            onValueChange={this.onSeek}
-            onStartSliding={pause}
-            onEndSliding={play}
-          />
-        </div>
+          {nowPlaying &&
+            !loading && (
+              <SliderInput
+                min={0}
+                max={duration}
+                value={currentTime}
+                onValueChange={this.onSeek}
+                onStartSliding={pause}
+                onEndSliding={play}
+              />
+            )}
+        </BarsContainer>
 
-        <div className={styles.container}>
+        <PlayerContainer>
           {nowPlaying && <NowPlaying song={nowPlaying} />}
 
           <PlaybackControls
@@ -228,22 +224,26 @@ class Footer extends Component<Props, State> {
               onToggleLike={onToggleLike}
             />
           )}
-        </div>
+        </PlayerContainer>
       </footer>
     );
   }
 }
 
-interface BarProps {
-  className: string;
-  position: number;
-}
+const PlayerContainer = styled.div`
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
 
-const Bar = ({ className, position }: BarProps) => (
-  <div
-    style={{ width: `${position * 100}%` }}
-    className={[barStyles.bar, className].join(' ')}
-  />
-);
+  /*
+  Disable user selection because finding a good highlight color is hard. People
+  who really want to copy stuff can use inspect element.
+  */
+  user-select: none;
+
+  & ${NowPlayingContainer}, & ${AdditionalControlsContainer} {
+    flex: 1;
+  }
+`;
 
 export default Footer;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Album } from './component';
+import { AlbumPage } from '../AlbumPage';
 import { AlbumQuery } from './enhancers/query';
 import { AlbumContainerState } from './enhancers/redux';
 
@@ -18,7 +18,7 @@ const Component = ({ id }: Props) => (
       return (
         <AlbumContainerState album={album}>
           {({ onDoubleClick, currentlyPlayingId }) => (
-            <Album
+            <AlbumPage
               onDoubleClick={onDoubleClick}
               album={album}
               currentlyPlayingId={currentlyPlayingId}

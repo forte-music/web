@@ -1,7 +1,11 @@
 import React, { ReactNode } from 'react';
-import styles from './style.css';
+import styled from '../../styled-components';
+import { opacify } from 'polished';
 
 import PlaybackButton from '../PlaybackButton';
+
+import { stretchContainingBlock } from '../../styled-mixins/stretchContainingBlock';
+import { squareContainer } from '../../styled-mixins/squareContainer';
 
 export type PlaybackState =
   // In this state, a play button is shown on hover. onStartPlayback is
@@ -21,12 +25,13 @@ export type PlaybackState =
   | 'PAUSED';
 
 interface Props {
-  // The child node will be rendered under the playing cover.
-  children?: ReactNode;
+  // The element which will be rendered under the overlay.
+  children: ReactNode;
 
-  // Whether or not to handle clicks on the background. This is false by
-  // default to allow parent components to handle click through.
-  backgroundInteraction?: boolean;
+  // Whether or not to handle clicks on the background. If true, clicking
+  // the background calls one of onPlaying, onPaused or onStartPlayback
+  // based on its state.
+  handlesBackgroundInteraction: boolean;
 
   // The current state of playback.
   state: PlaybackState;
@@ -41,57 +46,122 @@ interface Props {
   onStartPlayback: () => void;
 }
 
-// An which renders an overlay of the current playing state atop an element
-// (usually Artwork or a Collage) and reacts to events.
-const PlaybackArtwork = ({
-  backgroundInteraction,
-  children,
-  state,
-  onPlaying,
-  onPaused,
-  onStartPlayback,
-}: Props) => (
-  <div
-    className={[
-      styles.container,
-      state !== 'STOPPED' ? styles.active : '',
-      backgroundInteraction ? styles.backgroundInteraction : '',
-    ].join(' ')}
-  >
-    <div className={styles.children}>{children}</div>
+// A component which renders an overlay of the current playing state atop an
+// element (usually Artwork or a Collage) and reacts to events.
+export const PlaybackArtwork = (props: Props) => (
+  <SquareContainer>
+    <ChildrenContainer>{props.children}</ChildrenContainer>
 
-    {/* Tints the children but still allows pointer events through. */}
-    <div
-      className={styles.overlay}
-      onClick={() => handleUpdate(state, onPaused, onPlaying, onStartPlayback)}
+    <ChildrenContainerOverlay
+      handlesBackgroundInteraction={props.handlesBackgroundInteraction}
+      onClick={() => handleUpdate(props)}
     />
-
-    {/* The play/pause button in the bottom right corner. */}
-    <div className={styles.buttonBackdrop}>
+    <ButtonBackdrop
+      isActive={props.state !== 'STOPPED'}
+      handlesBackgroundInteraction={props.handlesBackgroundInteraction}
+    >
       <PlaybackButton
-        pathClass={styles.path}
-        playing={state === 'PLAYING'}
-        onToggle={() =>
-          handleUpdate(state, onPaused, onPlaying, onStartPlayback)
-        }
+        pathClass={pathClassName}
+        playing={props.state === 'PLAYING'}
+        onToggle={() => handleUpdate(props)}
       />
-    </div>
-  </div>
+    </ButtonBackdrop>
+  </SquareContainer>
 );
 
-const handleUpdate = (
-  state: PlaybackState,
-  onPaused: () => void,
-  onPlaying: () => void,
-  onStartPlayback: () => void
-) => {
-  if (state === 'PLAYING') {
-    onPaused();
-  } else if (state === 'PAUSED') {
-    onPlaying();
-  } else if (state === 'STOPPED') {
-    onStartPlayback();
+const ChildrenContainer = styled.div`
+  ${stretchContainingBlock};
+
+  margin: auto;
+`;
+
+const SquareContainer = styled.div`
+  ${squareContainer};
+`;
+
+interface ChildrenContainerOverlayProps {
+  handlesBackgroundInteraction: boolean;
+}
+
+const ChildrenContainerOverlay =
+  ChildrenContainer.extend <
+  ChildrenContainerOverlayProps >
+  `
+  background: ${props => props.theme.playbackOverlayColor};
+
+  opacity: 0;
+  transition: opacity 0.2s ease-in-out;
+  
+  cursor: ${props =>
+    props.handlesBackgroundInteraction ? 'pointer' : 'initial'};
+  pointer-events: ${props =>
+    props.handlesBackgroundInteraction ? 'initial' : 'none'};
+  
+  ${SquareContainer}:hover > & {
+    opacity: 1;
+  }
+`;
+
+const buttonMargin = '16px';
+const buttonSize = '40px';
+const buttonBackgroundColorActive = '#333333';
+const buttonBackgroundColor = opacify(0.9, buttonBackgroundColorActive);
+const buttonFillColor = '#eeeeee';
+
+const pathClassName = 'path';
+
+interface ButtonBackdropProps {
+  isActive: boolean;
+  handlesBackgroundInteraction: boolean;
+}
+
+const ButtonBackdrop =
+  styled.div <
+  ButtonBackdropProps >
+  `
+  position: absolute;
+  bottom: ${buttonMargin};
+  right: ${buttonMargin};
+
+  width: ${buttonSize};
+  height: ${buttonSize};
+  border-radius: 50%;
+
+  background: ${buttonBackgroundColor};
+  cursor: pointer;
+
+  transform-origin: center center;
+
+  transition: 0.2s transform ease-out, 0.2s background ease-in-out;
+  transform: ${props => (props.isActive ? 'scale(1)' : 'scale(0)')};
+  
+  & .${pathClassName} {
+    fill: ${buttonFillColor};
+    stroke: ${buttonFillColor};
+  }
+  
+  ${SquareContainer}:hover > & {
+    transform: scale(1);
+  }
+  
+  ${SquareContainer}:active > & {
+    background: ${props =>
+      props.handlesBackgroundInteraction
+        ? buttonBackgroundColorActive
+        : buttonBackgroundColor};
+  }
+  
+  &:active {
+    background: ${buttonBackgroundColorActive};
+  }
+`;
+
+const handleUpdate = (props: Props) => {
+  if (props.state === 'PLAYING') {
+    props.onPaused();
+  } else if (props.state === 'PAUSED') {
+    props.onPlaying();
+  } else if (props.state === 'STOPPED') {
+    props.onStartPlayback();
   }
 };
-
-export default PlaybackArtwork;

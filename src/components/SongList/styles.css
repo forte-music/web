@@ -1,5 +1,0 @@
-@import '../../sizes.css';
-
-.container {
-  padding-bottom: var(--size-small);
-}

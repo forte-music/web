@@ -1,5 +1,5 @@
 import React from 'react';
-import SongsInner from './components/Songs';
+import { SongsPage } from './components/SongsPage';
 import { Result, SongsQuery } from './enhancers/query';
 import { SongsContainerState } from './enhancers/state';
 import { SortBy } from './enhancers/__generated__/SongsQuery';
@@ -20,7 +20,7 @@ export const Songs = () => (
           return (
             <SongsContainerReduxState songs={songs}>
               {({ activeSongId, startPlayingFrom }) => (
-                <SongsInner
+                <SongsPage
                   songs={songs}
                   activeSongId={activeSongId}
                   isLoadingMore={result.loading}

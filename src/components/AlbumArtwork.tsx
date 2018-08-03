@@ -1,6 +1,6 @@
 import React from 'react';
 import DefaultCover from './icons/DefaultCover';
-import Artwork from './Artwork';
+import { Artwork } from './Artwork';
 
 interface Album {
   id: string;

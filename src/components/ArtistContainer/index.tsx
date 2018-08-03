@@ -1,6 +1,6 @@
 import React from 'react';
 import { ArtistQuery } from './enhancers/query';
-import { Artist } from './component';
+import { ArtistPage } from '../ArtistPage';
 
 export interface Props {
   id: string;
@@ -13,7 +13,7 @@ const Component = (props: Props) => (
         return null;
       }
 
-      return <Artist artist={result.data.artist} />;
+      return <ArtistPage artist={result.data.artist} />;
     }}
   </ArtistQuery>
 );

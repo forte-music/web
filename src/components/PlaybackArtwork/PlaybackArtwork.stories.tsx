@@ -3,7 +3,7 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 
 import { collage } from '../Collage/Collage.stories';
-import PlaybackArtwork, { PlaybackState } from '.';
+import { PlaybackArtwork, PlaybackState } from '.';
 import StatefulComponent from '../../utils/StatefulComponent';
 
 storiesOf('PlaybackArtwork', module)
@@ -20,7 +20,7 @@ storiesOf('PlaybackArtwork', module)
     <Story initialState={'LOADING'} />
   ))
   .add('paused with link without background interaction', () => (
-    <Story initialState={'PAUSED'} backgroundInteraction={false}>
+    <Story initialState={'PAUSED'} handlesBackgroundInteraction={false}>
       <a onClick={action('link clicked')}>{collage}</a>
     </Story>
   ));
@@ -28,11 +28,11 @@ storiesOf('PlaybackArtwork', module)
 const Story = ({
   initialState,
   children,
-  backgroundInteraction = true,
+  handlesBackgroundInteraction = true,
 }: {
   initialState: PlaybackState;
   children?: ReactNode;
-  backgroundInteraction?: boolean;
+  handlesBackgroundInteraction?: boolean;
 }) => (
   <StatefulComponent state={{ playback: initialState }}>
     {({ playback }, setState) => (
@@ -42,7 +42,7 @@ const Story = ({
           onPlaying={() => setState({ playback: 'PLAYING' })}
           onPaused={() => setState({ playback: 'PAUSED' })}
           onStartPlayback={() => setState({ playback: 'PLAYING' })}
-          backgroundInteraction={backgroundInteraction}
+          handlesBackgroundInteraction={handlesBackgroundInteraction}
         >
           {children || collage}
         </PlaybackArtwork>
