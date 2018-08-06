@@ -10,5 +10,6 @@ storiesOf('SearchPage', module).add('loading without results', () => (
     updateResultsNow={noop}
     isLoading
     results={undefined}
+    startPlayingFromSong={noop}
   />
 ));

@@ -30,7 +30,8 @@ export interface QueueItemSource {
 export type PlayingFrom =
   | PlayingFromAlbum
   | PlayingFromArtist
-  | PlayingFromSongs;
+  | PlayingFromSongs
+  | PlayingFromSearch;
 
 // Information about which a queue item from an album is playing from.
 export interface PlayingFromAlbum {
@@ -47,6 +48,11 @@ export interface PlayingFromArtist {
 
 export interface PlayingFromSongs {
   type: 'SONGS';
+}
+
+export interface PlayingFromSearch {
+  type: 'SEARCH';
+  query: string;
 }
 
 export const initialState: QueueState = {

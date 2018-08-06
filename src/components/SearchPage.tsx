@@ -30,6 +30,13 @@ interface Props {
 
   // True whenever a request for data is in-flight.
   isLoading: boolean;
+
+  // Identifier of the active song if the song playing was added from a
+  // search page with the same query.
+  activeSongId?: string;
+
+  // Starts playing the resulting songs from the specified index.
+  startPlayingFromSong: (index: number) => void;
 }
 
 export const SearchPage = (props: Props) => (
@@ -76,7 +83,12 @@ export const SearchPage = (props: Props) => (
               header={<DetailRowHeader />}
               rows={props.results.songs.edges}
               render={(item, index) => (
-                <DetailRow key={index} song={item.node} active={false} />
+                <DetailRow
+                  key={index}
+                  song={item.node}
+                  active={item.node.id === props.activeSongId}
+                  onDoubleClick={() => props.startPlayingFromSong(index)}
+                />
               )}
             />
             {!props.results.songs.edges.length && (
@@ -147,5 +159,4 @@ const SpacedEmptyResult = EmptyResult.extend`
 // TODO: Artists
 
 // TODO: Refactor mappings
-// TODO: Songs Active
-// TODO: Playback from Search Results
+// TODO: Album Playback From Search Results
