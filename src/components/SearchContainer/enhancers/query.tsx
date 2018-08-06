@@ -27,19 +27,6 @@ const query = gql`
       }
     }
 
-    artists(first: 6, sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }) {
-      pageInfo {
-        hasNextPage
-      }
-
-      edges {
-        node {
-          id
-          name
-        }
-      }
-    }
-
     songs(first: 10, sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }) {
       pageInfo {
         hasNextPage
