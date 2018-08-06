@@ -12,8 +12,12 @@ export const Search = () => (
             query={query}
             setQuery={setQuery}
             updateResultsNow={updateDebouncedQueryNow}
-            isLoading={result.loading}
-            results={result.data}
+            // For some reason, apollo sets result.data to an empty object
+            // when skip is true, violating the TypeScript contract.
+            isLoading={!!debouncedQuery && result.loading}
+            results={
+              debouncedQuery && !result.loading ? result.data : undefined
+            }
           />
         )}
       </SearchQuery>
