@@ -23,6 +23,10 @@ const query = gql`
             id
             name
           }
+
+          songs {
+            id
+          }
         }
       }
     }

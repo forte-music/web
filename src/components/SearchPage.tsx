@@ -3,12 +3,9 @@ import styled, { StyledComponentClass } from 'styled-components';
 
 import { HeaderContainer } from './styled/HeaderContainer';
 import { Container } from './Container';
-import { ArtworkTwoInfo } from './ArtworkTwoInfo';
-import { AlbumArtwork } from './AlbumArtwork';
-import { AlbumLink } from './AlbumLink';
-import { ArtistLink } from './ArtistLink';
 import { SongList } from './SongList';
 import { DetailRow, DetailRowHeader } from './DetailSongTable';
+import { AlbumInfo } from './AlbumsContainer/components/AlbumInfo';
 
 import { SearchQuery } from './SearchContainer/enhancers/__generated__/SearchQuery';
 import { Theme } from '../theme';
@@ -64,13 +61,8 @@ export const SearchPage = (props: Props) => (
             <SearchResultTypeHeader>Albums</SearchResultTypeHeader>
             {props.results.albums.edges.length ? (
               <ArtworkGrid>
-                {props.results.albums.edges.map(({ node }) => (
-                  <ArtworkTwoInfo
-                    key={node.id}
-                    artwork={<AlbumArtwork album={node} />}
-                    lineOne={<AlbumLink album={node} />}
-                    lineTwo={<ArtistLink artist={node.artist} />}
-                  />
+                {props.results.albums.edges.map(({ node }, index) => (
+                  <AlbumInfo key={index} album={node} />
                 ))}
               </ArtworkGrid>
             ) : (
@@ -159,4 +151,3 @@ const SpacedEmptyResult = EmptyResult.extend`
 // TODO: Artists
 
 // TODO: Refactor mappings
-// TODO: Album Playback From Search Results
