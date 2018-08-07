@@ -2,7 +2,7 @@ import React from 'react';
 import { debounce } from 'lodash';
 
 interface Props {
-  // Initial value of ChildParam.query. By default is an empty string.
+  // Value of ChildParam.query. By default is an empty string.
   initialQuery?: string;
 
   // The amount of time in milliseconds to debounce calls to set

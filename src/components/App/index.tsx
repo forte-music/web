@@ -21,10 +21,12 @@ import {
   artistsPath,
   homePath,
   queuePath,
-  searchPath,
   songsPath,
   withIdPathParam,
   withIdFromProps,
+  searchPath,
+  optionalParam,
+  withQueryFromProps,
 } from '../../utils/paths';
 
 const Grid = styled.div`
@@ -82,7 +84,11 @@ export const App = () => (
 
           <Route exact path={homePath} />
           <Route exact path={queuePath} render={() => <Queue />} />
-          <Route exact path={searchPath} render={() => <Search />} />
+          <Route
+            exact
+            path={searchPath(optionalParam('query'))}
+            render={withQueryFromProps(query => <Search query={query} />)}
+          />
 
           <Redirect from="/" to="/home" />
         </Switch>
