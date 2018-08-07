@@ -9,6 +9,9 @@ interface Props {
   // ChildParam.debouncedQuery.
   debounceMs: number;
 
+  // Called when debounced query update has happened.
+  setDebouncedQuery: (newDebouncedQuery: string) => void;
+
   children: (param: ChildParam) => React.ReactNode;
 }
 
@@ -44,8 +47,10 @@ export class SearchContainerState extends React.Component<Props, State> {
     };
   }
 
-  private setDebouncedQuery = (newDebouncedQuery: string) =>
+  private setDebouncedQuery = (newDebouncedQuery: string) => {
     this.setState({ debouncedQuery: newDebouncedQuery });
+    this.props.setDebouncedQuery(newDebouncedQuery);
+  };
 
   private setDebouncedQueryDebounced = debounce(
     this.setDebouncedQuery,

@@ -29,6 +29,6 @@ export interface WithQueryParam {
   query?: string;
 }
 
-export const withQueryFromProps = (f: (query?: string) => React.ReactNode) => (
-  props: RouteComponentProps<WithQueryParam>
-) => f(props.match.params.query);
+export const withQueryFromProps = (
+  f: (props: RouteComponentProps<WithQueryParam>) => React.ReactNode
+) => (props: RouteComponentProps<WithQueryParam>) => f(props);

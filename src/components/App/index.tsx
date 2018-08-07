@@ -87,7 +87,12 @@ export const App = () => (
           <Route
             exact
             path={searchPath(optionalParam('query'))}
-            render={withQueryFromProps(query => <Search query={query} />)}
+            render={withQueryFromProps(props => (
+              <Search
+                query={props.match.params.query}
+                setQuery={newQuery => props.history.push(searchPath(newQuery))}
+              />
+            ))}
           />
 
           <Redirect from="/" to="/home" />
