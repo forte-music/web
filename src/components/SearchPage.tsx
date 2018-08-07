@@ -6,6 +6,7 @@ import { Container } from './Container';
 import { SongList } from './SongList';
 import { DetailRow, DetailRowHeader } from './DetailSongTable';
 import { AlbumInfo } from './AlbumsContainer/components/AlbumInfo';
+import { FocusedTextInput } from './FocusedTextInput';
 
 import { SearchQuery } from './SearchContainer/enhancers/__generated__/SearchQuery';
 import { Theme } from '../theme';
@@ -46,7 +47,6 @@ export const SearchPage = (props: Props) => (
           }
           onChange={event => props.setQuery(event.target.value)}
           value={props.query}
-          type="text"
           placeholder="Search..."
         />
       </SearchHeaderContainer>
@@ -106,7 +106,7 @@ const ArtworkGrid: StyledComponentClass<{}, Theme> = styled.div`
   ${artworkGrid};
 `;
 
-const SearchInput = styled.input`
+const SearchInput = styled(FocusedTextInput)`
   background: none;
   border: none;
   outline: none;
