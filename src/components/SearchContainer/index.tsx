@@ -14,8 +14,7 @@ interface Props {
 
 export const Search = (props: Props) => (
   <SearchContainerState
-    key={props.query}
-    initialQuery={props.query}
+    query={props.query}
     debounceMs={300}
     setDebouncedQuery={props.setQuery}
   >

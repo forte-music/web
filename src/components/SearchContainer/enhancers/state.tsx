@@ -2,8 +2,9 @@ import React from 'react';
 import { debounce } from 'lodash';
 
 interface Props {
-  // Value of ChildParam.query. By default is an empty string.
-  initialQuery?: string;
+  // Value of ChildParam.query. By default is an empty string. Changes to
+  // this property cause the children to re-render with the new query param.
+  query?: string;
 
   // The amount of time in milliseconds to debounce calls to set
   // ChildParam.debouncedQuery.
@@ -39,12 +40,22 @@ export class SearchContainerState extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);
 
-    const initialQuery = props.initialQuery || '';
+    this.state = SearchContainerState.getStateForProps(props);
+  }
 
-    this.state = {
-      query: initialQuery,
-      debouncedQuery: initialQuery,
+  private static getStateForProps(props: Props): State {
+    const query = props.query || '';
+
+    return {
+      query,
+      debouncedQuery: query,
     };
+  }
+
+  public componentDidUpdate(prevProps: Props) {
+    if (prevProps.query !== this.props.query) {
+      this.setState(SearchContainerState.getStateForProps(this.props));
+    }
   }
 
   private setDebouncedQuery = (newDebouncedQuery: string) => {
