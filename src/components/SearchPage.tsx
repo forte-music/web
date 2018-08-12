@@ -1,16 +1,25 @@
 import React from 'react';
-import styled, { StyledComponentClass } from 'styled-components';
 
 import { HeaderContainer } from './styled/HeaderContainer';
 import { Container } from './Container';
 import { SongList } from './SongList';
-import { DetailRow, DetailRowHeader } from './DetailSongTable';
-import { AlbumInfo } from './AlbumsContainer/components/AlbumInfo';
-import { FocusedTextInput } from './FocusedTextInput';
+import {
+  DetailRow,
+  DetailRowHeader,
+  Song as DetailRowSong,
+} from './DetailSongTable';
+import {
+  ArtworkGrid,
+  EmptyResult,
+  SearchHeaderContainer,
+  SearchInput,
+  SearchResultTypeContainer,
+  SearchResultTypeHeader,
+  SpacedEmptyResult,
+} from './styled/search';
 
+import { Album, AlbumInfo } from './AlbumsContainer/components/AlbumInfo';
 import { SearchQuery } from './SearchContainer/enhancers/__generated__/SearchQuery';
-import { Theme } from '../theme';
-import { artworkGrid } from '../styled-mixins/artworkGrid';
 
 interface Props {
   // The query currently displayed in the search field.
@@ -59,33 +68,17 @@ export const SearchPage = (props: Props) => (
         <React.Fragment>
           <SearchResultTypeContainer>
             <SearchResultTypeHeader>Albums</SearchResultTypeHeader>
-            {props.results.albums.edges.length ? (
-              <ArtworkGrid>
-                {props.results.albums.edges.map(({ node }, index) => (
-                  <AlbumInfo key={index} album={node} />
-                ))}
-              </ArtworkGrid>
-            ) : (
-              <EmptyResult>No albums found!</EmptyResult>
-            )}
+            <AlbumResults
+              albums={props.results.albums.edges.map(({ node }) => node)}
+            />
           </SearchResultTypeContainer>
           <SearchResultTypeContainer>
             <SearchResultTypeHeader>Songs</SearchResultTypeHeader>
-            <SongList
-              header={<DetailRowHeader />}
-              rows={props.results.songs.edges}
-              render={(item, index) => (
-                <DetailRow
-                  key={index}
-                  song={item.node}
-                  active={item.node.id === props.activeSongId}
-                  onDoubleClick={() => props.startPlayingFromSong(index)}
-                />
-              )}
+            <SongsResults
+              songs={props.results.songs.edges.map(({ node }) => node)}
+              activeSongId={props.activeSongId}
+              startPlayingFromSong={props.startPlayingFromSong}
             />
-            {!props.results.songs.edges.length && (
-              <SpacedEmptyResult>No songs found!</SpacedEmptyResult>
-            )}
           </SearchResultTypeContainer>
         </React.Fragment>
       )}
@@ -93,60 +86,51 @@ export const SearchPage = (props: Props) => (
   </div>
 );
 
-const placeholderColor = '#757575';
-const focusedTextColor = '#ffffff';
+interface AlbumResultsProps {
+  albums: Album[];
+}
 
-const SearchHeaderContainer = styled(Container)`
-  display: flex;
-  flex-direction: column;
-`;
+const AlbumResults = (props: AlbumResultsProps) =>
+  props.albums.length ? (
+    <ArtworkGrid>
+      {props.albums.map((album, index) => (
+        <AlbumInfo key={index} album={album} />
+      ))}
+    </ArtworkGrid>
+  ) : (
+    <EmptyResult>No albums found</EmptyResult>
+  );
 
-// @ts-ignore
-const ArtworkGrid: StyledComponentClass<{}, Theme> = styled.div`
-  ${artworkGrid};
-`;
+interface Song extends DetailRowSong {
+  id: string;
+}
 
-const SearchInput = styled(FocusedTextInput)`
-  background: none;
-  border: none;
-  outline: none;
+interface SongResultsProps {
+  songs: Song[];
+  activeSongId?: string;
+  startPlayingFromSong: (index: number) => void;
+}
 
-  color: ${focusedTextColor};
+const SongsResults = (props: SongResultsProps) => (
+  <React.Fragment>
+    <SongList
+      header={<DetailRowHeader />}
+      rows={props.songs}
+      render={(item, index) => (
+        <DetailRow
+          key={index}
+          song={item}
+          active={item.id === props.activeSongId}
+          onDoubleClick={() => props.startPlayingFromSong(index)}
+        />
+      )}
+    />
+    {!props.songs.length && (
+      <SpacedEmptyResult>No songs found</SpacedEmptyResult>
+    )}
+  </React.Fragment>
+);
 
-  border-bottom: 1px solid ${placeholderColor};
-  padding: ${props => props.theme.sizeTiny};
-  font-size: ${props => props.theme.fontSizeMedium};
-
-  margin-top: 68px;
-  margin-bottom: ${props => props.theme.sizeLarge};
-  margin-left: ${props => props.theme.sizeSmall};
-  margin-right: ${props => props.theme.sizeSmall};
-
-  &:focus {
-    border-bottom-color: ${focusedTextColor};
-  }
-`;
-
-const SearchResultTypeContainer = styled.div`
-  padding: ${props => props.theme.sizeSmall};
-`;
-
-const SearchResultTypeHeader = styled.div`
-  color: #ffffff;
-  font-size: ${props => props.theme.fontSizeMedium};
-  margin-bottom: ${props => props.theme.sizeSmall};
-`;
-
-const EmptyResult = styled.div`
-  color: ${props => props.theme.headerSecondaryTextColor};
-  text-align: center;
-`;
-
-const SpacedEmptyResult = EmptyResult.extend`
-  margin-top: ${props => props.theme.sizeSmall};
-`;
-
-// TODO: Think About Number of Results to Display
 // TODO: Load More Results
 // TODO: Artists
 
