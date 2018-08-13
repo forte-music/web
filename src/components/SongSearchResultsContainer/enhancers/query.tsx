@@ -1,11 +1,15 @@
 import React from 'react';
-import { Query, QueryProps } from 'react-apollo';
 import {
   SongResultsQuery as Data,
   SongResultsQueryVariables as Variables,
 } from './__generated__/SongResultsQuery';
 import gql from 'graphql-tag';
 import { Omit } from '../../../utils';
+import {
+  ConnectionQuery,
+  ConnectionQueryProps,
+  ConnectionQueryResult,
+} from '../../ConnectionQuery';
 
 export const songsSearchResultFragment = gql`
   fragment SongSearchResults on SongConnection {
@@ -14,6 +18,8 @@ export const songsSearchResultFragment = gql`
     }
 
     edges {
+      cursor
+
       node {
         id
         name
@@ -32,8 +38,12 @@ export const songsSearchResultFragment = gql`
 `;
 
 const query = gql`
-  query SongResultsQuery($query: String!) {
-    songs(first: 10, sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }) {
+  query SongResultsQuery($first: Int!, $query: String!, $cursor: String) {
+    songs(
+      first: $first
+      after: $cursor
+      sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }
+    ) @connection {
       ...SongSearchResults
     }
   }
@@ -41,6 +51,8 @@ const query = gql`
   ${songsSearchResultFragment}
 `;
 
+export type Result = ConnectionQueryResult<Data, Variables>;
+
 export const SongsQuery = (
-  props: Omit<QueryProps<Data, Variables>, 'query'>
-) => <Query query={query} {...props} />;
+  props: Omit<ConnectionQueryProps<Data, Variables>, 'query'>
+) => <ConnectionQuery query={query} children={props.children} {...props} />;

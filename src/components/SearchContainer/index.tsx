@@ -43,7 +43,7 @@ export const Search = (props: Props) => (
               exact
               path={'/search/:query/songs'}
               render={() => (
-                <SongSearchResultsContainer query={debouncedQuery} />
+                <SongSearchResultsContainer loadMore query={debouncedQuery} />
               )}
             />
 
@@ -66,5 +66,3 @@ export const Search = (props: Props) => (
     )}
   </SearchContainerState>
 );
-
-// TODO: Add All Results Container
