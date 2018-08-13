@@ -1,8 +1,13 @@
 import React from 'react';
+import { Redirect, Route, Switch } from 'react-router';
+
+import { SearchPageHeader } from '../SearchPageHeader';
+import { Container } from '../Container';
+
 import { SearchContainerState } from './enhancers/state';
-import { SearchPage } from '../SearchPage';
-import { SearchQuery } from './enhancers/query';
-import { ReduxContainer } from './enhancers/redux';
+import { SongSearchResultsContainer } from '../SongSearchResultsContainer';
+import { AlbumSearchResultsContainer } from '../AlbumSearchResultsContainer';
+import { AllSearchResults } from '../AllSearchResults';
 
 interface Props {
   // Query based on the url. If undefined, no query was passed.
@@ -19,31 +24,47 @@ export const Search = (props: Props) => (
     setDebouncedQuery={props.setQuery}
   >
     {({ query, debouncedQuery, setQuery, updateDebouncedQueryNow }) => (
-      <SearchQuery skip={!debouncedQuery} variables={{ query: debouncedQuery }}>
-        {result => {
-          // For some reason, apollo sets result.data to an empty object
-          // when skip is true, violating the TypeScript contract.
-          const data =
-            debouncedQuery && !result.loading ? result.data : undefined;
+      <div>
+        <SearchPageHeader
+          query={query}
+          setQuery={setQuery}
+          updateResultsNow={updateDebouncedQueryNow}
+        />
 
-          return (
-            <ReduxContainer currentQuery={debouncedQuery} result={data}>
-              {({ activeSongId, startPlayingFromSong }) => (
-                <SearchPage
-                  query={query}
-                  setQuery={setQuery}
-                  updateResultsNow={updateDebouncedQueryNow}
-                  // Needs to be done for same reason as above.
-                  isLoading={!!debouncedQuery && result.loading}
-                  results={data}
-                  activeSongId={activeSongId}
-                  startPlayingFromSong={startPlayingFromSong}
-                />
+        <Container>
+          <Switch>
+            <Route
+              exact
+              path={'/search/:query'}
+              render={() => <AllSearchResults query={debouncedQuery} />}
+            />
+
+            <Route
+              exact
+              path={'/search/:query/songs'}
+              render={() => (
+                <SongSearchResultsContainer query={debouncedQuery} />
               )}
-            </ReduxContainer>
-          );
-        }}
-      </SearchQuery>
+            />
+
+            <Route
+              exact
+              path={'/search/:query/albums'}
+              render={() => (
+                <AlbumSearchResultsContainer query={debouncedQuery} />
+              )}
+            />
+
+            <Redirect
+              strict
+              from="/search/:query/"
+              to={`/search/${debouncedQuery}`}
+            />
+          </Switch>
+        </Container>
+      </div>
     )}
   </SearchContainerState>
 );
+
+// TODO: Add All Results Container

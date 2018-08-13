@@ -85,7 +85,6 @@ export const App = () => (
           <Route exact path={homePath} />
           <Route exact path={queuePath} render={() => <Queue />} />
           <Route
-            exact
             path={searchPath(optionalParam('query'))}
             render={withQueryFromProps(props => (
               <Search

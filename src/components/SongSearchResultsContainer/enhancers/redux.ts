@@ -1,25 +1,27 @@
+import { Dispatch } from 'redux';
 import { createReduxComponent } from '../../../redux/render';
+
 import { State } from '../../../redux/state';
-import {
-  SearchQuery,
-  SearchQuery_songs_edges,
-} from './__generated__/SearchQuery';
 import {
   getPlayingMatching,
   isPlayingFromSearch,
 } from '../../../redux/selectors/nowPlaying';
 import { Action } from '../../../redux/actions';
-import { Dispatch } from 'redux';
 import { PlayingFromSearch, QueueItemSource } from '../../../redux/state/queue';
 import { startPlayingList } from '../../../redux/actions/creators/queue';
 
-interface OwnProps {
-  result?: SearchQuery;
+interface Song {
+  id: string;
+}
 
+interface OwnProps {
   // Query which fetched the results. Used as context for creating queue
   // items and checking whether the current queue item is active on the
   // current search page.
   currentQuery: string;
+
+  // The songs which will be enqueued when startPlayingFromSong is called.
+  songs?: Song[];
 }
 
 interface StateEnhancedProps {
@@ -50,13 +52,13 @@ export const ReduxContainer = createReduxComponent<
   },
   (dispatch: Dispatch<Action>, ownProps: OwnProps) => ({
     startPlayingFromSong: (index: number) => {
-      if (!ownProps.result) {
+      if (!ownProps.songs) {
         throw new Error('startPlayingFromSong called without query result');
       }
 
       const tracks: QueueItemSource[] = getTracks(
         ownProps.currentQuery,
-        ownProps.result.songs.edges
+        ownProps.songs
       );
 
       startPlayingList(dispatch)(tracks, index);
@@ -64,11 +66,8 @@ export const ReduxContainer = createReduxComponent<
   })
 );
 
-const getTracks = (
-  query: string,
-  edges: SearchQuery_songs_edges[]
-): QueueItemSource[] =>
-  edges.map(({ node }) => ({
-    songId: node.id,
+const getTracks = (query: string, edges: Song[]): QueueItemSource[] =>
+  edges.map(song => ({
+    songId: song.id,
     playingFrom: { type: 'SEARCH', query } as PlayingFromSearch,
   }));
