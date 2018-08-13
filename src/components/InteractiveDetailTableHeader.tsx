@@ -1,14 +1,14 @@
 import React from 'react';
-import { TableHeader } from '../../BaseSongTable';
-import Chevron from '../../icons/Chevron';
+import { TableHeader } from './BaseSongTable';
+import Chevron from './icons/Chevron';
 import {
   AlbumColumn,
   ArtistsColumn,
   DurationColumn,
   SongColumn,
-} from '../../DetailSongTable';
+} from './DetailSongTable';
 
-import { SortBy } from '../enhancers/__generated__/SongsQuery';
+import { SortBy } from './SongsContainer/enhancers/__generated__/SongsQuery';
 
 interface HeaderProps {
   isReverse: boolean;
