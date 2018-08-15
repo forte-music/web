@@ -11,7 +11,7 @@ import {
   ConnectionQueryResult,
 } from '../../ConnectionQuery';
 
-export const songsSearchResultFragment = gql`
+export const songSearchResultFragment = gql`
   fragment SongSearchResults on SongConnection {
     pageInfo {
       hasNextPage
@@ -54,7 +54,7 @@ const query = gql`
     }
   }
 
-  ${songsSearchResultFragment}
+  ${songSearchResultFragment}
 `;
 
 export type Result = ConnectionQueryResult<Data, Variables>;

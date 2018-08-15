@@ -7,52 +7,22 @@ import {
 import gql from 'graphql-tag';
 import { Omit } from '../../../utils';
 
+import { albumSearchResultFragment } from '../../AlbumSearchResultsContainer/enhancers/query';
+import { songSearchResultFragment } from '../../SongSearchResultsContainer/enhancers/query';
+
 const query = gql`
   query SearchQuery($query: String!) {
     albums(first: 6, sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }) {
-      pageInfo {
-        hasNextPage
-      }
-
-      edges {
-        node {
-          id
-          artworkUrl
-          name
-          artist {
-            id
-            name
-          }
-
-          songs {
-            id
-          }
-        }
-      }
+      ...AlbumSearchResults
     }
 
     songs(first: 10, sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }) {
-      pageInfo {
-        hasNextPage
-      }
-
-      edges {
-        node {
-          id
-          name
-          album {
-            id
-            name
-          }
-          artists {
-            id
-            name
-          }
-          duration
-        }
-      }
+      ...SongSearchResults
     }
   }
+
+  ${albumSearchResultFragment}
+  ${songSearchResultFragment}
 `;
 
 export const SearchQuery = (
