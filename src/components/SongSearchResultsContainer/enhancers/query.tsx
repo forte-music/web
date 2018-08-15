@@ -38,11 +38,17 @@ export const songsSearchResultFragment = gql`
 `;
 
 const query = gql`
-  query SongResultsQuery($first: Int!, $query: String!, $cursor: String) {
+  query SongResultsQuery(
+    $first: Int!
+    $query: String!
+    $cursor: String
+    $sortBy: SortBy!
+    $isReverse: Boolean!
+  ) {
     songs(
       first: $first
       after: $cursor
-      sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }
+      sort: { filter: $query, sortBy: $sortBy, reverse: $isReverse }
     ) @connection {
       ...SongSearchResults
     }
