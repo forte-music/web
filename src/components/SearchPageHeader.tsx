@@ -27,8 +27,3 @@ export const SearchPageHeader = (props: Props) => (
     </SearchHeaderContainer>
   </HeaderContainer>
 );
-
-// TODO: Load More Results
-// TODO: Artists
-
-// TODO: Refactor mappings
