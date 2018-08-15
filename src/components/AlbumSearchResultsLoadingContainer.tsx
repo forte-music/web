@@ -1,12 +1,11 @@
 import React from 'react';
 import {
-  ArtworkGrid,
   EmptyResult,
   SearchResultTypeContainer,
   SearchResultTypeHeader,
 } from './styled/search';
 
-import { Album, AlbumInfo } from './AlbumsContainer/components/AlbumInfo';
+import { Album } from './AlbumsContainer/components/AlbumInfo';
 import { LinkStyled } from './LinkStyled';
 
 interface Props {
@@ -15,9 +14,11 @@ interface Props {
 
   // Albums which were found. Undefined when initially loading.
   albums?: Album[];
+
+  children: (albums: Album[]) => React.ReactNode;
 }
 
-export const AlbumSearchResults = (props: Props) => (
+export const AlbumSearchResultsLoadingContainer = (props: Props) => (
   <SearchResultTypeContainer>
     <SearchResultTypeHeader>
       <LinkStyled to={`/search/${props.query}/albums`}>Albums</LinkStyled>
@@ -25,11 +26,7 @@ export const AlbumSearchResults = (props: Props) => (
 
     {props.albums ? (
       props.albums.length ? (
-        <ArtworkGrid>
-          {props.albums.map((album, index) => (
-            <AlbumInfo key={index} album={album} />
-          ))}
-        </ArtworkGrid>
+        props.children(props.albums)
       ) : (
         <EmptyResult>No albums found</EmptyResult>
       )
@@ -38,5 +35,3 @@ export const AlbumSearchResults = (props: Props) => (
     )}
   </SearchResultTypeContainer>
 );
-
-// TODO: Loading More

@@ -51,7 +51,7 @@ export const Search = (props: Props) => (
               exact
               path={'/search/:query/albums'}
               render={() => (
-                <AlbumSearchResultsContainer query={debouncedQuery} />
+                <AlbumSearchResultsContainer loadMore query={debouncedQuery} />
               )}
             />
 

@@ -8,7 +8,7 @@ interface Props {
 
 export const AllSearchResults = (props: Props) => (
   <React.Fragment>
-    <AlbumSearchResultsContainer query={props.query} />
+    <AlbumSearchResultsContainer loadMore={false} query={props.query} />
     <SongSearchResultsContainer loadMore={false} query={props.query} />
   </React.Fragment>
 );

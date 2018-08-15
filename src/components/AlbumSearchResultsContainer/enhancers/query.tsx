@@ -1,11 +1,15 @@
 import React from 'react';
-import { Query, QueryProps } from 'react-apollo';
 import {
   AlbumResultsQuery as Data,
   AlbumResultsQueryVariables as Variables,
 } from './__generated__/AlbumResultsQuery';
 import gql from 'graphql-tag';
 import { Omit } from '../../../utils';
+import {
+  ConnectionQuery,
+  ConnectionQueryProps,
+  ConnectionQueryResult,
+} from '../../ConnectionQuery';
 
 export const albumSearchResultFragment = gql`
   fragment AlbumSearchResults on AlbumConnection {
@@ -31,8 +35,12 @@ export const albumSearchResultFragment = gql`
 `;
 
 const query = gql`
-  query AlbumResultsQuery($query: String!) {
-    albums(first: 6, sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }) {
+  query AlbumResultsQuery($cursor: String, $query: String!, $first: Int!) {
+    albums(
+      first: $first
+      after: $cursor
+      sort: { filter: $query, sortBy: LEXICOGRAPHICALLY }
+    ) @connection {
       ...AlbumSearchResults
     }
   }
@@ -40,6 +48,8 @@ const query = gql`
   ${albumSearchResultFragment}
 `;
 
+export type Result = ConnectionQueryResult<Data, Variables>;
+
 export const AlbumsQuery = (
-  props: Omit<QueryProps<Data, Variables>, 'query'>
-) => <Query query={query} {...props} />;
+  props: Omit<ConnectionQueryProps<Data, Variables>, 'query'>
+) => <ConnectionQuery query={query} children={props.children} {...props} />;

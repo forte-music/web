@@ -14,8 +14,7 @@ interface Props {
   // page.
   loadMore: boolean;
 
-  // The query which the header link navigates and the query used to fetch
-  // songs.
+  // The query which the header link navigates to and used to fetch songs.
   query: string;
 }
 
@@ -37,7 +36,9 @@ export const SongSearchResultsContainer = (props: Props) => (
               : undefined;
 
           const hasMore =
-            !!result.data && result.data.songs.pageInfo.hasNextPage;
+            !result.loading &&
+            !!result.data &&
+            result.data.songs.pageInfo.hasNextPage;
 
           return (
             <ReduxContainer currentQuery={props.query} songs={songs}>
