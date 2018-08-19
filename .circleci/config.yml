@@ -42,54 +42,6 @@ jobs:
           name: Run Tests
           command: yarn test --coverage
 
-  deploy_surge:
-    docker:
-      - image: node:9.3.0
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - dependencies-
-
-      - run:
-          name: Install Deps
-          command: yarn install
-
-      - run:
-          name: Build
-          environment:
-            REACT_APP_MOCK_RESOLVER: true
-          command: yarn build
-
-      - run:
-          name: Copy Index File
-          command: cp build/index.html build/200.html
-
-      - run:
-          name: Deploy to Surge
-          command: yarn surge --project ./build --domain forte.surge.sh
-
-  build_artifacts:
-    docker:
-      - image: node:9.3.0
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - dependencies-
-
-      - run:
-          name: Install Deps
-          command: yarn install
-
       - run:
           name: Build
           command: yarn build
@@ -121,22 +73,50 @@ jobs:
             FILE_NAME=$([ -z "$CIRCLE_TAG" ] && echo "$CIRCLE_BRANCH" || echo "$CIRCLE_TAG")
             aws s3 cp ./forte-web.tar.gz "s3://forte-web-artifacts/${FILE_NAME}.tar.gz"
 
+  deploy_surge:
+    docker:
+      - image: node:9.3.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-
+
+      - run:
+          name: Install Deps
+          command: yarn install
+
+      - run:
+          name: Build
+          environment:
+            REACT_APP_MOCK_RESOLVER: true
+          command: yarn build
+
+      - run:
+          name: Copy Index File
+          command: cp build/index.html build/200.html
+
+      - run:
+          name: Deploy to Surge
+          command: yarn surge --project ./build --domain forte.surge.sh
+
 workflows:
   version: 2
   test:
     jobs:
       - test
+
+      - deploy_artifacts:
+          requires:
+            - test
+
       - deploy_surge:
           requires:
             - test
           filters:
             branches:
               only: master
-
-      - build_artifacts:
-          requires:
-            - test
-
-      - deploy_artifacts:
-          requires:
-            - build_artifacts
