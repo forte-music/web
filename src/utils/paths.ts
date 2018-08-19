@@ -11,8 +11,11 @@ export const albumPath = (id: string) => `${albumsPath}/${id}`;
 
 export const homePath = `/home`;
 export const queuePath = `/queue`;
-export const searchPath = `/search`;
+
 export const withIdPathParam = ':id';
+
+export const searchPath = (query: string) => `/search/${query}`;
+export const optionalParam = (param: string) => `:${param}?`;
 
 export interface WithIdParams {
   id: string;
@@ -21,3 +24,11 @@ export interface WithIdParams {
 export const withIdFromProps = (f: (id: string) => React.ReactNode) => (
   props: RouteComponentProps<WithIdParams>
 ) => f(props.match.params.id);
+
+export interface WithQueryParam {
+  query?: string;
+}
+
+export const withQueryFromProps = (
+  f: (props: RouteComponentProps<WithQueryParam>) => React.ReactNode
+) => (props: RouteComponentProps<WithQueryParam>) => f(props);

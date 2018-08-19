@@ -13,6 +13,7 @@
     "@types/enzyme": "^3.1.10",
     "@types/graphql": "^0.13.0",
     "@types/jest": "^23.1.0",
+    "@types/lodash": "^4.14.116",
     "@types/react-dom": "^16.0.6",
     "@types/react-redux": "^6.0.2",
     "@types/react-router-dom": "^4.2.7",
@@ -50,6 +51,7 @@
     "isomorphic-fetch": "^2.2.1",
     "jest": "^23.1.0",
     "jest-enzyme": "^6.0.1",
+    "lodash": "^4.17.10",
     "object-assign": "4.1.1",
     "polished": "^1.9.3",
     "prettier": "1.9.2",
@@ -92,17 +94,14 @@
   "scripts": {
     "fix-style": "prettier --write $npm_package_config_prettierFiles",
     "check-all": "yarn query-codegen && yarn lint && CI=true yarn test",
-    "storybook":
-      "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
+    "storybook": "REACT_APP_MOCK_RESOLVER=true start-storybook -p 9001 -c config/storybook",
     "start-mock": "REACT_APP_MOCK_RESOLVER=true node scripts/start.js",
     "start": "node scripts/start.js",
     "build": "yarn query-codegen && node scripts/build.js",
     "test": "node scripts/test.js",
     "lint": "yarn tsc && yarn check-style && yarn tslint",
     "tslint": "tslint --project .",
-    "check-style":
-      "prettier --list-different $npm_package_config_prettierFiles",
-    "query-codegen":
-      "apollo codegen:generate --schema node_modules/@forte-music/schema/schema.json --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
+    "check-style": "prettier --list-different $npm_package_config_prettierFiles",
+    "query-codegen": "apollo codegen:generate --schema node_modules/@forte-music/schema/schema.json --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
   }
 }

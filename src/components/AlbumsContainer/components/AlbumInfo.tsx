@@ -10,7 +10,7 @@ import { ArtistLink, Artist as ArtistLinkArtist } from '../../ArtistLink';
 // TODO: Click Region
 // TODO: Disable Draggable
 
-interface Album extends PlaybackAlbumArtworkAlbum, AlbumLinkAlbum {
+export interface Album extends PlaybackAlbumArtworkAlbum, AlbumLinkAlbum {
   artist: ArtistLinkArtist;
 }
 

@@ -23,7 +23,7 @@ export const Sidebar = (props: Props) => (
     <SidebarLink to={songsPath}>Songs</SidebarLink>
     <SidebarLink to={artistsPath}>Artists</SidebarLink>
     <SidebarLink to={albumsPath}>Albums</SidebarLink>
-    <SidebarLink to={searchPath}>Search</SidebarLink>
+    <SidebarLink to={searchPath('')}>Search</SidebarLink>
   </aside>
 );
 
