@@ -4,7 +4,7 @@ import { HeaderContainer } from './styled/HeaderContainer';
 import { SearchHeaderContainer, SearchInput } from './styled/search';
 
 interface Props {
-  // The query currently displayed in the search field.
+  // Query currently displayed in the search field.
   query: string;
 
   // Called when typing happens in the search field.
@@ -15,6 +15,8 @@ interface Props {
   updateResultsNow: () => void;
 }
 
+// Presentational component handling the shared header of search pages.
+// Contains the text field where a query is entered.
 export const SearchPageHeader = (props: Props) => (
   <HeaderContainer>
     <SearchHeaderContainer>

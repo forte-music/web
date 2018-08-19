@@ -8,6 +8,7 @@ interface Props {
   placeholder?: string;
 }
 
+// Text input focused on component mount.
 export class FocusedTextInput extends React.Component<Props> {
   private element: HTMLInputElement | null = null;
 

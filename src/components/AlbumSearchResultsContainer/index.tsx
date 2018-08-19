@@ -13,6 +13,7 @@ interface Props {
   query: string;
 }
 
+// Fetches data and renders album results of search results pages.
 export const AlbumSearchResultsContainer = (props: Props) => (
   <AlbumsQuery
     variables={{ query: props.query, first: props.loadMore ? 30 : 6 }}

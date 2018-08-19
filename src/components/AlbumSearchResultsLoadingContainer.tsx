@@ -18,6 +18,9 @@ interface Props {
   children: (albums: Album[]) => React.ReactNode;
 }
 
+// Renders header for album search results. Handles the cases when `albums` is
+// undefined or an empty array. Calls the `children` function when neither is
+// the case.
 export const AlbumSearchResultsLoadingContainer = (props: Props) => (
   <SearchResultTypeContainer>
     <SearchResultTypeHeader>

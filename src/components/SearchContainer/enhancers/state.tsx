@@ -36,6 +36,13 @@ interface State {
   debouncedQuery: string;
 }
 
+// Keeps track of the query string. The query passed to children is updated
+// when the input props change or setQuery is called. `debouncedQuery` is
+// updated when any of the following happen:
+// * `debounceMs` milliseconds after the last call to `setQuery` pass
+// * `updateDebouncedQueryNow` is called
+// * the input query prop changes
+// `setDebouncedQuery` is called in the first two of these cases.
 export class SearchContainerState extends React.Component<Props, State> {
   constructor(props: Props) {
     super(props);

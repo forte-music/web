@@ -17,6 +17,9 @@ interface Props {
   children: (songs: Song[]) => React.ReactNode;
 }
 
+// he header for song search results. Handles the cases when `songs` is
+// undefined or an empty array. Calls the `children` function when `songs` is
+// not undefined.
 export const SongSearchResultsLoadingContainer = (props: Props) => (
   <SearchResultTypeContainer>
     <SearchResultTypeHeader>

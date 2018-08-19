@@ -18,6 +18,7 @@ interface Props {
   query: string;
 }
 
+// Fetches data and renders song results of search results pages.
 export const SongSearchResultsContainer = (props: Props) => (
   <SongsContainerState sortBy={SortBy.LEXICOGRAPHICALLY} isReverse={false}>
     {({ isReverse, setReverse, sortBy, setSortBy }) => (

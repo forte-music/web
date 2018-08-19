@@ -17,6 +17,8 @@ interface Props {
   setQuery: (newQuery: string) => void;
 }
 
+// Top level search page. Handles getting the query from the url and text input
+// and fetching then rendering the appropriate search results.
 export const Search = (props: Props) => (
   <SearchContainerState
     query={props.query}
