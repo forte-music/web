@@ -42,7 +42,7 @@ jobs:
           name: Run Tests
           command: yarn test --coverage
 
-  deploy:
+  deploy_surge:
     docker:
       - image: node:9.3.0
 
@@ -73,14 +73,70 @@ jobs:
           name: Deploy to Surge
           command: yarn surge --project ./build --domain forte.surge.sh
 
+  build_artifacts:
+    docker:
+      - image: node:9.3.0
+
+    steps:
+      - checkout
+
+      - restore_cache:
+          keys:
+            - dependencies-{{ checksum "package.json" }}
+            # fallback to using the latest cache if no exact match is found
+            - dependencies-
+
+      - run:
+          name: Install Deps
+          command: yarn install
+
+      - run:
+          name: Build
+          command: yarn build
+
+      - run:
+          name: Remove Mock Media Files
+          command: rm -rf build/music
+
+      - run:
+          name: Compress Build Artifacts
+          command: tar czvf forte-web.tar.gz -C build .
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./forte-web.tar.gz
+
+  deploy_artifacts:
+    docker:
+      - image: garland/aws-cli-docker:1.15.47
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Upload to S3
+          command: |
+            FILE_NAME=$([ -z "$CIRCLE_TAG" ] && echo "$CIRCLE_BRANCH" || echo "$CIRCLE_TAG")
+            aws s3 cp ./forte-web.tar.gz "s3://forte-web-artifacts/${FILE_NAME}.tar.gz"
+
 workflows:
   version: 2
   test:
     jobs:
       - test
-      - deploy:
+      - deploy_surge:
           requires:
             - test
           filters:
             branches:
               only: master
+
+      - build_artifacts:
+          requires:
+            - test
+
+      - deploy_artifacts:
+          requires:
+            - build_artifacts
