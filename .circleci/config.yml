@@ -42,7 +42,38 @@ jobs:
           name: Run Tests
           command: yarn test --coverage
 
-  deploy:
+      - run:
+          name: Build
+          command: yarn build
+
+      - run:
+          name: Remove Mock Media Files
+          command: rm -rf build/music
+
+      - run:
+          name: Compress Build Artifacts
+          command: tar czvf forte-web.tar.gz -C build .
+
+      - persist_to_workspace:
+          root: .
+          paths:
+            - ./forte-web.tar.gz
+
+  deploy_artifacts:
+    docker:
+      - image: garland/aws-cli-docker:1.15.47
+
+    steps:
+      - attach_workspace:
+          at: .
+
+      - run:
+          name: Upload to S3
+          command: |
+            FOLDER_NAME=$([ -z "$CIRCLE_TAG" ] && echo "$CIRCLE_BRANCH" || echo "$CIRCLE_TAG")
+            aws s3 cp ./forte-web.tar.gz "s3://forte-web-artifacts/${FOLDER_NAME}/forte-web.tar.gz"
+
+  deploy_surge:
     docker:
       - image: node:9.3.0
 
@@ -78,7 +109,12 @@ workflows:
   test:
     jobs:
       - test
-      - deploy:
+
+      - deploy_artifacts:
+          requires:
+            - test
+
+      - deploy_surge:
           requires:
             - test
           filters:
