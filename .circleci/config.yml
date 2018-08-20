@@ -70,8 +70,8 @@ jobs:
       - run:
           name: Upload to S3
           command: |
-            FILE_NAME=$([ -z "$CIRCLE_TAG" ] && echo "$CIRCLE_BRANCH" || echo "$CIRCLE_TAG")
-            aws s3 cp ./forte-web.tar.gz "s3://forte-web-artifacts/${FILE_NAME}.tar.gz"
+            FOLDER_NAME=$([ -z "$CIRCLE_TAG" ] && echo "$CIRCLE_BRANCH" || echo "$CIRCLE_TAG")
+            aws s3 cp ./forte-web.tar.gz "s3://forte-web-artifacts/${FOLDER_NAME}/forte-web.tar.gz"
 
   deploy_surge:
     docker:
