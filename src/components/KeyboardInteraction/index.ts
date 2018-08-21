@@ -32,12 +32,16 @@ class KeyboardInteractionInner extends Component<Props> {
     switch (e.code) {
       case 'ArrowLeft':
       case 'KeyH':
-        this.props.previousSong();
+        if (!e.altKey){
+            this.props.previousSong();
+        }
         break;
 
       case 'ArrowRight':
       case 'KeyL':
-        this.props.nextSong();
+        if (!e.altKey){
+            this.props.nextSong();
+        }
         break;
 
       case 'Space':
