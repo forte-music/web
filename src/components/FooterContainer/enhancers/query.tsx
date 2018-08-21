@@ -13,7 +13,6 @@ const query = gql`
   query FooterQuery($songId: ID!) {
     song(id: $songId) {
       id
-      streamUrl
       name
       duration
 
