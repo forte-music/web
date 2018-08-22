@@ -47,10 +47,6 @@ jobs:
           command: yarn build
 
       - run:
-          name: Remove Mock Media Files
-          command: rm -rf build/music
-
-      - run:
           name: Compress Build Artifacts
           command: tar czvf forte-web.tar.gz -C build .
 
