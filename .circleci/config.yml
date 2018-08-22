@@ -115,7 +115,8 @@ workflows:
             # pull/<pull request number>. If this changes, our builds will fail
             # (without leaking our secrets) since secrets aren't exposed to PR
             # builds.
-            only: /^(?!pull\/).*$/
+            branches:
+              only: /^(?!pull\/).*$/
 
       - deploy_surge:
           requires:
