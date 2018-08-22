@@ -29,19 +29,19 @@ class KeyboardInteractionInner extends Component<Props> {
       return; // Do nothing if the event was already processed
     }
 
+    if (e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) {
+      return;
+    }
+
     switch (e.code) {
       case 'ArrowLeft':
       case 'KeyH':
-        if (!e.altKey){
-            this.props.previousSong();
-        }
+        this.props.previousSong();
         break;
 
       case 'ArrowRight':
       case 'KeyL':
-        if (!e.altKey){
-            this.props.nextSong();
-        }
+        this.props.nextSong();
         break;
 
       case 'Space':
