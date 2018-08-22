@@ -5,7 +5,8 @@ import Title from '../../Title';
 import { AlbumInfo } from './AlbumInfo';
 import { PositionedHeading } from '../../styled/PositionedHeading';
 import { Container } from '../../Container';
-import { ArtworkGridContents } from '../../styled/ArtworkGridContents';
+import { ArtworkGrid } from '../../styled/search';
+import { Contents } from '../../styled/Contents';
 
 import { AlbumsQuery_albums as Albums } from '../enhancers/__generated__/AlbumsQuery';
 
@@ -21,24 +22,26 @@ export const AlbumsPage = ({ albums, fetchMore }: Props) => (
     <Container>
       <AlbumsHeading>Albums</AlbumsHeading>
 
-      <ArtworkGridContents>
-        {albums &&
-          albums.edges.map(({ node }) => (
-            <AlbumInfo key={node.id} album={node} />
-          ))}
-        <Observer
-          key={'final'}
-          onChange={inView => {
-            if (!inView) {
-              return;
-            }
+      <Contents>
+        <ArtworkGrid>
+          {albums &&
+            albums.edges.map(({ node }) => (
+              <AlbumInfo key={node.id} album={node} />
+            ))}
+          <Observer
+            key={'final'}
+            onChange={inView => {
+              if (!inView) {
+                return;
+              }
 
-            fetchMore();
-          }}
-        >
-          <div />
-        </Observer>
-      </ArtworkGridContents>
+              fetchMore();
+            }}
+          >
+            <div />
+          </Observer>
+        </ArtworkGrid>
+      </Contents>
     </Container>
   </div>
 );
