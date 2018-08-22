@@ -1,15 +1,7 @@
 import styled from '../../styled-components';
-import { StyledComponentClass } from 'styled-components';
-import { Theme } from '../../theme';
 
-import { artworkGrid } from '../../styled-mixins/artworkGrid';
 import { Container } from '../Container';
 import { FocusedTextInput } from '../FocusedTextInput';
-
-// @ts-ignore
-export const ArtworkGrid: StyledComponentClass<{}, Theme> = styled.div`
-  ${artworkGrid};
-`;
 
 const placeholderColor = '#757575';
 const focusedTextColor = '#ffffff';

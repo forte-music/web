@@ -1,9 +1,9 @@
 import React from 'react';
-import Observer from 'react-intersection-observer';
 import { AlbumsQuery, Result } from './enhancers/query';
 import { AlbumSearchResultsLoadingContainer } from '../AlbumSearchResultsLoadingContainer';
-import { AlbumInfo } from '../AlbumsContainer/components/AlbumInfo';
-import { ArtworkGrid } from '../styled/search';
+import { ArtworkGrid } from '../styled/artworkGrid';
+import { ArtworkGridLoadMoreSentinel } from '../ArtworkGridLoadMoreSentinel';
+import { ArtworkGridAlbums } from '../ArtworkGridAlbums';
 
 import { calcArtworkPageSize } from '../../styled-mixins/artworkGrid';
 
@@ -34,23 +34,15 @@ export const AlbumSearchResultsContainer = (props: Props) => (
         children={albums => (
           <React.Fragment>
             <ArtworkGrid>
-              {albums.map(album => <AlbumInfo key={album.id} album={album} />)}
+              <ArtworkGridAlbums albums={albums} />
+
               {props.loadMore &&
                 !result.loading &&
                 result.data &&
                 result.data.albums.pageInfo.hasNextPage && (
-                  <Observer
-                    key={'final'}
-                    onChange={inView => {
-                      if (!inView) {
-                        return;
-                      }
-
-                      result.getNextPage();
-                    }}
-                  >
-                    <div />
-                  </Observer>
+                  <ArtworkGridLoadMoreSentinel
+                    onStartLoading={result.getNextPage}
+                  />
                 )}
             </ArtworkGrid>
           </React.Fragment>
@@ -59,5 +51,3 @@ export const AlbumSearchResultsContainer = (props: Props) => (
     )}
   </AlbumsQuery>
 );
-
-// TODO: Share Loading More Logic With AlbumsPage

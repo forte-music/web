@@ -10,7 +10,7 @@ import { Pluralize } from './Pluralize';
 import { HeaderContainer } from './styled/HeaderContainer';
 import { Heading } from './styled/Heading';
 import { Contents } from './styled/Contents';
-import { ArtworkGrid } from './styled/search';
+import { ArtworkGrid } from './styled/artworkGrid';
 
 import { ArtistQuery_artist as Artist } from './ArtistContainer/enhancers/__generated__/ArtistQuery';
 
