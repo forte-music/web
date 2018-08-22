@@ -5,6 +5,8 @@ import { AlbumSearchResultsLoadingContainer } from '../AlbumSearchResultsLoading
 import { AlbumInfo } from '../AlbumsContainer/components/AlbumInfo';
 import { ArtworkGrid } from '../styled/search';
 
+import { calcArtworkPageSize } from '../../styled-mixins/artworkGrid';
+
 interface Props {
   // Whether or not to load more items when scrolled to the bottom of the page.
   loadMore: boolean;
@@ -16,7 +18,10 @@ interface Props {
 // Fetches data and renders album results of search results pages.
 export const AlbumSearchResultsContainer = (props: Props) => (
   <AlbumsQuery
-    variables={{ query: props.query, first: props.loadMore ? 30 : 6 }}
+    variables={{
+      query: props.query,
+      first: props.loadMore ? calcArtworkPageSize() : 6,
+    }}
   >
     {(result: Result) => (
       <AlbumSearchResultsLoadingContainer
