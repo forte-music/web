@@ -110,6 +110,13 @@ workflows:
           requires:
             - test
 
+          filters:
+            # Disable on PR builds. Pull Request builds have branch names of
+            # pull/<pull request number>. If this changes, our builds will fail
+            # (without leaking our secrets) since secrets aren't exposed to PR
+            # builds.
+            only: /^(?!pull\/).*$/
+
       - deploy_surge:
           requires:
             - test
