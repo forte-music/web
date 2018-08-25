@@ -47,10 +47,6 @@ jobs:
           command: yarn build
 
       - run:
-          name: Remove Mock Media Files
-          command: rm -rf build/music
-
-      - run:
           name: Compress Build Artifacts
           command: tar czvf forte-web.tar.gz -C build .
 
@@ -113,6 +109,14 @@ workflows:
       - deploy_artifacts:
           requires:
             - test
+
+          filters:
+            # Disable on PR builds. Pull Request builds have branch names of
+            # pull/<pull request number>. If this changes, our builds will fail
+            # (without leaking our secrets) since secrets aren't exposed to PR
+            # builds.
+            branches:
+              only: /^(?!pull\/).*$/
 
       - deploy_surge:
           requires:
