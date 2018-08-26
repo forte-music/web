@@ -2,8 +2,8 @@ import React from 'react';
 import { AlbumsQuery, Result } from './enhancers/query';
 import { AlbumSearchResultsLoadingContainer } from '../AlbumSearchResultsLoadingContainer';
 import { ArtworkGrid } from '../styled/artworkGrid';
-import { ArtworkGridLoadMoreSentinel } from '../ArtworkGridLoadMoreSentinel';
-import { ArtworkGridAlbums } from '../ArtworkGridAlbums';
+import { ArtworkGridOnView } from '../ArtworkGridOnView';
+import { AlbumGrid } from '../AlbumGrid';
 
 import { calcArtworkPageSize } from '../../styled-mixins/artworkGrid';
 
@@ -34,15 +34,13 @@ export const AlbumSearchResultsContainer = (props: Props) => (
         children={albums => (
           <React.Fragment>
             <ArtworkGrid>
-              <ArtworkGridAlbums albums={albums} />
+              <AlbumGrid albums={albums} />
 
               {props.loadMore &&
                 !result.loading &&
                 result.data &&
                 result.data.albums.pageInfo.hasNextPage && (
-                  <ArtworkGridLoadMoreSentinel
-                    onStartLoading={result.getNextPage}
-                  />
+                  <ArtworkGridOnView onView={result.getNextPage} />
                 )}
             </ArtworkGrid>
           </React.Fragment>

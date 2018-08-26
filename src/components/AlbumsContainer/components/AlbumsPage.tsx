@@ -5,8 +5,8 @@ import { PositionedHeading } from '../../styled/PositionedHeading';
 import { Container } from '../../Container';
 import { ArtworkGrid } from '../../styled/artworkGrid';
 import { Contents } from '../../styled/Contents';
-import { ArtworkGridLoadMoreSentinel } from '../../ArtworkGridLoadMoreSentinel';
-import { ArtworkGridAlbums } from '../../ArtworkGridAlbums';
+import { ArtworkGridOnView } from '../../ArtworkGridOnView';
+import { AlbumGrid } from '../../AlbumGrid';
 
 import { AlbumsQuery_albums as Albums } from '../enhancers/__generated__/AlbumsQuery';
 
@@ -24,10 +24,8 @@ export const AlbumsPage = ({ albums, fetchMore }: Props) => (
 
       <Contents>
         <ArtworkGrid>
-          {albums && (
-            <ArtworkGridAlbums albums={albums.edges.map(edge => edge.node)} />
-          )}
-          <ArtworkGridLoadMoreSentinel onStartLoading={fetchMore} />
+          {albums && <AlbumGrid albums={albums.edges.map(edge => edge.node)} />}
+          <ArtworkGridOnView onView={fetchMore} />
         </ArtworkGrid>
       </Contents>
     </Container>

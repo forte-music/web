@@ -9,7 +9,7 @@ interface Props {
   albums: AlbumInfoAlbum[];
 }
 
-export const ArtworkGridAlbums = (props: Props) => (
+export const AlbumGrid = (props: Props) => (
   <React.Fragment>
     {props.albums.map(album => <AlbumInfo key={album.id} album={album} />)}
   </React.Fragment>
