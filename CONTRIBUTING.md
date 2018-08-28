@@ -47,6 +47,10 @@ Tests are run using [Jest]. Run `yarn test` to start jest. Tests should placed i
 
 CircleCI does a number of [tasks] after your code is pushed. Make sure your code passes before submitting a PR. Many of the same tests run in CircleCI can be run with `yarn check-all`.
 
+## Contributor Agreement
+
+By contributing code to our project in any form, including sending a pull request via Github, a code fragment or patch via private email or public discussion groups, you agree to release your code under the terms of the license that you can find in the LICENSE.md file included in the forte-music/web source distribution.
+
 [jest]: https://jestjs.io/
 [prettier]: https://prettier.io/
 [storybook]: https://storybook.js.org/
