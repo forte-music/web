@@ -23,13 +23,21 @@ interface ActionEnhancedProps {
 
 interface OwnProps {
   checkPlayingFrom: CheckPlayingFromFn;
-  tracks: QueueItemSource[];
+  getTracks: () => Promise<QueueItemSource[]>;
+
+  isLoading: boolean;
+  setLoading: (newLoading: boolean) => void;
 }
 
 const getPlayingState = (
   queue: QueueState,
+  isLoading: boolean,
   checkPlaying: CheckPlayingFromFn
 ): PlaybackState => {
+  if (isLoading) {
+    return 'LOADING';
+  }
+
   const activeQueueItem = getPlayingMatching(queue, checkPlaying);
   if (!activeQueueItem) {
     return 'STOPPED';
@@ -42,20 +50,37 @@ const getPlayingState = (
   return 'PAUSED';
 };
 
-export const PlaybackArtworkState = createReduxComponent<
+export const PlaybackArtworkReduxState = createReduxComponent<
   State,
   StateEnhancedProps,
   ActionEnhancedProps,
   OwnProps
 >(
   (state, props) => ({
-    state: getPlayingState(state.queue, props.checkPlayingFrom),
+    state: getPlayingState(
+      state.queue,
+      props.isLoading,
+      props.checkPlayingFrom
+    ),
   }),
   (dispatch: Dispatch<Action>, props) => ({
     onPlaying: () => dispatch(play()),
     onPaused: () => dispatch(pause()),
     onStartPlayback: async () => {
-      startPlayingList(dispatch)(props.tracks);
+      const tracks = await withLoading(props.setLoading, props.getTracks);
+      startPlayingList(dispatch)(tracks);
     },
   })
 );
+
+const withLoading = async <T>(
+  setLoading: (isLoading: boolean) => void,
+  action: () => Promise<T>
+): Promise<T> => {
+  try {
+    setLoading(true);
+    return await action();
+  } finally {
+    setLoading(false);
+  }
+};

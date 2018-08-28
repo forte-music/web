@@ -1,6 +1,6 @@
 import React from 'react';
 
-import PlaybackArtwork from './PlaybackArtworkContainer';
+import { PlaybackArtworkContainer } from './PlaybackArtworkContainer';
 import { AlbumArtwork } from './AlbumArtwork';
 import { AlbumLink } from './AlbumLink';
 
@@ -33,13 +33,13 @@ export const PlaybackAlbumArtwork = ({
   album,
   handlesBackgroundInteraction,
 }: Props) => (
-  <PlaybackArtwork
+  <PlaybackArtworkContainer
     handlesBackgroundInteraction={handlesBackgroundInteraction}
     checkPlayingFrom={isPlayingFromAlbum(album.id)}
-    tracks={getTracks(album)}
+    getTracks={async () => getTracks(album)}
   >
     <AlbumLink album={album}>
       <AlbumArtwork album={album} />
     </AlbumLink>
-  </PlaybackArtwork>
+  </PlaybackArtworkContainer>
 );

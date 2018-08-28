@@ -2,12 +2,13 @@ import React from 'react';
 
 import { QueueItemSource } from '../../redux/state/queue';
 import { PlaybackArtwork } from '../PlaybackArtwork';
-import { PlaybackArtworkState } from './enhancers/redux';
+import { PlaybackArtworkReduxState } from './enhancers/redux';
+import { PlaybackArtworkState } from './enhancers/state';
 import { CheckPlayingFromFn } from '../../redux/selectors/nowPlaying';
 
 export interface Props {
-  // A list of tracks to enqueue when play is pressed.
-  tracks: QueueItemSource[];
+  // Gets a list tracks to enqueue. Called when play is pressed.
+  getTracks: () => Promise<QueueItemSource[]>;
 
   // Used to check whether the currently playing item is from the current list.
   checkPlayingFrom: CheckPlayingFromFn;
@@ -20,23 +21,27 @@ export interface Props {
 
 // A connected playback artwork. It updates its state based on the current
 // playing item and calls a prop when time to play more items.
-const EnhancedComponent = (props: Props) => (
-  <PlaybackArtworkState
-    checkPlayingFrom={props.checkPlayingFrom}
-    tracks={props.tracks}
-  >
-    {({ state, onPlaying, onPaused, onStartPlayback }) => (
-      <PlaybackArtwork
-        state={state}
-        onPlaying={onPlaying}
-        onPaused={onPaused}
-        onStartPlayback={onStartPlayback}
-        handlesBackgroundInteraction={props.handlesBackgroundInteraction}
+export const PlaybackArtworkContainer = (props: Props) => (
+  <PlaybackArtworkState>
+    {state => (
+      <PlaybackArtworkReduxState
+        checkPlayingFrom={props.checkPlayingFrom}
+        getTracks={props.getTracks}
+        isLoading={state.isLoading}
+        setLoading={state.setLoading}
       >
-        {props.children}
-      </PlaybackArtwork>
+        {redux => (
+          <PlaybackArtwork
+            state={redux.state}
+            onPlaying={redux.onPlaying}
+            onPaused={redux.onPaused}
+            onStartPlayback={redux.onStartPlayback}
+            handlesBackgroundInteraction={props.handlesBackgroundInteraction}
+          >
+            {props.children}
+          </PlaybackArtwork>
+        )}
+      </PlaybackArtworkReduxState>
     )}
   </PlaybackArtworkState>
 );
-
-export default EnhancedComponent;
