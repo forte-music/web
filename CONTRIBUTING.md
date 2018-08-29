@@ -6,9 +6,9 @@ Some of the code in this project hasn't been refactored to follow these guidelin
 
 ## CSS
 
-For the most part, CSS is written using [styled-components]. Currently, they are scattered near the presentational components they are used in, in `src/components/styled` and in `src/components`. Going forward, mixins should be placed in `src/styled-mixins`, shared styled components in `src/components/styled` and unshared styled components, near where they are used.
+For the most part, CSS is written using [styled-components]. Currently, they are scattered near the presentational components they are used in, in `src/components/styled` and in `src/components`. Going forward, mixins should be placed in `src/styled-mixins`, shared styled components in `src/components/styled`, and unshared styled components, near where they are used.
 
-Avoid using theming unless needed. They add un-needed complexity for most use cases. If you are using the same component with slightly different styles in two different places, then use themeing.
+Avoid using theming unless needed. It adds un-needed complexity for most use cases. If you are using the same component with slightly different styles in two different places, then use themeing.
 
 ## Redux
 The [render-props] pattern is used to decouple data providing components with components consuming data. We use a wrapper around `connect` (a Higher Order Component from `react-redux`) to use the render props pattern with redux. This wrapper is called `createReduxComponent` and can be found in `src/redux/render.tsx`.
@@ -17,12 +17,15 @@ The [render-props] pattern is used to decouple data providing components with co
 There are a few different types of components.
 
 * Presentational Components
+
   Stateless components which are primarily concerned with how things look. State and actions are passed as props and prop callbacks respectively. These are usually functional components. Usually placed in `src/components/`.
 
 * Enhancer Components
+
   Often handle data fetching and state storage concerns. Usually stored next to the container component they are used in (for example `src/components/AlbumsContainer/enhancers/redux.ts`).
 
 * Container Components
+
   Made up by composing many enhancers and on or more presentational components. Found in folders ending with `Container` (for example `src/components/AlbumsContainer/index.tsx`).
 
 [Here is some more information about the presentational and container component pattern.][container-component]
@@ -39,7 +42,7 @@ There are a few different types of components.
 
 Tests are run using [Jest]. Run `yarn test` to start jest. Tests should placed in files ending with `.test.ts` or `.test.tsx`.
 
-## Linting
+## Lints
 
 [TSLint] is used for linting code. Run `yarn tslint` to run tslint on this project.
 
