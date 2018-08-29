@@ -8,7 +8,7 @@ interface Props {
 
 // Calls a method on props when enters view. Often used to implement
 // infinite scrolling.
-export const ArtworkGridOnView = (props: Props) => (
+export const OnEnterView = (props: Props) => (
   <Observer
     onChange={inView => {
       if (!inView) {

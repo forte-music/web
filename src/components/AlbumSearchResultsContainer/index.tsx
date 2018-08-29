@@ -2,7 +2,7 @@ import React from 'react';
 import { AlbumsQuery, Result } from './enhancers/query';
 import { AlbumSearchResultsLoadingContainer } from '../AlbumSearchResultsLoadingContainer';
 import { ArtworkGrid } from '../styled/artworkGrid';
-import { ArtworkGridOnView } from '../ArtworkGridOnView';
+import { OnEnterView } from '../OnEnterView';
 import { AlbumGrid } from '../AlbumGrid';
 
 import { calcArtworkPageSize } from '../../styled-mixins/artworkGrid';
@@ -40,7 +40,7 @@ export const AlbumSearchResultsContainer = (props: Props) => (
                 !result.loading &&
                 result.data &&
                 result.data.albums.pageInfo.hasNextPage && (
-                  <ArtworkGridOnView onView={result.getNextPage} />
+                  <OnEnterView onView={result.getNextPage} />
                 )}
             </ArtworkGrid>
           </React.Fragment>
