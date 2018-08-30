@@ -10,7 +10,7 @@ import { Pluralize } from './Pluralize';
 import { HeaderContainer } from './styled/HeaderContainer';
 import { Heading } from './styled/Heading';
 import { Contents } from './styled/Contents';
-import { ArtworkGridContents } from './styled/ArtworkGridContents';
+import { ArtworkGrid } from './styled/artworkGrid';
 
 import { ArtistQuery_artist as Artist } from './ArtistContainer/enhancers/__generated__/ArtistQuery';
 
@@ -34,21 +34,23 @@ export const ArtistPage = (props: Props) => (
     </HeaderContainer>
 
     <Container>
-      <ArtworkGridContents>
-        {props.artist.albums.map(album => (
-          <ArtworkTwoInfo
-            key={album.id}
-            artwork={
-              <PlaybackAlbumArtwork
-                handlesBackgroundInteraction={false}
-                album={album}
-              />
-            }
-            lineOne={<AlbumLink album={album} />}
-            lineTwo={album.releaseYear}
-          />
-        ))}
-      </ArtworkGridContents>
+      <Contents>
+        <ArtworkGrid>
+          {props.artist.albums.map(album => (
+            <ArtworkTwoInfo
+              key={album.id}
+              artwork={
+                <PlaybackAlbumArtwork
+                  handlesBackgroundInteraction={false}
+                  album={album}
+                />
+              }
+              lineOne={<AlbumLink album={album} />}
+              lineTwo={album.releaseYear}
+            />
+          ))}
+        </ArtworkGrid>
+      </Contents>
     </Container>
   </div>
 );

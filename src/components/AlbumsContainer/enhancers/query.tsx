@@ -13,8 +13,8 @@ import {
 import { Omit } from '../../../utils';
 
 const query = gql`
-  query AlbumsQuery($cursor: String) {
-    albums(first: 30, after: $cursor) @connection {
+  query AlbumsQuery($cursor: String, $pageSize: Int) {
+    albums(first: $pageSize, after: $cursor) @connection {
       count
       pageInfo {
         hasNextPage
