@@ -3,14 +3,13 @@ import gql from 'graphql-tag';
 
 import {
   ConnectionQuery,
-  ConnectionQueryProps,
   ConnectionQueryResult,
+  ExposedConnectionQueryProps,
 } from '../../ConnectionQuery';
 import {
   AlbumsQuery as Data,
   AlbumsQueryVariables as Variables,
 } from './__generated__/AlbumsQuery';
-import { Omit } from '../../../utils';
 
 const query = gql`
   query AlbumsQuery($cursor: String) {
@@ -45,5 +44,5 @@ const query = gql`
 export type Result = ConnectionQueryResult<Data, Variables>;
 
 export const AlbumsQuery = (
-  props: Omit<ConnectionQueryProps<Data, Variables>, 'query'>
+  props: ExposedConnectionQueryProps<Data, Variables>
 ) => <ConnectionQuery query={query} children={props.children} {...props} />;

@@ -3,14 +3,13 @@ import gql from 'graphql-tag';
 
 import {
   ConnectionQuery,
-  ConnectionQueryProps,
   ConnectionQueryResult,
+  ExposedConnectionQueryProps,
 } from '../../ConnectionQuery';
 import {
   SongsQuery as Data,
   SongsQueryVariables as Variables,
 } from './__generated__/SongsQuery';
-import { Omit } from '../../../utils';
 import { fragment } from '../../SongListContainer/enhancers/query';
 
 const query = gql`
@@ -41,5 +40,5 @@ const query = gql`
 export type Result = ConnectionQueryResult<Data, Variables>;
 
 export const SongsQuery = (
-  props: Omit<ConnectionQueryProps<Data, Variables>, 'query'>
+  props: ExposedConnectionQueryProps<Data, Variables>
 ) => <ConnectionQuery query={query} children={props.children} {...props} />;

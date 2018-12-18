@@ -1,6 +1,6 @@
 import React from 'react';
 import { configure, addDecorator } from '@storybook/react';
-import { RootThemeProvider } from '../../src/components/App/RootThemeProvider';
+import { RootThemeProvider } from '../src/components/App/RootThemeProvider';
 import './styles.css';
 
 const themeDecorator = story => (

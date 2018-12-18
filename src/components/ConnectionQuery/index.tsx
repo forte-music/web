@@ -1,7 +1,7 @@
 // A higher order component for a relay-like cursor, edge, connection based
 // pagination pattern for apollo client.
 import React, { ReactNode } from 'react';
-import { Query, QueryProps, QueryResult } from 'react-apollo';
+import { Query, QueryResult } from 'react-apollo';
 import { Kind } from 'graphql/language';
 
 import {
@@ -11,7 +11,7 @@ import {
   SelectionSetNode,
 } from 'graphql';
 
-import { last, Omit, split } from '../../utils';
+import { last, split } from '../../utils';
 import { Connection } from '@forte-music/mock/models';
 
 type Path = string[];
@@ -110,12 +110,20 @@ interface CursorVariables {
   cursor?: string | null;
 }
 
-export type ConnectionQueryProps<
+export interface ConnectionQueryProps<
   TData extends object,
   TVariables extends CursorVariables
-> = Omit<QueryProps<TData, TVariables>, 'children'> & {
+> extends ExposedConnectionQueryProps<TData, TVariables> {
+  query: DocumentNode;
+}
+
+export interface ExposedConnectionQueryProps<
+  TData extends object,
+  TVariables extends CursorVariables
+> {
   children: (result: ConnectionQueryResult<TData, TVariables>) => ReactNode;
-};
+  variables?: TVariables;
+}
 
 export type ConnectionQueryResult<TData, TVariables> = QueryResult<
   TData,

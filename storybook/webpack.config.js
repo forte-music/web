@@ -1,8 +1,8 @@
-const paths = require('../paths');
+const paths = require('./paths');
 const TsConfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const webpack = require('webpack');
-const getClientEnvironment = require('../env');
+const getClientEnvironment = require('./env');
 
 const env = getClientEnvironment();
 
@@ -15,7 +15,7 @@ module.exports = {
   module: {
     rules: [
       // Process JS with Babel.
-      require('../ts-loader'),
+      require('./ts-loader'),
       {
         test: /\.(js|jsx|mjs)$/,
         include: paths.appSrc,
