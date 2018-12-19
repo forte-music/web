@@ -10,6 +10,7 @@ import SkipBackwards from './SkipBackwards';
 import SkipForwards from './SkipForwards';
 import DefaultCover from './DefaultCover';
 import Chevron from './Chevron';
+import { Fixture } from '../../typings/fixture';
 
 const icons: Array<React.StatelessComponent<any>> = [
   Dots,
@@ -23,7 +24,7 @@ const icons: Array<React.StatelessComponent<any>> = [
   Chevron,
 ];
 
-export default icons.map(Component => {
+export default icons.map((Component): Fixture<{}> => {
   const wrapped = () => (
     <div style={{ width: 160, height: 160, background: 'black' }}>
       <Component />
