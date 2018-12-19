@@ -2,6 +2,3 @@ __generated__
 *.d.ts
 
 !src/typings/*.d.ts
-
-# Prettier removes the export from declare export here.
-src/typings/storybook__addons-storyshots.d.ts
