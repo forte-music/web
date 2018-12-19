@@ -10,7 +10,6 @@ const component = (props: object) => (
 component.displayName = 'Artwork';
 
 export default {
-  name: 'rendered',
   props: {
     alt: 'cover',
     src:

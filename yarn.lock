@@ -1794,7 +1794,7 @@ apollo-cache-control@0.4.0:
     apollo-server-env "2.2.0"
     graphql-extensions "0.4.0"
 
-apollo-cache-inmemory@^1.3.11:
+apollo-cache-inmemory@^1.2.5, apollo-cache-inmemory@^1.3.11:
   version "1.3.11"
   resolved "https://registry.yarnpkg.com/apollo-cache-inmemory/-/apollo-cache-inmemory-1.3.11.tgz#6cb8f24ec812715169f9acbb0b67833f9a19ec90"
   integrity sha512-fSoyjBV5RV57J3i/VHDDB74ZgXc0PFiogheNFHEhC0mL6rg5e/DjTx0Vg+csIBk23gvlzTvV+eypx7Q2NJ+dYg==
@@ -1810,7 +1810,7 @@ apollo-cache@1.1.21, apollo-cache@^1.1.21:
   dependencies:
     apollo-utilities "^1.0.26"
 
-apollo-client@^2.4.7:
+apollo-client@^2.3.5, apollo-client@^2.4.7:
   version "2.4.7"
   resolved "https://registry.yarnpkg.com/apollo-client/-/apollo-client-2.4.7.tgz#b6712fd4c9ba346e3c44cfec7e6868e532b6a957"
   integrity sha512-6aAm+16AFBYZhJF8eKxrup6AbYni01InDiwTfZhMMTP2xaXQWjsQnfaHbI2oE+hd3+AZFy1drkse8RZKghR/WQ==
@@ -1964,6 +1964,13 @@ apollo-link-http@^1.5.4:
   dependencies:
     apollo-link "^1.2.2"
     apollo-link-http-common "^0.2.4"
+
+apollo-link-schema@^1.1.4:
+  version "1.1.4"
+  resolved "https://registry.yarnpkg.com/apollo-link-schema/-/apollo-link-schema-1.1.4.tgz#23877dd4f513a0403cecc561b5a9b7886f2f0a45"
+  integrity sha512-X6fW5ZxG64iOMosejwkdKn6NCVTYsbIO/jvvr2WqqMzUKgU4qzhOfYAFPYpoJf11HO7oRMQj6HRS6rrteisX2A==
+  dependencies:
+    apollo-link "^1.2.6"
 
 apollo-link-state@^0.4.0:
   version "0.4.2"
@@ -6122,7 +6129,7 @@ graphql-upload@^8.0.2:
     http-errors "^1.7.1"
     object-path "^0.11.4"
 
-graphql@0.13.0, graphql@^0.13.0, graphql@^0.13.1:
+graphql@0.13.0, graphql@^0.13.0, graphql@^0.13.1, graphql@^0.13.2:
   version "0.13.0"
   resolved "https://registry.yarnpkg.com/graphql/-/graphql-0.13.0.tgz#d1b44a282279a9ce0a6ec1037329332f4c1079b6"
   integrity sha512-WlO+ZJT9aY3YrBT+H5Kk+eVb3OVVehB9iRD/xqeHdmrrn4AFl5FIcOpfHz/vnBr6Y6JthGMlnFqU8XRnDjSR7A==
@@ -11011,6 +11018,19 @@ react-app-polyfill@^0.1.3:
     raf "3.4.0"
     whatwg-fetch "3.0.0"
 
+react-cosmos-apollo-proxy@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/react-cosmos-apollo-proxy/-/react-cosmos-apollo-proxy-4.6.1.tgz#4fea6251c87d67f03e3f13d4d893a65c12757766"
+  integrity sha1-T+piUch9Z/A+PxPU2JOmXBJ1d2Y=
+  dependencies:
+    apollo-cache-inmemory "^1.2.5"
+    apollo-client "^2.3.5"
+    apollo-link "^1.2.2"
+    apollo-link-http "^1.5.4"
+    graphql "^0.13.2"
+    react-apollo "^2.1.8"
+    react-cosmos-shared "^4.6.1"
+
 react-cosmos-config@^4.6.1:
   version "4.6.1"
   resolved "https://registry.yarnpkg.com/react-cosmos-config/-/react-cosmos-config-4.6.1.tgz#1fc4dbb69fa8243e4a6d58d3deefdf2573dee426"
@@ -11040,6 +11060,23 @@ react-cosmos-playground@^4.6.4:
   version "4.6.4"
   resolved "https://registry.yarnpkg.com/react-cosmos-playground/-/react-cosmos-playground-4.6.4.tgz#8298501995e7004e24af96960734b35c7a96c115"
   integrity sha1-gphQGZXnAE4kr5aWBzSzXHqWwRU=
+
+react-cosmos-redux-proxy@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/react-cosmos-redux-proxy/-/react-cosmos-redux-proxy-4.6.1.tgz#dd2b66a4084f24ee542b0bcdfad2e1bc5cd9774c"
+  integrity sha1-3StmpAhPJO5UKwvN+tLhvFzZd0w=
+  dependencies:
+    lodash.omit "^4.5.0"
+    react-cosmos-shared "^4.6.1"
+    redux "^4.0.0"
+
+react-cosmos-router-proxy@^4.6.1:
+  version "4.6.1"
+  resolved "https://registry.yarnpkg.com/react-cosmos-router-proxy/-/react-cosmos-router-proxy-4.6.1.tgz#40d0ea8d116ed5aa80ddc840fb681a0b62e760e7"
+  integrity sha1-QNDqjRFu1aqA3chA+2gaC2LnYOc=
+  dependencies:
+    react-cosmos-shared "^4.6.1"
+    url "^0.11.0"
 
 react-cosmos-shared@^4.6.1:
   version "4.6.1"
@@ -11093,6 +11130,14 @@ react-cosmos-voyager@^4.6.1:
   dependencies:
     glob "^7.1.1"
     traverse "^0.6.6"
+
+react-cosmos-wrapper-proxy@^1.4.0:
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/react-cosmos-wrapper-proxy/-/react-cosmos-wrapper-proxy-1.4.0.tgz#e4685f1a2a59b85e78c73bad4322a6d439ba3479"
+  integrity sha512-sGYlgzb5cADuTF7iRzSPa+znda23LDo0kh4mdXmmZ4VjonKIo2sIG0SbNCaDwf4t+Y41fg6Z8B3e3BAo/UguJg==
+  dependencies:
+    react "^16.4.0"
+    react-dom "^16.4.0"
 
 react-cosmos@^4.6.4:
   version "4.6.4"
