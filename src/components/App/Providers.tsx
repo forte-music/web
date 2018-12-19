@@ -5,7 +5,7 @@ import { Provider } from 'react-redux';
 import { HashRouter } from 'react-router-dom';
 
 import store from '../../redux/store';
-import client from '../../graphql/client';
+import client from '../../graphql';
 import { RootThemeProvider } from './RootThemeProvider';
 
 export const Providers = ({ children }: { children: ReactNode }) => (
