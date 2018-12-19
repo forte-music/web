@@ -1,11 +1,12 @@
 import React from 'react';
-import Observer from 'react-intersection-observer';
 
 import Title from '../../Title';
-import { AlbumInfo } from './AlbumInfo';
 import { PositionedHeading } from '../../styled/PositionedHeading';
 import { Container } from '../../Container';
-import { ArtworkGridContents } from '../../styled/ArtworkGridContents';
+import { ArtworkGrid } from '../../styled/artworkGrid';
+import { Contents } from '../../styled/Contents';
+import { OnEnterView } from '../../OnEnterView';
+import { AlbumGrid } from '../../AlbumGrid';
 
 import { AlbumsQuery_albums as Albums } from '../enhancers/__generated__/AlbumsQuery';
 
@@ -21,24 +22,12 @@ export const AlbumsPage = ({ albums, fetchMore }: Props) => (
     <Container>
       <AlbumsHeading>Albums</AlbumsHeading>
 
-      <ArtworkGridContents>
-        {albums &&
-          albums.edges.map(({ node }) => (
-            <AlbumInfo key={node.id} album={node} />
-          ))}
-        <Observer
-          key={'final'}
-          onChange={inView => {
-            if (!inView) {
-              return;
-            }
-
-            fetchMore();
-          }}
-        >
-          <div />
-        </Observer>
-      </ArtworkGridContents>
+      <Contents>
+        <ArtworkGrid>
+          {albums && <AlbumGrid albums={albums.edges.map(edge => edge.node)} />}
+          <OnEnterView onView={fetchMore} />
+        </ArtworkGrid>
+      </Contents>
     </Container>
   </div>
 );

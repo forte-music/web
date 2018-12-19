@@ -1,9 +1,11 @@
 import React from 'react';
-import Observer from 'react-intersection-observer';
 import { AlbumsQuery, Result } from './enhancers/query';
 import { AlbumSearchResultsLoadingContainer } from '../AlbumSearchResultsLoadingContainer';
-import { AlbumInfo } from '../AlbumsContainer/components/AlbumInfo';
-import { ArtworkGrid } from '../styled/search';
+import { ArtworkGrid } from '../styled/artworkGrid';
+import { OnEnterView } from '../OnEnterView';
+import { AlbumGrid } from '../AlbumGrid';
+
+import { calcArtworkPageSize } from '../../styled-mixins/artworkGrid';
 
 interface Props {
   // Whether or not to load more items when scrolled to the bottom of the page.
@@ -16,7 +18,10 @@ interface Props {
 // Fetches data and renders album results of search results pages.
 export const AlbumSearchResultsContainer = (props: Props) => (
   <AlbumsQuery
-    variables={{ query: props.query, first: props.loadMore ? 30 : 6 }}
+    variables={{
+      query: props.query,
+      first: props.loadMore ? calcArtworkPageSize() : 6,
+    }}
   >
     {(result: Result) => (
       <AlbumSearchResultsLoadingContainer
@@ -29,23 +34,13 @@ export const AlbumSearchResultsContainer = (props: Props) => (
         children={albums => (
           <React.Fragment>
             <ArtworkGrid>
-              {albums.map(album => <AlbumInfo key={album.id} album={album} />)}
+              <AlbumGrid albums={albums} />
+
               {props.loadMore &&
                 !result.loading &&
                 result.data &&
                 result.data.albums.pageInfo.hasNextPage && (
-                  <Observer
-                    key={'final'}
-                    onChange={inView => {
-                      if (!inView) {
-                        return;
-                      }
-
-                      result.getNextPage();
-                    }}
-                  >
-                    <div />
-                  </Observer>
+                  <OnEnterView onView={result.getNextPage} />
                 )}
             </ArtworkGrid>
           </React.Fragment>
@@ -54,5 +49,3 @@ export const AlbumSearchResultsContainer = (props: Props) => (
     )}
   </AlbumsQuery>
 );
-
-// TODO: Share Loading More Logic With AlbumsPage

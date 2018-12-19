@@ -29,6 +29,10 @@ class KeyboardInteractionInner extends Component<Props> {
       return; // Do nothing if the event was already processed
     }
 
+    if (e.altKey || e.ctrlKey || e.shiftKey || e.metaKey) {
+      return;
+    }
+
     switch (e.code) {
       case 'ArrowLeft':
       case 'KeyH':

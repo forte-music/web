@@ -1,12 +1,9 @@
 import { StyledComponentClass } from 'styled-components';
 import { Theme } from '../../theme';
-import { Contents } from './Contents';
+import styled from '../../styled-components';
 import { artworkGrid } from '../../styled-mixins/artworkGrid';
 
 // @ts-ignore
-export const ArtworkGridContents: StyledComponentClass<
-  {},
-  Theme
-> = Contents.extend`
+export const ArtworkGrid: StyledComponentClass<{}, Theme> = styled.div`
   ${artworkGrid};
 `;
