@@ -1,0 +1,18 @@
+html {
+  height: 100%;
+  background: #ffffff;
+}
+
+body {
+  min-height: calc(100% - 2 * 8px);
+  margin: 8px;
+
+  background: #1b1b1b;
+  box-shadow: #000000 0 0 20px 0;
+  font-family: sans-serif;
+}
+
+#root {
+  width: 100%;
+  height: 100%;
+}

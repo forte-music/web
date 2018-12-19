@@ -1,8 +1,12 @@
 import React from 'react';
+import { storiesOf } from '@storybook/react';
 
 import { Collage } from '.';
 import { Artwork } from '../Artwork';
-import { Fixture } from '../../typings/fixture_types';
+
+storiesOf('Collage', module).add('interactive', () => (
+  <div style={{ width: 300 }}>{collage}</div>
+));
 
 export const collage = (
   <Collage
@@ -32,14 +36,3 @@ export const collage = (
     }
   />
 );
-
-const component = () => <div style={{ width: 300 }}>{collage}</div>;
-
-component.displayName = 'Collage';
-
-const fixture: Fixture<{}> = {
-  name: 'interactive',
-  component,
-};
-
-export default fixture;
