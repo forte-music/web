@@ -40,6 +40,7 @@
     "jest-enzyme": "^6.0.1",
     "prettier": "1.9.2",
     "react-cosmos": "^4.6.4",
+    "react-cosmos-telescope": "^4.6.4",
     "react-display-name": "^0.2.4",
     "react-scripts": "^2.1.1",
     "surge": "^0.20.1",

@@ -1,6 +1,6 @@
 import { ComponentType } from 'react';
 
-export interface Fixture<TProps> {
+export interface Fixtures<TProps> {
   name: string;
   component: ComponentType<any>;
   props?: TProps;
