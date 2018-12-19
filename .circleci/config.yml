@@ -86,10 +86,3 @@ workflows:
             # builds.
             branches:
               only: /^(?!pull\/).*$/
-
-      - deploy_surge:
-          requires:
-            - test
-          filters:
-            branches:
-              only: master
