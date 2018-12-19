@@ -2,7 +2,7 @@ version: 2
 jobs:
   test:
     docker:
-      - image: node:9.3.0
+      - image: node:11
 
     steps:
       - checkout
@@ -36,7 +36,7 @@ jobs:
 
       - run:
           name: Code Style Lint
-          command: yarn check-style
+          command: yarn check-fmt
 
       - run:
           name: Run Tests
@@ -68,37 +68,6 @@ jobs:
           command: |
             FOLDER_NAME=$([ -z "$CIRCLE_TAG" ] && echo "$CIRCLE_BRANCH" || echo "$CIRCLE_TAG")
             aws s3 cp ./forte-web.tar.gz "s3://forte-web-artifacts/${FOLDER_NAME}/forte-web.tar.gz"
-
-  deploy_surge:
-    docker:
-      - image: node:9.3.0
-
-    steps:
-      - checkout
-
-      - restore_cache:
-          keys:
-            - dependencies-{{ checksum "package.json" }}
-            # fallback to using the latest cache if no exact match is found
-            - dependencies-
-
-      - run:
-          name: Install Deps
-          command: yarn install
-
-      - run:
-          name: Build
-          environment:
-            REACT_APP_MOCK_RESOLVER: true
-          command: yarn build
-
-      - run:
-          name: Copy Index File
-          command: cp build/index.html build/200.html
-
-      - run:
-          name: Deploy to Surge
-          command: yarn surge --project ./build --domain forte.surge.sh
 
 workflows:
   version: 2

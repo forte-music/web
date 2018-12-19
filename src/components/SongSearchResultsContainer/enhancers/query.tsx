@@ -4,11 +4,10 @@ import {
   SongResultsQueryVariables as Variables,
 } from './__generated__/SongResultsQuery';
 import gql from 'graphql-tag';
-import { Omit } from '../../../utils';
 import {
   ConnectionQuery,
-  ConnectionQueryProps,
   ConnectionQueryResult,
+  ExposedConnectionQueryProps,
 } from '../../ConnectionQuery';
 
 export const songSearchResultFragment = gql`
@@ -60,5 +59,5 @@ const query = gql`
 export type Result = ConnectionQueryResult<Data, Variables>;
 
 export const SongsQuery = (
-  props: Omit<ConnectionQueryProps<Data, Variables>, 'query'>
+  props: ExposedConnectionQueryProps<Data, Variables>
 ) => <ConnectionQuery query={query} children={props.children} {...props} />;

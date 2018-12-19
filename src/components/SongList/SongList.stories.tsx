@@ -9,7 +9,7 @@ import { SongList } from '.';
 import { DetailRow, Props, DetailRowHeader } from '../DetailSongTable';
 import { mustGet } from '@forte-music/mock/utils';
 
-import client from '../../graphql/client';
+import client from '../../graphql';
 import ConnectedDetailRow from '../SongListContainer/Detail';
 import { genRange } from '../../utils';
 
