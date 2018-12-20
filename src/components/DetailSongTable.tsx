@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '../styled-components';
 import { AlbumLink, Album } from './AlbumLink';
 import { Artist, InlineArtistsList } from './InlineArtistsList';
 import { Column, RowContainer, TableHeader } from './BaseSongTable';
@@ -43,18 +44,18 @@ export interface Song {
   artists: Artist[];
 }
 
-export const SongColumn = Column.extend`
+export const SongColumn = styled(Column)`
   flex: 2;
 `;
 
-export const AlbumColumn = Column.extend`
+export const AlbumColumn = styled(Column)`
   flex: 2;
 `;
 
-export const ArtistsColumn = Column.extend`
+export const ArtistsColumn = styled(Column)`
   flex: 2;
 `;
 
-export const DurationColumn = Column.extend`
+export const DurationColumn = styled(Column)`
   flex: 1;
 `;

@@ -1,10 +1,10 @@
 import { Dispatch } from 'redux';
-import { State } from '../../state';
 import { replaceQueue, skipToPosition, play } from '../queue';
 import { QueueItemSource } from '../../state/queue';
+import { Action } from '..';
 
 // Enqueues and plays a list of items starting at the specified index.
-export const startPlayingList = (dispatch: Dispatch<State>) => (
+export const startPlayingList = (dispatch: Dispatch<Action>) => (
   items: QueueItemSource[],
   startAtIndex: number = 0
 ) => {

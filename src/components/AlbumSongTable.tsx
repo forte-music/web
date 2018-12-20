@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '../styled-components';
 
 import { Column, TableHeader, RowContainer } from './BaseSongTable';
 import { Artist, InlineArtistsList } from './InlineArtistsList';
@@ -51,16 +52,16 @@ interface Song {
   artists: Artist[];
 }
 
-const TrackNumberColumn = Column.extend``;
+const TrackNumberColumn = styled(Column)``;
 
-const NameColumn = Column.extend`
+const NameColumn = styled(Column)`
   flex: 5;
 `;
 
-const ArtistsColumn = Column.extend`
+const ArtistsColumn = styled(Column)`
   flex: 1;
 `;
 
-const DurationColumn = Column.extend`
+const DurationColumn = styled(Column)`
   flex: 1;
 `;

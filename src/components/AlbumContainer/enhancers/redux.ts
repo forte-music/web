@@ -8,6 +8,7 @@ import {
 import { State } from '../../../redux/state';
 import { getTracks } from '../../PlaybackAlbumArtwork';
 import { createReduxComponent } from '../../../redux/render';
+import { Action } from '../../../redux/actions';
 
 interface StateEnhancedProps {
   // The identifier of the currently playing song in this album. Undefined, when
@@ -40,7 +41,7 @@ export const AlbumContainerState = createReduxComponent<
 
     return { currentlyPlayingId: activeQueueItem.songId };
   },
-  (dispatch: Dispatch<State>, props: OwnProps): DispatchProps => ({
+  (dispatch: Dispatch<Action>, props: OwnProps): DispatchProps => ({
     onDoubleClick: (startIndex: number) => {
       const queueSources = getTracks(props.album);
 

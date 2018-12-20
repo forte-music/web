@@ -11,6 +11,8 @@ interface Props {
 
 export const AlbumGrid = (props: Props) => (
   <React.Fragment>
-    {props.albums.map(album => <AlbumInfo key={album.id} album={album} />)}
+    {props.albums.map(album => (
+      <AlbumInfo key={album.id} album={album} />
+    ))}
   </React.Fragment>
 );

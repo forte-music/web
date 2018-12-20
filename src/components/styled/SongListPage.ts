@@ -2,7 +2,7 @@ import { PositionedHeading } from './PositionedHeading';
 import { sizes, withPx } from '../../theme';
 import styled from '../../styled-components';
 
-export const SongListPageHeading = PositionedHeading.extend`
+export const SongListPageHeading = styled(PositionedHeading)`
   margin-left: ${withPx(sizes.medium + sizes.small)};
 `;
 

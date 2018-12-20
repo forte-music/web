@@ -42,10 +42,7 @@ interface HeartContainerProps {
   isLiked: boolean;
 }
 
-const HeartContainer =
-  styled.div <
-  HeartContainerProps >
-  `
+const HeartContainer = styled.div<HeartContainerProps>`
   width: ${props => props.theme.secondaryButtonSize};
 
   & .${svgClassName} {
@@ -56,14 +53,14 @@ const HeartContainer =
   & .${fillPathClassName} {
     transform-origin: center center;
   }
-    
+
   & .${props => !props.isLiked && fillPathClassName} {
     animation-name: ${likeIn};
     animation-duration: 0.15s;
     animation-timing-function: ease-in;
     animation-fill-mode: forwards;
   }
-  
+
   & .${props => props.isLiked && fillPathClassName} {
     /*
     This is a spring-like animation. Real spring animations are really-hard with

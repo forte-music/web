@@ -30,10 +30,12 @@ interface Props<T> {
 type ItemContainer<T> = { loadingRow: false; item: T } | { loadingRow: true };
 
 export function InfiniteSongList<T>(props: Props<T>) {
-  const rows = props.rows.map((item: T): ItemContainer<T> => ({
-    item,
-    loadingRow: false,
-  }));
+  const rows = props.rows.map(
+    (item: T): ItemContainer<T> => ({
+      item,
+      loadingRow: false,
+    })
+  );
 
   if (props.hasMoreRows) {
     rows.push({ loadingRow: true });

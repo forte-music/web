@@ -1,6 +1,6 @@
 import React from 'react';
 import { Mutation, MutationProps } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 
 import {
   ToggleLikeMutation as Data,

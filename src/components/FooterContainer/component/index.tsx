@@ -191,17 +191,16 @@ class Footer extends Component<Props, State> {
 
           {nowPlaying && loading && <LoadingBar />}
 
-          {nowPlaying &&
-            !loading && (
-              <SliderInput
-                min={0}
-                max={duration}
-                value={currentTime}
-                onValueChange={this.onSeek}
-                onStartSliding={pause}
-                onEndSliding={play}
-              />
-            )}
+          {nowPlaying && !loading && (
+            <SliderInput
+              min={0}
+              max={duration}
+              value={currentTime}
+              onValueChange={this.onSeek}
+              onStartSliding={pause}
+              onEndSliding={play}
+            />
+          )}
         </BarsContainer>
 
         <PlayerContainer>

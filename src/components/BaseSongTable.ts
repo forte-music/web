@@ -19,7 +19,7 @@ export const BaseColumnContainer = styled.div`
   padding-right: ${props => props.theme.sizeSmall};
 `;
 
-export const ColumnContainer = BaseColumnContainer.extend`
+export const ColumnContainer = styled(BaseColumnContainer)`
   /* A collection of columns. It's used by both rows and headers. */
   display: flex;
   align-items: center;
@@ -30,7 +30,7 @@ export const ColumnContainer = BaseColumnContainer.extend`
   border-bottom: solid ${tableSeparatorColor};
 `;
 
-export const TableHeader = ColumnContainer.extend`
+export const TableHeader = styled(ColumnContainer)`
   text-transform: uppercase;
   border-bottom-width: 2px;
 `;
@@ -52,10 +52,7 @@ interface ColumnProps {
   isLoading?: boolean;
 }
 
-export const Column =
-  SingleLine.extend <
-  ColumnProps >
-  `
+export const Column = styled(SingleLine)<ColumnProps>`
   margin-left: ${props => props.theme.sizeVeryTiny};
   margin-right: ${props => props.theme.sizeVeryTiny};
   height: auto;
@@ -85,13 +82,10 @@ interface RowContainerProps {
   isActive: boolean;
 }
 
-export const RowContainer =
-  ColumnContainer.extend <
-  RowContainerProps >
-  `
+export const RowContainer = styled(ColumnContainer)<RowContainerProps>`
   border-bottom-width: 1px;
   ${props => props.isActive && `color: ${rowActiveTextColor}`};
-  
+
   &:hover {
     background: ${rowHoverColor};
   }

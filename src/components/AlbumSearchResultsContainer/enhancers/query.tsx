@@ -3,7 +3,7 @@ import {
   AlbumResultsQuery as Data,
   AlbumResultsQueryVariables as Variables,
 } from './__generated__/AlbumResultsQuery';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 import {
   ConnectionQuery,
   ConnectionQueryResult,

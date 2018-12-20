@@ -68,8 +68,10 @@ class KeyboardInteractionInner extends Component<Props> {
   }
 }
 
-const enhancer = connect<{}, Props>(undefined, dispatch =>
-  bindActionCreators({ nextSong, previousSong, togglePlayback }, dispatch)
+const enhancer = connect<{}, Props>(
+  undefined,
+  dispatch =>
+    bindActionCreators({ nextSong, previousSong, togglePlayback }, dispatch)
 );
 
 export const KeyboardInteraction = enhancer(KeyboardInteractionInner);

@@ -70,7 +70,7 @@ export const AlbumPage = (props: Props) => (
   </div>
 );
 
-const AlbumHeaderContents = Contents.extend`
+const AlbumHeaderContents = styled(Contents)`
   display: flex;
   flex-direction: row;
 `;

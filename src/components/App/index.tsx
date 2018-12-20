@@ -71,7 +71,9 @@ export const App = () => (
           <Route
             exact
             path={artistPath(withIdPathParam)}
-            render={withIdFromProps(id => <Artist id={id} />)}
+            render={withIdFromProps(id => (
+              <Artist id={id} />
+            ))}
           />
 
           <Route exact path={albumsPath} render={() => <Albums />} />
@@ -79,7 +81,9 @@ export const App = () => (
           <Route
             exact
             path={albumPath(withIdPathParam)}
-            render={withIdFromProps(id => <Album id={id} />)}
+            render={withIdFromProps(id => (
+              <Album id={id} />
+            ))}
           />
 
           <Route exact path={homePath} />

@@ -85,7 +85,7 @@ const unfilledColor = '#333333';
 const filledColor = '#777777';
 const thumbColor = '#aaaaaa';
 
-const SliderContainer = BaseBarsContainer.extend`
+const SliderContainer = styled(BaseBarsContainer)`
   border-radius: ${withPx(sliderRadius)};
 
   width: ${withPx(sliderWidth)};
@@ -95,7 +95,7 @@ const SliderContainer = BaseBarsContainer.extend`
   margin-right: ${withPx(sizes.small)};
 `;
 
-const VolumeSliderBar = Bar.extend`
+const VolumeSliderBar = styled(Bar)`
   border-top-left-radius: ${withPx(sliderRadius)};
   border-bottom-left-radius: ${withPx(sliderRadius)};
 

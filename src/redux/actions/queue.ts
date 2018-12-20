@@ -67,7 +67,7 @@ export interface SkipPositionAction {
   position: number;
 }
 
-export const skipToPosition = (position: number) => ({
+export const skipToPosition = (position: number): SkipPositionAction => ({
   type: 'SKIP_TO_POSITION',
   position,
 });

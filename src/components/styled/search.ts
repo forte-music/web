@@ -47,6 +47,6 @@ export const EmptyResult = styled.div`
   text-align: center;
 `;
 
-export const SpacedEmptyResult = EmptyResult.extend`
+export const SpacedEmptyResult = styled(EmptyResult)`
   margin-top: ${props => props.theme.sizeSmall};
 `;
