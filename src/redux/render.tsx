@@ -27,7 +27,7 @@ export function createReduxComponent<
 >(
   mapStateToProps: MapStateToPropsParam<TStateProps, TOwnProps, State>,
   mapDispatchToProps: MapDispatchToPropsParam<TDispatchProps, TOwnProps>
-): React.ComponentType<TOwnProps> {
+) {
   // Props passed to the children function.
   type EnhancedProps = TStateProps & TDispatchProps;
 
@@ -35,11 +35,15 @@ export function createReduxComponent<
   type MergedProps = WithChildrenProp<EnhancedProps> & EnhancedProps;
 
   // Component which will be connected with react-redux.
-  const InnerComponent: React.ComponentType<MergedProps> = (
-    props: MergedProps
-  ) => props.children(props);
+  const InnerComponent = (props: MergedProps) => props.children(props);
 
-  const enhancer = connect(
+  const enhancer = connect<
+    TStateProps,
+    TDispatchProps,
+    TOwnProps,
+    MergedProps,
+    State
+  >(
     mapStateToProps,
     mapDispatchToProps,
     (
@@ -52,6 +56,5 @@ export function createReduxComponent<
       })
   );
 
-  // TODO: Fixme
-  return enhancer(InnerComponent as any) as any;
+  return enhancer(InnerComponent);
 }
