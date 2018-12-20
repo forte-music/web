@@ -2,9 +2,9 @@
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/forte-music/web.svg)](https://greenkeeper.io/)
 
-A web interface for streaming music from forte.
-
 [![Build Status][build-status-image]][build-status]
+
+A web interface for streaming music from forte.
 
 ## Quickstart
 
