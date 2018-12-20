@@ -1,5 +1,5 @@
 import React from 'react';
-import { SortBy } from './__generated__/SongsQuery';
+import { SortBy } from '../../../__generated__/globalTypes';
 
 interface State {
   isReverse: boolean;

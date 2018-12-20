@@ -22,6 +22,8 @@ export const calcArtworkPageSize = (): number => {
   const artworkArea = artworkSize * artworkSize;
   const extraAreaMultiplier = 2;
 
-  const artworks = Math.floor(drawingArea / artworkArea * extraAreaMultiplier);
+  const artworks = Math.floor(
+    (drawingArea / artworkArea) * extraAreaMultiplier
+  );
   return artworks;
 };

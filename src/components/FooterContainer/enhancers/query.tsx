@@ -4,7 +4,7 @@ import {
   FooterQueryVariables as Variables,
   FooterQuery_song,
 } from './__generated__/FooterQuery';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 import { Omit } from '../../../utils';
 import { Query, QueryProps } from 'react-apollo';
 

@@ -4,7 +4,7 @@ import {
   AlbumQuery as Data,
   AlbumQueryVariables as Variables,
 } from './__generated__/AlbumQuery';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 import { Omit } from '../../../utils';
 
 const query = gql`

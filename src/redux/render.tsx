@@ -52,5 +52,6 @@ export function createReduxComponent<
       })
   );
 
-  return enhancer(InnerComponent);
+  // TODO: Fixme
+  return enhancer(InnerComponent as any) as any;
 }

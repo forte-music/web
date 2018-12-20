@@ -51,12 +51,12 @@ const MetadataContainer = styled.div`
   min-width: 0;
 `;
 
-const SongTitle = SingleLine.extend`
+const SongTitle = styled(SingleLine)`
   color: ${props => props.theme.footerSongTitleTextColor};
   font-size: ${props => props.theme.fontSizeTiny};
 `;
 
-const SongDetail = SingleLine.extend`
+const SongDetail = styled(SingleLine)`
   color: ${props => props.theme.footerSongDetailTextColor};
   font-size: ${props => props.theme.fontSizeVeryTiny};
   margin-top: ${props => props.theme.sizeVeryTiny};

@@ -7,6 +7,7 @@ import {
 import { startPlayingList } from '../../../redux/actions/creators/queue';
 import { PlayingFromSongs, QueueItemSource } from '../../../redux/state/queue';
 import { createReduxComponent } from '../../../redux/render';
+import { Action } from '../../../redux/actions';
 
 interface StateEnhancedProps {
   activeSongId?: string;
@@ -45,7 +46,7 @@ export const SongsContainerReduxState = createReduxComponent<
 
     return { activeSongId: activeQueueItem.songId };
   },
-  (dispatch: Dispatch<State>, props: OwnProps) => ({
+  (dispatch: Dispatch<Action>, props: OwnProps) => ({
     startPlayingFrom: (index: number) =>
       startPlayingList(dispatch)(getTracks(props.songs), index),
   })

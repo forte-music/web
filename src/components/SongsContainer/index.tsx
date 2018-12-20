@@ -2,7 +2,7 @@ import React from 'react';
 import { SongsPage } from './components/SongsPage';
 import { Result, SongsQuery } from './enhancers/query';
 import { SongsContainerState } from './enhancers/state';
-import { SortBy } from './enhancers/__generated__/SongsQuery';
+import { SortBy } from '../../__generated__/globalTypes';
 import { SongsContainerReduxState } from './enhancers/redux';
 
 export const Songs = () => (

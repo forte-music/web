@@ -8,7 +8,8 @@ import {
   SongColumn,
 } from './DetailSongTable';
 
-import { SortBy } from './SongsContainer/enhancers/__generated__/SongsQuery';
+import styled from '../styled-components';
+import { SortBy } from '../__generated__/globalTypes';
 
 interface HeaderProps {
   isReverse: boolean;
@@ -63,21 +64,18 @@ interface SongColumnSortedProps {
   isReversed: boolean;
 }
 
-const SongColumnSorted =
-  SongColumn.extend <
-  SongColumnSortedProps >
-  `
+const SongColumnSorted = styled(SongColumn)<SongColumnSortedProps>`
   position: relative;
-  
+
   & .${chevronSvgClass} {
     position: absolute;
     top: 0;
     right: 0;
     bottom: 0;
-    
+
     height: 16px;
-    
+
     transform: rotate(${props => (props.isReversed ? -90 : 90)}deg);
     visibility: ${props => (props.isCurrentlySortedBy ? 'visible' : 'hidden')};
   }
-  `;
+`;

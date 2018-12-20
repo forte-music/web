@@ -8,8 +8,8 @@ export const BaseBarsContainer = styled.div`
   height: 10px;
 `;
 
-export const BarsContainer = BaseBarsContainer.extend`
-  background: ${props => shade(0.9, props.theme.contentBackgroundColor)};
+export const BarsContainer = styled(BaseBarsContainer)`
+  background: ${props => shade(0.1, props.theme.contentBackgroundColor)};
 `;
 
 interface BarProps {
@@ -23,22 +23,19 @@ export const BaseBar = styled.div`
   height: 100%;
 `;
 
-export const Bar =
-  BaseBar.extend <
-  BarProps >
-  `
+export const Bar = styled(BaseBar)<BarProps>`
   /* Position the bars on top of each other relative to the bars container. The
    * z-index is source order.
    */
   width: ${props => props.position * 100}%;
 `;
 
-export const PlayedBar = Bar.extend`
-  background: ${props => tint(0.85, props.theme.contentBackgroundColor)};
+export const PlayedBar = styled(Bar)`
+  background: ${props => tint(0.15, props.theme.contentBackgroundColor)};
 `;
 
-export const BufferedBar = Bar.extend`
-  background: ${props => tint(0.95, props.theme.contentBackgroundColor)};
+export const BufferedBar = styled(Bar)`
+  background: ${props => tint(0.05, props.theme.contentBackgroundColor)};
 `;
 
 const semiTransparent = 'rgba(255, 255, 255, 0.2)';
@@ -53,7 +50,7 @@ const loadingBackground = keyframes`
   }
 `;
 
-export const LoadingBar = BaseBar.extend`
+export const LoadingBar = styled(BaseBar)`
   background: ${props => props.theme.contentBackgroundColor};
 
   &:after {

@@ -156,7 +156,10 @@ export const ConnectionQuery = <
             result.data,
             pathToConnectionRoot
           );
-          const { edges, pageInfo: { hasNextPage } } = connectionRoot;
+          const {
+            edges,
+            pageInfo: { hasNextPage },
+          } = connectionRoot;
           if (hasNextPage === undefined) {
             throw new TypeError('hasNextPage missing from pageInfo');
           }

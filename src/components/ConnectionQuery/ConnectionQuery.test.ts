@@ -1,5 +1,5 @@
 import { findPathToDirective } from '.';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 
 // Disable the GQL codegen for this test. Needed because this query isn't
 // executed but tests a few different cases which aren't in our schema.

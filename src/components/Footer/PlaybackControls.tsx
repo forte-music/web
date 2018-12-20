@@ -70,10 +70,7 @@ interface PlaybackControlsContainerProps {
   isDisabled: boolean;
 }
 
-const PrimaryButtonContainer =
-  styled.div <
-  PlaybackControlsContainerProps >
-  `
+const PrimaryButtonContainer = styled.div<PlaybackControlsContainerProps>`
   cursor: pointer;
   margin: 15px;
   border-radius: 50%;
@@ -85,24 +82,18 @@ const PrimaryButtonContainer =
   ${props => props.isDisabled && clickDisabled};
 `;
 
-const SecondaryButtonContainer =
-  styled.div <
-  PlaybackControlsContainerProps >
-  `
+const SecondaryButtonContainer = styled.div<PlaybackControlsContainerProps>`
   cursor: pointer;
   height: ${secondaryButtonSize};
   width: ${secondaryButtonSize};
-  
+
   ${props => props.isDisabled && clickDisabled};
 `;
 
-const PlaybackControlsContainer =
-  styled.div <
-  PlaybackControlsContainerProps >
-  `
+const PlaybackControlsContainer = styled.div<PlaybackControlsContainerProps>`
   display: flex;
   align-items: center;
-  
+
   & ${props => props.isDisabled && `.${pathClass}`} {
     fill: ${props => props.theme.footerButtonDisabledColor};
     stroke: ${props => props.theme.footerButtonDisabledColor};

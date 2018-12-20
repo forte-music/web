@@ -15,8 +15,9 @@ export const join = <T>(input: T[], btwn: T): T[] =>
   );
 
 export const unique = (elems: Array<React.ReactElement<any>>) =>
-  elems.map((e: React.ReactElement<any>, i: number): React.ReactElement<any> =>
-    React.cloneElement(e, { key: i })
+  elems.map(
+    (e: React.ReactElement<any>, i: number): React.ReactElement<any> =>
+      React.cloneElement(e, { key: i })
   );
 
 export const last = <T>(arr: T[]): T | void => arr[arr.length - 1];

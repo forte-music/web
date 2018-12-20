@@ -83,20 +83,19 @@ interface ChildrenContainerOverlayProps {
   handlesBackgroundInteraction: boolean;
 }
 
-const ChildrenContainerOverlay =
-  ChildrenContainer.extend <
-  ChildrenContainerOverlayProps >
-  `
+const ChildrenContainerOverlay = styled(ChildrenContainer)<
+  ChildrenContainerOverlayProps
+>`
   background: ${props => props.theme.playbackOverlayColor};
 
   opacity: 0;
   transition: opacity 0.2s ease-in-out;
-  
+
   cursor: ${props =>
     props.handlesBackgroundInteraction ? 'pointer' : 'initial'};
   pointer-events: ${props =>
     props.handlesBackgroundInteraction ? 'initial' : 'none'};
-  
+
   ${SquareContainer}:hover > & {
     opacity: 1;
   }
@@ -115,10 +114,7 @@ interface ButtonBackdropProps {
   handlesBackgroundInteraction: boolean;
 }
 
-const ButtonBackdrop =
-  styled.div <
-  ButtonBackdropProps >
-  `
+const ButtonBackdrop = styled.div<ButtonBackdropProps>`
   position: absolute;
   bottom: ${buttonMargin};
   right: ${buttonMargin};
@@ -134,23 +130,23 @@ const ButtonBackdrop =
 
   transition: 0.2s transform ease-out, 0.2s background ease-in-out;
   transform: ${props => (props.isActive ? 'scale(1)' : 'scale(0)')};
-  
+
   & .${pathClassName} {
     fill: ${buttonFillColor};
     stroke: ${buttonFillColor};
   }
-  
+
   ${SquareContainer}:hover > & {
     transform: scale(1);
   }
-  
+
   ${SquareContainer}:active > & {
     background: ${props =>
       props.handlesBackgroundInteraction
         ? buttonBackgroundColorActive
         : buttonBackgroundColor};
   }
-  
+
   &:active {
     background: ${buttonBackgroundColorActive};
   }

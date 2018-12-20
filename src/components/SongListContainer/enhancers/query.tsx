@@ -1,6 +1,6 @@
 import React from 'react';
 import { Query, QueryProps } from 'react-apollo';
-import gql from 'graphql-tag';
+import { gql } from 'apollo-boost';
 import {
   SongListRowQuery as Data,
   SongListRowQueryVariables as Variables,

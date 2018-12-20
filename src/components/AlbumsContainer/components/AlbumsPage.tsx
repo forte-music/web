@@ -1,4 +1,5 @@
 import React from 'react';
+import styled from '../../../styled-components';
 
 import Title from '../../Title';
 import { PositionedHeading } from '../../styled/PositionedHeading';
@@ -32,6 +33,6 @@ export const AlbumsPage = ({ albums, fetchMore }: Props) => (
   </div>
 );
 
-const AlbumsHeading = PositionedHeading.extend`
+const AlbumsHeading = styled(PositionedHeading)`
   margin-bottom: 0;
 `;

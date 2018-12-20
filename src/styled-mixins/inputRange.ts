@@ -1,5 +1,5 @@
 import { css } from '../styled-components';
-import { InterpolationValue } from 'styled-components';
+import { FlattenSimpleInterpolation } from 'styled-components';
 
 const trackSelectors = [
   '::-moz-range-track',
@@ -14,7 +14,7 @@ const thumbSelectors = [
 ];
 
 const makeDuplicatorForSelectors = (selectors: string[]) => (
-  interpolated: InterpolationValue[]
+  interpolated: FlattenSimpleInterpolation
 ) => {
   const rules = selectors.map(
     selector =>

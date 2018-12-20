@@ -6,7 +6,7 @@ import { SongList } from '../SongList';
 import { DetailRow, DetailRowHeader } from '../DetailSongTable';
 import { InfiniteDetailSongList } from '../InfiniteDetailSongList';
 
-import { SortBy } from '../SongsContainer/enhancers/__generated__/SongsQuery';
+import { SortBy } from '../../__generated__/globalTypes';
 import { SongsContainerState } from '../SongsContainer/enhancers/state';
 
 interface Props {

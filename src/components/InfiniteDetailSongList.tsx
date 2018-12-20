@@ -4,7 +4,7 @@ import { InfiniteSongList } from './InfiniteSongList';
 import { LoadingRow } from './LoadingRow';
 import { InteractiveDetailTableHeader } from './InteractiveDetailTableHeader';
 
-import { SortBy } from './SongsContainer/enhancers/__generated__/SongsQuery';
+import { SortBy } from '../__generated__/globalTypes';
 
 export interface Props {
   // Songs to display in the list.
