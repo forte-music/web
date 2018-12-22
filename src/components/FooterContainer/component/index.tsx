@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import styled from '../../../styled-components';
-import { songUrlForId as getSongUrlMock } from '@forte-music/mock/audioFiles';
 
 import Audio from '../../Audio';
 import { NowPlaying, NowPlayingContainer } from '../../Footer/NowPlaying';
@@ -174,7 +173,7 @@ class Footer extends Component<Props, State> {
         {nowPlaying && (
           <Audio
             ref={this.onAudioRef}
-            src={getSongUrl(nowPlaying.id)}
+            src={`/files/music/${nowPlaying.id}/raw`}
             playing={playing}
             volume={volume}
             onCurrentTime={this.onCurrentTime}
@@ -245,11 +244,5 @@ const PlayerContainer = styled.div`
     flex: 1;
   }
 `;
-
-const getSongUrlReal = (songId: string) => `/files/music/${songId}/raw`;
-
-const getSongUrl = process.env.REACT_APP_MOCK_RESOLVER
-  ? getSongUrlMock
-  : getSongUrlReal;
 
 export default Footer;

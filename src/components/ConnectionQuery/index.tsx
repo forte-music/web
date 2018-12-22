@@ -3,7 +3,7 @@
 import React, { ReactNode } from 'react';
 import { Query, QueryResult } from 'react-apollo';
 import { Kind } from 'graphql/language';
-
+import { Connection } from '@forte-music/mock';
 import {
   FieldNode,
   DocumentNode,
@@ -12,7 +12,6 @@ import {
 } from 'graphql';
 
 import { last, split } from '../../utils';
-import { Connection } from '@forte-music/mock/models';
 
 type Path = string[];
 

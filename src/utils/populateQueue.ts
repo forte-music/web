@@ -1,4 +1,4 @@
-import { songs } from '@forte-music/mock/models';
+import { songs } from '@forte-music/mock';
 import { replaceQueue } from '../redux/actions';
 import { PlayingFrom } from '../redux/state/queue';
 

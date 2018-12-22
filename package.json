@@ -4,8 +4,6 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
-    "@forte-music/mock": "^0.0.42",
-    "@forte-music/schema": "^0.0.42",
     "apollo": "^2.1.8",
     "apollo-boost": "^0.1.23",
     "graphql": "^14.0.2",
@@ -25,6 +23,8 @@
     "styled-components": "^4.1.3"
   },
   "devDependencies": {
+    "@forte-music/mock": "^0.0.43",
+    "@forte-music/schema": "^0.0.43",
     "@storybook/addon-actions": "^4.1.2",
     "@storybook/addon-storyshots": "^4.1.2",
     "@storybook/addons": "^4.1.2",
@@ -40,7 +40,6 @@
     "@types/storybook__addon-actions": "^3.4.1",
     "@types/storybook__react": "^4.0.0",
     "@types/styled-components": "^4.1.4",
-    "apollo-server-express": "^2.3.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
     "husky": "^1.3.0",
@@ -79,7 +78,7 @@
     "client": {
       "service": {
         "name": "forte",
-        "localSchemaFile": "../node_modules/@forte-music/schema/schema.graphql"
+        "localSchemaFile": "./node_modules/@forte-music/schema/schema.graphql"
       }
     }
   },

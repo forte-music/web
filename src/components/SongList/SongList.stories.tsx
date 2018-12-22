@@ -3,11 +3,10 @@ import { storiesOf } from '@storybook/react';
 import { action } from '@storybook/addon-actions';
 import { ApolloProvider } from 'react-apollo';
 import { HashRouter } from 'react-router-dom';
+import { Song, songs, mustGet } from '@forte-music/mock';
 
-import { Song, songs } from '@forte-music/mock/models';
 import { SongList } from '.';
 import { DetailRow, Props, DetailRowHeader } from '../DetailSongTable';
-import { mustGet } from '@forte-music/mock/utils';
 
 import client from '../../graphql';
 import ConnectedDetailRow from '../SongListContainer/Detail';
