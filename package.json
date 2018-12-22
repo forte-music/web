@@ -4,7 +4,7 @@
   "private": true,
   "proxy": "http://localhost:8080",
   "dependencies": {
-    "@forte-music/mock": "^0.0.42",
+    "@forte-music/mock": "^0.0.43",
     "@forte-music/schema": "^0.0.42",
     "apollo": "^2.1.8",
     "apollo-boost": "^0.1.23",
