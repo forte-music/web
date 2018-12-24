@@ -67,7 +67,7 @@
     "lint": "yarn tsc && yarn check-fmt && yarn tslint",
     "tslint": "tslint --project .",
     "check-fmt": "prettier --list-different $npm_package_config_prettierFiles",
-    "query-codegen": "cd src && apollo codegen:generate --queries 'src/**/*.{graphql,ts,tsx}' --target typescript"
+    "query-codegen": "apollo codegen:generate --queries 'src/**/*.{graphql,ts,tsx}' --target typescript --globalTypesFile src/__generated__/globalTypes.ts && rm -rf __generated__"
   },
   "husky": {
     "hooks": {
