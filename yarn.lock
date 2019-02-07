@@ -1010,7 +1010,7 @@
   dependencies:
     regenerator-runtime "^0.12.0"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.1.2", "@babel/runtime@^7.2.0":
   version "7.2.0"
   resolved "https://registry.yarnpkg.com/@babel/runtime/-/runtime-7.2.0.tgz#b03e42eeddf5898e00646e4c840fa07ba8dcad7f"
   integrity sha512-oouEibCbHMVdZSDlJBO6bZmID/zA/G/Qx3H1d3rSNPTD+L8UNKvCat7aKWSJ74zYbm5zWGh0GQN0hKj8zYFTCg==
@@ -11658,12 +11658,12 @@ react-inspector@^2.3.0:
     is-dom "^1.0.9"
     prop-types "^15.6.1"
 
-react-intersection-observer@^6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-6.3.1.tgz#0068f43de43f5d765c9dee75360c3a96a6f4ae6e"
-  integrity sha512-qOPqMb/xHIaVckJuLYGV47zkM2a6Oxycos9p9A18CK54bTmuADmLrEsFe64Yt+6kOLnA1qbrnqml0AUoPfCLtQ==
+react-intersection-observer@^7.0.1:
+  version "7.0.1"
+  resolved "https://registry.yarnpkg.com/react-intersection-observer/-/react-intersection-observer-7.0.1.tgz#63754bc04dd87d7e5933867fcdd070cad72dab2b"
+  integrity sha512-mplF283EIC+7/Y/9E36afQKUUzlfEpNBOlRBIhavF5TR9eoEe/k3MCUEfkCa2PRz8nq5yPmrxSYn0bP2/w6v3A==
   dependencies:
-    "@babel/runtime" "^7.1.0"
+    "@babel/runtime" "^7.2.0"
     invariant "^2.2.4"
 
 react-is@^16.3.2, react-is@^16.6.0, react-is@^16.6.1, react-is@^16.6.3, react-is@^16.7.0:
