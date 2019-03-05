@@ -28,7 +28,7 @@
     "@storybook/addon-actions": "^5.0.0",
     "@storybook/addon-storyshots": "^5.0.0",
     "@storybook/addons": "^5.0.0",
-    "@storybook/react": "^4.1.2",
+    "@storybook/react": "^5.0.0",
     "@types/enzyme": "^3.1.15",
     "@types/graphql": "^14.0.3",
     "@types/jest": "^24.0.0",
