@@ -14,7 +14,7 @@
     "react-apollo": "^2.3.3",
     "react-dom": "^16.7.0",
     "react-intersection-observer": "^6.3.1",
-    "react-redux": "^6.0.0",
+    "react-redux": "^7.0.0",
     "react-router-dom": "^4.3.1",
     "react-side-effect": "^1.1.5",
     "react-virtual-list": "^2.3.0",
