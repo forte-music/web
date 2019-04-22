@@ -46,7 +46,7 @@
     "jest-enzyme": "^7.0.1",
     "prettier": "1.15.3",
     "react-display-name": "^0.2.4",
-    "react-scripts": "^2.1.1",
+    "react-scripts": "^3.0.0",
     "require-context.macro": "^1.0.4",
     "tslint": "^5.10.0",
     "tslint-config-prettier": "^1.17.0",
