@@ -5,7 +5,7 @@
   "proxy": "http://localhost:8080",
   "dependencies": {
     "apollo": "^2.1.8",
-    "apollo-boost": "^0.1.23",
+    "apollo-boost": "^0.4.0",
     "graphql": "^14.0.2",
     "intersection-observer": "^0.5.1",
     "lodash": "^4.17.11",
