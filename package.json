@@ -26,7 +26,7 @@
     "@forte-music/mock": "^0.0.43",
     "@forte-music/schema": "^0.0.43",
     "@storybook/addon-actions": "^4.1.2",
-    "@storybook/addon-storyshots": "^4.1.2",
+    "@storybook/addon-storyshots": "^6.1.9",
     "@storybook/addons": "^4.1.2",
     "@storybook/react": "^4.1.2",
     "@types/enzyme": "^3.9.3",
